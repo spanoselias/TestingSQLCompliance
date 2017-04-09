@@ -1,7 +1,8 @@
+
+import java.util.Random;
+
 public class GeneratorEngine
 {
-
-    String tables[] = {"R1", "R2", "R3"};
 
     public String random_query()
     {
@@ -10,18 +11,29 @@ public class GeneratorEngine
         return query;
     }
 
-
-    public String query()
+    public static String query()
     {
+        String tables[] = {"R1", "R2", "R3", "R4", "R5", "R6"};
 
-        String query=" ";
+        int randTable=0;
 
-        return query;
+        Random randomGenerator = new Random();
+
+
+        randTable = randomGenerator.nextInt(tables.length);
+
+
+        return tables[randTable];
     }
 
 
     public static void main(String[] args)
     {
-        System.out.println("Hello World!");
+
+        for (int i=0; i< 5; i++)
+        {
+            System.out.println(query());
+        }
+
     }
 }
