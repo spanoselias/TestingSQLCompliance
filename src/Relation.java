@@ -28,7 +28,7 @@ public class Relation
         this.relName = newRelName;
     }
 
-    
+
     public void addAttribute (String newAttribute)
     {
         this.attributes.add(newAttribute);
