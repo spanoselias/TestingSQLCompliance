@@ -1,8 +1,8 @@
 TestingSQLCompliance
 -------------
+<a>
 <p align = "center">
-<
-<img src="" width="600" height="150"/>
+<img src="http://www.iconarchive.com/download/i94630/blackvariant/button-ui-microsoft-office-apps/Microsoft-Query.ico" width="600" height="150"/>
 </a>
 
 
