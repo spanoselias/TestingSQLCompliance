@@ -17,7 +17,11 @@ be evaluated in the below Database Management Systems (DBMSs). Our project will 
  >- PostgreSQL
  >- IBM DB2
  >- MSSQL Server
-  
+
+## Requirements
+
+* Mac OS X or Linux or Windows
+* Java 8 Update 92 or higher (8u92+)
   
 ## Goals
 
