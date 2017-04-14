@@ -27,7 +27,7 @@ be evaluated in the below Database Management Systems (DBMSs). Our project will 
 
 The goals of this implementation are:
 
-* Random Query Generator
+* Random Query Generator Engine
 
-* Compare Result Engine
+* Compare Database Results Engine
 
