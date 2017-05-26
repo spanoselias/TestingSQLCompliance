@@ -1,5 +1,11 @@
 import java.util.Random;
 
+
+/*
+
+Create by Elias Spanos
+
+ */
 public class GeneratorEngine
 {
 
@@ -58,7 +64,8 @@ public class GeneratorEngine
     }
 
 
-    public static String[] randomSelect()
+    
+  /*  public static String[] randomSelect()
     {
 
 
@@ -68,7 +75,7 @@ public class GeneratorEngine
     public static String[] randomFrom()
     {
 
-    }
+    }*/
 
     public static void main(String[] args)
     {
