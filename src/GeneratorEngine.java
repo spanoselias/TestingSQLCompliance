@@ -48,18 +48,25 @@ public class GeneratorEngine
             {
                 stm += " *";
             }
+
             else
             {
-                for(int i=0; i < frmTbls.size(); i++)
+
+               boolean isOut=false;
+
+               for (String relName : relAttrs.keySet())
                 {
                     //This loop will be used to go through all the attributed of the specific
                     //relation
-                    for(int j=0; j< relAttrs.get(frmTbls.get(i)).size(); j++  )
+                    for(int j=0; j< relAttrs.get(relName).size(); j++  )
                     {
-                        if(i ==0)
-                            stm += String.format(" %s.%s", frmTbls.get(i),relAttrs.get(frmTbls.get(i)).get(j));
+                        if(isOut ==false)
+                        {
+                            stm += String.format(" %s.%s", relName.toLowerCase(), relAttrs.get(relName).get(j));
+                            isOut=true;
+                        }
                         else
-                            stm += String.format(",%s.%s", frmTbls.get(i),relAttrs.get(frmTbls.get(i)).get(j));;
+                            stm += String.format(", %s.%s", relName.toLowerCase(),relAttrs.get(relName).get(j));
                     }
                 }
             }
@@ -126,7 +133,6 @@ public class GeneratorEngine
 
             return stm;
         }
-
 
         private LinkedList<String> getTables()
         {
