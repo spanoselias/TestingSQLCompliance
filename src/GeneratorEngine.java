@@ -175,11 +175,19 @@ public class GeneratorEngine
 
     public static class COMPARISON
     {
-       private LinkedList<String> operators;
-       private HashMap<String, LinkedList<String>> relAttrs;
+        private LinkedList<String> operators;
+        private HashMap<String, LinkedList<String>> relAttrs;
+        private LinkedList<String> selectedTables;
 
-        public COMPARISON(HashMap<String, LinkedList<String>> relAttrs)
+        public COMPARISON(HashMap<String, LinkedList<String>> relAttrs, LinkedList<String> selectedTablesIn)
             {
+
+                relAttrs = new HashMap<String, LinkedList<String>>();
+                relAttrs=(HashMap)relAttrs.clone();
+
+                this.selectedTables = new  LinkedList<String>();
+                selectedTables = (LinkedList) selectedTablesIn.clone();
+
                 this.operators = new LinkedList<>();
                 this.operators.add("<");
                 this.operators.add(">");
@@ -189,7 +197,6 @@ public class GeneratorEngine
                 this.relAttrs = relAttrs;
             }
 
-
         private String getAttrComparison()
         {
             Random randomGenerator = new Random();
@@ -198,6 +205,9 @@ public class GeneratorEngine
             pickRand = ( randomGenerator.nextInt(this.operators.size()) % this.operators.size() ) + 1 ;
 
             String oper = this.operators.get(pickRand);
+
+
+
 
 
 
@@ -284,11 +294,6 @@ public class GeneratorEngine
 
     public static void main(String[] args)
     {
-      /*  for (int i=0; i< 5; i++)
-        {
-            System.out.println(query());
-        }*/
-
 
       SELECT sel = new SELECT(false, false);
 
