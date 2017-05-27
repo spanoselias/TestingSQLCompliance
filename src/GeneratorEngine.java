@@ -3,10 +3,9 @@ import java.util.LinkedList;
 import java.util.Random;
 
 /*
-
  Create by Elias Spanos
-
  */
+
 public class GeneratorEngine
 {
     private static class SELECT
