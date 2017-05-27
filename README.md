@@ -20,7 +20,7 @@ be evaluated in the below Database Management Systems (DBMSs). Our project will 
 
 ## Requirements
 
-* Mac OS X or Linux or Windows
+* Linux or Windows
 * Java 8 Update 92 or higher (8u92+)
   
 ## Goals

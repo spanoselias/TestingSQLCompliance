@@ -9,13 +9,11 @@ public class Relation
     String relName;
     LinkedList<String> attributes;
 
-
     public Relation()
     {
         relName = "";
         attributes  = new LinkedList<>();
     }
-
 
     public String getRelName()
     {
@@ -27,7 +25,6 @@ public class Relation
     {
         this.relName = newRelName;
     }
-
 
     public void addAttribute (String newAttribute)
     {
