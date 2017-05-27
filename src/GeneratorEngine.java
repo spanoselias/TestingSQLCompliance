@@ -176,13 +176,36 @@ public class GeneratorEngine
     public static class COMPARISON
     {
        private LinkedList<String> operators;
+       private HashMap<String, LinkedList<String>> relAttrs;
 
-
-        public COMPARISONS(HashMap<String, LinkedList<String>> relAttrs)
+        public COMPARISON(HashMap<String, LinkedList<String>> relAttrs)
             {
-                operators = new LinkedList<>();
-
+                this.operators = new LinkedList<>();
+                this.operators.add("<");
+                this.operators.add(">");
+                this.operators.add("<=");
+                this.operators.add(">=");
+                this.operators.add("<>");
+                this.relAttrs = relAttrs;
             }
+
+
+        private String getAttrComparison()
+        {
+            Random randomGenerator = new Random();
+
+            int pickRand;
+            pickRand = ( randomGenerator.nextInt(this.operators.size()) % this.operators.size() ) + 1 ;
+
+            String oper = this.operators.get(pickRand);
+
+
+
+
+        }
+
+
+
 
     }
 
