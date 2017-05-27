@@ -4,7 +4,7 @@ import java.util.Random;
 
 /*
 
-Create by Elias Spanos
+ Create by Elias Spanos
 
  */
 public class GeneratorEngine
@@ -54,7 +54,7 @@ public class GeneratorEngine
 
                boolean isOut=false;
 
-               for (String relName : relAttrs.keySet())
+               for (String relName : frmTbls)
                 {
                     //This loop will be used to go through all the attributed of the specific
                     //relation
@@ -71,7 +71,7 @@ public class GeneratorEngine
                 }
             }
 
-            stm += "\n" + genFrom.getFrom();
+            stm += "\n" + genFrom.getFromSql();
 
             return stm;
         }
@@ -79,8 +79,8 @@ public class GeneratorEngine
 
     public static class FROM
     {
-
         private Relation rel[];
+        private String fromStm;
 
         //This HashMap is used to store the associated attributes for each relation. The
         //key represents the relation name and the list stores all the attributes for each key (relation)
@@ -91,6 +91,8 @@ public class GeneratorEngine
         {
              // Allocate memory for each object
              rel= new Relation[3];
+
+             fromStm="";
 
             for(int i=0; i <3; i++ )
             {
@@ -109,7 +111,6 @@ public class GeneratorEngine
 
         private String getFrom()
         {
-
             //Clear linkedlist
             selectedTables.clear();
 
@@ -131,7 +132,14 @@ public class GeneratorEngine
                     stm += String.format(", %s AS %s",rel[i].getRelName(), rel[i].getRelName().toLowerCase());
             }
 
+            fromStm=stm;
+
             return stm;
+        }
+
+        private String getFromSql()
+        {
+            return fromStm;
         }
 
         private LinkedList<String> getTables()
@@ -143,7 +151,6 @@ public class GeneratorEngine
         {
             return this.relAttrs;
         }
-
     }
 
     public static String random_query()
@@ -200,23 +207,23 @@ public class GeneratorEngine
         return tables[randTable];
     }
 
-
     public static void shuffleArray(Relation[] a) {
         int n = a.length;
         Random random = new Random();
         random.nextInt();
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++)
+        {
             int change = i + random.nextInt(n - i);
             swap(a, i, change);
         }
     }
 
-    private static void swap(Relation[] a, int i, int change) {
+    private static void swap(Relation[] a, int i, int change)
+    {
         Relation helper = a[i];
         a[i] = a[change];
         a[change] = helper;
     }
-
 
     public static void main(String[] args)
     {
