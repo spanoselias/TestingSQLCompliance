@@ -28,7 +28,6 @@ public class GeneratorEngine
         {
             this.isDistinct = isDistinct;
             this.isAllAttrs = isAttrs;
-
         }
 
         private  String getSelect()
@@ -151,6 +150,42 @@ public class GeneratorEngine
             return this.relAttrs;
         }
     }
+
+    public static class WHERE
+    {
+        String stm;
+
+        public WHERE()
+        {
+
+        }
+
+        private String getWhere()
+        {
+
+            return stm;
+        }
+
+        private String getSqlWhere()
+        {
+            return  this.stm;
+        }
+
+    }
+
+    public static class COMPARISON
+    {
+       private LinkedList<String> operators;
+
+
+        public COMPARISONS(HashMap<String, LinkedList<String>> relAttrs)
+            {
+                operators = new LinkedList<>();
+
+            }
+
+    }
+
 
     public static String random_query()
     {
