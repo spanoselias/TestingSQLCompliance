@@ -17,7 +17,12 @@ public class Relation
 
     public String getRelName()
     {
-        return relName;
+        return this.relName;
+    }
+
+    public  LinkedList<String> getRelAttrs()
+    {
+        return this.attributes;
     }
 
 
@@ -26,9 +31,15 @@ public class Relation
         this.relName = newRelName;
     }
 
+    public void setAttrName( String newattrName)
+    {
+       attributes.add(newattrName);
+    }
+
     public void addAttribute (String newAttribute)
     {
         this.attributes.add(newAttribute);
     }
+
 
 }

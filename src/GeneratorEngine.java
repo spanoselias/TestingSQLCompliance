@@ -11,18 +11,25 @@ public class GeneratorEngine
 {
     private static class SELECT
     {
+        //It calls the FROM class to choose randomly some relations
         private FROM genFrom = new FROM();
+
+        //It creates a randomly FROM string
         private String stmFrom = genFrom.getFrom();
+
+        //It is stored which relations are randomly selected
         private LinkedList<String> frmTbls = genFrom.selectedTables;
+
         private HashMap<String, LinkedList<String>> relAttrs = genFrom.getRelAttrs();
 
         private boolean isDistinct;
-        private boolean isAttrs;
+        private boolean isAllAttrs;
 
         public SELECT(boolean isDistinct, boolean isAttrs)
         {
             this.isDistinct = isDistinct;
-            this.isAttrs = isAttrs;
+            this.isAllAttrs = isAttrs;
+
         }
 
         private  String getSelect()
@@ -36,7 +43,8 @@ public class GeneratorEngine
                 stm += " DISTINCT";
             }
 
-            if(isAttrs)
+            //This condition check if all the attributes should be included in the output
+            if(isAllAttrs)
             {
                 stm += " *";
             }
@@ -62,30 +70,34 @@ public class GeneratorEngine
         }
     }
 
-
     public static class FROM
     {
 
-        //it is used temporary for debugging reasons
-        private String rel[] = {"R1", "R2", "R3"};
-        private String alias[] = {"r1", "r2", "r3"};
+        private Relation rel[];
 
-        //This hashmap is used to store the associated attributes for each relation. The
+        //This HashMap is used to store the associated attributes for each relation. The
         //key represents the relation name and the list stores all the attributes for each key (relation)
         private HashMap<String, LinkedList<String>> relAttrs = new HashMap<>();
 
         LinkedList<String> selectedTables;
         public FROM()
         {
-            selectedTables = new LinkedList<>();
+             // Allocate memory for each object
+             rel= new Relation[3];
 
-            for (int i=0; i<rel.length; i++ )
+            for(int i=0; i <3; i++ )
             {
-                LinkedList<String> listRelAttrs = new LinkedList<String>();
-                listRelAttrs.add("A");
-                listRelAttrs.add("B");
-                relAttrs.put(rel[i], listRelAttrs );
+                rel[i] = new Relation();
+
+                rel[i].setRelName("R" + i);
+
+                rel[i].setAttrName("A");
+                rel[i].setAttrName("B");
             }
+
+            //This list will be used to track which relations have been selected from the generator. Thus, it will be useful
+            //to know the relations in the FROM statement in order to know what attributes to include in the SELECT statement
+            selectedTables = new LinkedList<>();
         }
 
         private String getFrom()
@@ -97,18 +109,19 @@ public class GeneratorEngine
             Random randomGenerator = new Random();
 
             int pickRand;
-            pickRand = (randomGenerator.nextInt(rel.length) + 1) % rel.length ;
+            pickRand = ( randomGenerator.nextInt(rel.length) % rel.length ) + 1 ;
             shuffleArray(rel);
             String stm = "FROM";
 
             for(int i=0; i < pickRand; i++)
             {
-                this.selectedTables.add(rel[i]);
+                this.selectedTables.add(rel[i].getRelName());
+                this.relAttrs.put(rel[i].getRelName(), rel[i].getRelAttrs());
 
                 if(i ==0)
-                    stm += String.format(" %s AS %s", rel[i], alias[i]);
+                    stm += String.format(" %s AS %s", rel[i].getRelName(), rel[i].getRelName().toLowerCase());
                 else
-                    stm += String.format(", %s AS %s", rel[i], alias[i]);
+                    stm += String.format(", %s AS %s",rel[i].getRelName(), rel[i].getRelName().toLowerCase());
             }
 
             return stm;
@@ -119,7 +132,6 @@ public class GeneratorEngine
         {
             return this.selectedTables;
         }
-
 
         private HashMap<String, LinkedList<String>> getRelAttrs()
         {
@@ -183,7 +195,7 @@ public class GeneratorEngine
     }
 
 
-    public static void shuffleArray(String[] a) {
+    public static void shuffleArray(Relation[] a) {
         int n = a.length;
         Random random = new Random();
         random.nextInt();
@@ -193,8 +205,8 @@ public class GeneratorEngine
         }
     }
 
-    private static void swap(String[] a, int i, int change) {
-        String helper = a[i];
+    private static void swap(Relation[] a, int i, int change) {
+        Relation helper = a[i];
         a[i] = a[change];
         a[change] = helper;
     }
