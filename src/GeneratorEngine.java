@@ -202,16 +202,26 @@ public class GeneratorEngine
             Random randomGenerator = new Random();
 
             int pickRand;
+            int pickRandAttr;
+
             pickRand = ( randomGenerator.nextInt(this.operators.size()) % this.operators.size() ) + 1 ;
 
             String oper = this.operators.get(pickRand);
 
+            pickRand = ( randomGenerator.nextInt(this.selectedTables.size()) % this.selectedTables.size() ) + 1 ;
+            pickRandAttr = ( randomGenerator.nextInt(relAttrs.get(this.selectedTables.get(pickRand)).size()) % relAttrs.get(this.selectedTables.get(pickRand)).size() ) + 1 ;
+
+            String rel1 = this.selectedTables.get(pickRand) + "." + relAttrs.get(this.selectedTables.get(pickRand)).get(pickRandAttr);
+            this.selectedTables.remove(pickRand);
+
+            pickRand = ( randomGenerator.nextInt(this.selectedTables.size()) % this.selectedTables.size() ) + 1 ;
+            pickRandAttr = ( randomGenerator.nextInt(relAttrs.get(this.selectedTables.get(pickRand)).size()) % relAttrs.get(this.selectedTables.get(pickRand)).size() ) + 1 ;
+
+            String rel2 = this.selectedTables.get(pickRand) + "." + relAttrs.get(this.selectedTables.get(pickRand)).get(pickRandAttr);
+            this.selectedTables.remove(pickRand);
 
 
-
-
-
-
+            return rel1 + " " + oper + " " + rel2;
         }
 
 

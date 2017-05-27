@@ -21,8 +21,8 @@
           <file leaf-file-name="GeneratorEngine.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/GeneratorEngine.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="621">
-                  <caret line="182" column="13" lean-forward="true" selection-start-line="182" selection-start-column="13" selection-end-line="182" selection-end-column="13" />
+                <state relative-caret-position="2574">
+                  <caret line="206" column="70" lean-forward="false" selection-start-line="206" selection-start-column="70" selection-end-line="206" selection-end-column="70" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="method#FROM#0;class#FROM#0;class#GeneratorEngine#0" expanded="false" />
@@ -730,7 +730,7 @@
       <workItem from="1495881196132" duration="607000" />
       <workItem from="1495881959122" duration="15265000" />
       <workItem from="1495904702720" duration="1880000" />
-      <workItem from="1495912378698" duration="2471000" />
+      <workItem from="1495912378698" duration="3042000" />
     </task>
     <task id="LOCAL-00001" summary="setting github on intelij">
       <created>1495840391619</created>
@@ -795,11 +795,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495914211338</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="implementing comparison operators">
+      <created>1495914867706</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1495914867706</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22745000" />
+    <option name="totallyTimeSpent" value="23316000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="1" width="1918" height="1030" extended-state="0" />
@@ -868,7 +875,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/GeneratorEngine.java</url>
-          <line>300</line>
+          <line>310</line>
           <properties />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
@@ -1130,8 +1137,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GeneratorEngine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="182" column="13" lean-forward="true" selection-start-line="182" selection-start-column="13" selection-end-line="182" selection-end-column="13" />
+        <state relative-caret-position="2574">
+          <caret line="206" column="70" lean-forward="false" selection-start-line="206" selection-start-column="70" selection-end-line="206" selection-end-column="70" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FROM#0;class#FROM#0;class#GeneratorEngine#0" expanded="false" />
