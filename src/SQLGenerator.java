@@ -6,8 +6,10 @@ import java.util.Random;
  Create by Elias Spanos
  */
 
-public class GeneratorEngine {
-    private static class SELECT {
+public class SQLGenerator
+{
+    private static class SELECT
+    {
         //It calls the FROM class to choose randomly some relations
         private FROM genFrom = new FROM();
 
@@ -25,7 +27,8 @@ public class GeneratorEngine {
         private boolean isDistinct;
         private boolean isAllAttrs;
 
-        public SELECT(boolean isDistinct, boolean isAttrs) {
+        public SELECT(boolean isDistinct, boolean isAttrs)
+        {
             this.isDistinct = isDistinct;
             this.isAllAttrs = isAttrs;
         }
@@ -68,7 +71,8 @@ public class GeneratorEngine {
         }
     }
 
-    public static class FROM {
+    public static class FROM
+    {
         private Relation rel[];
         private String fromStm;
 
@@ -98,7 +102,8 @@ public class GeneratorEngine {
             selectedTables = new LinkedList<>();
         }
 
-        private String getFrom() {
+        private String getFrom()
+        {
             //Clear linkedlist
             selectedTables.clear();
 
@@ -137,7 +142,8 @@ public class GeneratorEngine {
         }
     }
 
-    public static class WHERE {
+    public static class WHERE
+    {
         private String stm;
         private COMPARISON genCom;
 
@@ -156,13 +162,14 @@ public class GeneratorEngine {
         }
     }
 
-
-    public static class COMPARISON {
+    public static class COMPARISON
+    {
         private LinkedList<String> operators;
         private HashMap<String, LinkedList<String>> relAttrs;
         private LinkedList<String> selectedTables;
 
-        public COMPARISON(HashMap<String, LinkedList<String>> relAttrs, LinkedList<String> selectedTablesIn) {
+        public COMPARISON(HashMap<String, LinkedList<String>> relAttrs, LinkedList<String> selectedTablesIn)
+        {
 
             //this.relAttrs = new HashMap<String, LinkedList<String>>();
             this.relAttrs = relAttrs;
@@ -187,26 +194,29 @@ public class GeneratorEngine {
             String oper = "";
             String rel1 = "";
             String rel2 = "";
-            try {
-            pickRand = (randomGenerator.nextInt(this.operators.size())) % this.operators.size();
 
-            oper = this.operators.get(pickRand);
+            try
+            {
+                pickRand = (randomGenerator.nextInt(this.operators.size())) % this.operators.size();
 
-            pickRand = (randomGenerator.nextInt(this.selectedTables.size())) % this.selectedTables.size();
-            pickRandAttr = (randomGenerator.nextInt(relAttrs.get(this.selectedTables.get(pickRand)).size())) % relAttrs.get(this.selectedTables.get(pickRand)).size();
+                oper = this.operators.get(pickRand);
 
-            rel1 = this.selectedTables.get(pickRand) + "." + relAttrs.get(this.selectedTables.get(pickRand)).get(pickRandAttr);
+                pickRand = (randomGenerator.nextInt(this.selectedTables.size())) % this.selectedTables.size();
+                pickRandAttr = (randomGenerator.nextInt(relAttrs.get(this.selectedTables.get(pickRand)).size())) % relAttrs.get(this.selectedTables.get(pickRand)).size();
 
-            pickRand = (randomGenerator.nextInt(this.selectedTables.size())) % this.selectedTables.size();
-            pickRandAttr = (randomGenerator.nextInt(relAttrs.get(this.selectedTables.get(pickRand)).size())) % relAttrs.get(this.selectedTables.get(pickRand)).size();
+                rel1 = this.selectedTables.get(pickRand) + "." + relAttrs.get(this.selectedTables.get(pickRand)).get(pickRandAttr);
 
-            rel2 = this.selectedTables.get(pickRand) + "." + relAttrs.get(this.selectedTables.get(pickRand)).get(pickRandAttr);
+                pickRand = (randomGenerator.nextInt(this.selectedTables.size())) % this.selectedTables.size();
+                pickRandAttr = (randomGenerator.nextInt(relAttrs.get(this.selectedTables.get(pickRand)).size())) % relAttrs.get(this.selectedTables.get(pickRand)).size();
+
+                rel2 = this.selectedTables.get(pickRand) + "." + relAttrs.get(this.selectedTables.get(pickRand)).get(pickRandAttr);
 
 
-               } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Error in Comparison Class, getAttrComparison: " + e);
-              }
+            } catch (ArrayIndexOutOfBoundsException e)
 
+            {
+                System.out.println("Error in Comparison Class, getAttrComparison: " + e);
+            }
 
             return rel1 + " " + oper + " " + rel2;
 
@@ -214,78 +224,78 @@ public class GeneratorEngine {
     }
 
 
-        public static String random_query() {
-            String query = " ";
+    public static String random_query() {
+        String query = " ";
 
-            return query;
+        return query;
+    }
+
+
+    public static char[] genAttr(int startCode, int endCode) {
+        char[] attr = new char[57];
+
+        int k = 0;
+        for (int i = 0; i < 26; i++) {
+            attr[i] = (char) (65 + (k++));
         }
+        return attr;
+    }
 
+    public static String query() {
 
-        public static char[] genAttr(int startCode, int endCode) {
-            char[] attr = new char[57];
+        Relation relations[] = new Relation[10];
+        char attr[] = genAttr(1, 2);
 
-            int k = 0;
-            for (int i = 0; i < 26; i++) {
-                attr[i] = (char) (65 + (k++));
-            }
-            return attr;
-        }
+        String rel = "R";
 
-        public static String query() {
+        for (int i = 0; i < 5; i++) {
+            //Initialization & allocation of memory for each object relation
+            relations[i] = new Relation();
 
-            Relation relations[] = new Relation[10];
-            char attr[] = genAttr(1, 2);
+            String buildRel = rel + (i + 1);
+            relations[i].relName = buildRel;
 
-            String rel = "R";
-
-            for (int i = 0; i < 5; i++) {
-                //Initialization & allocation of memory for each object relation
-                relations[i] = new Relation();
-
-                String buildRel = rel + (i + 1);
-                relations[i].relName = buildRel;
-
-                for (int j = 0; j < 5; j++) {
-                    relations[i].attributes.add(Character.toString(attr[j]));
-                }
-            }
-
-            String tables[] = {"R1", "R2", "R3", "R4", "R5", "R6"};
-
-            int randTable = 0;
-
-            Random randomGenerator = new Random();
-
-            randTable = randomGenerator.nextInt(tables.length);
-
-
-            return tables[randTable];
-        }
-
-        public static void shuffleArray(Relation[] a) {
-            int n = a.length;
-            Random random = new Random();
-            random.nextInt();
-            for (int i = 0; i < n; i++) {
-                int change = i + random.nextInt(n - i);
-                swap(a, i, change);
+            for (int j = 0; j < 5; j++) {
+                relations[i].attributes.add(Character.toString(attr[j]));
             }
         }
 
-        private static void swap(Relation[] a, int i, int change) {
-            Relation helper = a[i];
-            a[i] = a[change];
-            a[change] = helper;
-        }
+        String tables[] = {"R1", "R2", "R3", "R4", "R5", "R6"};
 
-        public static void main(String[] args)
-        {
+        int randTable = 0;
 
-            SELECT sel = new SELECT(false, false);
+        Random randomGenerator = new Random();
+
+        randTable = randomGenerator.nextInt(tables.length);
 
 
-            System.out.println(sel.getSelect());
+        return tables[randTable];
+    }
 
+    public static void shuffleArray(Relation[] a) {
+        int n = a.length;
+        Random random = new Random();
+        random.nextInt();
+        for (int i = 0; i < n; i++) {
+            int change = i + random.nextInt(n - i);
+            swap(a, i, change);
         }
     }
+
+    private static void swap(Relation[] a, int i, int change) {
+        Relation helper = a[i];
+        a[i] = a[change];
+        a[change] = helper;
+    }
+
+    public static void main(String[] args)
+    {
+
+        SELECT sel = new SELECT(false, false);
+
+
+        System.out.println(sel.getSelect());
+
+    }
+}
 

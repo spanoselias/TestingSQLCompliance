@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SQLGenerator.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TestingSQLCompliance/GeneratorEngine.class" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/GeneratorEngine.java" afterPath="$PROJECT_DIR$/src/SQLGeneratorEngine.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GeneratorEngine.java" afterPath="$PROJECT_DIR$/src/GeneratorEngine.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,22 +18,35 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.63736844">
+    <splitter split-orientation="horizontal" split-proportion="0.83739376">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-          <file leaf-file-name="GeneratorEngine.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/GeneratorEngine.java">
+          <file leaf-file-name="SQLGeneratorEngine.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/SQLGeneratorEngine.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="209">
-                  <caret line="193" column="0" lean-forward="true" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
+                <state relative-caret-position="231">
+                  <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="method#FROM#0;class#FROM#0;class#GeneratorEngine#0" expanded="false" />
-                    <element signature="e#4908#4909#0" expanded="true" />
-                    <element signature="e#4971#4972#0" expanded="true" />
-                    <element signature="method#random_query#0;class#GeneratorEngine#0" expanded="false" />
-                    <element signature="method#genAttr#0;class#GeneratorEngine#0" expanded="false" />
-                    <element signature="method#query#0;class#GeneratorEngine#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SQLGenerator.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/SQLGenerator.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="231">
+                  <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="class#SELECT#0;class#SQLGenerator#0" expanded="false" />
+                    <element signature="method#FROM#0;class#FROM#0;class#SQLGenerator#0" expanded="false" />
+                    <element signature="e#4933#4934#0" expanded="true" />
+                    <element signature="e#4996#4997#0" expanded="true" />
+                    <element signature="method#random_query#0;class#SQLGenerator#0" expanded="false" />
+                    <element signature="method#genAttr#0;class#SQLGenerator#0" expanded="false" />
+                    <element signature="method#query#0;class#SQLGenerator#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -88,6 +104,7 @@
     <findStrings>
       <find>frmTbls</find>
       <find>relAttrs</find>
+      <find>shuffleArray</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -108,6 +125,8 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/Relation.java" />
         <option value="$PROJECT_DIR$/src/GeneratorEngine.java" />
+        <option value="$PROJECT_DIR$/src/SQLGenerator.java" />
+        <option value="$PROJECT_DIR$/src/SQLGeneratorEngine.java" />
       </list>
     </option>
   </component>
@@ -188,10 +207,10 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.GeneratorEngine">
-    <configuration default="false" name="GeneratorEngine" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.SQLGeneratorEngine">
+    <configuration default="false" name="SQLGeneratorEngine" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="GeneratorEngine" />
+      <option name="MAIN_CLASS_NAME" value="SQLGeneratorEngine" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -708,11 +727,11 @@
       <method />
     </configuration>
     <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="Application.GeneratorEngine" />
+      <item index="0" class="java.lang.String" itemvalue="Application.SQLGeneratorEngine" />
     </list>
     <recent_temporary>
       <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Application.GeneratorEngine" />
+        <item index="0" class="java.lang.String" itemvalue="Application.SQLGeneratorEngine" />
       </list>
     </recent_temporary>
   </component>
@@ -731,7 +750,7 @@
       <workItem from="1495881196132" duration="607000" />
       <workItem from="1495881959122" duration="15265000" />
       <workItem from="1495904702720" duration="1880000" />
-      <workItem from="1495912378698" duration="6546000" />
+      <workItem from="1495912378698" duration="6825000" />
     </task>
     <task id="LOCAL-00001" summary="setting github on intelij">
       <created>1495840391619</created>
@@ -824,11 +843,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495966922001</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="implementing comparison operators">
+      <created>1495967924149</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1495967924149</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26820000" />
+    <option name="totallyTimeSpent" value="27099000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="1" width="1918" height="1030" extended-state="0" />
@@ -843,13 +869,13 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.193729" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14781635" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968238" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.10638298" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1631579" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23473684" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -894,29 +920,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/GeneratorEngine.java</url>
-          <line>159</line>
-          <properties />
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/GeneratorEngine.java</url>
-          <line>210</line>
-          <properties />
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/GeneratorEngine.java</url>
-          <line>180</line>
-          <properties class="GeneratorEngine.COMPARISON" method="getAttrComparison">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="27" />
+      <option name="time" value="28" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -925,18 +929,12 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/GeneratorEngine.java">
+    <entry file="file://$PROJECT_DIR$/src/SQLGeneratorEngine.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3738">
           <caret line="178" column="0" lean-forward="true" selection-start-line="178" selection-start-column="0" selection-end-line="178" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#FROM#0;class#FROM#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="e#4908#4909#0" expanded="true" />
-            <element signature="e#4971#4972#0" expanded="true" />
-            <element signature="method#random_query#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="method#genAttr#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="method#query#0;class#GeneratorEngine#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -970,18 +968,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GeneratorEngine.java">
+    <entry file="file://$PROJECT_DIR$/src/SQLGeneratorEngine.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="588">
           <caret line="28" column="41" lean-forward="true" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#FROM#0;class#FROM#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="e#4908#4909#0" expanded="true" />
-            <element signature="e#4971#4972#0" expanded="true" />
-            <element signature="method#random_query#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="method#genAttr#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="method#query#0;class#GeneratorEngine#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1015,18 +1007,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GeneratorEngine.java">
+    <entry file="file://$PROJECT_DIR$/src/SQLGeneratorEngine.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
           <caret line="11" column="5" lean-forward="true" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#FROM#0;class#FROM#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="e#4908#4909#0" expanded="true" />
-            <element signature="e#4971#4972#0" expanded="true" />
-            <element signature="method#random_query#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="method#genAttr#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="method#query#0;class#GeneratorEngine#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1050,18 +1036,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GeneratorEngine.java">
+    <entry file="file://$PROJECT_DIR$/src/SQLGeneratorEngine.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#FROM#0;class#FROM#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="e#4908#4909#0" expanded="true" />
-            <element signature="e#4971#4972#0" expanded="true" />
-            <element signature="method#random_query#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="method#genAttr#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="method#query#0;class#GeneratorEngine#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1073,18 +1053,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GeneratorEngine.java">
+    <entry file="file://$PROJECT_DIR$/src/SQLGeneratorEngine.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#FROM#0;class#FROM#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="e#4908#4909#0" expanded="true" />
-            <element signature="e#4971#4972#0" expanded="true" />
-            <element signature="method#random_query#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="method#genAttr#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="method#query#0;class#GeneratorEngine#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1176,18 +1150,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GeneratorEngine.java">
+    <entry file="file://$PROJECT_DIR$/src/SQLGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="193" column="0" lean-forward="true" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
+        <state relative-caret-position="231">
+          <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#FROM#0;class#FROM#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="e#4908#4909#0" expanded="true" />
-            <element signature="e#4971#4972#0" expanded="true" />
-            <element signature="method#random_query#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="method#genAttr#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="method#query#0;class#GeneratorEngine#0" expanded="false" />
+            <element signature="class#SELECT#0;class#SQLGenerator#0" expanded="false" />
+            <element signature="method#FROM#0;class#FROM#0;class#SQLGenerator#0" expanded="false" />
+            <element signature="e#4933#4934#0" expanded="true" />
+            <element signature="e#4996#4997#0" expanded="true" />
+            <element signature="method#random_query#0;class#SQLGenerator#0" expanded="false" />
+            <element signature="method#genAttr#0;class#SQLGenerator#0" expanded="false" />
+            <element signature="method#query#0;class#SQLGenerator#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SQLGeneratorEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
