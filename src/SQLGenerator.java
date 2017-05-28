@@ -2,10 +2,13 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Random;
 
-/*
- Create by Elias Spanos
+/**
+ * The class Location is used to represent a specific location
+ * of the world.
+ *
+ * @author ELIAS SPANOS
+ * @version 0.0.1
  */
-
 public class SQLGenerator
 {
     private static class SELECT

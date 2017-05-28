@@ -29,5 +29,5 @@ The goals of this implementation are:
 
 * Random Query Generator Engine
 
-* Compare Database Results Engine
+* Comparing SQL results engine
 
