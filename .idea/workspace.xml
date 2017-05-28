@@ -35,13 +35,17 @@
           <file leaf-file-name="SQLGenerator.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/SQLGenerator.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-3205">
-                  <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+                <state relative-caret-position="-425">
+                  <caret line="10" column="3" lean-forward="true" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
                   <folding>
                     <element signature="imports" expanded="true" />
+                    <element signature="method#SELECT#0;class#SELECT#0;class#SQLGenerator#0" expanded="false" />
+                    <element signature="method#getSelect#0;class#SELECT#0;class#SQLGenerator#0" expanded="false" />
+                    <element signature="class#FROM#0;class#SQLGenerator#0" expanded="false" />
                     <element signature="method#FROM#0;class#FROM#0;class#SQLGenerator#0" expanded="false" />
                     <element signature="method#getFrom#0;class#FROM#0;class#SQLGenerator#0" expanded="false" />
                     <element signature="method#genRandNo#0;class#SQLGenerator#0" expanded="false" />
+                    <element signature="method#getSqlWhere#0;class#WHERE#0;class#SQLGenerator#0" expanded="false" />
                     <element signature="class#COMPARISON#0;class#SQLGenerator#0" expanded="false" />
                     <element signature="method#getAttrComparison#0;class#COMPARISON#0;class#SQLGenerator#0" expanded="false" />
                     <element signature="method#genAttr#0;class#SQLGenerator#0" expanded="false" />
@@ -59,8 +63,8 @@
           <file leaf-file-name="config.properties" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/config.properties">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="84">
-                  <caret line="4" column="20" lean-forward="true" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+                <state relative-caret-position="63">
+                  <caret line="3" column="18" lean-forward="true" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
                   <folding />
                 </state>
               </provider>
@@ -775,7 +779,7 @@
       <workItem from="1495881196132" duration="607000" />
       <workItem from="1495881959122" duration="15265000" />
       <workItem from="1495904702720" duration="1880000" />
-      <workItem from="1495912378698" duration="20533000" />
+      <workItem from="1495912378698" duration="21843000" />
     </task>
     <task id="LOCAL-00001" summary="setting github on intelij">
       <created>1495840391619</created>
@@ -910,11 +914,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495990367903</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Implementing SQLGeneratorEngine">
+      <created>1495999225106</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1495999225106</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40807000" />
+    <option name="totallyTimeSpent" value="42117000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="1" width="1918" height="1030" extended-state="0" />
@@ -938,7 +949,7 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10190369" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10974244" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968238" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.10638298" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17789474" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1026,37 +1037,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/SQLGenerator.java</url>
-          <line>446</line>
+          <line>441</line>
           <properties />
           <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/SQLGenerator.java</url>
-          <line>227</line>
-          <properties />
-          <option name="timeStamp" value="63" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/SQLGenerator.java</url>
-          <line>93</line>
+          <line>98</line>
           <properties />
           <option name="timeStamp" value="65" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/SQLGenerator.java</url>
-          <line>209</line>
+          <line>214</line>
           <properties class="SQLGenerator.WHERE" method="&lt;init&gt;">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="61" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/SQLGenerator.java</url>
-          <line>225</line>
-          <properties class="SQLGenerator.WHERE" method="getSqlWhere">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="64" />
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="66" />
@@ -1311,21 +1308,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/config.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="20" lean-forward="true" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+        <state relative-caret-position="63">
+          <caret line="3" column="18" lean-forward="true" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SQLGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3205">
-          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+        <state relative-caret-position="-425">
+          <caret line="10" column="3" lean-forward="true" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#SELECT#0;class#SELECT#0;class#SQLGenerator#0" expanded="false" />
+            <element signature="method#getSelect#0;class#SELECT#0;class#SQLGenerator#0" expanded="false" />
+            <element signature="class#FROM#0;class#SQLGenerator#0" expanded="false" />
             <element signature="method#FROM#0;class#FROM#0;class#SQLGenerator#0" expanded="false" />
             <element signature="method#getFrom#0;class#FROM#0;class#SQLGenerator#0" expanded="false" />
             <element signature="method#genRandNo#0;class#SQLGenerator#0" expanded="false" />
+            <element signature="method#getSqlWhere#0;class#WHERE#0;class#SQLGenerator#0" expanded="false" />
             <element signature="class#COMPARISON#0;class#SQLGenerator#0" expanded="false" />
             <element signature="method#getAttrComparison#0;class#COMPARISON#0;class#SQLGenerator#0" expanded="false" />
             <element signature="method#genAttr#0;class#SQLGenerator#0" expanded="false" />

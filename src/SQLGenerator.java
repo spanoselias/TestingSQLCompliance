@@ -7,8 +7,8 @@ import java.util.Properties;
 import java.util.Random;
 
 /**
- * The class Location is used to represent a specific location
- * of the world.
+ * The class SQLGenerator is used to generate SQL queries
+ *
  *
  * @author ELIAS SPANOS
  * @version 0.0.1
@@ -70,7 +70,8 @@ public class SQLGenerator
             if (isAllAttrs)
             {
                 stm += " *";
-            } else {
+            } else
+                {
 
                 boolean isOut = false;
 
@@ -89,8 +90,12 @@ public class SQLGenerator
                 }
             }
 
+            //We retrieve the FROM SQL statement and we append it to the
+            //final SQL string
             stm += "\n" + genFrom.getFromSql();
 
+            //We retrieve the WHERE SQL statement and we append it to the
+            //final SQL string
             stm += "\n" + genWhere.getSqlWhere();
 
             return stm;
@@ -217,12 +222,6 @@ public class SQLGenerator
             this.whereNo = whereNoComp;
         }
 
-       /* private String getWhere()
-        {
-            //Need to be expanded
-            return stm + genCom.getAttrComparison();
-        }*/
-
         private String getSqlWhere()
         {
             if(whereNo != -1)
@@ -237,9 +236,7 @@ public class SQLGenerator
                     {
                         stm += conn[genRandNo(conn.length)] + " " + genCom.getAttrComparison();
                     }
-
                 }
-
             }
 
             else
@@ -386,7 +383,6 @@ public class SQLGenerator
         a.set(change,helper);
     }
 
-
     public static void readConfFile(HashMap<String, LinkedList<String>> relAttrs)
     {
         Properties prop = new Properties();
@@ -436,7 +432,6 @@ public class SQLGenerator
 
     public static void main(String[] args)
     {
-
         //This hashMap will be used to store all the attributes for each relation
         HashMap<String, LinkedList<String>> relationsAttrs = new HashMap<>();
 
@@ -444,7 +439,7 @@ public class SQLGenerator
         //and it stores them in the relationsAttrs hashMap
         readConfFile(relationsAttrs);
 
-        SELECT sel = new SELECT(true, true );
+        SELECT sel = new SELECT(false, false );
 
         System.out.println(sel.getSelect());
 
