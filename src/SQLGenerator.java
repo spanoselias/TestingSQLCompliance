@@ -1,5 +1,9 @@
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Properties;
 import java.util.Random;
 
 /**
@@ -11,12 +15,26 @@ import java.util.Random;
  */
 public class SQLGenerator
 {
-    private static class SELECT
+  /*  private SELECT selAccess;
+
+    SQLGenerator( HashMap<String, LinkedList<String>> relAttrIn)
     {
+          selAccess = new SELECT(true, true, relAttrIn);
+    }
+
+    public  SELECT getGenerator()
+    {
+        return this.selAccess;
+    }*/
+
+    public static class SELECT
+    {
+        private HashMap<String, LinkedList<String>> relAttr;
+
         //It calls the FROM class to choose randomly some relations
         private FROM genFrom = new FROM();
 
-        //It creates a randomly FROM string
+        //It creates a randomly SQL FROM string
         private String stmFrom = genFrom.getFrom();
 
         //The  which relations are randomly selected
@@ -24,24 +42,29 @@ public class SQLGenerator
 
         private HashMap<String, LinkedList<String>> relAttrs = genFrom.getRelAttrs();
 
-
         private WHERE genWhere = new WHERE(relAttrs, frmRels);
+
 
         private boolean isDistinct;
         private boolean isAllAttrs;
 
-        public SELECT(boolean isDistinct, boolean isAttrs)
+        public SELECT(boolean isDistinctIn, boolean isAttrsIn, HashMap<String, LinkedList<String>> relAttrsIn)
         {
-            this.isDistinct = isDistinct;
-            this.isAllAttrs = isAttrs;
+            this.isDistinct = isDistinctIn;
+            this.isAllAttrs = isAttrsIn;
+
+            this.relAttr = new HashMap<>();
+
         }
 
-        private String getSelect() {
+        public String getSelect()
+        {
             String stm = "SELECT";
 
             //This condition is used to check if the sql query will include DISTINCT keyword
             //in the SELECT statement
-            if (this.isDistinct) {
+            if (this.isDistinct)
+            {
                 stm += " DISTINCT";
             }
 
@@ -69,35 +92,48 @@ public class SQLGenerator
 
             stm += "\n" + genWhere.getSqlWhere();
 
-
             return stm;
         }
     }
 
     public static class FROM
     {
-        private Relation rel[];
+        private Relation rel [];
+
         private String fromStm;
 
         //This HashMap is used to store the associated attributes for each relation. The
         //key represents the relation name and the list stores all the attributes for each key (relation)
-        private HashMap<String, LinkedList<String>> relAttrs = new HashMap<>();
+        private HashMap<String, LinkedList<String>> relAttrs;
 
         LinkedList<String> selectedTables;
 
-        public FROM() {
-            // Allocate memory for each object
-            rel = new Relation[3];
+        public FROM( )
+        {
+
+            relAttrs = new HashMap<>();
+
+            //This method is used to read all the relations and attributes from the configuration file (config.properties file)
+            //and it stores them in the relationsAttrs hashMap
+            readConfFile(  this.relAttrs);
+
+
 
             fromStm = "";
 
-            for (int i = 0; i < 3; i++) {
+            rel = new Relation [this.relAttrs.size()];
+            int i=0;
+            for (String relation : this.relAttrs.keySet()) {
                 rel[i] = new Relation();
 
-                rel[i].setRelName("R" + i);
+                rel[i].setRelName(relation);
 
-                rel[i].setAttrName("A");
-                rel[i].setAttrName("B");
+                for (String attr : this.relAttrs.get(relation))
+                {
+                    rel[i].setAttrName(attr);
+                }
+
+                i++;
             }
 
             //This list will be used to track which relations have been selected from the generator. Thus, it will be useful
@@ -117,7 +153,8 @@ public class SQLGenerator
             shuffleArray(rel);
             String stm = "FROM";
 
-            for (int i = 0; i < pickRand; i++) {
+            for (int i = 0; i < pickRand; i++)
+            {
                 this.selectedTables.add(rel[i].getRelName());
                 this.relAttrs.put(rel[i].getRelName(), rel[i].getRelAttrs());
 
@@ -155,12 +192,19 @@ public class SQLGenerator
             genCom = new COMPARISON(relAttrs, selectedTablesIn);
         }
 
-        private String getWhere() {
+        public WHERE(HashMap<String, LinkedList<String>> relAttrs, LinkedList<String> selectedTablesIn, int whereNo) {
+            stm = "WHERE ";
+            genCom = new COMPARISON(relAttrs, selectedTablesIn);
+        }
+
+        private String getWhere()
+        {
             //Need to be expanded
             return stm + genCom.getAttrComparison();
         }
 
-        private String getSqlWhere() {
+        private String getSqlWhere()
+        {
             return stm + genCom.getAttrComparison();
         }
     }
@@ -173,7 +217,6 @@ public class SQLGenerator
 
         public COMPARISON(HashMap<String, LinkedList<String>> relAttrs, LinkedList<String> selectedTablesIn)
         {
-
             //this.relAttrs = new HashMap<String, LinkedList<String>>();
             this.relAttrs = relAttrs;
 
@@ -224,13 +267,6 @@ public class SQLGenerator
             return rel1 + " " + oper + " " + rel2;
 
         }
-    }
-
-
-    public static String random_query() {
-        String query = " ";
-
-        return query;
     }
 
 
@@ -291,11 +327,80 @@ public class SQLGenerator
         a[change] = helper;
     }
 
+    public static void shuffleArray(LinkedList<Relation> a) {
+        int n = a.size();
+        Random random = new Random();
+        random.nextInt();
+        for (int i = 0; i < n; i++) {
+            int change = i + random.nextInt(n - i);
+            swap(a, i, change);
+        }
+    }
+
+    private static void swap(LinkedList<Relation> a, int i, int change) {
+        Relation helper = a.get(i);
+        a.set(i, a.get(change));
+        a.set(change,helper);
+    }
+
+    public static void readConfFile(HashMap<String, LinkedList<String>> relAttrs)
+    {
+        Properties prop = new Properties();
+        InputStream input = null;
+
+        try
+        {
+            input = new FileInputStream("config.properties");
+
+            // load a properties file
+            prop.load(input);
+
+            //We read all the relations from the configuration file. Then, we
+            //store each relation in the HashMap
+            String[] relations = prop.getProperty("relations").split(",");
+            String[] attributes = prop.getProperty("attributes").split(",");
+            for (String relation : relations)
+            {
+                LinkedList<String> attrList = new LinkedList<>();
+                for (String attr : attributes)
+                {
+                    attrList.add(attr);
+                }
+
+                //We insert the relation (as key) in the hashMap, and a likedlist that stores all the
+                //attributes for the specific relation
+                relAttrs.put(relation, attrList);
+            }
+
+        } catch (IOException ex)
+        {
+            ex.printStackTrace();
+        } finally
+        {
+            if (input != null)
+            {
+                try
+                {
+                    input.close();
+                } catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
     public static void main(String[] args)
     {
 
-        SELECT sel = new SELECT(false, false);
+        //This hashMap will be used to store all the attributes for each relation
+        HashMap<String, LinkedList<String>> relationsAttrs = new HashMap<>();
 
+        //This method is used to read all the relations and attributes from the configuration file (config.properties file)
+        //and it stores them in the relationsAttrs hashMap
+        readConfFile(relationsAttrs);
+
+        SELECT sel = new SELECT(true, true, relationsAttrs);
 
         System.out.println(sel.getSelect());
 

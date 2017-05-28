@@ -36,6 +36,11 @@ public class Relation
        attributes.add(newattrName);
     }
 
+    public void setAttrList( LinkedList newAttrList )
+    {
+        this.attributes = newAttrList;
+    }
+
     public void addAttribute (String newAttribute)
     {
         this.attributes.add(newAttribute);

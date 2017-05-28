@@ -6,13 +6,13 @@ import java.util.LinkedList;
 import java.util.Properties;
 
 /**
- * The class SQLGeneratorEngine is used to produce thousands of
+ * The class SQLEngine is used to produce thousands of
  * SQL queries in order to evaluate them on all DBMS
  *
  * @author ELIAS SPANOS
  * @version 0.0.1
  */
-public class SQLGeneratorEngine {
+public class SQLEngine {
 
     public static void readConfFile(HashMap<String, LinkedList<String>> relAttrs)
     {
@@ -25,10 +25,6 @@ public class SQLGeneratorEngine {
 
             // load a properties file
             prop.load(input);
-
-            // get the property value and print it out
-          /*  System.out.println(prop.getProperty("relations"));
-            System.out.println(prop.getProperty("attributes"));*/
 
             //We read all the relations from the configuration file. Then, we
             //store each relation in the HashMap
@@ -63,17 +59,21 @@ public class SQLGeneratorEngine {
                 }
             }
         }
-
     }
 
     public static void main(String[] args)
     {
+        //This hashMap will be used to store all the attributes for each relation
+        HashMap<String, LinkedList<String>> relationsAttrs = new HashMap<>();
 
-        HashMap<String, LinkedList<String>> relA = new HashMap<>();
+        //This method is used to read all the relations and attributes from the configuration file (config.properties file)
+        //and it stores them in the relationsAttrs hashMap
+        readConfFile(relationsAttrs);
 
-        readConfFile(relA);
+        //It creates a new SQL generator engine
+        //SQLGenerator newEngine = new SQLGenerator(  relationsAttrs);
 
-        System.out.println("Test");
+     //   System.out.println( newEngine.getGenerator().getSelect());
 
     }
 }
