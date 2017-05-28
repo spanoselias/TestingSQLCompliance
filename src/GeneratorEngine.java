@@ -21,6 +21,9 @@ public class GeneratorEngine
 
         private HashMap<String, LinkedList<String>> relAttrs = genFrom.getRelAttrs();
 
+
+        private WHERE genWhere = new WHERE(relAttrs , frmTbls);
+
         private boolean isDistinct;
         private boolean isAllAttrs;
 
@@ -71,9 +74,8 @@ public class GeneratorEngine
 
             stm += "\n" + genFrom.getFromSql();
 
+            stm += "\n" + genWhere.getSqlWhere();
 
-            COMPARISON com = new COMPARISON(this.relAttrs, this.frmTbls);
-            System.out.println("Com: " + com.getAttrComparison());
 
             return stm;
         }
@@ -158,24 +160,25 @@ public class GeneratorEngine
 
     public static class WHERE
     {
-        String stm;
+        private String stm;
+        private COMPARISON genCom;
 
-        public WHERE()
+        public WHERE(HashMap<String, LinkedList<String>> relAttrs, LinkedList<String> selectedTablesIn)
         {
-
+            stm = "WHERE ";
+            genCom = new COMPARISON(relAttrs ,selectedTablesIn);
         }
 
         private String getWhere()
         {
-
-            return stm;
+            //Need to be expanded
+            return  stm + genCom.getAttrComparison();
         }
 
         private String getSqlWhere()
         {
-            return  this.stm;
+            return  stm + genCom.getAttrComparison();
         }
-
     }
 
 
