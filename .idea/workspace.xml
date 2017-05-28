@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SQLGenerator.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TestingSQLCompliance/GeneratorEngine.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/GeneratorEngine.java" afterPath="$PROJECT_DIR$/src/SQLGeneratorEngine.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -21,7 +17,7 @@
     <splitter split-orientation="horizontal" split-proportion="0.83739376">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-          <file leaf-file-name="SQLGeneratorEngine.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="SQLGeneratorEngine.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/SQLGeneratorEngine.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="231">
@@ -33,7 +29,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="SQLGenerator.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="SQLGenerator.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/SQLGenerator.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="231">
@@ -750,7 +746,7 @@
       <workItem from="1495881196132" duration="607000" />
       <workItem from="1495881959122" duration="15265000" />
       <workItem from="1495904702720" duration="1880000" />
-      <workItem from="1495912378698" duration="6825000" />
+      <workItem from="1495912378698" duration="6995000" />
     </task>
     <task id="LOCAL-00001" summary="setting github on intelij">
       <created>1495840391619</created>
@@ -850,11 +846,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495967924149</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Implementing modular code">
+      <created>1495977318867</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1495977318867</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27099000" />
+    <option name="totallyTimeSpent" value="27269000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="1" width="1918" height="1030" extended-state="0" />
@@ -916,7 +919,8 @@
     <MESSAGE value="Implementing SELECT &amp; FROM statements" />
     <MESSAGE value="implementing WHERE statement" />
     <MESSAGE value="implementing comparison operators" />
-    <option name="LAST_COMMIT_MESSAGE" value="implementing comparison operators" />
+    <MESSAGE value="Implementing modular code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementing modular code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1150,6 +1154,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/SQLGeneratorEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/SQLGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -1163,16 +1177,6 @@
             <element signature="method#random_query#0;class#SQLGenerator#0" expanded="false" />
             <element signature="method#genAttr#0;class#SQLGenerator#0" expanded="false" />
             <element signature="method#query#0;class#SQLGenerator#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SQLGeneratorEngine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
