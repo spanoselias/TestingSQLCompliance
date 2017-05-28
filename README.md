@@ -32,6 +32,6 @@ The goals of this implementation are:
 * Comparing SQL results engine
 
 
-##Progress of the project
+## Progress of the project
 Currently the generator creates simple sql query
 
