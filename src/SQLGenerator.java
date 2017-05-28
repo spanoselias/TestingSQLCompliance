@@ -42,19 +42,17 @@ public class SQLGenerator
 
         private HashMap<String, LinkedList<String>> relAttrs = genFrom.getRelAttrs();
 
-        private WHERE genWhere = new WHERE(relAttrs, frmRels);
-
+        private WHERE genWhere = new WHERE(relAttrs, frmRels, 2);
 
         private boolean isDistinct;
         private boolean isAllAttrs;
 
-        public SELECT(boolean isDistinctIn, boolean isAttrsIn, HashMap<String, LinkedList<String>> relAttrsIn)
+        public SELECT(boolean isDistinctIn, boolean isAttrsIn )
         {
             this.isDistinct = isDistinctIn;
             this.isAllAttrs = isAttrsIn;
 
             this.relAttr = new HashMap<>();
-
         }
 
         public String getSelect()
@@ -69,7 +67,8 @@ public class SQLGenerator
             }
 
             //This condition check if all the attributes should be included in the output
-            if (isAllAttrs) {
+            if (isAllAttrs)
+            {
                 stm += " *";
             } else {
 
@@ -78,8 +77,10 @@ public class SQLGenerator
                 for (String relName : frmRels) {
                     //This loop will be used to go through all the attributed of the specific
                     //relation
-                    for (int j = 0; j < relAttrs.get(relName).size(); j++) {
-                        if (isOut == false) {
+                    for (int j = 0; j < relAttrs.get(relName).size(); j++)
+                    {
+                        if (isOut == false)
+                        {
                             stm += String.format(" %s.%s", relName.toLowerCase(), relAttrs.get(relName).get(j));
                             isOut = true;
                         } else
@@ -182,30 +183,72 @@ public class SQLGenerator
         }
     }
 
+    private static int genRandNo(int inputSize)
+    {
+
+        Random randomGenerator = new Random();
+
+        int pickRand = (randomGenerator.nextInt(inputSize) % inputSize);
+
+        return pickRand;
+    }
+
     public static class WHERE
     {
         private String stm;
         private COMPARISON genCom;
+        private int whereNo=-1;
+        private String conn[] = {" AND", " OR"};
 
-        public WHERE(HashMap<String, LinkedList<String>> relAttrs, LinkedList<String> selectedTablesIn) {
+        public WHERE(HashMap<String, LinkedList<String>> relAttrs, LinkedList<String> selectedTablesIn)
+        {
             stm = "WHERE ";
+
             genCom = new COMPARISON(relAttrs, selectedTablesIn);
         }
 
-        public WHERE(HashMap<String, LinkedList<String>> relAttrs, LinkedList<String> selectedTablesIn, int whereNo) {
+        public WHERE(HashMap<String, LinkedList<String>> relAttrs, LinkedList<String> selectedTablesIn, int whereNoComp)
+        {
             stm = "WHERE ";
             genCom = new COMPARISON(relAttrs, selectedTablesIn);
+
+            //The whereNo variable indicates the number of connectivities such as "AND", "OR"
+            //we will have the WHERE sql statement
+            this.whereNo = whereNoComp;
         }
 
-        private String getWhere()
+       /* private String getWhere()
         {
             //Need to be expanded
             return stm + genCom.getAttrComparison();
-        }
+        }*/
 
         private String getSqlWhere()
         {
-            return stm + genCom.getAttrComparison();
+            if(whereNo != -1)
+            {
+                for(int i=0; i< (whereNo +1) ; i++)
+                {
+                    if(i==0)
+                    {
+                        stm += genCom.getAttrComparison();
+                    }
+                    else
+                    {
+                        stm += conn[genRandNo(conn.length)] + " " + genCom.getAttrComparison();
+                    }
+
+                }
+
+            }
+
+            else
+            {
+                stm += genCom.getAttrComparison();
+            }
+
+            return stm;
+
         }
     }
 
@@ -343,6 +386,7 @@ public class SQLGenerator
         a.set(change,helper);
     }
 
+
     public static void readConfFile(HashMap<String, LinkedList<String>> relAttrs)
     {
         Properties prop = new Properties();
@@ -400,7 +444,7 @@ public class SQLGenerator
         //and it stores them in the relationsAttrs hashMap
         readConfFile(relationsAttrs);
 
-        SELECT sel = new SELECT(true, true, relationsAttrs);
+        SELECT sel = new SELECT(true, true );
 
         System.out.println(sel.getSelect());
 
