@@ -71,8 +71,13 @@ public class GeneratorEngine
 
             stm += "\n" + genFrom.getFromSql();
 
+
+            COMPARISON com = new COMPARISON(this.relAttrs, this.frmTbls);
+            System.out.println("Com: " + com.getAttrComparison());
+
             return stm;
         }
+
     }
 
     public static class FROM
@@ -173,6 +178,7 @@ public class GeneratorEngine
 
     }
 
+
     public static class COMPARISON
     {
         private LinkedList<String> operators;
@@ -182,8 +188,8 @@ public class GeneratorEngine
         public COMPARISON(HashMap<String, LinkedList<String>> relAttrs, LinkedList<String> selectedTablesIn)
             {
 
-                relAttrs = new HashMap<String, LinkedList<String>>();
-                relAttrs=(HashMap)relAttrs.clone();
+                //this.relAttrs = new HashMap<String, LinkedList<String>>();
+                this.relAttrs=relAttrs;
 
                 this.selectedTables = new  LinkedList<String>();
                 selectedTables = (LinkedList) selectedTablesIn.clone();
@@ -194,7 +200,6 @@ public class GeneratorEngine
                 this.operators.add("<=");
                 this.operators.add(">=");
                 this.operators.add("<>");
-                this.relAttrs = relAttrs;
             }
 
         private String getAttrComparison()
@@ -204,18 +209,18 @@ public class GeneratorEngine
             int pickRand;
             int pickRandAttr;
 
-            pickRand = ( randomGenerator.nextInt(this.operators.size()) % this.operators.size() ) + 1 ;
+            pickRand = ( randomGenerator.nextInt(this.operators.size()) ) % this.operators.size()  ;
 
             String oper = this.operators.get(pickRand);
 
-            pickRand = ( randomGenerator.nextInt(this.selectedTables.size()) % this.selectedTables.size() ) + 1 ;
-            pickRandAttr = ( randomGenerator.nextInt(relAttrs.get(this.selectedTables.get(pickRand)).size()) % relAttrs.get(this.selectedTables.get(pickRand)).size() ) + 1 ;
+            pickRand = ( randomGenerator.nextInt(this.selectedTables.size())) % this.selectedTables.size()   ;
+            pickRandAttr = ( randomGenerator.nextInt(relAttrs.get(this.selectedTables.get(pickRand)).size())) % relAttrs.get(this.selectedTables.get(pickRand)).size()   ;
 
             String rel1 = this.selectedTables.get(pickRand) + "." + relAttrs.get(this.selectedTables.get(pickRand)).get(pickRandAttr);
             this.selectedTables.remove(pickRand);
 
-            pickRand = ( randomGenerator.nextInt(this.selectedTables.size()) % this.selectedTables.size() ) + 1 ;
-            pickRandAttr = ( randomGenerator.nextInt(relAttrs.get(this.selectedTables.get(pickRand)).size()) % relAttrs.get(this.selectedTables.get(pickRand)).size() ) + 1 ;
+            pickRand = ( randomGenerator.nextInt(this.selectedTables.size())) % this.selectedTables.size()   ;
+            pickRandAttr = ( randomGenerator.nextInt(relAttrs.get(this.selectedTables.get(pickRand)).size()) ) % relAttrs.get(this.selectedTables.get(pickRand)).size()  ;
 
             String rel2 = this.selectedTables.get(pickRand) + "." + relAttrs.get(this.selectedTables.get(pickRand)).get(pickRandAttr);
             this.selectedTables.remove(pickRand);
@@ -223,9 +228,6 @@ public class GeneratorEngine
 
             return rel1 + " " + oper + " " + rel2;
         }
-
-
-
 
     }
 
