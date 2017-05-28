@@ -271,6 +271,16 @@ public class SQLGenerator
             this.operators.add("<>");
         }
 
+        private static int genRandNo(int inputSize)
+        {
+
+            Random randomGenerator = new Random();
+
+            int pickRand = (randomGenerator.nextInt(inputSize) % inputSize);
+
+            return pickRand;
+        }
+
         private String getAttrComparison() {
             Random randomGenerator = new Random();
 
@@ -283,17 +293,26 @@ public class SQLGenerator
 
             try
             {
-                pickRand = (randomGenerator.nextInt(this.operators.size())) % this.operators.size();
 
+                pickRand = genRandNo(this.operators.size());
                 oper = this.operators.get(pickRand);
 
-                pickRand = (randomGenerator.nextInt(this.selectedTables.size())) % this.selectedTables.size();
-                pickRandAttr = (randomGenerator.nextInt(relAttrs.get(this.selectedTables.get(pickRand)).size())) % relAttrs.get(this.selectedTables.get(pickRand)).size();
+                pickRand = genRandNo(this.selectedTables.size());
+                pickRandAttr = genRandNo(relAttrs.get(this.selectedTables.get(pickRand)).size());
+
 
                 rel1 = this.selectedTables.get(pickRand) + "." + relAttrs.get(this.selectedTables.get(pickRand)).get(pickRandAttr);
 
-                pickRand = (randomGenerator.nextInt(this.selectedTables.size())) % this.selectedTables.size();
-                pickRandAttr = (randomGenerator.nextInt(relAttrs.get(this.selectedTables.get(pickRand)).size())) % relAttrs.get(this.selectedTables.get(pickRand)).size();
+                int prevPickRand = pickRand;
+
+                //We are trying to do the comparison from two different relations
+                do
+                {
+                    pickRand = genRandNo(this.selectedTables.size());
+
+                } while(prevPickRand == pickRand);
+
+                pickRandAttr = genRandNo(relAttrs.get(this.selectedTables.get(pickRand)).size());
 
                 rel2 = this.selectedTables.get(pickRand) + "." + relAttrs.get(this.selectedTables.get(pickRand)).get(pickRandAttr);
 

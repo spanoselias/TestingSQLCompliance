@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SQLGenerator.java" afterPath="$PROJECT_DIR$/src/SQLGenerator.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,22 +31,20 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="SQLGenerator.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="SQLGenerator.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/SQLGenerator.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-425">
-                  <caret line="10" column="2" lean-forward="true" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
+                <state relative-caret-position="704">
+                  <caret line="302" column="16" lean-forward="false" selection-start-line="302" selection-start-column="16" selection-end-line="302" selection-end-column="16" />
                   <folding>
                     <element signature="imports" expanded="true" />
+                    <element signature="class#SELECT#0;class#SQLGenerator#0" expanded="false" />
                     <element signature="method#SELECT#0;class#SELECT#0;class#SQLGenerator#0" expanded="false" />
                     <element signature="method#getSelect#0;class#SELECT#0;class#SQLGenerator#0" expanded="false" />
                     <element signature="class#FROM#0;class#SQLGenerator#0" expanded="false" />
                     <element signature="method#FROM#0;class#FROM#0;class#SQLGenerator#0" expanded="false" />
                     <element signature="method#getFrom#0;class#FROM#0;class#SQLGenerator#0" expanded="false" />
-                    <element signature="method#genRandNo#0;class#SQLGenerator#0" expanded="false" />
                     <element signature="method#getSqlWhere#0;class#WHERE#0;class#SQLGenerator#0" expanded="false" />
-                    <element signature="class#COMPARISON#0;class#SQLGenerator#0" expanded="false" />
-                    <element signature="method#getAttrComparison#0;class#COMPARISON#0;class#SQLGenerator#0" expanded="false" />
                     <element signature="method#genAttr#0;class#SQLGenerator#0" expanded="false" />
                     <element signature="method#query#0;class#SQLGenerator#0" expanded="false" />
                     <element signature="method#shuffleArray#0;class#SQLGenerator#0" expanded="false" />
@@ -55,19 +53,6 @@
                     <element signature="method#swap#1;class#SQLGenerator#0" expanded="false" />
                     <element signature="method#readConfFile#0;class#SQLGenerator#0" expanded="false" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/README.md">
-              <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-                <state split_layout="SPLIT">
-                  <first_editor relative-caret-position="610">
-                    <caret line="34" column="22" lean-forward="true" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
-                    <folding />
-                  </first_editor>
-                  <second_editor />
                 </state>
               </provider>
             </entry>
@@ -118,6 +103,7 @@
       <find>keyse</find>
       <find>relAttrIn</find>
       <find>getSqlWhere</find>
+      <find>random</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -143,8 +129,8 @@
         <option value="$PROJECT_DIR$/src/SQLGeneratorEngine.java" />
         <option value="$PROJECT_DIR$/src/SQLEngine.java" />
         <option value="$PROJECT_DIR$/src/config.properties" />
-        <option value="$PROJECT_DIR$/src/SQLGenerator.java" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/SQLGenerator.java" />
       </list>
     </option>
   </component>
@@ -791,7 +777,7 @@
       <workItem from="1495881196132" duration="607000" />
       <workItem from="1495881959122" duration="15265000" />
       <workItem from="1495904702720" duration="1880000" />
-      <workItem from="1495912378698" duration="21955000" />
+      <workItem from="1495912378698" duration="23075000" />
     </task>
     <task id="LOCAL-00001" summary="setting github on intelij">
       <created>1495840391619</created>
@@ -947,11 +933,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496000593593</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Implementing SQLGeneratorEngine">
+      <created>1496000643981</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1496000643981</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42229000" />
+    <option name="totallyTimeSpent" value="43349000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="1" width="1918" height="1030" extended-state="0" />
@@ -968,14 +961,14 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44680852" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3449048" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922733" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10974244" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08510638" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968238" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.10638298" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17789474" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1063,7 +1056,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/SQLGenerator.java</url>
-          <line>441</line>
+          <line>460</line>
           <properties />
           <option name="timeStamp" value="48" />
         </line-breakpoint>
@@ -1072,6 +1065,18 @@
           <line>98</line>
           <properties />
           <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/SQLGenerator.java</url>
+          <line>262</line>
+          <properties />
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/SQLGenerator.java</url>
+          <line>251</line>
+          <properties />
+          <option name="timeStamp" value="68" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/SQLGenerator.java</url>
@@ -1082,7 +1087,7 @@
           <option name="timeStamp" value="61" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="66" />
+      <option name="time" value="69" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1329,32 +1334,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SQLGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-425">
-          <caret line="10" column="2" lean-forward="true" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#SELECT#0;class#SELECT#0;class#SQLGenerator#0" expanded="false" />
-            <element signature="method#getSelect#0;class#SELECT#0;class#SQLGenerator#0" expanded="false" />
-            <element signature="class#FROM#0;class#SQLGenerator#0" expanded="false" />
-            <element signature="method#FROM#0;class#FROM#0;class#SQLGenerator#0" expanded="false" />
-            <element signature="method#getFrom#0;class#FROM#0;class#SQLGenerator#0" expanded="false" />
-            <element signature="method#genRandNo#0;class#SQLGenerator#0" expanded="false" />
-            <element signature="method#getSqlWhere#0;class#WHERE#0;class#SQLGenerator#0" expanded="false" />
-            <element signature="class#COMPARISON#0;class#SQLGenerator#0" expanded="false" />
-            <element signature="method#getAttrComparison#0;class#COMPARISON#0;class#SQLGenerator#0" expanded="false" />
-            <element signature="method#genAttr#0;class#SQLGenerator#0" expanded="false" />
-            <element signature="method#query#0;class#SQLGenerator#0" expanded="false" />
-            <element signature="method#shuffleArray#0;class#SQLGenerator#0" expanded="false" />
-            <element signature="method#swap#0;class#SQLGenerator#0" expanded="false" />
-            <element signature="method#shuffleArray#1;class#SQLGenerator#0" expanded="false" />
-            <element signature="method#swap#1;class#SQLGenerator#0" expanded="false" />
-            <element signature="method#readConfFile#0;class#SQLGenerator#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -1363,6 +1342,30 @@
             <folding />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SQLGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="302" column="16" lean-forward="false" selection-start-line="302" selection-start-column="16" selection-end-line="302" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="class#SELECT#0;class#SQLGenerator#0" expanded="false" />
+            <element signature="method#SELECT#0;class#SELECT#0;class#SQLGenerator#0" expanded="false" />
+            <element signature="method#getSelect#0;class#SELECT#0;class#SQLGenerator#0" expanded="false" />
+            <element signature="class#FROM#0;class#SQLGenerator#0" expanded="false" />
+            <element signature="method#FROM#0;class#FROM#0;class#SQLGenerator#0" expanded="false" />
+            <element signature="method#getFrom#0;class#FROM#0;class#SQLGenerator#0" expanded="false" />
+            <element signature="method#getSqlWhere#0;class#WHERE#0;class#SQLGenerator#0" expanded="false" />
+            <element signature="method#genAttr#0;class#SQLGenerator#0" expanded="false" />
+            <element signature="method#query#0;class#SQLGenerator#0" expanded="false" />
+            <element signature="method#shuffleArray#0;class#SQLGenerator#0" expanded="false" />
+            <element signature="method#swap#0;class#SQLGenerator#0" expanded="false" />
+            <element signature="method#shuffleArray#1;class#SQLGenerator#0" expanded="false" />
+            <element signature="method#swap#1;class#SQLGenerator#0" expanded="false" />
+            <element signature="method#readConfFile#0;class#SQLGenerator#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
