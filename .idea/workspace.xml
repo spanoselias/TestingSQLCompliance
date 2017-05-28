@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SQLGenerator.java" afterPath="$PROJECT_DIR$/src/SQLGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/config.properties" afterPath="$PROJECT_DIR$/src/config.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,7 +35,7 @@
             <entry file="file://$PROJECT_DIR$/src/SQLGenerator.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="-425">
-                  <caret line="10" column="3" lean-forward="true" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
+                  <caret line="10" column="2" lean-forward="true" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="method#SELECT#0;class#SELECT#0;class#SQLGenerator#0" expanded="false" />
@@ -124,7 +123,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/DbConnections.java" />
         <option value="$PROJECT_DIR$/src/GeneratorEngine.java" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/engine.conf" />
         <option value="$PROJECT_DIR$/src/engine.properties" />
         <option value="$PROJECT_DIR$/config.properties" />
@@ -133,6 +131,7 @@
         <option value="$PROJECT_DIR$/src/SQLEngine.java" />
         <option value="$PROJECT_DIR$/src/config.properties" />
         <option value="$PROJECT_DIR$/src/SQLGenerator.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -779,7 +778,7 @@
       <workItem from="1495881196132" duration="607000" />
       <workItem from="1495881959122" duration="15265000" />
       <workItem from="1495904702720" duration="1880000" />
-      <workItem from="1495912378698" duration="21843000" />
+      <workItem from="1495912378698" duration="21904000" />
     </task>
     <task id="LOCAL-00001" summary="setting github on intelij">
       <created>1495840391619</created>
@@ -921,11 +920,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495999225106</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Implementing SQLGeneratorEngine">
+      <created>1496000536033</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1496000536033</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42117000" />
+    <option name="totallyTimeSpent" value="42178000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="1" width="1918" height="1030" extended-state="0" />
@@ -1245,17 +1251,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="513">
-            <caret line="31" column="30" lean-forward="false" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/engine/conf.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -1314,10 +1309,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="631">
+            <caret line="35" column="31" lean-forward="false" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/SQLGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-425">
-          <caret line="10" column="3" lean-forward="true" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
+          <caret line="10" column="2" lean-forward="true" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#SELECT#0;class#SELECT#0;class#SQLGenerator#0" expanded="false" />
