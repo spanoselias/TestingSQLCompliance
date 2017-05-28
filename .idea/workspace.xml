@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestingSQLCompliance/GeneratorEngine.class" afterPath="$PROJECT_DIR$/out/production/TestingSQLCompliance/GeneratorEngine.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GeneratorEngine.java" afterPath="$PROJECT_DIR$/src/GeneratorEngine.java" />
     </list>
@@ -16,24 +15,22 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5873684">
+    <splitter split-orientation="horizontal" split-proportion="0.63736844">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
           <file leaf-file-name="GeneratorEngine.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/GeneratorEngine.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="294">
-                  <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+                <state relative-caret-position="209">
+                  <caret line="193" column="0" lean-forward="true" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="method#FROM#0;class#FROM#0;class#GeneratorEngine#0" expanded="false" />
-                    <element signature="e#5149#5150#0" expanded="true" />
-                    <element signature="e#5213#5214#0" expanded="true" />
+                    <element signature="e#4908#4909#0" expanded="true" />
+                    <element signature="e#4971#4972#0" expanded="true" />
                     <element signature="method#random_query#0;class#GeneratorEngine#0" expanded="false" />
                     <element signature="method#genAttr#0;class#GeneratorEngine#0" expanded="false" />
                     <element signature="method#query#0;class#GeneratorEngine#0" expanded="false" />
-                    <element signature="method#shuffleArray#0;class#GeneratorEngine#0" expanded="false" />
-                    <element signature="method#swap#0;class#GeneratorEngine#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -67,7 +64,7 @@
           <file leaf-file-name="sql.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/sql.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="21">
+                <state relative-caret-position="399">
                   <caret line="254" column="14" lean-forward="false" selection-start-line="254" selection-start-column="14" selection-end-line="254" selection-end-column="14" />
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
@@ -142,6 +139,8 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -170,8 +169,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -734,7 +731,7 @@
       <workItem from="1495881196132" duration="607000" />
       <workItem from="1495881959122" duration="15265000" />
       <workItem from="1495904702720" duration="1880000" />
-      <workItem from="1495912378698" duration="5553000" />
+      <workItem from="1495912378698" duration="6546000" />
     </task>
     <task id="LOCAL-00001" summary="setting github on intelij">
       <created>1495840391619</created>
@@ -820,11 +817,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495964856597</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="implementing comparison operators">
+      <created>1495966922001</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1495966922001</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25827000" />
+    <option name="totallyTimeSpent" value="26820000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="1" width="1918" height="1030" extended-state="0" />
@@ -839,13 +843,13 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.06942889" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.193729" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968238" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.10638298" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973767" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1631579" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -893,20 +897,20 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/GeneratorEngine.java</url>
-          <line>184</line>
+          <line>159</line>
           <properties />
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/GeneratorEngine.java</url>
-          <line>231</line>
+          <line>210</line>
           <properties />
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/GeneratorEngine.java</url>
-          <line>207</line>
-          <properties class="GeneratorEngine.COMPARISON">
+          <line>180</line>
+          <properties class="GeneratorEngine.COMPARISON" method="getAttrComparison">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="25" />
@@ -928,13 +932,11 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FROM#0;class#FROM#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="e#5149#5150#0" expanded="true" />
-            <element signature="e#5213#5214#0" expanded="true" />
+            <element signature="e#4908#4909#0" expanded="true" />
+            <element signature="e#4971#4972#0" expanded="true" />
             <element signature="method#random_query#0;class#GeneratorEngine#0" expanded="false" />
             <element signature="method#genAttr#0;class#GeneratorEngine#0" expanded="false" />
             <element signature="method#query#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="method#shuffleArray#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="method#swap#0;class#GeneratorEngine#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -975,13 +977,11 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FROM#0;class#FROM#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="e#5149#5150#0" expanded="true" />
-            <element signature="e#5213#5214#0" expanded="true" />
+            <element signature="e#4908#4909#0" expanded="true" />
+            <element signature="e#4971#4972#0" expanded="true" />
             <element signature="method#random_query#0;class#GeneratorEngine#0" expanded="false" />
             <element signature="method#genAttr#0;class#GeneratorEngine#0" expanded="false" />
             <element signature="method#query#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="method#shuffleArray#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="method#swap#0;class#GeneratorEngine#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1022,13 +1022,11 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FROM#0;class#FROM#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="e#5149#5150#0" expanded="true" />
-            <element signature="e#5213#5214#0" expanded="true" />
+            <element signature="e#4908#4909#0" expanded="true" />
+            <element signature="e#4971#4972#0" expanded="true" />
             <element signature="method#random_query#0;class#GeneratorEngine#0" expanded="false" />
             <element signature="method#genAttr#0;class#GeneratorEngine#0" expanded="false" />
             <element signature="method#query#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="method#shuffleArray#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="method#swap#0;class#GeneratorEngine#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1059,13 +1057,11 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FROM#0;class#FROM#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="e#5149#5150#0" expanded="true" />
-            <element signature="e#5213#5214#0" expanded="true" />
+            <element signature="e#4908#4909#0" expanded="true" />
+            <element signature="e#4971#4972#0" expanded="true" />
             <element signature="method#random_query#0;class#GeneratorEngine#0" expanded="false" />
             <element signature="method#genAttr#0;class#GeneratorEngine#0" expanded="false" />
             <element signature="method#query#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="method#shuffleArray#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="method#swap#0;class#GeneratorEngine#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1084,13 +1080,11 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FROM#0;class#FROM#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="e#5149#5150#0" expanded="true" />
-            <element signature="e#5213#5214#0" expanded="true" />
+            <element signature="e#4908#4909#0" expanded="true" />
+            <element signature="e#4971#4972#0" expanded="true" />
             <element signature="method#random_query#0;class#GeneratorEngine#0" expanded="false" />
             <element signature="method#genAttr#0;class#GeneratorEngine#0" expanded="false" />
             <element signature="method#query#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="method#shuffleArray#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="method#swap#0;class#GeneratorEngine#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1174,7 +1168,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sql.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
+        <state relative-caret-position="399">
           <caret line="254" column="14" lean-forward="false" selection-start-line="254" selection-start-column="14" selection-end-line="254" selection-end-column="14" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
@@ -1184,18 +1178,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GeneratorEngine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        <state relative-caret-position="209">
+          <caret line="193" column="0" lean-forward="true" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FROM#0;class#FROM#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="e#5149#5150#0" expanded="true" />
-            <element signature="e#5213#5214#0" expanded="true" />
+            <element signature="e#4908#4909#0" expanded="true" />
+            <element signature="e#4971#4972#0" expanded="true" />
             <element signature="method#random_query#0;class#GeneratorEngine#0" expanded="false" />
             <element signature="method#genAttr#0;class#GeneratorEngine#0" expanded="false" />
             <element signature="method#query#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="method#shuffleArray#0;class#GeneratorEngine#0" expanded="false" />
-            <element signature="method#swap#0;class#GeneratorEngine#0" expanded="false" />
           </folding>
         </state>
       </provider>
