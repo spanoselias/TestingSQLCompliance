@@ -158,7 +158,7 @@ public class SQLGenerator
             int pickRand;
 
             //This random number indicates how many relation the FROM Clause will have
-            pickRand = (randomGenerator.nextInt(rel.length) % rel.length);
+            pickRand = (randomGenerator.nextInt(rel.length)) % rel.length + 1  ;
 
             //We shuffle the array of the relations to avoid choosing always the same order.
             shuffleArray(rel);
