@@ -347,13 +347,17 @@ public class SQLGenerator
                 rel1 = this.selectedTables.get(pickRand) + "." + relAttrs.get(this.selectedTables.get(pickRand)).get(pickRandAttr);
 
                 int prevPickRand = pickRand;
+                int counter=0;
 
                 //We are trying to do the comparison from two different relations
                 do
                 {
                     pickRand = genRandNo(this.selectedTables.size());
 
-                } while(prevPickRand == pickRand);
+
+
+                    ++counter;
+                } while(prevPickRand == pickRand && counter < 100);
 
                 pickRandAttr = genRandNo(relAttrs.get(this.selectedTables.get(pickRand)).size());
 
