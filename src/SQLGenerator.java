@@ -15,9 +15,65 @@ import java.util.Random;
  */
 public class SQLGenerator
 {
+    public class GenQuery
+    {
+        private int isDistinct;
+        private int isAttrs;
+        private int whereNo;
+        private LinkedList<String> alias =  genAlias();
+
+        SELECT query;
+
+
+
+        public GenQuery(boolean isDistinctIn, boolean isAttrsIn, int whereNo )
+        {
+            query = new SELECT(isDistinctIn, isAttrsIn,whereNo, alias);
+        }
+
+        public String getSqlQuery()
+        {
+            return this.query.getSelect();
+        }
+
+
+        /**
+         *The genAlias methods is used to generate different alias that will be used in the SELECT clause
+         *Thus, it generates different alias and store them in the linkedlist
+         *
+         */
+        public LinkedList<String> genAlias()
+        {
+             LinkedList<String> tmpAlias = new LinkedList<>();
+
+            char[] attr = new char[57];
+
+            int k = 0;
+            for (int i = 0; i < 26; i++)
+            {
+                for(int j=0; j < 26; j++)
+                {
+                    String newAlias= Character.toString( (char) (65 + (k++))) + j;
+                    tmpAlias.add(newAlias);
+                }
+            }
+
+            return tmpAlias;
+        }
+    }
+
     public static class SELECT
     {
+        //This linkedlist holds different alias that can be used in SELECT clause
+        private LinkedList<String> alias;
+
         private HashMap<String, LinkedList<String>> relAttr;
+
+        //This hashtable will be used to store all the selected alias that exist
+        //in this sql query. This is useful in case where we need to have subquery
+        private HashMap<String, String> selectedAlias;
+
+        private int whereNo;
 
         //It calls the FROM class to choose randomly some relations
         private FROM genFrom = new FROM();
@@ -30,18 +86,22 @@ public class SQLGenerator
 
         private HashMap<String, LinkedList<String>> relAttrs = genFrom.getRelAttrs();
 
-        private WHERE genWhere = new WHERE(relAttrs, frmRels, 2);
+        private WHERE genWhere = new WHERE(relAttrs, frmRels, whereNo);
 
         private boolean isDistinct;
         private boolean isAllAttrs;
 
-        public SELECT(boolean isDistinctIn, boolean isAttrsIn )
+        public SELECT(boolean isDistinctIn, boolean isAttrsIn, int whereNoIn, LinkedList<String> aliasIn )
         {
             this.isDistinct = isDistinctIn;
             this.isAllAttrs = isAttrsIn;
+            this.whereNo = whereNoIn;
+            this.alias = aliasIn;
 
             this.relAttr = new HashMap<>();
+            this.selectedAlias = new HashMap<>();
         }
+
 
         public String getSelect()
         {
@@ -70,10 +130,19 @@ public class SQLGenerator
                     {
                         if (isOut == false)
                         {
-                            stm += String.format(" %s.%s", relName.toLowerCase(), relAttrs.get(relName).get(j));
+                            stm += String.format(" %s.%s AS %s", relName.toLowerCase(), relAttrs.get(relName).get(j), alias.get(j));
                             isOut = true;
-                        } else
-                            stm += String.format(", %s.%s", relName.toLowerCase(), relAttrs.get(relName).get(j));
+                        }
+                        else
+                        {
+                            stm += String.format(", %s.%s AS %s", relName.toLowerCase(), relAttrs.get(relName).get(j), alias.get(j));
+                        }
+
+                        //We need to store all the alias that we chose in the SELECT clause because they will
+                        //be useful when we will implement subqueries. We store the as key (relation.attributeName) and as
+                        //value the alias that we gave
+                        String key = String.format("%s.%s", relName.toLowerCase(), relAttrs.get(relName).get(j));
+                        selectedAlias.put(key, alias.get(j));
                     }
                 }
             }
@@ -354,8 +423,6 @@ public class SQLGenerator
                 {
                     pickRand = genRandNo(this.selectedTables.size());
 
-
-
                     ++counter;
                 } while(prevPickRand == pickRand && counter < 100);
 
@@ -371,7 +438,6 @@ public class SQLGenerator
             }
 
             return rel1 + " " + oper + " " + rel2;
-
         }
     }
 
@@ -498,16 +564,12 @@ public class SQLGenerator
 
     public static void main(String[] args)
     {
-        //This hashMap will be used to store all the attributes for each relation
-        HashMap<String, LinkedList<String>> relationsAttrs = new HashMap<>();
+        //It creates a new SQL generator engine
+        SQLGenerator newGen = new SQLGenerator();
 
-        //This method is used to read all the relations and attributes from the configuration file (config.properties file)
-        //and it stores them in the relationsAttrs hashMap
-        readConfFile(relationsAttrs);
+        SQLGenerator.GenQuery query =  newGen.new GenQuery(false,false, 2);
 
-        SELECT sel = new SELECT(false, false );
-
-        System.out.println(sel.getSelect());
+        System.out.println(query.getSqlQuery());
 
     }
 }
