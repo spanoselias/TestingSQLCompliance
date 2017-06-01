@@ -5,7 +5,6 @@ import java.util.LinkedList;
 
 public class SELECT
 {
-
     //This linkedlist will be used to store all the alias that
     //we will give in the SELECT clause. Thus, they will be useful in case
     //where we have a subquery and we need to access it using its alias

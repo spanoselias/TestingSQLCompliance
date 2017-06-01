@@ -37,6 +37,10 @@ The goals of this implementation are:
 * Comparing SQL results engine
 
 
+##Dependencies
+
+
 ## Progress of the project
 Currently the generator creates simple sql query
+
 

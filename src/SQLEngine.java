@@ -180,8 +180,15 @@ public class SQLEngine
 
     public static void main(String[] args)
     {
-        // System.out.println(genCompQuery(2));
-         System.out.println(genQuery());
+        System.out.println("Complex query");
+        System.out.println("*******************");
+        System.out.println(genCompQuery(2));
+
+
+        System.out.println("*******************");
+        System.out.println("Simple query");
+        System.out.println("*******************");
+        System.out.println(genQuery());
 
     }
 }
