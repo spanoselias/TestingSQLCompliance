@@ -9,6 +9,9 @@ public  class WHERE
     private String stm;
     private COMPARISON genCom;
     private int whereNo=-1;
+
+    // Represents the connectivities in the WHERE clause. The "NOT"  will
+    //be added as well
     private String conn[] = {" AND", " OR"};
 
     //This hashMap will be used to store all the attributes for each relation

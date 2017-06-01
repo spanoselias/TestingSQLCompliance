@@ -104,7 +104,7 @@ public class SQLEngine
 
         LinkedList<String> frmRelts = new LinkedList<>();
 
-        FROM frmQry = new FROM(0, alias, relationsAttrs);
+        FROM frmQry = new FROM(alias, relationsAttrs);
         WHERE whrQry = new WHERE(relationsAttrs);
         SELECT selQry = new SELECT(false,false, alias, 2,relationsAttrs);
 
@@ -132,27 +132,28 @@ public class SQLEngine
         LinkedList<String> frmRelts = new LinkedList<>();
 
         //We create new objects for each statement
-        FROM frmQry = new FROM(0, alias, relationsAttrs);
+        FROM frmQry = new FROM(alias, relationsAttrs);
         WHERE whrQry = new WHERE(relationsAttrs);
         SELECT selQry = new SELECT(false,false, alias, 2,relationsAttrs);
 
-        String tmpFROM="";
+        String substm="";
 
         while( (subqry--) > 0)
         {
+
             String subName = "Q" + subqry;
 
             String frmstm = frmQry.getFrom();
             String selstm = selQry.getSelect(frmQry.getSelectedTables());
             String whrstm = whrQry.getSqlWhere(frmQry.getSelectedTables(),2);
 
-            if( (subqry - 1) > 0 )
+            if( (subqry ) > 0 )
             {
-                tmpFROM += " ( " +  selstm + " " + frmstm + " " + whrstm + " ) AS " + subName + ", ";
+                substm += "\n" + " ( " +  selstm + " " + frmstm + " " + whrstm + " ) AS " + subName + ", ";
             }
             else
             {
-                tmpFROM += "\n" + " ( " +  selstm + " " + frmstm + " " + whrstm + " ) AS " + subName ;
+                substm += "\n" + " ( " +  selstm + " " + frmstm + " " + whrstm + " ) AS " + subName ;
             }
 
             for(String attr: selQry.getAliasAttr())
@@ -167,12 +168,10 @@ public class SQLEngine
             frmRelts.add( attr );
         }
 
-        String stm = from + " , " + tmpFROM;
+        String stm = from + " , " + substm;
         String tmpStm = selQry.getSelect(frmRelts);
         String finalQry = tmpStm + "\n" + stm;
-        finalQry += "\n" + whrQry.getSqlWhere(frmRelts ,3);
-
-    //    finalQry += "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),2);
+        finalQry += "\n" + whrQry.getSqlWhere(frmRelts ,2);
 
       return  finalQry;
 
@@ -185,11 +184,12 @@ public class SQLEngine
         System.out.println(genCompQuery(2));
 
 
-        System.out.println("*******************");
+        System.out.println("\n*******************");
         System.out.println("Simple query");
         System.out.println("*******************");
         System.out.println(genQuery());
 
     }
+
 }
 

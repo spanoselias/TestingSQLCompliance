@@ -13,17 +13,19 @@ public class COMPARISON
 
     public COMPARISON()
     {
-       // this.selectedTables = new LinkedList<String>();
-
         this.operators = new LinkedList<>();
         this.operators.add("<");
         this.operators.add(">");
         this.operators.add("<=");
+        this.operators.add("=");
         this.operators.add(">=");
         this.operators.add("<>");
 
         constsAndNull = new LinkedList<>();
         constsAndNull.add("NULL");
+
+        //This loop in used to insert some constants in the linkedlist in order to
+        //have some comparisons like NULL = NULL, attr > 2 and so for.
         for(int i=0; i< 20; i++)
         {
             constsAndNull.add(Integer.toString(i));
@@ -53,16 +55,16 @@ public class COMPARISON
         this.selectedTables = selectedTablesIn;
 
         int pick;
-        String oper = "";
         String rel1 = "";
         String rel2 = "";
 
         pick = genRandChoice(operators.size());
-        oper = operators.get(pick);
-
+        String oper = operators.get(pick);
 
         pick = genRandChoice(5);
 
+        //The idea of switch is to do comparisons between two relation's attributes or between
+        //one attribute and one constant or between an attribute and a NULL
         switch (pick)
         {
             case 0:

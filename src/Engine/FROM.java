@@ -11,9 +11,6 @@ public  class FROM
     //This variable will be used to create the Engine.FROM Clause String
     private String fromStm;
 
-    //Indicates whether we will have queries in the Engine.FROM Clause
-    private int isSubquery;
-
     //This HashMap is used to store all the relations with their associated attributes. The
     //key represents the relation name and the list stores all the attributes for each key (relation)
     private HashMap<String, LinkedList<String>> allRelAttrs;
@@ -24,12 +21,9 @@ public  class FROM
 
     private LinkedList<String> alias;
 
-    public FROM( int isSubqueryIn, LinkedList<String> aliasIn, HashMap<String, LinkedList<String>> allRelAttrsIn )
+    public FROM(  LinkedList<String> aliasIn, HashMap<String, LinkedList<String>> allRelAttrsIn )
     {
         this.alias = aliasIn;
-
-        //Indicates if we will generate subqueries or not
-        this.isSubquery = isSubqueryIn;
 
         this.allRelAttrs = allRelAttrsIn;
 
@@ -113,6 +107,7 @@ public  class FROM
     public HashMap<String, LinkedList<String>> getRelAttrs() {
         return this.allRelAttrs;
     }
+
 
     public  void shuffleArray(Relation[] a) {
         int n = a.length;

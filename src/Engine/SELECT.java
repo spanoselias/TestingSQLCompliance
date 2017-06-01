@@ -69,11 +69,6 @@ public class SELECT
             int j=0;
             for (String relName : frmRels)
             {
-                //This loop will be used to go through all the attributes of the current
-                //relation
-           //     for (int j = 0; j < relAttrs.get(relName).size(); j++)
-              //  {
-
                     //This is useful if this query will be used as a subquery in the FROM clause
                     aliasAttr.add(alias.get(j));
 
