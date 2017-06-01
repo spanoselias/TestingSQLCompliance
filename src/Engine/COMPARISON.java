@@ -37,7 +37,7 @@ public class COMPARISON
      *
      *@param inputSize is the image that represents the NORTH Direction
      */
-    public static int genRandNo(int inputSize)
+    public static int genRandChoice(int inputSize)
     {
         Random randomGenerator = new Random();
 
@@ -46,54 +46,8 @@ public class COMPARISON
         return pickRand;
     }
 
+
     public String getAttrComparison(HashMap<String, LinkedList<String>> relAttrs, LinkedList<String> selectedTablesIn)
-    {
-        this.relAttrs = relAttrs;
-        this.selectedTables = selectedTablesIn;
-
-        int pickRand;
-        int pickRandAttr;
-
-        String oper = "";
-        String rel1 = "";
-        String rel2 = "";
-
-        try
-        {
-            pickRand = genRandNo(this.operators.size());
-            oper = this.operators.get(pickRand);
-
-            pickRand = genRandNo(this.selectedTables.size());
-            //pickRandAttr = genRandNo(relAttrs.get(this.selectedTables.get(pickRand)).size());
-            //pickRandAttr = genRandNo(this.selectedTables.get(pickRand)
-
-            rel1 = this.selectedTables.get(pickRand);
-
-            int prevPickRand = pickRand;
-            int counter=0;
-
-            //We are trying to do the comparison from two different relations
-            do
-            {
-                pickRand = genRandNo(this.selectedTables.size());
-
-                ++counter;
-            } while(rel1 == rel2 && counter < 100);
-
-
-            rel2 = this.selectedTables.get(pickRand);
-
-
-        } catch (ArrayIndexOutOfBoundsException e)
-
-        {
-            System.out.println("Error in Comparison Class, getAttrComparison: " + e);
-        }
-
-        return rel1 + " " + oper + " " + rel2;
-    }
-
-    public String getConsAndNullComp(HashMap<String, LinkedList<String>> relAttrs, LinkedList<String> selectedTablesIn)
     {
 
         this.selectedTables = selectedTablesIn;
@@ -103,35 +57,60 @@ public class COMPARISON
         String rel1 = "";
         String rel2 = "";
 
-        pick = genRandNo(operators.size());
+        pick = genRandChoice(operators.size());
         oper = operators.get(pick);
 
 
-        pick = genRandNo(4);
+        pick = genRandChoice(5);
 
         switch (pick)
         {
             case 0:
-                rel1 =  constsAndNull.get(genRandNo(constsAndNull.size()));
-                rel2 =  constsAndNull.get(genRandNo(constsAndNull.size()));
+                rel1 =  constsAndNull.get(genRandChoice(constsAndNull.size()));
+                rel2 =  constsAndNull.get(genRandChoice(constsAndNull.size()));
             break;
 
             case 1:
-                rel1 =  constsAndNull.get(genRandNo(constsAndNull.size()));
-                rel2 = this.selectedTables.get(genRandNo(this.selectedTables.size()));
+                rel1 =  constsAndNull.get(genRandChoice(constsAndNull.size()));
+                rel2 = this.selectedTables.get(genRandChoice(this.selectedTables.size()));
             break;
-
 
             case 2:
 
-                rel1 = this.selectedTables.get(genRandNo(this.selectedTables.size()));
-                rel2 = constsAndNull.get(genRandNo(constsAndNull.size()));
+                rel1 = this.selectedTables.get(genRandChoice(this.selectedTables.size()));
+                rel2 = constsAndNull.get(genRandChoice(constsAndNull.size()));
             break;
             case 3:
 
                 rel1 = "NULL";
-                rel2 = constsAndNull.get(genRandNo(constsAndNull.size()));
+                rel2 = constsAndNull.get(genRandChoice(constsAndNull.size()));
                 break;
+
+            case 4:
+                int pickRandRel = genRandChoice(this.selectedTables.size());
+                int pickRand;
+
+                rel1 = this.selectedTables.get(pickRandRel);
+
+                int prevPickRand = pickRandRel;
+                int counter=0;
+
+                //We are trying to do the comparison from two different relations
+                do
+                {
+                    pickRand = genRandChoice(this.selectedTables.size());
+
+                    ++counter;
+
+                  //The idea is that we try to do the comparison in the WHERE clause with
+                  // with two different attributes. Thus, if the attributes are the same we try to
+                  // pick a new attribute. But we set up a threshold in order to avoid the case where
+                  //we have for many times the same attributes
+                } while(prevPickRand == pickRand && counter < 1000);
+
+
+                rel2 = this.selectedTables.get(pickRand);
+            break;
         }
 
         return rel1 + " " + oper + " " + rel2;

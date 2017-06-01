@@ -68,8 +68,8 @@ public class SQLEngine
     }
 
     /**
-     *The genAlias methods is used to generate different alias that will be used in the Engine.SELECT_rmv clause
-     *Thus, it generates different alias and store them in the linkedlist
+     *The genAlias methods is used to generate random alias that will be used as alias for attributes
+     * in the SELECT clause or for a subquery
      *
      */
     public static LinkedList<String> genAlias()
@@ -109,7 +109,7 @@ public class SQLEngine
         SELECT selQry = new SELECT(false,false, alias, 2,relationsAttrs);
 
         String stm = frmQry.getFrom();
-        String tmpStm = selQry.getSelect(false, null, frmQry.getSelectedTables());
+        String tmpStm = selQry.getSelect(frmQry.getSelectedTables());
         String finalQry = tmpStm + "\n" + stm;
 
         finalQry += "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),2);
@@ -143,7 +143,7 @@ public class SQLEngine
             String subName = "Q" + subqry;
 
             String frmstm = frmQry.getFrom();
-            String selstm = selQry.getSelect(false, null, frmQry.getSelectedTables());
+            String selstm = selQry.getSelect(frmQry.getSelectedTables());
             String whrstm = whrQry.getSqlWhere(frmQry.getSelectedTables(),2);
 
             if( (subqry - 1) > 0 )
@@ -168,7 +168,7 @@ public class SQLEngine
         }
 
         String stm = from + " , " + tmpFROM;
-        String tmpStm = selQry.getSelect(false, null, frmRelts);
+        String tmpStm = selQry.getSelect(frmRelts);
         String finalQry = tmpStm + "\n" + stm;
         finalQry += "\n" + whrQry.getSqlWhere(frmRelts ,3);
 

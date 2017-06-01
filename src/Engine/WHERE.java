@@ -1,7 +1,5 @@
 package Engine;
 
-import Engine.COMPARISON;
-
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Random;
@@ -44,25 +42,25 @@ public  class WHERE
             {
                 if(i==0)
                 {
-                    stm += genCom.getConsAndNullComp(this.relationsAttrs, selectedReltsInFrom);
+                    stm += genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom);
                 }
                 else
                 {
-                    stm += conn[genRandNo(conn.length)] + " " + genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom);
+                    stm += conn[getRandChoice(conn.length)] + " " + genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom);
                 }
             }
         }
 
         else
         {
-            stm += genCom.getConsAndNullComp(this.relationsAttrs, selectedReltsInFrom);
+            stm += genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom);
         }
 
         return stm;
 
     }
 
-    private  int genRandNo(int inputSize)
+    private  int getRandChoice(int inputSize)
     {
 
         Random randomGenerator = new Random();

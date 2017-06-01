@@ -16,7 +16,6 @@ be evaluated in the below Database Management Systems (DBMSs). Our project will 
 
  
 
-
  **DBMSs to be checked:**
 
  >- MySql

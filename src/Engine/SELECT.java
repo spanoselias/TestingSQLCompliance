@@ -46,7 +46,7 @@ public class SELECT
         relAttrs = allRelAttrsIn;
     }
 
-    public String getSelect(boolean isSubquery, String relAliasName, LinkedList<String> frmRels)
+    public String getSelect( LinkedList<String> frmRels)
     {
         aliasAttr.clear();
 
