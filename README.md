@@ -9,10 +9,12 @@ TestingSQLCompliance
 The aim of this project is to build a random generator query engine that will be used to generate thousands of queries in order to 
 be evaluated in the below Database Management Systems (DBMSs). Our project will be implemented using Java Programming Language. This tool will be useful for not only checking existing DBMSs but most importantly, to check any DBMSs. Currently, we will check only the below DBMSs. 
 
+## Compilation & Run instructions:
+ Compile: javac SQLEngine.java
+ 
+ Run: java SQLEngine
 
-Compilation & Run instructions:
-Compile: javac SQLEngine.java
-Run: java SQLEngine
+ 
 
 
  **DBMSs to be checked:**
