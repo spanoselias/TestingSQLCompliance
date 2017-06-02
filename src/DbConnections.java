@@ -1,7 +1,4 @@
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 /*import java.sql.DriverManager;
 import java.sql.Connection;
@@ -11,18 +8,22 @@ import java.sql.DriverManager;*/
 
 /**
  *
+ * This tool is still in progress and will be used to evaluate all the DBMS
  *
  */
 
 public class DbConnections
 {
-    public static void connectToMySql() {
+    public static void connectToMySql()
+    {
 
             System.out.println("-------- MySQL JDBC Connection Testing ------------");
 
-            try {
+            try
+            {
                 Class.forName("com.mysql.jdbc.Driver");
-            } catch (ClassNotFoundException e) {
+            } catch (ClassNotFoundException e)
+            {
                 System.out.println("Where is your MySQL JDBC Driver?");
                 e.printStackTrace();
                 return;
@@ -31,26 +32,29 @@ public class DbConnections
             System.out.println("MySQL JDBC Driver Registered!");
             Connection connection = null;
 
-            try {
+            try
+            {
                 connection = DriverManager
                         .getConnection("jdbc:mysql://localhost:3306/testing", "elias881", "testing1");
 
-            } catch (SQLException e) {
+            } catch (SQLException e)
+            {
                 System.out.println("Connection Failed! Check output console");
                 e.printStackTrace();
                 return;
             }
 
-            if (connection != null) {
+            if (connection != null)
+            {
                 System.out.println("You made it, take control your database now!");
-            } else {
+            } else
+            {
                 System.out.println("Failed to make connection!");
             }
-
-
         }
 
-        public static void connectToPostgres() {
+        public static void connectToPostgres()
+        {
 
             System.out.println("-------- PostgreSQL "
                     + "JDBC Connection Testing ------------");
@@ -166,12 +170,14 @@ public class DbConnections
 
         }
 
-        public static void connectToMicrosoftSql() {
+        public static void connectToMicrosoftSql(String sqlQuery)
+        {
             Connection conn = null;
 
             try {
 
-                String dbURL = "jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=testdb";
+                //String dbURL = "jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=testdb";
+                String dbURL = "jdbc:sqlserver://localhost; databaseName=testdb";
                 //  String dbURL = "jdbc:sqlserver://localhost;user=elias;password=testing1; databaseName=testdb";
 
                 // Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -179,7 +185,7 @@ public class DbConnections
                 // the sql server url
                 // String dbURL = "jdbc:microsoft:sqlserver://HOST:1433;DatabaseName=testdb";
 
-                String user = "elias";
+                String user = "elias881";
                 String pass = "testing1";
                 conn = DriverManager.getConnection(dbURL, user, pass);
                 // conn = DriverManager.getConnection(dbURL);
@@ -193,7 +199,31 @@ public class DbConnections
                     System.out.println("Product version: " + dm.getDatabaseProductVersion());
                 }
 
-            } catch (SQLException ex) {
+                DatabaseMetaData md = conn.getMetaData();
+                ResultSet rs = md.getTables(null, null, "R1", null);
+
+
+
+
+                // create the java statement
+                Statement st = conn.createStatement();
+
+                // execute the query, and get a java resultset
+                rs = st.executeQuery(sqlQuery);
+
+
+                System.out.println("*************************");
+                while (rs.next())
+                {
+                  //  System.out.println(rs.getString(3));
+                    int A = rs.getInt("A");
+                    int B = rs.getInt("B");
+
+                    System.out.format("%s,%s\n", A, B);
+                }
+
+            } catch (SQLException ex)
+            {
                 ex.printStackTrace();
             } finally {
                 try {
@@ -205,19 +235,22 @@ public class DbConnections
                 }
             }
 
-
         }
 
         public static void runAllDBMS()
         {
-            System.out.println("*****************");
+
+            String sqlquery =  "SELECT * FROM R1";
+
+
+       /*     System.out.println("*****************");
             connectToMySql();
             System.out.println("*****************");
             connectToPostgres();
             System.out.println("*****************");
             connectToIBMDb2();
-            System.out.println("*****************");
-            connectToMicrosoftSql();
+            System.out.println("*****************");*/
+            connectToMicrosoftSql(sqlquery);
             System.out.println("*****************");
         }
 

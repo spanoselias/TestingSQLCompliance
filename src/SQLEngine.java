@@ -81,11 +81,12 @@ public class SQLEngine
         int k = 0;
         for (int i = 0; i < 26; i++)
         {
-            for(int j=0; j < 26; j++)
+            for(int j=0; j < 10; j++)
             {
-                String newAlias= Character.toString( (char) (65 + (k++))) + j;
+                String newAlias= Character.toString( (char) (65 + (k))) + j;
                 tmpAlias.add(newAlias);
             }
+            k++;
         }
 
         return tmpAlias;
