@@ -170,73 +170,101 @@ public class DbConnections
 
         }
 
-        public static void connectToMicrosoftSql(String sqlQuery)
-        {
-            Connection conn = null;
+    public static void connectToMicrosoftSql(String sqlQuery)
+    {
+        Connection conn = null;
 
-            try {
+        try {
 
-                //String dbURL = "jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=testdb";
-                String dbURL = "jdbc:sqlserver://localhost; databaseName=testdb";
-                //  String dbURL = "jdbc:sqlserver://localhost;user=elias;password=testing1; databaseName=testdb";
+            //String dbURL = "jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=testdb";
+            String dbURL = "jdbc:sqlserver://localhost; databaseName=testdb";
+            //  String dbURL = "jdbc:sqlserver://localhost;user=elias;password=testing1; databaseName=testdb";
 
-                // Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            // Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
-                // the sql server url
-                // String dbURL = "jdbc:microsoft:sqlserver://HOST:1433;DatabaseName=testdb";
+            // the sql server url
+            // String dbURL = "jdbc:microsoft:sqlserver://HOST:1433;DatabaseName=testdb";
 
-                String user = "elias881";
-                String pass = "testing1";
-                conn = DriverManager.getConnection(dbURL, user, pass);
-                // conn = DriverManager.getConnection(dbURL);
+            String user = "elias881";
+            String pass = "testing1";
+            conn = DriverManager.getConnection(dbURL, user, pass);
+            // conn = DriverManager.getConnection(dbURL);
 
-                if (conn != null)
-                {
-                    DatabaseMetaData dm = (DatabaseMetaData) conn.getMetaData();
-                    System.out.println("Driver name: " + dm.getDriverName());
-                    System.out.println("Driver version: " + dm.getDriverVersion());
-                    System.out.println("Product name: " + dm.getDatabaseProductName());
-                    System.out.println("Product version: " + dm.getDatabaseProductVersion());
-                }
-
-                DatabaseMetaData md = conn.getMetaData();
-                ResultSet rs = md.getTables(null, null, "R1", null);
-
-
-
-
-                // create the java statement
-                Statement st = conn.createStatement();
-
-                // execute the query, and get a java resultset
-                rs = st.executeQuery(sqlQuery);
-
-
-                System.out.println("*************************");
-                while (rs.next())
-                {
-                  //  System.out.println(rs.getString(3));
-                    int A = rs.getInt("A");
-                    int B = rs.getInt("B");
-
-                    System.out.format("%s,%s\n", A, B);
-                }
-
-            } catch (SQLException ex)
+        /*    if (conn != null)
             {
-                ex.printStackTrace();
-            } finally {
-                try {
-                    if (conn != null && !conn.isClosed()) {
-                        conn.close();
+                DatabaseMetaData dm = (DatabaseMetaData) conn.getMetaData();
+                System.out.println("Driver name: " + dm.getDriverName());
+                System.out.println("Driver version: " + dm.getDriverVersion());
+                System.out.println("Product name: " + dm.getDatabaseProductName());
+                System.out.println("Product version: " + dm.getDatabaseProductVersion());
+            }*/
+
+            DatabaseMetaData md = conn.getMetaData();
+            ResultSet rs = md.getTables(null, null, "R1", null);
+
+
+            // create the java statement
+            Statement st = conn.createStatement();
+
+            // execute the query, and get a java resultset
+            rs = st.executeQuery(sqlQuery);
+
+
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columnCount = rsmd.getColumnCount();
+
+            System.out.println("**********************************************");
+
+
+
+
+            while (rs.next())
+            {
+                // The column count starts from 1
+                for (int i = 1; i <= columnCount; i++ ) {
+                    String col = rsmd.getColumnName(i);
+
+                    if(i != columnCount)
+                    {
+                        System.out.print(rs.getInt(col) + " , ");
                     }
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
+                    else
+                    {
+                        System.out.print(rs.getInt(col));
+                    }
                 }
+
+                System.out.println();
+
+                //  System.out.println(rs.getString(3));
+              /*  int A = rs.getInt("A");
+                int B = rs.getInt("B");
+
+                System.out.format("%s,%s\n", A, B);*/
             }
 
+            System.out.println("**********************************************");
+
+
+            System.out.println("***********************************************");
+            System.out.println(sqlQuery);
+            System.out.println("**********************************************");
+
+
+        } catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (conn != null && !conn.isClosed()) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
 
+    }
         public static void runAllDBMS()
         {
 
