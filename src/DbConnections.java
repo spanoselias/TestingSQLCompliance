@@ -14,7 +14,7 @@ import java.sql.DriverManager;*/
 
 public class DbConnections
 {
-    public static void connectToMySql()
+    public  void connectToMySql()
     {
 
             System.out.println("-------- MySQL JDBC Connection Testing ------------");
@@ -53,7 +53,7 @@ public class DbConnections
             }
         }
 
-        public static void connectToPostgres()
+        public  void connectToPostgres()
         {
 
             System.out.println("-------- PostgreSQL "
@@ -98,7 +98,7 @@ public class DbConnections
 
         }
 
-        public static void connectToIBMDb2() {
+        public  void connectToIBMDb2() {
             String jdbcClassName = "com.ibm.db2.jcc.DB2Driver";
 
             String url = "jdbc:db2://localhost:50000/SAMPLE";
@@ -129,7 +129,7 @@ public class DbConnections
 
         }
 
-        public static void connectToOracle() {
+    public  void connectToOracle() {
             System.out.println("-------- Oracle JDBC Connection Testing ------");
 
             try {
@@ -167,10 +167,9 @@ public class DbConnections
                 System.out.println("Failed to make connection!");
             }
 
-
         }
 
-    public static void connectToMicrosoftSql(String sqlQuery)
+    public  void connectToMicrosoftSql(String sqlQuery)
     {
         Connection conn = null;
 
@@ -265,10 +264,11 @@ public class DbConnections
         }
 
     }
-        public static void runAllDBMS()
+
+    public void runAllDBMS( String sqlquery)
         {
 
-            String sqlquery =  "SELECT * FROM R1";
+
 
 
        /*     System.out.println("*****************");
@@ -282,13 +282,13 @@ public class DbConnections
             System.out.println("*****************");
         }
 
-        public static void main(String[] args)
+       /* public static void main(String[] args)
 
         {
 
             runAllDBMS();
 
-        }
+        }*/
     }
 
 
