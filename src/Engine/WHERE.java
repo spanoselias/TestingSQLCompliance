@@ -10,6 +10,10 @@ public  class WHERE
     private COMPARISON genCom;
     private int whereNo=-1;
 
+    //This is useful when we generate
+    //nested queries
+    private NESTCOMPARISON nestGenCom;
+
     // Represents the connectivities in the WHERE clause. The "NOT"  will
     //be added as well
     private String conn[] = {" AND", " OR"};
@@ -30,37 +34,45 @@ public  class WHERE
         this.relationsAttrs =  allReltsWithAttrs;
         stm = "WHERE ";
 
+        nestGenCom = new NESTCOMPARISON();
         genCom = new COMPARISON();
     }
 
-    public String getSqlWhere(LinkedList<String> selectedReltsInFrom, int whereNoComp)
+    public String getSqlWhere(LinkedList<String> selectedReltsInFrom, int whereNoComp, boolean isNested)
     {
         this.whereNo = whereNoComp;
 
-        stm ="WHERE ";
+        stm = "WHERE ";
 
-        if(whereNo != -1)
+        if (whereNo != -1)
         {
-            for(int i=0; i< (whereNo +1) ; i++)
+            for (int i = 0; i < (whereNo + 1); i++)
             {
-                if(i==0)
-                {
+                if (i == 0) {
                     stm += genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom);
-                }
-                else
-                {
+                } else {
                     stm += conn[getRandChoice(conn.length)] + " " + genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom);
                 }
             }
         }
-
         else
         {
             stm += genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom);
         }
 
+        if(isNested == true)
+        {
+            stm += " AND " + nestGenCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom);
+        }
+
         return stm;
 
+    }
+
+
+    public boolean getOneAttr()
+    {
+        return nestGenCom.getIsOneAttr();
     }
 
     private  int getRandChoice(int inputSize)

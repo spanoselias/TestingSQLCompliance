@@ -53,7 +53,7 @@ public  class FROM
         selectedReltsInFrom = new LinkedList<>();
     }
 
-    public String getFrom()
+    public String getFrom(long uniqID)
     {
         //Clear LinkedList
         selectedReltsInFrom.clear();
@@ -75,19 +75,18 @@ public  class FROM
 
         for (int i = 0; i < pickRand; i++)
         {
-
            //to be checked
            for(String attr: this.allRelAttrs.get(rel[i].getRelName()))
            {
-               this.selectedReltsInFrom.add(rel[i].getRelName().toLowerCase() + "." + attr);
+               this.selectedReltsInFrom.add( (rel[i].getRelName().toLowerCase()) + "." + attr);
            }
 
            // this.allRelAttrs.put(rel[i].getRelName(), rel[i].getRelAttrs());
 
             if (i == 0)
-                stm += String.format(" %s AS %s", rel[i].getRelName(), rel[i].getRelName().toLowerCase());
+                stm += String.format(" %s AS %s", rel[i].getRelName(), rel[i].getRelName().toLowerCase() );
             else
-                stm += String.format(", %s AS %s", rel[i].getRelName(), rel[i].getRelName().toLowerCase());
+                stm += String.format(", %s AS %s", rel[i].getRelName(), rel[i].getRelName().toLowerCase() );
         }
 
         fromStm = stm;

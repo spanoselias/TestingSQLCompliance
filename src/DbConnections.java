@@ -1,4 +1,7 @@
 import java.sql.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
 
 /*import java.sql.DriverManager;
 import java.sql.Connection;
@@ -14,7 +17,7 @@ import java.sql.DriverManager;*/
 
 public class DbConnections
 {
-    public static void connectToMySql()
+    public  void connectToMySql(String sqlQuery)
     {
 
             System.out.println("-------- MySQL JDBC Connection Testing ------------");
@@ -30,12 +33,12 @@ public class DbConnections
             }
 
             System.out.println("MySQL JDBC Driver Registered!");
-            Connection connection = null;
+            Connection conn = null;
 
             try
             {
-                connection = DriverManager
-                        .getConnection("jdbc:mysql://localhost:3306/testing", "elias881", "testing1");
+                conn = DriverManager
+                        .getConnection("jdbc:mysql://localhost:3306/testdb", "elias881", "testing1");
 
             } catch (SQLException e)
             {
@@ -44,16 +47,11 @@ public class DbConnections
                 return;
             }
 
-            if (connection != null)
-            {
-                System.out.println("You made it, take control your database now!");
-            } else
-            {
-                System.out.println("Failed to make connection!");
-            }
+            LinkedList<String> mySqlList = execQuery(conn, sqlQuery);
+            System.out.println("MySQlResSize: " + mySqlList.size());
         }
 
-        public static void connectToPostgres()
+        public  void connectToPostgres()
         {
 
             System.out.println("-------- PostgreSQL "
@@ -82,7 +80,8 @@ public class DbConnections
                         "jdbc:postgresql://127.0.0.1:5432/testdb", "postgres",
                         "testing1");
 
-            } catch (SQLException e) {
+            } catch (SQLException e)
+            {
 
                 System.out.println("Connection Failed! Check output console");
                 e.printStackTrace();
@@ -98,7 +97,7 @@ public class DbConnections
 
         }
 
-        public static void connectToIBMDb2() {
+        public  void connectToIBMDb2() {
             String jdbcClassName = "com.ibm.db2.jcc.DB2Driver";
 
             String url = "jdbc:db2://localhost:50000/SAMPLE";
@@ -129,7 +128,7 @@ public class DbConnections
 
         }
 
-        public static void connectToOracle() {
+    public  void connectToOracle() {
             System.out.println("-------- Oracle JDBC Connection Testing ------");
 
             try {
@@ -167,11 +166,9 @@ public class DbConnections
                 System.out.println("Failed to make connection!");
             }
 
-
         }
 
-    public static void connectToMicrosoftSql(String sqlQuery)
-    {
+    public  void connectToMicrosoftSql(String sqlQuery) {
         Connection conn = null;
 
         try {
@@ -199,7 +196,7 @@ public class DbConnections
                 System.out.println("Product version: " + dm.getDatabaseProductVersion());
             }*/
 
-            DatabaseMetaData md = conn.getMetaData();
+        /*    DatabaseMetaData md = conn.getMetaData();
             ResultSet rs = md.getTables(null, null, "R1", null);
 
 
@@ -215,46 +212,118 @@ public class DbConnections
 
             System.out.println("**********************************************");
 
-
-
-
+            LinkedList<String> tableRes= new LinkedList<>();
+            String newRow="";
             while (rs.next())
             {
+                newRow = "";
+
                 // The column count starts from 1
-                for (int i = 1; i <= columnCount; i++ ) {
+                for (int i = 1; i <= columnCount; i++ )
+                {
                     String col = rsmd.getColumnName(i);
 
                     if(i != columnCount)
                     {
-                        System.out.print(rs.getInt(col) + " , ");
+                        newRow += rs.getInt(col) + " , ";
+                      //  System.out.print(rs.getInt(col) + " , ");
                     }
                     else
                     {
-                        System.out.print(rs.getInt(col));
+                        newRow += rs.getInt(col) + " , ";
+                        //System.out.print(rs.getInt(col));
                     }
+                    tableRes.add(newRow);
                 }
 
-                System.out.println();
+                Collections.sort(tableRes);
+                //tableRes.forEach(System.out::println);*/
 
-                //  System.out.println(rs.getString(3));
-              /*  int A = rs.getInt("A");
-                int B = rs.getInt("B");
+            LinkedList<String> mySqlList = execQuery(conn, sqlQuery);
+            System.out.println("MS Server: " + mySqlList.size());
 
-                System.out.format("%s,%s\n", A, B);*/
-            }
 
-            System.out.println("**********************************************");
+          /*  System.out.println("**********************************************");
 
 
             System.out.println("***********************************************");
             System.out.println(sqlQuery);
-            System.out.println("**********************************************");
+            System.out.println("**********************************************");*/
 
 
         } catch (SQLException ex)
         {
             ex.printStackTrace();
-        } finally {
+        } finally
+        {
+            try
+            {
+                if (conn != null && !conn.isClosed())
+                {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+    }
+
+
+    public LinkedList<String> execQuery(Connection conn, String sqlQry)
+    {
+        LinkedList<String> tableRes= new LinkedList<>();
+
+        try
+        {
+
+            DatabaseMetaData md = conn.getMetaData();
+            ResultSet rs = md.getTables(null, null, "R1", null);
+
+            // create the java statement
+            Statement st = conn.createStatement();
+
+            // execute the query, and get a java resultset
+            rs = st.executeQuery(sqlQry);
+
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columnCount = rsmd.getColumnCount();
+
+            System.out.println("**********************************************");
+
+            String newRow="";
+            while (rs.next())
+            {
+                newRow = "";
+
+                // The column count starts from 1
+                for (int i = 1; i <= columnCount; i++ )
+                {
+                    String col = rsmd.getColumnLabel(i);
+
+                    if(i != columnCount)
+                    {
+                        newRow += rs.getInt(col) + " , ";
+                        //  System.out.print(rs.getInt(col) + " , ");
+                    }
+                    else
+                    {
+                        newRow += rs.getInt(col) + " , ";
+                        //System.out.print(rs.getInt(col));
+                    }
+                    tableRes.add(newRow);
+                }
+
+                Collections.sort(tableRes);
+                //tableRes.forEach(System.out::println);
+             //   System.out.println(tableRes.size());
+            }
+
+        } catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        } finally
+        {
             try {
                 if (conn != null && !conn.isClosed()) {
                     conn.close();
@@ -264,16 +333,17 @@ public class DbConnections
             }
         }
 
+        return tableRes;
     }
-        public static void runAllDBMS()
+
+
+    public void runAllDBMS( String sqlquery)
         {
 
-            String sqlquery =  "SELECT * FROM R1";
 
-
-       /*     System.out.println("*****************");
-            connectToMySql();
             System.out.println("*****************");
+            connectToMySql(sqlquery);
+            /*System.out.println("*****************");
             connectToPostgres();
             System.out.println("*****************");
             connectToIBMDb2();
@@ -282,13 +352,13 @@ public class DbConnections
             System.out.println("*****************");
         }
 
-        public static void main(String[] args)
+       /* public static void main(String[] args)
 
         {
 
             runAllDBMS();
 
-        }
+        }*/
     }
 
 
