@@ -6,6 +6,8 @@ import java.util.Random;
 
 public class COMPARISON
 {
+    final int CONSTNO = 20;
+
     private LinkedList<String> operators;
     private HashMap<String, LinkedList<String>> relAttrs;
     private LinkedList<String> selectedTables;
@@ -26,7 +28,7 @@ public class COMPARISON
 
         //This loop in used to insert some constants in the linkedlist in order to
         //have some comparisons like NULL = NULL, attr > 2 and so for.
-        for(int i=0; i< 20; i++)
+        for(int i=0; i< CONSTNO; i++)
         {
             constsAndNull.add(Integer.toString(i));
         }
@@ -115,9 +117,21 @@ public class COMPARISON
             break;
         }
 
-        return rel1 + " " + oper + " " + rel2;
+        //We want to use negation within some the expressions. Thus, we randomly decide if
+        //this expression will have negation or not.
+        String res="";
+        pick = genRandChoice(2);
+        if(pick ==1)
+        {
+            res = "NOT" + "(" + rel1 + " " + oper + " " + rel2 + ") ";
+        }
+        else
+        {
+            res =  "(" + rel1 + " " + oper + " " + rel2 + ") ";
+        }
+
+        return res;
 
     }
-
 
 }
