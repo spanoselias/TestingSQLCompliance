@@ -1,3 +1,3 @@
 SELECT  r2.A AS A0,  r2. B AS A1
 FROM  R2 AS  r2
-WHERE NOT( r2.A <  r2. B)  OR ( r2.A >= 0)  AND (NULL < 2)  AND ( r2. B <  r2.A)  OR ( r2. B >  r2.A)  OR NOT(NULL < 9) 
+WHERE (12 <> 0)  AND NOT( r2. B <>  r2.A)  OR (NULL > NULL)  OR NOT( r2. B <  r2.A)  OR NOT(0 <=  r2.A)  OR (7 <>  r2.A) 
