@@ -2,8 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestingSQLCompliance/DbConnections.class" afterPath="$PROJECT_DIR$/out/production/TestingSQLCompliance/DbConnections.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Engine/NESTCOMPARISON.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Engine/QRYREPRES.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestingSQLCompliance/Engine/COMPARISON.class" afterPath="$PROJECT_DIR$/out/production/TestingSQLCompliance/Engine/COMPARISON.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestingSQLCompliance/Engine/FROM.class" afterPath="$PROJECT_DIR$/out/production/TestingSQLCompliance/Engine/FROM.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestingSQLCompliance/Engine/SELECT.class" afterPath="$PROJECT_DIR$/out/production/TestingSQLCompliance/Engine/SELECT.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestingSQLCompliance/Engine/WHERE.class" afterPath="$PROJECT_DIR$/out/production/TestingSQLCompliance/Engine/WHERE.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestingSQLCompliance/SQLEngine.class" afterPath="$PROJECT_DIR$/out/production/TestingSQLCompliance/SQLEngine.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestingSQLCompliance/config.properties" afterPath="$PROJECT_DIR$/out/production/TestingSQLCompliance/config.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DbConnections.java" afterPath="$PROJECT_DIR$/src/DbConnections.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Engine/COMPARISON.java" afterPath="$PROJECT_DIR$/src/Engine/COMPARISON.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Engine/FROM.java" afterPath="$PROJECT_DIR$/src/Engine/FROM.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Engine/SELECT.java" afterPath="$PROJECT_DIR$/src/Engine/SELECT.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Engine/WHERE.java" afterPath="$PROJECT_DIR$/src/Engine/WHERE.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SQLEngine.java" afterPath="$PROJECT_DIR$/src/SQLEngine.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/config.properties" afterPath="$PROJECT_DIR$/src/config.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,8 +53,8 @@
           <file leaf-file-name="DbConnections.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/DbConnections.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="171">
-                  <caret line="350" column="44" lean-forward="true" selection-start-line="350" selection-start-column="44" selection-end-line="350" selection-end-column="44" />
+                <state relative-caret-position="-39">
+                  <caret line="340" column="9" lean-forward="true" selection-start-line="340" selection-start-column="9" selection-end-line="340" selection-end-column="9" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="method#connectToOracle#0;class#DbConnections#0" expanded="false" />
@@ -155,8 +169,8 @@
           <file leaf-file-name="DbConnections.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/DbConnections.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="221">
-                  <caret line="189" column="1" lean-forward="false" selection-start-line="189" selection-start-column="1" selection-end-line="189" selection-end-column="1" />
+                <state relative-caret-position="-73">
+                  <caret line="175" column="16" lean-forward="true" selection-start-line="175" selection-start-column="16" selection-end-line="175" selection-end-column="16" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="method#connectToOracle#0;class#DbConnections#0" expanded="false" />
@@ -941,7 +955,7 @@
       <workItem from="1496261693620" duration="2384000" />
       <workItem from="1496273856921" duration="16867000" />
       <workItem from="1496411273937" duration="28270000" />
-      <workItem from="1496517465011" duration="16613000" />
+      <workItem from="1496517465011" duration="16424000" />
     </task>
     <task id="LOCAL-00001" summary="setting github on intelij">
       <created>1495840391619</created>
@@ -1209,18 +1223,11 @@
       <option name="project" value="LOCAL" />
       <updated>1496602339092</updated>
     </task>
-    <task id="LOCAL-00039" summary="Extending DbConnection class">
-      <created>1496693152064</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1496693152064</updated>
-    </task>
-    <option name="localTasksCounter" value="40" />
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="169626000" />
+    <option name="totallyTimeSpent" value="169437000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="1" width="1918" height="1030" extended-state="0" />
@@ -1859,8 +1866,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DbConnections.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="350" column="44" lean-forward="true" selection-start-line="350" selection-start-column="44" selection-end-line="350" selection-end-column="44" />
+        <state relative-caret-position="-39">
+          <caret line="340" column="9" lean-forward="true" selection-start-line="340" selection-start-column="9" selection-end-line="340" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#connectToOracle#0;class#DbConnections#0" expanded="false" />
