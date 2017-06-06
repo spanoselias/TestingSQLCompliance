@@ -6,10 +6,8 @@ import Engine.QRYREPRES;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.Properties;
+import java.sql.*;
+import java.util.*;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -23,12 +21,12 @@ import java.io.FileWriter;
  */
 public class SQLEngine
 {
-
-    public static double readConfFile(HashMap<String, LinkedList<String>> relAttrs)
+    public static ConfParameters readConfFile()
     {
         Properties prop = new Properties();
         InputStream input = null;
-        double probValue = 0.0;
+
+        ConfParameters confPar = new ConfParameters();
 
         try
         {
@@ -39,7 +37,7 @@ public class SQLEngine
 
             //We read all the relations from the configuration file. Then, we
             //store each relation in the HashMap
-            String[] relations = prop.getProperty("relations").split(",");
+       /*   String[] relations = prop.getProperty("relations").split(",");
             String[] attributes = prop.getProperty("attributes").split(",");
             for (String relation : relations)
             {
@@ -52,10 +50,17 @@ public class SQLEngine
                 //We insert the relation (as key) in the hashMap, and a likedlist that stores all the
                 //attributes for the specific relation
                 relAttrs.put(relation, attrList);
-            }
+            }*/
 
-             probValue = Double.parseDouble( prop.getProperty("probWhrConst") );
+            //It retrieves the parameters from the configuration file and store them
+            //to the appropriate variables
+            confPar.maxTableFrom = Integer.parseInt( prop.getProperty( "maxTablesFrom" ) );
+            confPar.maxAttrSel = Integer.parseInt( prop.getProperty( "maxAttrSel" ) );
+            confPar.probWhrConst = Integer.parseInt( prop.getProperty( "maxCondWhere" ) );
+            confPar.probWhrConst = Double.parseDouble( prop.getProperty( "probWhrConst" ) );
 
+            //It retrieves all the relations with their associated attributes from mysql database
+            retrieveDBSchema(confPar.relationsAttrs);
 
         } catch (IOException ex)
         {
@@ -74,7 +79,7 @@ public class SQLEngine
             }
         }
 
-        return probValue;
+        return confPar;
     }
 
     /**
@@ -89,7 +94,7 @@ public class SQLEngine
         char[] attr = new char[57];
 
         int k = 0;
-        for (int i = 0; i < 26; i++)
+        for (int i = 0; i < 10; i++)
         {
             for(int j=0; j < 10; j++)
             {
@@ -102,26 +107,114 @@ public class SQLEngine
         return tmpAlias;
     }
 
-    public static QRYREPRES genQuery( LinkedList<String> frmRelts, long uniqID, boolean isNest, boolean isOneAttr)
+    public static void retrieveDBSchema( HashMap<String, LinkedList<String>> allRelAttr )
+    {
+
+        //This sql queries retrieve all the tables with their associated attributes
+        String retSchema =  "SELECT TABLE_NAME, COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'testdb'";
+
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+        }
+        catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+
+
+        Connection conn = null;
+
+        try
+        {
+            conn = DriverManager
+                    .getConnection("jdbc:mysql://localhost:3306/testdb", "elias881", "testing1");
+
+        }
+        catch (SQLException e)
+        {
+            System.out.println("Connection Failed! Check output console");
+            e.printStackTrace();
+        }
+
+        LinkedList<String> tableRes= new LinkedList<>();
+
+        try
+        {
+            DatabaseMetaData md = conn.getMetaData( );
+            ResultSet rs = md.getTables(null, null, "R1", null);
+
+            // create the java statement
+            Statement st = conn.createStatement();
+
+            // execute the query, and get a java resultset
+            rs = st.executeQuery( retSchema );
+
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columnCount = rsmd.getColumnCount();
+
+            System.out.println("**********************************************");
+
+            String newRow="";
+            String prevName = "";
+
+            LinkedList<String> curAttr = new LinkedList<>();
+            while (rs.next())
+            {
+
+                String relName = rs.getString("TABLE_NAME");
+
+                if(prevName == "")
+                {
+                    prevName = relName;
+                    curAttr.add(rs.getString("COLUMN_NAME"));
+                }
+
+                else if(prevName.equals( relName))
+                {
+                    curAttr.add(rs.getString("COLUMN_NAME"));
+                }
+                else if( ! prevName.equals( relName))
+                {
+                    allRelAttr.put(prevName, ((LinkedList<String>)curAttr.clone()));
+                    curAttr.clear();
+                    prevName = relName;
+
+                    curAttr.add(rs.getString("COLUMN_NAME"));
+                }
+            }
+
+
+        } catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        } finally
+        {
+            try {
+                if (conn != null && !conn.isClosed()) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+    }
+
+
+    public static QRYREPRES genQuery( LinkedList<String> frmRelts, long uniqID, boolean isNest, boolean isOneAttr ,  ConfParameters confPar)
     {
 
         QRYREPRES res = new QRYREPRES();
-
-        //This hashMap will be used to store all the attributes for each relation
-        HashMap<String, LinkedList<String>> relationsAttrs = new HashMap<>();
-
-        //This method is used to read all the relations and attributes from the configuration file (config.properties file)
-        //and it stores them in the relationsAttrs hashMap
-        double probWhr = readConfFile(relationsAttrs);
 
         LinkedList<String> alias =  genAlias();
 
         String tmpStm="";
         String finalQry="";
 
-        FROM frmQry = new FROM(alias, relationsAttrs);
-        WHERE whrQry = new WHERE(relationsAttrs);
-        SELECT selQry = new SELECT(false,false, alias, 2,relationsAttrs);
+        FROM frmQry = new FROM(alias, confPar.relationsAttrs);
+        WHERE whrQry = new WHERE(confPar.relationsAttrs);
+        SELECT selQry = new SELECT(false,false, alias, 2,confPar.relationsAttrs);
 
         String stm = frmQry.getFrom( (++uniqID) );
 
@@ -130,15 +223,16 @@ public class SQLEngine
         if(frmRelts != null && frmRelts.size() > 0)
         {
              frmRelts = copySelRelts(frmRelts, frmQry.getSelectedTables());
-             tmpStm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr);
+             tmpStm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, confPar.repAlias);
              finalQry = tmpStm + "\n" + stm;
-             finalQry += "\n" + whrQry.getSqlWhere(frmRelts,2, isNest, probWhr);
+             finalQry += "\n" + whrQry.getSqlWhere(frmRelts,2, isNest, confPar.probWhrConst);
         }
+
         else
         {
-             tmpStm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr);
+             tmpStm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, confPar.repAlias);
              finalQry = tmpStm + "\n" + stm;
-             finalQry += "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),5, isNest, probWhr);
+             finalQry += "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),4, isNest, confPar.probWhrConst);
         }
 
         res.qryStr = finalQry;
@@ -148,21 +242,16 @@ public class SQLEngine
         return res;
     }
 
-    public static String genCompQuery(int subqry, LinkedList<String> frmRelts, long uniqID, boolean isNest, boolean isOneAttr)
+    public static String genCompQuery(int subqry, LinkedList<String> frmRelts, long uniqID, boolean isNest, boolean isOneAttr,   ConfParameters confPar)
     {
-        //This hashMap will be used to store all the attributes for each relation
-        HashMap<String, LinkedList<String>> relationsAttrs = new HashMap<>();
 
-        //This method is used to read all the relations and attributes from the configuration file (config.properties file)
-        //and it stores them in the relationsAttrs hashMap
-        double probWhr = readConfFile(relationsAttrs);
 
         LinkedList<String> alias =  genAlias();
 
         //We create new objects for each statement
-        FROM frmQry = new FROM(alias, relationsAttrs);
-        WHERE whrQry = new WHERE(relationsAttrs);
-        SELECT selQry = new SELECT(false,false, alias, 2,relationsAttrs);
+        FROM frmQry = new FROM(alias, confPar.relationsAttrs);
+        WHERE whrQry = new WHERE(confPar.relationsAttrs);
+        SELECT selQry = new SELECT(false,false, alias, 2,confPar.relationsAttrs);
 
         String substm="";
 
@@ -171,8 +260,8 @@ public class SQLEngine
             String subName = "Q" + subqry;
 
             String frmstm = frmQry.getFrom(++uniqID);
-            String selstm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr);
-            String whrstm = whrQry.getSqlWhere(frmQry.getSelectedTables(),2, false, probWhr);
+            String selstm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, confPar.repAlias);
+            String whrstm = whrQry.getSqlWhere(frmQry.getSelectedTables(),2, false, confPar.probWhrConst);
 
             if( (subqry ) > 0 )
             {
@@ -196,17 +285,17 @@ public class SQLEngine
         }
 
         String stm = from + " , " + substm;
-        String tmpStm = selQry.getSelect(frmRelts, isOneAttr);
+        String tmpStm = selQry.getSelect(frmRelts, isOneAttr, confPar.repAlias);
         String finalQry = tmpStm + "\n" + stm;
-        finalQry += "\n" + whrQry.getSqlWhere(frmRelts ,2, isNest, probWhr);
+        finalQry += "\n" + whrQry.getSqlWhere(frmRelts ,2, isNest, confPar.probWhrConst);
 
       return  finalQry;
 
     }
 
-    //Not implemented yet
-    public static String nestQuery(int nestLev, long uniqID)
+    public static String nestQuery(int nestLev, long uniqID, ConfParameters confPar)
     {
+
         String sqlRep="";
 
         LinkedList<String> levFrmBinds = new LinkedList<>();
@@ -217,7 +306,7 @@ public class SQLEngine
         //and the LinkedList will store all the alias that we bind for each query
         HashMap<Integer, LinkedList<String>> levBindAttrs = new LinkedHashMap<>();
 
-        QRYREPRES curQuery = genQuery( levFrmBinds, ++uniqID, true, false);
+        QRYREPRES curQuery = genQuery( levFrmBinds, ++uniqID, true, false, confPar);
         levFrmBinds = copySelRelts(levFrmBinds,curQuery.selRelts);
 
 
@@ -238,7 +327,7 @@ public class SQLEngine
 
             sqlRep += " (";
 
-            curQuery =  genQuery( levFrmBinds, ++uniqID, isNest, curQuery.isOneAt);
+            curQuery =  genQuery( levFrmBinds, ++uniqID, isNest, curQuery.isOneAt, confPar);
             sqlRep +="\n\t" + curQuery.qryStr;
 
             //We retrieve all the attributes that are selected in the FROM clause
@@ -275,7 +364,6 @@ public class SQLEngine
 
         return  curSelRels;
     }
-
 
     public static void wrtSql2File(String filename, String sql)
     {
@@ -317,28 +405,50 @@ public class SQLEngine
 
     public static void main(String[] args)
     {
+
+        HashMap<String, LinkedList<String>> allRelAttr = new HashMap<>();
+
+        //It retrieves all the relations which their associated attributes from MySQL database
+        retrieveDBSchema(allRelAttr);
+
+        ConfParameters confPar = readConfFile();
+
         long uniqID=0;
+
+        int option  = Integer.parseInt(args[0]);
 
         LinkedList<String> frmRelts = new LinkedList<>();
 
-     /* System.out.println("Complex query");
-        System.out.println("*******************");
-        String res = genCompQuery(1, frmRelts,1,false,false);
-     */
+        String qry="";
 
-        System.out.println("\n*******************");
-        System.out.println("Simple query");
-        System.out.println("*******************");
-        QRYREPRES res = genQuery(null,uniqID, false, false);
-        System.out.println(res.qryStr);
-        wrtSql2File("rand_sql",res.qryStr);
+        switch(option)
+        {
+            case 1:
+                System.out.println("Complex query");
+                System.out.println("*******************");
+                qry  = genCompQuery(1, frmRelts,1,false,false, confPar);
+            break;
+
+            case 2:
+                System.out.println("Simple query");
+                System.out.println("*******************");
+                QRYREPRES res = genQuery(null,uniqID, false, false, confPar);
+                qry = res.qryStr;
+                break;
+
+            case 3:
+
+                qry = nestQuery(3, uniqID, confPar);
+                wrtSql2File("rand_sql", qry);
+                break;
+        }
+
+            System.out.println(qry);
+            wrtSql2File("rand_sql",qry);
 
 
-      //debugging mode
-      //  wrtSql2File("rand_sql",nestQuery(3, uniqID));
-      //  connectToMicrosoftSql(nestQuery(2, uniqID));
 
-     /*   while(true)
+     /*  while(true)
         {
 
             String sql = nestQuery(9, uniqID);

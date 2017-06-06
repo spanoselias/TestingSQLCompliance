@@ -47,7 +47,7 @@ public class SELECT
         relAttrs = allRelAttrsIn;
     }
 
-    public String getSelect( LinkedList<String> frmRels, boolean isOneAttr)
+    public String getSelect( LinkedList<String> frmRels, boolean isOneAttr, double isRepAlias)
     {
         aliasAttr.clear();
 
@@ -69,12 +69,19 @@ public class SELECT
             boolean isOut = false;
             int j=0;
 
-            if(isOneAttr == false )
+            //This LinkedList will be used store the current alias in order to generate
+            //repetition of the alias
+            LinkedList<String> curAlias = new LinkedList<>();
+
+            if( isOneAttr == false )
             {
                 for (String relName : frmRels)
                 {
                         //This is useful if this query will be used as a subquery in the FROM clause
                         aliasAttr.add(alias.get(j));
+
+                        String repAlias = String.format("%s AS %s", relName, alias.get(j));
+                        curAlias.add(repAlias);
 
                         if (isOut == false)
                         {
@@ -94,6 +101,15 @@ public class SELECT
                  //   }
                 j++;
                 }
+
+               if(isRepAlias > 0)
+                {
+                    for(int i=0; i < curAlias.size(); i++)
+                    {
+                        stm += ", " + curAlias.get(i);
+                    }
+                }
+
             }
 
             //If isOneAttr is true, then it means that we need to have only one attribute in the select

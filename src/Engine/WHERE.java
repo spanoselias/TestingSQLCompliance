@@ -42,24 +42,69 @@ public  class WHERE
     {
         this.whereNo = whereNoComp;
 
+        //The variable isParenOpen indicates if we have an open parenthesis
+        // Means that we need to close it
+        int isParenOpen = 0;
+
         stm = "WHERE ";
 
-        if (whereNo != -1)
+        for (int i = 0; i < (whereNo + 1); i++)
         {
-            for (int i = 0; i < (whereNo + 1); i++)
+            //We flip a coin to decide if we will open/close
+            //a parenthesis
+            int pick = getRandChoice(2);
+
+            if (i == 0)
             {
-                if (i == 0)
+                 int pickNeg = getRandChoice(2);
+
+                 //we flip a coin to decide if there will be a negation or not
+                 if(pickNeg == 1) {stm += "NOT" ;}
+
+                  stm += "("; isParenOpen =1;
+
+                stm +=  genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, probWhr);
+            }
+            else
+            {
+                //If there is already an open parenthesis then we need to close
+                //the previous one
+                if( pick ==1 && isParenOpen == 1)
                 {
-                    stm += genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, probWhr);
-                } else
+                    stm += ") " + conn[getRandChoice(conn.length)] + " " + genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, probWhr);
+                    isParenOpen = 0;
+                }
+
+                //If there is not open parenthesis then we can open a new one
+                else if ( pick ==1 && isParenOpen == 0 )
+                {
+                    //We randomly choose if we will have negation outside
+                    //of the parenthesis OR NOT
+                    String par ="";
+                    int pickNeg = getRandChoice(2);
+                    if(pickNeg == 1)
+                    {
+                        par += " NOT" ;
+                    }
+
+                    par += " ( ";
+
+                    stm += conn[getRandChoice(conn.length)] + par + genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, probWhr);
+                    isParenOpen = 1;
+                }
+                else
                 {
                     stm += conn[getRandChoice(conn.length)] + " " + genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, probWhr);
+
                 }
             }
-        }
-        else
-        {
-            stm += genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, probWhr);
+
+            //If it's the last condition and there is an open parenthesis, then
+            //we need to close it
+            if(isParenOpen == 1 && (i + 1) == (whereNo + 1 ))
+            {
+                stm += " )";
+            }
         }
 
         if(isNested == true)

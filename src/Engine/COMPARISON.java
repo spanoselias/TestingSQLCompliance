@@ -75,7 +75,6 @@ public class COMPARISON
             pick = 4;
         }
 
-
         //The idea of switch is to do comparisons between two relation's attributes or between
         //one attribute and one constant or between an attribute and a NULL
         switch (pick)
@@ -95,6 +94,7 @@ public class COMPARISON
                 rel1 = this.selectedTables.get(genRandChoice(this.selectedTables.size()));
                 rel2 = constsAndNull.get(genRandChoice(constsAndNull.size()));
             break;
+
             case 3:
 
                 rel1 = "NULL";
@@ -128,18 +128,7 @@ public class COMPARISON
             break;
         }
 
-        //We want to use negation within some the expressions. Thus, we randomly decide if
-        //this expression will have negation or not.
-        String res="";
-        pick = genRandChoice(2);
-        if(pick ==1)
-        {
-            res = "NOT" + "(" + rel1 + " " + oper + " " + rel2 + ") ";
-        }
-        else
-        {
-            res =  "(" + rel1 + " " + oper + " " + rel2 + ") ";
-        }
+        String res =  rel1 + " " + oper + " " + rel2  ;
 
         return res;
 

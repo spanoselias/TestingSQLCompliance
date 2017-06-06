@@ -266,7 +266,8 @@ public class DbConnections
                 {
                     conn.close();
                 }
-            } catch (SQLException ex) {
+            } catch (SQLException ex)
+            {
                 ex.printStackTrace();
             }
         }
@@ -340,7 +341,6 @@ public class DbConnections
 
         return tableRes;
     }
-
 
     public void runAllDBMS( String sqlquery)
         {

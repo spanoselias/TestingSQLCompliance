@@ -30,8 +30,8 @@ public  class FROM
         fromStm = "";
 
         //We copy all the relations from the LinkedList to an array in order to
-        //shuffle the array and afterward to choose some random relation to create
-        //the Engine.FROM Clause
+        //shuffle the array and afterward to choose some random relations to create
+        //FROM Clause
         rel = new Relation[this.allRelAttrs.size()];
         int i=0;
         for (String relation : this.allRelAttrs.keySet())
