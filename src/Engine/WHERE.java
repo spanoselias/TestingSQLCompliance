@@ -48,9 +48,11 @@ public  class WHERE
         {
             for (int i = 0; i < (whereNo + 1); i++)
             {
-                if (i == 0) {
+                if (i == 0)
+                {
                     stm += genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, probWhr);
-                } else {
+                } else
+                {
                     stm += conn[getRandChoice(conn.length)] + " " + genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, probWhr);
                 }
             }
