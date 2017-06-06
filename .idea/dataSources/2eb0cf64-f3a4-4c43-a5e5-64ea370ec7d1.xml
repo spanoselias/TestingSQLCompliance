@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MySQL - testdb@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.2">
+    <root id="1"/>
+    <schema id="2" parent="1" name="testdb">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="mysql"/>
+    <schema id="5" parent="1" name="performance_schema"/>
+    <schema id="6" parent="1" name="sakila"/>
+    <schema id="7" parent="1" name="sys"/>
+    <schema id="8" parent="1" name="world"/>
+    <table id="9" parent="2" name="r1"/>
+    <table id="10" parent="2" name="r2"/>
+    <table id="11" parent="2" name="r3"/>
+    <table id="12" parent="2" name="r4"/>
+    <table id="13" parent="2" name="r5"/>
+    <column id="14" parent="9" name="A">
+      <Position>1</Position>
+      <DataType>smallint(6)|0</DataType>
+    </column>
+    <column id="15" parent="9" name="B">
+      <Position>2</Position>
+      <DataType>smallint(6)|0</DataType>
+    </column>
+    <index id="16" parent="9" name="A">
+      <ColNames>A
+B</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="17" parent="9" name="A">
+      <ColNames>A
+B</ColNames>
+      <UnderlyingIndexName>A</UnderlyingIndexName>
+    </key>
+    <column id="18" parent="10" name="A">
+      <Position>1</Position>
+      <DataType>smallint(6)|0</DataType>
+    </column>
+    <column id="19" parent="10" name="B">
+      <Position>2</Position>
+      <DataType>smallint(6)|0</DataType>
+    </column>
+    <index id="20" parent="10" name="A">
+      <ColNames>A
+B</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="21" parent="10" name="A">
+      <ColNames>A
+B</ColNames>
+      <UnderlyingIndexName>A</UnderlyingIndexName>
+    </key>
+    <column id="22" parent="11" name="A">
+      <Position>1</Position>
+      <DataType>smallint(6)|0</DataType>
+    </column>
+    <column id="23" parent="11" name="B">
+      <Position>2</Position>
+      <DataType>smallint(6)|0</DataType>
+    </column>
+    <index id="24" parent="11" name="A">
+      <ColNames>A
+B</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="25" parent="11" name="A">
+      <ColNames>A
+B</ColNames>
+      <UnderlyingIndexName>A</UnderlyingIndexName>
+    </key>
+    <column id="26" parent="12" name="A">
+      <Position>1</Position>
+      <DataType>smallint(6)|0</DataType>
+    </column>
+    <column id="27" parent="12" name="B">
+      <Position>2</Position>
+      <DataType>smallint(6)|0</DataType>
+    </column>
+    <index id="28" parent="12" name="A">
+      <ColNames>A
+B</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="29" parent="12" name="A">
+      <ColNames>A
+B</ColNames>
+      <UnderlyingIndexName>A</UnderlyingIndexName>
+    </key>
+    <column id="30" parent="13" name="A">
+      <Position>1</Position>
+      <DataType>smallint(6)|0</DataType>
+    </column>
+    <column id="31" parent="13" name="B">
+      <Position>2</Position>
+      <DataType>smallint(6)|0</DataType>
+    </column>
+    <index id="32" parent="13" name="A">
+      <ColNames>A
+B</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="33" parent="13" name="A">
+      <ColNames>A
+B</ColNames>
+      <UnderlyingIndexName>A</UnderlyingIndexName>
+    </key>
+  </database-model>
+</dataSource>
