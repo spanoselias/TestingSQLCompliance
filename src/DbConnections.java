@@ -17,22 +17,22 @@ import java.sql.DriverManager;*/
 
 public class DbConnections
 {
-    public  void connectToMySql(String sqlQuery)
+    public  int connectToMySql(String sqlQuery)
     {
 
-            System.out.println("-------- MySQL JDBC Connection Testing ------------");
+           // System.out.println("-------- MySQL JDBC Connection Testing ------------");
 
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
             } catch (ClassNotFoundException e)
             {
-                System.out.println("Where is your MySQL JDBC Driver?");
+            //    System.out.println("Where is your MySQL JDBC Driver?");
                 e.printStackTrace();
-                return;
+
             }
 
-            System.out.println("MySQL JDBC Driver Registered!");
+          //  System.out.println("MySQL JDBC Driver Registered!");
             Connection conn = null;
 
             try
@@ -44,18 +44,21 @@ public class DbConnections
             {
                 System.out.println("Connection Failed! Check output console");
                 e.printStackTrace();
-                return;
+
             }
 
             LinkedList<String> mySqlList = execQuery(conn, sqlQuery);
-            System.out.println("MySQlResSize: " + mySqlList.size());
+        //    System.out.println("MySQlResSize: " + mySqlList.size());
+
+            return  mySqlList.size();
+
         }
 
         public  void connectToPostgres()
         {
 
-            System.out.println("-------- PostgreSQL "
-                    + "JDBC Connection Testing ------------");
+          /*  System.out.println("-------- PostgreSQL "
+                    + "JDBC Connection Testing ------------");*/
 
             try {
 
@@ -168,10 +171,11 @@ public class DbConnections
 
         }
 
-    public  void connectToMicrosoftSql(String sqlQuery) {
+    public  int connectToMicrosoftSql(String sqlQuery) {
         Connection conn = null;
-
-        try {
+        LinkedList<String> mySqlList=null;
+        try
+        {
 
             //String dbURL = "jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=testdb";
             String dbURL = "jdbc:sqlserver://localhost; databaseName=testdb";
@@ -239,8 +243,8 @@ public class DbConnections
                 Collections.sort(tableRes);
                 //tableRes.forEach(System.out::println);*/
 
-            LinkedList<String> mySqlList = execQuery(conn, sqlQuery);
-            System.out.println("MS Server: " + mySqlList.size());
+              mySqlList = execQuery(conn, sqlQuery);
+            //System.out.println("MS Server: " + mySqlList.size());
 
 
           /*  System.out.println("**********************************************");
@@ -267,6 +271,7 @@ public class DbConnections
             }
         }
 
+        return mySqlList.size();
     }
 
 
@@ -339,8 +344,6 @@ public class DbConnections
 
     public void runAllDBMS( String sqlquery)
         {
-
-
             System.out.println("*****************");
             connectToMySql(sqlquery);
             /*System.out.println("*****************");

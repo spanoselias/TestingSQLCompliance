@@ -6,7 +6,6 @@ import Engine.QRYREPRES;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.*;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -25,10 +24,11 @@ import java.io.FileWriter;
 public class SQLEngine
 {
 
-    public static void readConfFile(HashMap<String, LinkedList<String>> relAttrs)
+    public static double readConfFile(HashMap<String, LinkedList<String>> relAttrs)
     {
         Properties prop = new Properties();
         InputStream input = null;
+        double probValue = 0.0;
 
         try
         {
@@ -54,6 +54,9 @@ public class SQLEngine
                 relAttrs.put(relation, attrList);
             }
 
+             probValue = Double.parseDouble( prop.getProperty("probWhrConst") );
+
+
         } catch (IOException ex)
         {
             ex.printStackTrace();
@@ -70,6 +73,8 @@ public class SQLEngine
                 }
             }
         }
+
+        return probValue;
     }
 
     /**
@@ -107,7 +112,7 @@ public class SQLEngine
 
         //This method is used to read all the relations and attributes from the configuration file (config.properties file)
         //and it stores them in the relationsAttrs hashMap
-        readConfFile(relationsAttrs);
+        double probWhr = readConfFile(relationsAttrs);
 
         LinkedList<String> alias =  genAlias();
 
@@ -127,13 +132,13 @@ public class SQLEngine
              frmRelts = copySelRelts(frmRelts, frmQry.getSelectedTables());
              tmpStm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr);
              finalQry = tmpStm + "\n" + stm;
-             finalQry += "\n" + whrQry.getSqlWhere(frmRelts,2, isNest);
+             finalQry += "\n" + whrQry.getSqlWhere(frmRelts,2, isNest, probWhr);
         }
         else
         {
              tmpStm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr);
              finalQry = tmpStm + "\n" + stm;
-             finalQry += "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),5, isNest);
+             finalQry += "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),5, isNest, probWhr);
         }
 
         res.qryStr = finalQry;
@@ -150,7 +155,7 @@ public class SQLEngine
 
         //This method is used to read all the relations and attributes from the configuration file (config.properties file)
         //and it stores them in the relationsAttrs hashMap
-        readConfFile(relationsAttrs);
+        double probWhr = readConfFile(relationsAttrs);
 
         LinkedList<String> alias =  genAlias();
 
@@ -167,7 +172,7 @@ public class SQLEngine
 
             String frmstm = frmQry.getFrom(++uniqID);
             String selstm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr);
-            String whrstm = whrQry.getSqlWhere(frmQry.getSelectedTables(),2, false);
+            String whrstm = whrQry.getSqlWhere(frmQry.getSelectedTables(),2, false, probWhr);
 
             if( (subqry ) > 0 )
             {
@@ -193,7 +198,7 @@ public class SQLEngine
         String stm = from + " , " + substm;
         String tmpStm = selQry.getSelect(frmRelts, isOneAttr);
         String finalQry = tmpStm + "\n" + stm;
-        finalQry += "\n" + whrQry.getSqlWhere(frmRelts ,2, isNest);
+        finalQry += "\n" + whrQry.getSqlWhere(frmRelts ,2, isNest, probWhr);
 
       return  finalQry;
 
@@ -316,24 +321,44 @@ public class SQLEngine
 
         LinkedList<String> frmRelts = new LinkedList<>();
 
-     /*   System.out.println("Complex query");
+     /* System.out.println("Complex query");
         System.out.println("*******************");
         String res = genCompQuery(1, frmRelts,1,false,false);
-*/
+     */
 
         System.out.println("\n*******************");
         System.out.println("Simple query");
         System.out.println("*******************");
         QRYREPRES res = genQuery(null,uniqID, false, false);
         System.out.println(res.qryStr);
-
         wrtSql2File("rand_sql",res.qryStr);
-        DbConnections dbcon = new DbConnections();
-        dbcon.runAllDBMS(res.qryStr);
+
 
       //debugging mode
-        //wrtSql2File("rand_sql",nestQuery(3, uniqID));
+      //  wrtSql2File("rand_sql",nestQuery(3, uniqID));
       //  connectToMicrosoftSql(nestQuery(2, uniqID));
+
+     /*   while(true)
+        {
+
+            String sql = nestQuery(9, uniqID);
+
+            wrtSql2File("rand_sql",sql);
+            DbConnections dbcon = new DbConnections();
+            int myVal = dbcon.connectToMySql(sql);
+            int MSVal = dbcon.connectToMicrosoftSql(sql);
+
+            if(myVal != MSVal)
+            {
+                System.out.println(sql);
+                break;
+            }
+
+
+        }*/
+
+       // System.out.println("MYSql: " + myVal + " MS Server: " + MSVal);
+
     }
 
 }

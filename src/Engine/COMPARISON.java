@@ -51,7 +51,7 @@ public class COMPARISON
     }
 
 
-    public String getAttrComparison(HashMap<String, LinkedList<String>> relAttrs, LinkedList<String> selectedTablesIn)
+    public String getAttrComparison(HashMap<String, LinkedList<String>> relAttrs, LinkedList<String> selectedTablesIn, double probWhr)
     {
 
         this.selectedTables = selectedTablesIn;
@@ -63,7 +63,18 @@ public class COMPARISON
         pick = genRandChoice(operators.size());
         String oper = operators.get(pick);
 
-        pick = genRandChoice(5);
+        //The 0.1 represents the probability of having
+        //constants or NULLS to the WHERE comparisons
+        pick = genRandChoice( 100 );
+        if(pick <=  (int)(probWhr * 100) )
+        {
+            pick = genRandChoice(4);
+        }
+        else
+        {
+            pick = 4;
+        }
+
 
         //The idea of switch is to do comparisons between two relation's attributes or between
         //one attribute and one constant or between an attribute and a NULL

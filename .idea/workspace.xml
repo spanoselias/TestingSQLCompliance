@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="Implementing nested queries">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/mySQL.sql" />
+    <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestingSQLCompliance/rand_sql" afterPath="$PROJECT_DIR$/out/production/TestingSQLCompliance/rand_sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/mySQL.sql" afterPath="$PROJECT_DIR$/scripts/mySQL.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DbConnections.java" afterPath="$PROJECT_DIR$/src/DbConnections.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Engine/COMPARISON.java" afterPath="$PROJECT_DIR$/src/Engine/COMPARISON.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Engine/WHERE.java" afterPath="$PROJECT_DIR$/src/Engine/WHERE.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SQLEngine.java" afterPath="$PROJECT_DIR$/src/SQLEngine.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/config.properties" afterPath="$PROJECT_DIR$/src/config.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rand_sql" afterPath="$PROJECT_DIR$/src/rand_sql" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -15,19 +19,37 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="MySQL - testdb@localhost" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.70431894">
+    <splitter split-orientation="horizontal" split-proportion="0.77283657">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-          <file leaf-file-name="SQLEngine.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="SQLEngine.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/SQLEngine.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="261">
-                  <caret line="321" column="2" lean-forward="true" selection-start-line="321" selection-start-column="2" selection-end-line="321" selection-end-column="2" />
+                <state relative-caret-position="371">
+                  <caret line="204" column="5" lean-forward="true" selection-start-line="204" selection-start-column="5" selection-end-line="204" selection-end-column="5" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="method#readConfFile#0;class#SQLEngine#0" expanded="false" />
                     <element signature="docComment;method#genAlias#0;class#SQLEngine#0" expanded="false" />
                     <element signature="method#genAlias#0;class#SQLEngine#0" expanded="false" />
                     <element signature="method#nestQuery#0;class#SQLEngine#0" expanded="false" />
@@ -38,32 +60,22 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="DbConnections.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/DbConnections.java">
+          <file leaf-file-name="NESTCOMPARISON.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Engine/NESTCOMPARISON.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1584">
-                  <caret line="357" column="0" lean-forward="false" selection-start-line="357" selection-start-column="0" selection-end-line="357" selection-end-column="0" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="method#connectToOracle#0;class#DbConnections#0" expanded="false" />
-                  </folding>
+                <state relative-caret-position="226">
+                  <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+                  <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="FROM.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Engine/FROM.java">
+          <file leaf-file-name="COMPARISON.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/Engine/COMPARISON.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="567">
-                  <caret line="56" column="5" lean-forward="false" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="method#FROM#0;class#FROM#0" expanded="false" />
-                    <element signature="e#3093#3094#0" expanded="true" />
-                    <element signature="e#3140#3141#0" expanded="true" />
-                    <element signature="method#shuffleArray#0;class#FROM#0" expanded="false" />
-                    <element signature="method#swap#0;class#FROM#0" expanded="false" />
-                  </folding>
+                <state relative-caret-position="300">
+                  <caret line="71" column="9" lean-forward="true" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -72,7 +84,7 @@
             <entry file="file://$PROJECT_DIR$/src/rand_sql">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="42">
-                  <caret line="2" column="32" lean-forward="false" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
+                  <caret line="2" column="36" lean-forward="false" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
                   <folding />
                 </state>
               </provider>
@@ -81,23 +93,9 @@
           <file leaf-file-name="config.properties" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/config.properties">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="63">
-                  <caret line="3" column="16" lean-forward="false" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
+                <state relative-caret-position="189">
+                  <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
                   <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="NESTCOMPARISON.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Engine/NESTCOMPARISON.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1407">
-                  <caret line="67" column="9" lean-forward="false" selection-start-line="67" selection-start-column="9" selection-end-line="67" selection-end-column="9" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#2992#2993#0" expanded="true" />
-                    <element signature="e#3037#3038#0" expanded="true" />
-                  </folding>
                 </state>
               </provider>
             </entry>
@@ -105,46 +103,11 @@
           <file leaf-file-name="WHERE.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Engine/WHERE.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1071">
-                  <caret line="51" column="51" lean-forward="false" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="51" />
+                <state relative-caret-position="332">
+                  <caret line="59" column="93" lean-forward="false" selection-start-line="59" selection-start-column="93" selection-end-line="59" selection-end-column="93" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="method#getRandChoice#0;class#WHERE#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="COMPARISON.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Engine/COMPARISON.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2709">
-                  <caret line="129" column="21" lean-forward="false" selection-start-line="129" selection-start-column="21" selection-end-line="129" selection-end-column="21" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="QRYREPRES.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Engine/QRYREPRES.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="168">
-                  <caret line="8" column="1" lean-forward="false" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="SELECT.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Engine/SELECT.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2499">
-                  <caret line="128" column="0" lean-forward="false" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="method#genRandChoice#0;class#SELECT#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -158,7 +121,7 @@
             <entry file="file://$PROJECT_DIR$/src/DbConnections.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="21">
-                  <caret line="175" column="16" lean-forward="false" selection-start-line="175" selection-start-column="16" selection-end-line="175" selection-end-column="16" />
+                  <caret line="179" column="16" lean-forward="false" selection-start-line="179" selection-start-column="16" selection-end-line="179" selection-end-column="16" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="method#connectToOracle#0;class#DbConnections#0" expanded="false" />
@@ -205,6 +168,7 @@
       <find>EXIST</find>
       <find>levFrmBinds</find>
       <find>mysql</find>
+      <find>postgres</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -243,12 +207,17 @@
         <option value="$PROJECT_DIR$/src/Engine/QRYREPRES.java" />
         <option value="$PROJECT_DIR$/src/Engine/NESTCOMPARISON.java" />
         <option value="$PROJECT_DIR$/src/sql_result" />
-        <option value="$PROJECT_DIR$/src/Engine/WHERE.java" />
-        <option value="$PROJECT_DIR$/src/Engine/COMPARISON.java" />
         <option value="$PROJECT_DIR$/src/Engine/FROM.java" />
-        <option value="$PROJECT_DIR$/src/SQLEngine.java" />
-        <option value="$PROJECT_DIR$/src/rand_sql" />
+        <option value="$PROJECT_DIR$/scripts/mySQL.sql" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/2eb0cf64-f3a4-4c43-a5e5-64ea370ec7d1/console.sql" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/2eb0cf64-f3a4-4c43-a5e5-64ea370ec7d1/console_1.sql" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/3a9bff30-71a1-4294-b7bb-fde2857956db/console.sql" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7279b81a-2a74-4b69-8044-568af7776d0d/console.sql" />
         <option value="$PROJECT_DIR$/src/DbConnections.java" />
+        <option value="$PROJECT_DIR$/src/rand_sql" />
+        <option value="$PROJECT_DIR$/src/Engine/COMPARISON.java" />
+        <option value="$PROJECT_DIR$/src/Engine/WHERE.java" />
+        <option value="$PROJECT_DIR$/src/SQLEngine.java" />
         <option value="$PROJECT_DIR$/src/config.properties" />
       </list>
     </option>
@@ -295,6 +264,38 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TestingSQLCompliance" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TestingSQLCompliance" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TestingSQLCompliance" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TestingSQLCompliance" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Engine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -303,10 +304,11 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="settings.editor.selected.configurable" value="settings.github" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/scripts/R5.csv" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="PostgreSQL&#10;SQL Server (Microsoft)&#10;MySQL" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -912,7 +914,7 @@
       <workItem from="1496273856921" duration="16867000" />
       <workItem from="1496411273937" duration="28270000" />
       <workItem from="1496517465011" duration="16527000" />
-      <workItem from="1496694371762" duration="494000" />
+      <workItem from="1496694371762" duration="9333000" />
     </task>
     <task id="LOCAL-00001" summary="setting github on intelij">
       <created>1495840391619</created>
@@ -1194,40 +1196,48 @@
       <option name="project" value="LOCAL" />
       <updated>1496694393404</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Implementing script for mysql">
+      <created>1496694896329</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1496694896330</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="170034000" />
+    <option name="totallyTimeSpent" value="178873000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="1" width="1918" height="1030" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09826276" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21040462" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14219654" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22543353" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09132948" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968238" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08092485" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18566775" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1834962" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21040462" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1307,7 +1317,8 @@
     <MESSAGE value="Extending DBConnection to be possible to test simple queries" />
     <MESSAGE value="Extending DbConnection class" />
     <MESSAGE value="Implementing nested queries" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementing nested queries" />
+    <MESSAGE value="Implementing script for mysql" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementing script for mysql" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1320,51 +1331,39 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/SQLEngine.java</url>
-          <line>334</line>
+          <line>337</line>
           <properties />
           <option name="timeStamp" value="195" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/SQLEngine.java</url>
-          <line>258</line>
+          <line>263</line>
           <properties />
           <option name="timeStamp" value="197" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/SQLEngine.java</url>
-          <line>124</line>
+          <line>129</line>
           <properties />
           <option name="timeStamp" value="199" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/SQLEngine.java</url>
-          <line>335</line>
+          <line>338</line>
           <properties />
           <option name="timeStamp" value="201" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DbConnections.java</url>
-          <line>238</line>
+          <line>242</line>
           <properties />
           <option name="timeStamp" value="207" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DbConnections.java</url>
-          <line>344</line>
+          <line>347</line>
           <properties />
           <option name="timeStamp" value="212" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/SQLEngine.java</url>
-          <line>330</line>
-          <properties />
-          <option name="timeStamp" value="222" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/SQLEngine.java</url>
-          <line>331</line>
-          <properties />
-          <option name="timeStamp" value="223" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/DbConnections.java</url>
@@ -1388,17 +1387,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/DbConnections.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3633">
-          <caret line="173" column="18" lean-forward="false" selection-start-line="173" selection-start-column="18" selection-end-line="173" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#connectToOracle#0;class#DbConnections#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Engine/FROM.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1406,72 +1394,6 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FROM#0;class#FROM#0" expanded="false" />
-            <element signature="e#3093#3094#0" expanded="true" />
-            <element signature="e#3140#3141#0" expanded="true" />
-            <element signature="method#shuffleArray#0;class#FROM#0" expanded="false" />
-            <element signature="method#swap#0;class#FROM#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SQLEngine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2625">
-          <caret line="185" column="0" lean-forward="false" selection-start-line="185" selection-start-column="0" selection-end-line="185" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#readConfFile#0;class#SQLEngine#0" expanded="false" />
-            <element signature="docComment;method#genAlias#0;class#SQLEngine#0" expanded="false" />
-            <element signature="method#genAlias#0;class#SQLEngine#0" expanded="false" />
-            <element signature="method#nestQuery#0;class#SQLEngine#0" expanded="false" />
-            <element signature="method#copySelRelts#0;class#SQLEngine#0" expanded="false" />
-            <element signature="method#wrtSql2File#0;class#SQLEngine#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Engine/COMPARISON.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1281">
-          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Engine/WHERE.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1302">
-          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#getRandChoice#0;class#WHERE#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sql.py" />
-    <entry file="file://$PROJECT_DIR$/src/Engine/SELECT.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="651">
-          <caret line="32" column="6" lean-forward="false" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#genRandChoice#0;class#SELECT#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Engine/FROM.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#FROM#0;class#FROM#0" expanded="false" />
-            <element signature="e#3093#3094#0" expanded="true" />
-            <element signature="e#3140#3141#0" expanded="true" />
             <element signature="method#shuffleArray#0;class#FROM#0" expanded="false" />
             <element signature="method#swap#0;class#FROM#0" expanded="false" />
           </folding>
@@ -1484,7 +1406,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#readConfFile#0;class#SQLEngine#0" expanded="false" />
             <element signature="docComment;method#genAlias#0;class#SQLEngine#0" expanded="false" />
             <element signature="method#genAlias#0;class#SQLEngine#0" expanded="false" />
             <element signature="method#nestQuery#0;class#SQLEngine#0" expanded="false" />
@@ -1498,9 +1419,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1522,8 +1441,6 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FROM#0;class#FROM#0" expanded="false" />
-            <element signature="e#3093#3094#0" expanded="true" />
-            <element signature="e#3140#3141#0" expanded="true" />
             <element signature="method#shuffleArray#0;class#FROM#0" expanded="false" />
             <element signature="method#swap#0;class#FROM#0" expanded="false" />
           </folding>
@@ -1535,7 +1452,7 @@
         <state relative-caret-position="2121">
           <caret line="102" column="24" lean-forward="true" selection-start-line="102" selection-start-column="24" selection-end-line="102" selection-end-column="24" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="method#genRandChoice#0;class#SELECT#0" expanded="false" />
           </folding>
         </state>
@@ -1548,7 +1465,6 @@
           <caret line="178" column="0" lean-forward="true" selection-start-line="178" selection-start-column="0" selection-end-line="178" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#readConfFile#0;class#SQLEngine#0" expanded="false" />
             <element signature="docComment;method#genAlias#0;class#SQLEngine#0" expanded="false" />
             <element signature="method#genAlias#0;class#SQLEngine#0" expanded="false" />
             <element signature="method#nestQuery#0;class#SQLEngine#0" expanded="false" />
@@ -1573,7 +1489,6 @@
           <caret line="28" column="41" lean-forward="true" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#readConfFile#0;class#SQLEngine#0" expanded="false" />
             <element signature="docComment;method#genAlias#0;class#SQLEngine#0" expanded="false" />
             <element signature="method#genAlias#0;class#SQLEngine#0" expanded="false" />
             <element signature="method#nestQuery#0;class#SQLEngine#0" expanded="false" />
@@ -1598,7 +1513,6 @@
           <caret line="11" column="5" lean-forward="true" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#readConfFile#0;class#SQLEngine#0" expanded="false" />
             <element signature="docComment;method#genAlias#0;class#SQLEngine#0" expanded="false" />
             <element signature="method#genAlias#0;class#SQLEngine#0" expanded="false" />
             <element signature="method#nestQuery#0;class#SQLEngine#0" expanded="false" />
@@ -1622,7 +1536,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#readConfFile#0;class#SQLEngine#0" expanded="false" />
             <element signature="docComment;method#genAlias#0;class#SQLEngine#0" expanded="false" />
             <element signature="method#genAlias#0;class#SQLEngine#0" expanded="false" />
             <element signature="method#nestQuery#0;class#SQLEngine#0" expanded="false" />
@@ -1645,7 +1558,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#readConfFile#0;class#SQLEngine#0" expanded="false" />
             <element signature="docComment;method#genAlias#0;class#SQLEngine#0" expanded="false" />
             <element signature="method#genAlias#0;class#SQLEngine#0" expanded="false" />
             <element signature="method#nestQuery#0;class#SQLEngine#0" expanded="false" />
@@ -1711,6 +1623,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-838">
           <caret line="387" column="0" lean-forward="false" selection-start-line="387" selection-start-column="0" selection-end-line="387" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1730,17 +1643,9 @@
         <state relative-caret-position="2499">
           <caret line="128" column="0" lean-forward="false" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="method#genRandChoice#0;class#SELECT#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Engine/QRYREPRES.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="1" lean-forward="false" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1755,64 +1660,85 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sql_result" />
-    <entry file="file://$PROJECT_DIR$/src/Engine/COMPARISON.java">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/2eb0cf64-f3a4-4c43-a5e5-64ea370ec7d1/console.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2709">
-          <caret line="129" column="21" lean-forward="false" selection-start-line="129" selection-start-column="21" selection-end-line="129" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Engine/NESTCOMPARISON.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1407">
-          <caret line="67" column="9" lean-forward="false" selection-start-line="67" selection-start-column="9" selection-end-line="67" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2992#2993#0" expanded="true" />
-            <element signature="e#3037#3038#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Engine/WHERE.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="51" column="51" lean-forward="false" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#getRandChoice#0;class#WHERE#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/config.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" column="16" lean-forward="false" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/rand_sql">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/2eb0cf64-f3a4-4c43-a5e5-64ea370ec7d1/console_1.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="32" lean-forward="false" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
+        <state relative-caret-position="21">
+          <caret line="1" column="7" lean-forward="false" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/a035fe/3a9bff30-71a1-4294-b7bb-fde2857956db/testdb.dbo.R1_1">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+          <column-attributes>
+            <column name="%%physloc%%" enabled="false" />
+          </column-attributes>
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/a035fe/3a9bff30-71a1-4294-b7bb-fde2857956db/testdb.dbo.R1">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+          <column-attributes>
+            <column name="%%physloc%%" enabled="false" />
+          </column-attributes>
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/3a9bff30-71a1-4294-b7bb-fde2857956db/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="1" column="7" lean-forward="false" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7279b81a-2a74-4b69-8044-568af7776d0d/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/mySQL.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="37" column="18" lean-forward="false" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Engine/FROM.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
+        <state relative-caret-position="115">
           <caret line="56" column="5" lean-forward="false" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FROM#0;class#FROM#0" expanded="false" />
-            <element signature="e#3093#3094#0" expanded="true" />
-            <element signature="e#3140#3141#0" expanded="true" />
             <element signature="method#shuffleArray#0;class#FROM#0" expanded="false" />
             <element signature="method#swap#0;class#FROM#0" expanded="false" />
           </folding>
@@ -1821,8 +1747,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DbConnections.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1584">
-          <caret line="357" column="0" lean-forward="false" selection-start-line="357" selection-start-column="0" selection-end-line="357" selection-end-column="0" />
+        <state relative-caret-position="21">
+          <caret line="179" column="16" lean-forward="false" selection-start-line="179" selection-start-column="16" selection-end-line="179" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#connectToOracle#0;class#DbConnections#0" expanded="false" />
@@ -1830,19 +1756,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SQLEngine.java">
+    <entry file="file://$PROJECT_DIR$/src/Engine/QRYREPRES.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="321" column="2" lean-forward="true" selection-start-line="321" selection-start-column="2" selection-end-line="321" selection-end-column="2" />
+        <state relative-caret-position="168">
+          <caret line="8" column="1" lean-forward="false" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Engine/WHERE.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="59" column="93" lean-forward="false" selection-start-line="59" selection-start-column="93" selection-end-line="59" selection-end-column="93" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#readConfFile#0;class#SQLEngine#0" expanded="false" />
+            <element signature="method#getRandChoice#0;class#WHERE#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Engine/NESTCOMPARISON.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SQLEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="204" column="5" lean-forward="true" selection-start-line="204" selection-start-column="5" selection-end-line="204" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
             <element signature="docComment;method#genAlias#0;class#SQLEngine#0" expanded="false" />
             <element signature="method#genAlias#0;class#SQLEngine#0" expanded="false" />
             <element signature="method#nestQuery#0;class#SQLEngine#0" expanded="false" />
             <element signature="method#copySelRelts#0;class#SQLEngine#0" expanded="false" />
             <element signature="method#wrtSql2File#0;class#SQLEngine#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rand_sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="36" lean-forward="false" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Engine/COMPARISON.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="71" column="9" lean-forward="true" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>

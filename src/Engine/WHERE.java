@@ -38,7 +38,7 @@ public  class WHERE
         genCom = new COMPARISON();
     }
 
-    public String getSqlWhere(LinkedList<String> selectedReltsInFrom, int whereNoComp, boolean isNested)
+    public String getSqlWhere(LinkedList<String> selectedReltsInFrom, int whereNoComp, boolean isNested, double probWhr)
     {
         this.whereNo = whereNoComp;
 
@@ -49,15 +49,15 @@ public  class WHERE
             for (int i = 0; i < (whereNo + 1); i++)
             {
                 if (i == 0) {
-                    stm += genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom);
+                    stm += genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, probWhr);
                 } else {
-                    stm += conn[getRandChoice(conn.length)] + " " + genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom);
+                    stm += conn[getRandChoice(conn.length)] + " " + genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, probWhr);
                 }
             }
         }
         else
         {
-            stm += genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom);
+            stm += genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, probWhr);
         }
 
         if(isNested == true)
