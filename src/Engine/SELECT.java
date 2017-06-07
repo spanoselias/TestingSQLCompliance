@@ -26,11 +26,15 @@ public class SELECT
     //key represents the relation name and the list stores all the attributes for each key (relation)
     private HashMap<String, LinkedList<String>> allRelAttrs;
 
+
+    ConfParameters confParSel;
+
     private boolean isDistinct;
     private boolean isAllAttrs;
 
+
     public SELECT(boolean isDistinctIn, boolean isAttrsIn,
-                      LinkedList<String> aliasIn, int subqueryIn, HashMap<String, LinkedList<String>> allRelAttrsIn )
+                      LinkedList<String> aliasIn, int subqueryIn, HashMap<String, LinkedList<String>> allRelAttrsIn, ConfParameters confpar )
     {
         this.isDistinct = isDistinctIn;
         this.isAllAttrs = isAttrsIn;
@@ -45,6 +49,8 @@ public class SELECT
 
         //It retrieves a hashmap that contains all the relation with its associated attributes
         relAttrs = allRelAttrsIn;
+
+        this.confParSel = confpar;
     }
 
     public String getSelect( LinkedList<String> frmRels, boolean isOneAttr, double isRepAlias)
@@ -77,6 +83,13 @@ public class SELECT
             {
                 for (String relName : frmRels)
                 {
+                    //We want to avoid having more attributes than the max attributes
+                    //which is given an a parameter in the configuration file
+                    if(confParSel.maxAttrSel == j)
+                    {
+                        break;
+                    }
+
                         //This is useful if this query will be used as a subquery in the FROM clause
                         aliasAttr.add(alias.get(j));
 
@@ -100,15 +113,16 @@ public class SELECT
                         //selectedAlias.put(key, alias.get(j));
                  //   }
                 j++;
+
                 }
 
-               if(isRepAlias > 0)
+             /*  if(isRepAlias > 0)
                 {
                     for(int i=0; i < curAlias.size(); i++)
                     {
                         stm += ", " + curAlias.get(i);
                     }
-                }
+                } */
 
             }
 
@@ -122,7 +136,6 @@ public class SELECT
                 aliasAttr.add(alias.get(j));
                 stm += String.format(" %s AS %s", randAttr, alias.get(j));
             }
-
 
         return stm;
 

@@ -1,3 +1,5 @@
+package Engine;
+
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -8,18 +10,18 @@ public class ConfParameters
 {
 
     //Indicates the max number of tables that can exist in a From clause
-    int maxTableFrom;
+    public  int maxTableFrom;
 
     //Indicates the max number of attributes that can have in the SELECT clause
-    int maxAttrSel;
+    public int maxAttrSel;
 
     //Indicates the max number of conditions that can have in the WHERE clause
-    int maxCondWhere;
+    public int maxCondWhere;
 
-    double probWhrConst;
+    public double probWhrConst;
 
-    double repAlias;
+    public double repAlias;
 
-    HashMap<String, LinkedList<String>> relationsAttrs = new HashMap<>();
+    public HashMap<String, LinkedList<String>> relationsAttrs = new HashMap<>();
 
 }

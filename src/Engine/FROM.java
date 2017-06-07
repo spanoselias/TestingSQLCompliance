@@ -21,11 +21,15 @@ public  class FROM
 
     private LinkedList<String> alias;
 
-    public FROM(  LinkedList<String> aliasIn, HashMap<String, LinkedList<String>> allRelAttrsIn )
+    ConfParameters confParSel;
+
+    public FROM(  LinkedList<String> aliasIn, HashMap<String, LinkedList<String>> allRelAttrsIn, ConfParameters confPar )
     {
         this.alias = aliasIn;
 
         this.allRelAttrs = allRelAttrsIn;
+
+        this.confParSel = confPar;
 
         fromStm = "";
 
@@ -58,12 +62,19 @@ public  class FROM
         //Clear LinkedList
         selectedReltsInFrom.clear();
 
-        Random randomGenerator = new Random();
+        //We store the max number of relations that we can have in
+        //the FROM clause.
+        int maxRels = confParSel.maxTableFrom;
 
-        int pickRand;
+        //We handle the case where the max relations in the from which is given
+        //is greater than the total relations. Then, we just store the total relations
+        if(maxRels > rel.length )
+        {
+            maxRels = rel.length;
+        }
 
         //This random number indicates how many relation the Engine.FROM Clause will have
-        pickRand = (randomGenerator.nextInt(rel.length)) % rel.length + 1  ;
+        int pickRand = genRandChoice(maxRels);
 
         //We shuffle the array of the relations to avoid choosing always the same order.
         shuffleArray(rel);
@@ -81,8 +92,6 @@ public  class FROM
                this.selectedReltsInFrom.add( (rel[i].getRelName().toLowerCase()) + "." + attr);
            }
 
-           // this.allRelAttrs.put(rel[i].getRelName(), rel[i].getRelAttrs());
-
             if (i == 0)
                 stm += String.format(" %s AS %s", rel[i].getRelName(), rel[i].getRelName().toLowerCase() );
             else
@@ -92,6 +101,15 @@ public  class FROM
         fromStm = stm;
 
         return stm;
+    }
+
+    public static int genRandChoice(int inputSize)
+    {
+        Random randomGenerator = new Random();
+
+        int pickRand = (randomGenerator.nextInt(inputSize) % inputSize) + 1;
+
+        return pickRand;
     }
 
     public LinkedList<String> getSelectedTables()
@@ -106,7 +124,6 @@ public  class FROM
     public HashMap<String, LinkedList<String>> getRelAttrs() {
         return this.allRelAttrs;
     }
-
 
     public  void shuffleArray(Relation[] a) {
         int n = a.length;

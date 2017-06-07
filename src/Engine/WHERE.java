@@ -21,6 +21,8 @@ public  class WHERE
     //This hashMap will be used to store all the attributes for each relation
     HashMap<String, LinkedList<String>> relationsAttrs;
 
+    ConfParameters confPar;
+
     /**
      *The Engine.WHERE constructor takes two parameters. The first one (allReltsWithAttrs) has all the relations
      *that our database schema has with the associated attributes for each relation. The second parameter
@@ -38,9 +40,9 @@ public  class WHERE
         genCom = new COMPARISON();
     }
 
-    public String getSqlWhere(LinkedList<String> selectedReltsInFrom, int whereNoComp, boolean isNested, double probWhr)
+    public String getSqlWhere(LinkedList<String> selectedReltsInFrom,boolean isNested , ConfParameters confPar, int whereCompNo)
     {
-        this.whereNo = whereNoComp;
+        this.confPar = confPar;
 
         //The variable isParenOpen indicates if we have an open parenthesis
         // Means that we need to close it
@@ -48,7 +50,14 @@ public  class WHERE
 
         stm = "WHERE ";
 
-        for (int i = 0; i < (whereNo + 1); i++)
+        //In case where the comparisons in the WHERE clause is greater
+        //than the given in the configuration, then we set the number of conf
+        if(whereCompNo > confPar.maxCondWhere)
+        {
+            whereCompNo = confPar.maxCondWhere;
+        }
+
+        for (int i = 0; i < (whereCompNo + 1); i++)
         {
             //We flip a coin to decide if we will open/close
             //a parenthesis
@@ -63,7 +72,7 @@ public  class WHERE
 
                   stm += "("; isParenOpen =1;
 
-                stm +=  genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, probWhr);
+                stm +=  genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, confPar.probWhrConst);
             }
             else
             {
@@ -71,7 +80,7 @@ public  class WHERE
                 //the previous one
                 if( pick ==1 && isParenOpen == 1)
                 {
-                    stm += ") " + conn[getRandChoice(conn.length)] + " " + genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, probWhr);
+                    stm += ") " + conn[getRandChoice(conn.length)] + " " + genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, confPar.probWhrConst);
                     isParenOpen = 0;
                 }
 
@@ -89,12 +98,12 @@ public  class WHERE
 
                     par += " ( ";
 
-                    stm += conn[getRandChoice(conn.length)] + par + genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, probWhr);
+                    stm += conn[getRandChoice(conn.length)] + par + genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, confPar.probWhrConst);
                     isParenOpen = 1;
                 }
                 else
                 {
-                    stm += conn[getRandChoice(conn.length)] + " " + genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, probWhr);
+                    stm += conn[getRandChoice(conn.length)] + " " + genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, confPar.probWhrConst);
 
                 }
             }

@@ -1,7 +1,4 @@
-import Engine.FROM;
-import Engine.SELECT;
-import Engine.WHERE;
-import Engine.QRYREPRES;
+import Engine.*;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -56,7 +53,7 @@ public class SQLEngine
             //to the appropriate variables
             confPar.maxTableFrom = Integer.parseInt( prop.getProperty( "maxTablesFrom" ) );
             confPar.maxAttrSel = Integer.parseInt( prop.getProperty( "maxAttrSel" ) );
-            confPar.probWhrConst = Integer.parseInt( prop.getProperty( "maxCondWhere" ) );
+            confPar.maxCondWhere = Integer.parseInt( prop.getProperty( "maxCondWhere" ) );
             confPar.probWhrConst = Double.parseDouble( prop.getProperty( "probWhrConst" ) );
 
             //It retrieves all the relations with their associated attributes from mysql database
@@ -201,7 +198,6 @@ public class SQLEngine
 
     }
 
-
     public static QRYREPRES genQuery( LinkedList<String> frmRelts, long uniqID, boolean isNest, boolean isOneAttr ,  ConfParameters confPar)
     {
 
@@ -212,9 +208,9 @@ public class SQLEngine
         String tmpStm="";
         String finalQry="";
 
-        FROM frmQry = new FROM(alias, confPar.relationsAttrs);
+        FROM frmQry = new FROM(alias, confPar.relationsAttrs, confPar);
         WHERE whrQry = new WHERE(confPar.relationsAttrs);
-        SELECT selQry = new SELECT(false,false, alias, 2,confPar.relationsAttrs);
+        SELECT selQry = new SELECT(false,false, alias, 2, confPar.relationsAttrs, confPar);
 
         String stm = frmQry.getFrom( (++uniqID) );
 
@@ -225,14 +221,14 @@ public class SQLEngine
              frmRelts = copySelRelts(frmRelts, frmQry.getSelectedTables());
              tmpStm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, confPar.repAlias);
              finalQry = tmpStm + "\n" + stm;
-             finalQry += "\n" + whrQry.getSqlWhere(frmRelts,2, isNest, confPar.probWhrConst);
+             finalQry += "\n" + whrQry.getSqlWhere(frmRelts, isNest, confPar, 5);
         }
 
         else
         {
              tmpStm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, confPar.repAlias);
              finalQry = tmpStm + "\n" + stm;
-             finalQry += "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),4, isNest, confPar.probWhrConst);
+             finalQry += "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),isNest,  confPar, 5);
         }
 
         res.qryStr = finalQry;
@@ -244,14 +240,12 @@ public class SQLEngine
 
     public static String genCompQuery(int subqry, LinkedList<String> frmRelts, long uniqID, boolean isNest, boolean isOneAttr,   ConfParameters confPar)
     {
-
-
         LinkedList<String> alias =  genAlias();
 
         //We create new objects for each statement
-        FROM frmQry = new FROM(alias, confPar.relationsAttrs);
+        FROM frmQry = new FROM(alias, confPar.relationsAttrs, confPar);
         WHERE whrQry = new WHERE(confPar.relationsAttrs);
-        SELECT selQry = new SELECT(false,false, alias, 2,confPar.relationsAttrs);
+        SELECT selQry = new SELECT(false,false, alias, 2,confPar.relationsAttrs, confPar);
 
         String substm="";
 
@@ -261,7 +255,7 @@ public class SQLEngine
 
             String frmstm = frmQry.getFrom(++uniqID);
             String selstm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, confPar.repAlias);
-            String whrstm = whrQry.getSqlWhere(frmQry.getSelectedTables(),2, false, confPar.probWhrConst);
+            String whrstm = whrQry.getSqlWhere(frmQry.getSelectedTables(), false,  confPar, 3);
 
             if( (subqry ) > 0 )
             {
@@ -287,7 +281,7 @@ public class SQLEngine
         String stm = from + " , " + substm;
         String tmpStm = selQry.getSelect(frmRelts, isOneAttr, confPar.repAlias);
         String finalQry = tmpStm + "\n" + stm;
-        finalQry += "\n" + whrQry.getSqlWhere(frmRelts ,2, isNest, confPar.probWhrConst);
+        finalQry += "\n" + whrQry.getSqlWhere(frmRelts , isNest,  confPar, 2);
 
       return  finalQry;
 
@@ -376,8 +370,6 @@ public class SQLEngine
             bw = new BufferedWriter(fw);
             bw.write(sql);
 
-            System.out.println("Done");
-
         } catch (IOException e) {
 
             e.printStackTrace();
@@ -405,7 +397,6 @@ public class SQLEngine
 
     public static void main(String[] args)
     {
-
         HashMap<String, LinkedList<String>> allRelAttr = new HashMap<>();
 
         //It retrieves all the relations which their associated attributes from MySQL database
@@ -421,6 +412,7 @@ public class SQLEngine
 
         String qry="";
 
+        //The option is given as input parameter to the program
         switch(option)
         {
             case 1:

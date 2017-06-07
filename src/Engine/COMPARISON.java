@@ -128,7 +128,20 @@ public class COMPARISON
             break;
         }
 
-        String res =  rel1 + " " + oper + " " + rel2  ;
+        //We want to use negation within some the expressions. Thus, we randomly decide if
+        //this expression will have negation or not.
+        String res="";
+
+        pick = genRandChoice(2);
+        if( pick ==0 )
+        {
+            res = "NOT" + "(" + rel1 +  " " + oper + " " + rel2 + " ) "  ;
+        }
+        else
+        {
+            res =  rel1 + " " + oper + " " + rel2  ;
+        }
+
 
         return res;
 
