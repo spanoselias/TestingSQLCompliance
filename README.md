@@ -9,11 +9,11 @@ TestingSQLCompliance
 The aim of this project is to build a complete tool that can test the current DBMSs ( PostgreSQL, MySQL, IBM DB2, MS Server sql, Oracle databse) by generating thousands of  random queries and evaluate each query all on DBMSs in order to identify in the DBMSs are follow the SQL standard in the same manner. The main component of the tool will be the random generator query engine which will be used to generate thousands of random queries.
 Our project will be implemented using Java Programming Language. This tool will be useful for not only checking existing DBMSs but most importantly, to check any DBMSs. 
 
-** Compilation & Run instructions:
- :Compile: javac SQLEngine.java
- :Run: java SQLEngine
+** Compilation & Run instructions
 
- 
+: Compile: javac SQLEngine.java
+: Run: java SQLEngine
+
 
  **DBMSs to be checked:**
 
