@@ -112,6 +112,7 @@ public  class FROM
         return pickRand;
     }
 
+    //We retrieve the attributes that were chosen in the FROM clause
     public LinkedList<String> getSelectedTables()
     {
         return this.selectedReltsInFrom;

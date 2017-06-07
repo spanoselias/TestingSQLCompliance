@@ -328,7 +328,6 @@ public class SQLEngine
             //We retrieve all the attributes that are selected in the FROM clause
             //from the outer sql. In other words, we store the binds attributes
             levFrmBinds = copySelRelts(levFrmBinds,curQuery.selRelts);
-
         }
 
         for(int i=0; i< nestLev +1; i++)
