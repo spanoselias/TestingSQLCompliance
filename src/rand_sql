@@ -1,3 +1,12 @@
-SELECT r4.A AS A0, r4.B AS A1, r2.A AS A2
-FROM r4 AS r4, r2 AS r2
-WHERE NOT(r4.A >= r2.A OR r4.A > r2.B AND r2.B = r4.A OR NOT(r4.B < r2.A )  OR r2.A > r4.A )
+SELECT r4.A AS A0, r4.B AS A1
+FROM r4 AS r4
+WHERE (r4.A <> r4.B AND r4.A <= r4.B OR r4.B >= r4.A AND NOT(r4.B <> r4.A ) )  AND r4.A > r4.B AND r4.A NOT IN( (
+	SELECT r2.A AS A0
+FROM r3 AS r3, r2 AS r2
+WHERE NOT(r2.A = r4.B AND r2.A >= r4.B)  OR r4.A >= r3.A OR ( r3.B <> r2.A)  AND r4.A = r4.B AND NOT EXISTS (
+	SELECT r1.A AS A0, r1.B AS A1, r4.A AS A2
+FROM r1 AS r1, r4 AS r4
+WHERE (r2.B = r2.A)  AND r4.B <> r3.B AND r3.A < r1.B OR r2.B = r4.A OR NOT(r4.B <= r2.A )  AND r2.B IN (
+	SELECT r1.B AS A0
+FROM r1 AS r1
+WHERE NOT(r4.A >= r1.B AND r4.A <= r2.A)  AND NOT(r1.A <> r2.A )  OR r2.B = r4.A AND ( NOT(r4.A <> r4.A )  ) ))))

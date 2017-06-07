@@ -53,7 +53,9 @@ public class SELECT
         this.confParSel = confpar;
     }
 
-    public String getSelect( LinkedList<String> frmRels, boolean isOneAttr, double isRepAlias)
+    //The isSubqry parameter is important in order to know if this is a subquery parameter to avoid having
+    //repetition of alias in the SELECT clause because is not valid
+    public String getSelect( LinkedList<String> frmRels, boolean isOneAttr, boolean isSubqry, double isRepAlias)
     {
         aliasAttr.clear();
 
@@ -114,16 +116,15 @@ public class SELECT
                  //   }
                 j++;
 
-                }
+                }//For statement
 
-             /*  if(isRepAlias > 0)
+             if(isRepAlias > 0 && isSubqry == false)
                 {
                     for(int i=0; i < curAlias.size(); i++)
                     {
                         stm += ", " + curAlias.get(i);
                     }
-                } */
-
+                }
             }
 
             //If isOneAttr is true, then it means that we need to have only one attribute in the select

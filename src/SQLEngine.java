@@ -219,14 +219,13 @@ public class SQLEngine
         if(frmRelts != null && frmRelts.size() > 0)
         {
              frmRelts = copySelRelts(frmRelts, frmQry.getSelectedTables());
-             tmpStm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, confPar.repAlias);
+             tmpStm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, 0.1);
              finalQry = tmpStm + "\n" + stm;
              finalQry += "\n" + whrQry.getSqlWhere(frmRelts, isNest, confPar, 5);
         }
-
         else
         {
-             tmpStm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, confPar.repAlias);
+             tmpStm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, confPar.repAlias);
              finalQry = tmpStm + "\n" + stm;
              finalQry += "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),isNest,  confPar, 5);
         }
@@ -254,7 +253,7 @@ public class SQLEngine
             String subName = "Q" + subqry;
 
             String frmstm = frmQry.getFrom(++uniqID);
-            String selstm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, confPar.repAlias);
+            String selstm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, 0.0);
             String whrstm = whrQry.getSqlWhere(frmQry.getSelectedTables(), false,  confPar, 3);
 
             if( (subqry ) > 0 )
@@ -279,7 +278,7 @@ public class SQLEngine
         }
 
         String stm = from + " , " + substm;
-        String tmpStm = selQry.getSelect(frmRelts, isOneAttr, confPar.repAlias);
+        String tmpStm = selQry.getSelect(frmRelts, isOneAttr, false, confPar.repAlias);
         String finalQry = tmpStm + "\n" + stm;
         finalQry += "\n" + whrQry.getSqlWhere(frmRelts , isNest,  confPar, 2);
 
@@ -294,15 +293,8 @@ public class SQLEngine
 
         LinkedList<String> levFrmBinds = new LinkedList<>();
 
-        //This hashmap will be used to store the bind attributes on each level. We cannot have
-        // two same alias. Thus, we will track of the alias for each level. In addition, we can
-        //access alias from an upper level just be look up in the hashmap. The key represent the level,
-        //and the LinkedList will store all the alias that we bind for each query
-        HashMap<Integer, LinkedList<String>> levBindAttrs = new LinkedHashMap<>();
-
         QRYREPRES curQuery = genQuery( levFrmBinds, ++uniqID, true, false, confPar);
         levFrmBinds = copySelRelts(levFrmBinds,curQuery.selRelts);
-
 
         boolean isNest = true;
 
