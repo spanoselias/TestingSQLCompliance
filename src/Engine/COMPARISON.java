@@ -132,7 +132,7 @@ public class COMPARISON
         //this expression will have negation or not.
         String res="";
 
-        pick = genRandChoice(2);
+        pick = genRandChoice(10);
         if( pick ==0 )
         {
             res = "NOT" + "(" + rel1 +  " " + oper + " " + rel2 + " ) "  ;

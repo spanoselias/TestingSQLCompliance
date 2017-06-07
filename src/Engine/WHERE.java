@@ -90,7 +90,7 @@ public  class WHERE
                     //We randomly choose if we will have negation outside
                     //of the parenthesis OR NOT
                     String par ="";
-                    int pickNeg = getRandChoice(2);
+                    int pickNeg = getRandChoice(10);
                     if(pickNeg == 1)
                     {
                         par += " NOT" ;
@@ -110,12 +110,13 @@ public  class WHERE
 
             //If it's the last condition and there is an open parenthesis, then
             //we need to close it
-            if(isParenOpen == 1 && (i + 1) == (whereNo + 1 ))
+            if(isParenOpen == 1 && (i + 1) == (whereCompNo + 1 ))
             {
                 stm += " )";
             }
         }
 
+        //In case where we have nested queries and this is the outer query
         if(isNested == true)
         {
             stm += " AND " + nestGenCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom);
