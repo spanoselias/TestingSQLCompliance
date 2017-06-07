@@ -24,4 +24,7 @@ public class ConfParameters
 
     public HashMap<String, LinkedList<String>> relationsAttrs = new HashMap<>();
 
+    //Represents the nesting depth of an SQL query
+    public int nestLev;
+
 }

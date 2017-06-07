@@ -1,3 +1,18 @@
-SELECT r2.A AS A0, r2.B AS A1, r1.A AS A2
-FROM r2 AS r2, r1 AS r1
-WHERE NOT(r2.A <> r1.A AND r2.B <= r2.A OR r1.B = r2.A)  AND r1.B > r1.A AND r2.A <= r1.A
+SELECT r12.A AS A0, r12.B AS A1
+FROM r1 AS r12
+WHERE NOT(r12.A <= r12.B AND r12.A >= r12.B AND r12.A <= r12.B)  AND NOT(r12.A <> r12.B )  OR ( r12.B < r12.A ) AND r12.A <= ALL( (
+	SELECT r12.B AS A0
+FROM r2 AS r23, r1 AS r13
+WHERE NOT(r23.A <> r12.A OR r12.A < r23.A)  OR r12.A <> r13.B OR r23.B >= r12.A AND NOT ( r23.B >= r13.A ) AND EXISTS (
+	SELECT r12.A AS A0, r12.B AS A1, r23.A AS A2, r12.A AS A0, r12.B AS A1, r23.A AS A2
+FROM r4 AS r44, r2 AS r24
+WHERE NOT(r23.B > r44.B)  AND r12.A > r13.B AND r13.A <= r23.A OR ( r23.A < r13.B)  AND r12.A = r23.A AND r12.B < ANY (
+	SELECT r24.B AS A0
+FROM r1 AS r15, r3 AS r35
+WHERE NOT(r24.B < r12.A)  OR NOT(r15.B <= r35.A )  AND ( r12.A = r13.A)  AND r24.B = r13.B OR ( r12.B < r24.A ) AND r13.B >= ALL (
+	SELECT r12.B AS A0
+FROM r3 AS r36
+WHERE (r35.B < r36.A OR r24.A > r23.B AND r15.B >= r24.B)  AND r24.B = r15.B OR r35.B < r44.A AND EXISTS (
+	SELECT r12.A AS A0, r12.B AS A1, r23.A AS A2, r12.A AS A0, r12.B AS A1, r23.A AS A2
+FROM r3 AS r37, r4 AS r47
+WHERE NOT(r13.B < r44.B)  OR r15.B < r15.B OR ( r12.B = 1 OR NOT(r23.B > r15.A )  OR r24.B <= r15.B )))))))

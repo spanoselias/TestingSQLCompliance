@@ -84,18 +84,30 @@ public  class FROM
         String tmp = stm;
         stm = "FROM" + tmp;
 
+        String newAlias="";
+
         for (int i = 0; i < pickRand; i++)
         {
+
+            //We want to avoid having more attributes than the max attributes
+            //which is given an a parameter in the configuration file
+            if(confParSel.maxTableFrom == i)
+            {
+                break;
+            }
+
+            newAlias = rel[i].getRelName().toLowerCase() + String.valueOf(uniqID);
+
            //to be checked
            for(String attr: this.allRelAttrs.get(rel[i].getRelName()))
            {
-               this.selectedReltsInFrom.add( (rel[i].getRelName().toLowerCase()) + "." + attr);
+               this.selectedReltsInFrom.add( (newAlias) + "." + attr);
            }
 
             if (i == 0)
-                stm += String.format(" %s AS %s", rel[i].getRelName(), rel[i].getRelName().toLowerCase() );
+                stm += String.format(" %s AS %s", rel[i].getRelName(), newAlias );
             else
-                stm += String.format(", %s AS %s", rel[i].getRelName(), rel[i].getRelName().toLowerCase() );
+                stm += String.format(", %s AS %s", rel[i].getRelName(), newAlias );
         }
 
         fromStm = stm;

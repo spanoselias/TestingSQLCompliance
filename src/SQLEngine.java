@@ -55,6 +55,7 @@ public class SQLEngine
             confPar.maxAttrSel = Integer.parseInt( prop.getProperty( "maxAttrSel" ) );
             confPar.maxCondWhere = Integer.parseInt( prop.getProperty( "maxCondWhere" ) );
             confPar.probWhrConst = Double.parseDouble( prop.getProperty( "probWhrConst" ) );
+            confPar.nestLev =  Integer.parseInt( prop.getProperty( "nestLevel" ) );
 
             //It retrieves all the relations with their associated attributes from mysql database
             retrieveDBSchema(confPar.relationsAttrs);
@@ -181,17 +182,22 @@ public class SQLEngine
                 }
             }
 
-
-        } catch (SQLException ex)
+        }
+        catch (SQLException ex)
         {
             ex.printStackTrace();
-        } finally
+        }
+
+        finally
         {
-            try {
-                if (conn != null && !conn.isClosed()) {
+            try
+            {
+                if (conn != null && !conn.isClosed())
+                {
                     conn.close();
                 }
-            } catch (SQLException ex) {
+            } catch (SQLException ex)
+            {
                 ex.printStackTrace();
             }
         }
@@ -219,7 +225,7 @@ public class SQLEngine
         if(frmRelts != null && frmRelts.size() > 0)
         {
              frmRelts = copySelRelts(frmRelts, frmQry.getSelectedTables());
-             tmpStm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, 0.1);
+             tmpStm = selQry.getSelect(frmRelts, isOneAttr, false, 0.1);
              finalQry = tmpStm + "\n" + stm;
              finalQry += "\n" + whrQry.getSqlWhere(frmRelts, isNest, confPar, 5);
         }
@@ -286,8 +292,12 @@ public class SQLEngine
 
     }
 
-    public static String nestQuery(int nestLev, long uniqID, ConfParameters confPar)
+    public static String nestQuery( long uniqID, ConfParameters confPar)
     {
+
+        //Store the depth of the nesting query
+        int nestLev = confPar.nestLev;
+
         String sqlRep="";
 
         //This list will be used to store all the attributes from the current FROM clause and from outer
@@ -392,6 +402,7 @@ public class SQLEngine
         //It retrieves all the relations which their associated attributes from MySQL database
         retrieveDBSchema(allRelAttr);
 
+        //It retrieves parameters from the configuration file
         ConfParameters confPar = readConfFile();
 
         long uniqID=0;
@@ -419,11 +430,10 @@ public class SQLEngine
                 break;
 
             case 3:
-                qry = nestQuery(3, uniqID, confPar);
+                qry = nestQuery(uniqID, confPar);
                 wrtSql2File("rand_sql", qry);
                 break;
         }
-
             System.out.println(qry);
             wrtSql2File("rand_sql",qry);
 
