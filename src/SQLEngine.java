@@ -288,16 +288,21 @@ public class SQLEngine
 
     public static String nestQuery(int nestLev, long uniqID, ConfParameters confPar)
     {
-
         String sqlRep="";
 
+        //This list will be used to store all the attributes from the current FROM clause and from outer
+        //queries as well
         LinkedList<String> levFrmBinds = new LinkedList<>();
 
+        //It creates the first outer query
         QRYREPRES curQuery = genQuery( levFrmBinds, ++uniqID, true, false, confPar);
+
+        //It stores all the attributes that are selected in the first outer query
         levFrmBinds = copySelRelts(levFrmBinds,curQuery.selRelts);
 
         boolean isNest = true;
 
+        //It creates the right format
         if(nestLev >= 2)
         {
             sqlRep += curQuery.qryStr +  "(";
@@ -308,36 +313,30 @@ public class SQLEngine
         //and as key we store the nesting level
         for(int curLev=1; curLev < nestLev +1; curLev++)
         {
-            if(curLev == nestLev  )
+            if( curLev == nestLev  )
                 isNest = false;
 
+            //It creates the right format
             sqlRep += " (";
 
+            //It create the inner queries
             curQuery =  genQuery( levFrmBinds, ++uniqID, isNest, curQuery.isOneAt, confPar);
+
+            //It creates the right format
             sqlRep +="\n\t" + curQuery.qryStr;
 
             //We retrieve all the attributes that are selected in the FROM clause
             //from the outer sql. In other words, we store the binds attributes
             levFrmBinds = copySelRelts(levFrmBinds,curQuery.selRelts);
 
-            //levBindAttrs.put(curLev, ((LinkedList<String>)levFrmBinds.clone()));
-
-            if(isNest ==false)
-                sqlRep += " )";
         }
 
-        if(nestLev >= 2)
-        {
-            sqlRep += ")";
-        }
-
-        for(int i=0; i< nestLev-1; i++)
+        for(int i=0; i< nestLev +1; i++)
         {
             sqlRep += ")";
         }
 
         return sqlRep;
-
     }
 
     public static LinkedList<String> copySelRelts(LinkedList<String> curSelRels, LinkedList<String> newRelts)
@@ -421,7 +420,6 @@ public class SQLEngine
                 break;
 
             case 3:
-
                 qry = nestQuery(3, uniqID, confPar);
                 wrtSql2File("rand_sql", qry);
                 break;
@@ -429,8 +427,6 @@ public class SQLEngine
 
             System.out.println(qry);
             wrtSql2File("rand_sql",qry);
-
-
 
      /*  while(true)
         {
