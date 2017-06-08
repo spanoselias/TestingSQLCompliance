@@ -1,3 +1,33 @@
-SELECT r3.A AS A0, r3.B AS A1
-FROM r3 AS r3
-WHERE (r3.B <= r3.A OR r3.A <= r3.B OR r3.B <= r3.A)  OR r3.A = r3.B AND ( r3.B <= r3.A )
+SELECT r32.A AS A0, r32.B AS A1
+FROM r3 AS r32
+WHERE NOT(r32.B <= r32.A OR r32.B <= r32.A AND r32.B <> r32.A)  OR r32.A < r32.B OR NOT ( r32.B >= r32.A AND r32.B <= r32.A ) AND NOT EXISTS( (
+	SELECT r32.A AS A0, r32.B AS A1, r23.A AS A2, r32.A AS A0, r32.B AS A1, r23.A AS A2
+FROM r2 AS r23
+WHERE NOT(r23.A = r32.B)  OR r23.B <> r32.B AND ( r32.B >= r32.A OR r32.A > r23.A OR NOT(r23.A = r32.A )  AND r23.A <> r32.B ) AND NOT EXISTS (
+	SELECT r32.A AS A0, r32.B AS A1, r23.A AS A2, r32.A AS A0, r32.B AS A1, r23.A AS A2
+FROM r3 AS r34, r1 AS r14
+WHERE NOT(r23.A < r14.A AND r34.B > r32.B OR r14.B <= r32.A)  AND r14.A > r34.A OR r23.A <= r14.B AND ( r23.A <= r32.A ) AND r34.A NOT IN (
+	SELECT r35.B AS A0
+FROM r3 AS r35
+WHERE (r23.A < r14.A OR NOT(r35.B >= r14.A )  AND r14.B >= r34.A AND r23.A <> r34.B)  OR r32.B = r23.A OR ( r23.B >= r23.B ) AND r23.B >= ANY (
+	SELECT r34.B AS A0
+FROM r2 AS r26
+WHERE (r14.B >= r14.A)  AND r23.A = r14.A AND ( r35.A < r26.A)  OR r34.B <= r14.B AND ( r35.B > r32.B AND r35.B <= r34.A ) AND r35.A NOT IN (
+	SELECT r23.B AS A0
+FROM r4 AS r47, r3 AS r37
+WHERE NOT(r47.B <> r35.B OR r34.B > r47.A)  OR r14.A < r23.B AND ( NULL > 9)  OR r32.A <= r14.B OR r47.A = r37.A AND r35.A IN (
+	SELECT r34.B AS A0
+FROM r3 AS r38, r1 AS r18
+WHERE (r32.A > r23.B)  OR r26.A > r38.A AND r23.B = r34.B AND ( r14.A <> r14.B)  AND r34.A > r38.B OR ( r34.B <= r35.B ) AND EXISTS (
+	SELECT r32.A AS A0, r32.B AS A1, r23.A AS A2, r32.A AS A0, r32.B AS A1, r23.A AS A2
+FROM r3 AS r39, r2 AS r29
+WHERE (r35.A > r37.A)  AND r38.B < r23.B OR r18.A <= r14.B OR ( 8 > r34.A OR r35.A <> r34.A)  AND r26.A <= r37.A AND EXISTS (
+	SELECT r32.A AS A0, r32.B AS A1, r23.A AS A2, r32.A AS A0, r32.B AS A1, r23.A AS A2
+FROM r2 AS r210
+WHERE NOT(r18.B >= r38.A)  AND r38.A <> r37.A OR ( r210.A = r39.A)  OR r38.A < r39.A OR ( r32.B <= r35.B OR r23.B = r47.B ) AND r37.A IN (
+	SELECT r39.A AS A0
+FROM r2 AS r211, r3 AS r311
+WHERE NOT(r34.A > r14.A OR r38.A <= r311.B AND r35.A > r18.B)  AND r211.B = r18.A AND ( NOT(r47.A <= r38.A ) )  AND r35.A >= r210.B AND r18.B NOT IN (
+	SELECT r14.B AS A0
+FROM r4 AS r412
+WHERE (r26.B >= r18.B)  OR r38.A <> r18.B AND r34.B <= r311.A AND r210.A >= r23.B OR ( r311.B > r210.B)  AND r35.A < r311.A)))))))))))

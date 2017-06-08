@@ -4,10 +4,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.util.Date;
 
 /**
  * The class SQLEngine is used to produce thousands of
@@ -395,6 +398,65 @@ public class SQLEngine
 
     }
 
+    public static void genLogFile( String sql)
+    {
+
+      //  DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
+        Date date = new Date();
+
+        BufferedWriter bw = null;
+        FileWriter fw = null;
+        String path = "C:\\Users\\Elias\\Documents\\TestingSQLCompliance\\src\\Log\\";
+
+     //   String filename = path + dateFormat.format(date);
+
+        String filename = path + "1.log";
+
+
+      //  String conten = String.valueOf(myval) + " : " + String.valueOf(msval) + "\n";
+
+        DbConnections dbcon = new DbConnections();
+        LinkedList<String> myVal = dbcon.connectToMySql(sql);
+        LinkedList<String> MSVal = dbcon.connectToMicrosoftSql(sql);
+
+       if( dbcon.diff(myVal, MSVal) == false )
+       {
+
+            System.out.println("Difference found!!!");
+
+            try
+            {
+                fw = new FileWriter(filename, true);
+                bw = new BufferedWriter(fw);
+                bw.write("*******************************************************************\n");
+                bw.write(sql);
+                bw.write("\n*******************************************************************");
+
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+
+            } finally
+            {
+                try {
+
+                    if (bw != null)
+                        bw.close();
+
+                    if (fw != null)
+                        fw.close();
+
+                } catch (IOException ex) {
+
+                    ex.printStackTrace();
+
+                }
+
+             }
+       }
+
+    }
+
     public static void main(String[] args)
     {
         HashMap<String, LinkedList<String>> allRelAttr = new HashMap<>();
@@ -437,26 +499,17 @@ public class SQLEngine
             System.out.println(qry);
             wrtSql2File("rand_sql",qry);
 
-     /*  while(true)
+
+       while(true)
         {
+            String sql = nestQuery(uniqID, confPar);
+            wrtSql2File("rand_sql.sql",sql);
 
-            String sql = nestQuery(9, uniqID);
-
-            wrtSql2File("rand_sql",sql);
-            DbConnections dbcon = new DbConnections();
-            int myVal = dbcon.connectToMySql(sql);
-            int MSVal = dbcon.connectToMicrosoftSql(sql);
-
-            if(myVal != MSVal)
-            {
-                System.out.println(sql);
-                break;
-            }
+            genLogFile(sql);
 
 
-        }*/
+        }
 
-       // System.out.println("MYSql: " + myVal + " MS Server: " + MSVal);
 
     }
 

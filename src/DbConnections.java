@@ -17,7 +17,7 @@ import java.sql.DriverManager;*/
 
 public class DbConnections
 {
-    public  int connectToMySql(String sqlQuery)
+    public  LinkedList<String> connectToMySql(String sqlQuery)
     {
 
            // System.out.println("-------- MySQL JDBC Connection Testing ------------");
@@ -50,86 +50,86 @@ public class DbConnections
             LinkedList<String> mySqlList = execQuery(conn, sqlQuery);
         //    System.out.println("MySQlResSize: " + mySqlList.size());
 
-            return  mySqlList.size();
+            return  mySqlList;
 
         }
 
-        public  void connectToPostgres()
+    public  void connectToPostgres()
+    {
+
+      /*  System.out.println("-------- PostgreSQL "
+                + "JDBC Connection Testing ------------");*/
+
+        try {
+
+            Class.forName("org.postgresql.Driver");
+
+        } catch (ClassNotFoundException e) {
+
+            System.out.println("Where is your PostgreSQL JDBC Driver? "
+                    + "Include in your library path!");
+            e.printStackTrace();
+            return;
+
+        }
+
+        System.out.println("PostgreSQL JDBC Driver Registered!");
+
+        Connection connection = null;
+
+        try {
+
+            connection = DriverManager.getConnection(
+                    "jdbc:postgresql://127.0.0.1:5432/testdb", "postgres",
+                    "testing1");
+
+        } catch (SQLException e)
         {
 
-          /*  System.out.println("-------- PostgreSQL "
-                    + "JDBC Connection Testing ------------");*/
-
-            try {
-
-                Class.forName("org.postgresql.Driver");
-
-            } catch (ClassNotFoundException e) {
-
-                System.out.println("Where is your PostgreSQL JDBC Driver? "
-                        + "Include in your library path!");
-                e.printStackTrace();
-                return;
-
-            }
-
-            System.out.println("PostgreSQL JDBC Driver Registered!");
-
-            Connection connection = null;
-
-            try {
-
-                connection = DriverManager.getConnection(
-                        "jdbc:postgresql://127.0.0.1:5432/testdb", "postgres",
-                        "testing1");
-
-            } catch (SQLException e)
-            {
-
-                System.out.println("Connection Failed! Check output console");
-                e.printStackTrace();
-                return;
-
-            }
-
-            if (connection != null) {
-                System.out.println("You made it, take control your database now!");
-            } else {
-                System.out.println("Failed to make connection!");
-            }
+            System.out.println("Connection Failed! Check output console");
+            e.printStackTrace();
+            return;
 
         }
 
-        public  void connectToIBMDb2() {
-            String jdbcClassName = "com.ibm.db2.jcc.DB2Driver";
+        if (connection != null) {
+            System.out.println("You made it, take control your database now!");
+        } else {
+            System.out.println("Failed to make connection!");
+        }
 
-            String url = "jdbc:db2://localhost:50000/SAMPLE";
-            String user = "db2admin";
-            String password = "testing1";
+    }
 
-            Connection connection = null;
-            try {
-                //Load class into memory
-                Class.forName("com.ibm.db2.jcc.DB2Driver");
-                //Establish connection
-                connection = DriverManager.getConnection(url, user, password);
+    public  void connectToIBMDb2() {
+        String jdbcClassName = "com.ibm.db2.jcc.DB2Driver";
 
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                if (connection != null) {
-                    System.out.println("IDB DB2 Connected successfully.");
-                    try {
-                        connection.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
+        String url = "jdbc:db2://localhost:50000/SAMPLE";
+        String user = "db2admin";
+        String password = "testing1";
+
+        Connection connection = null;
+        try {
+            //Load class into memory
+            Class.forName("com.ibm.db2.jcc.DB2Driver");
+            //Establish connection
+            connection = DriverManager.getConnection(url, user, password);
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                System.out.println("IDB DB2 Connected successfully.");
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
             }
-
         }
+
+    }
 
     public  void connectToOracle() {
             System.out.println("-------- Oracle JDBC Connection Testing ------");
@@ -171,7 +171,7 @@ public class DbConnections
 
         }
 
-    public  int connectToMicrosoftSql(String sqlQuery) {
+    public  LinkedList<String> connectToMicrosoftSql(String sqlQuery) {
         Connection conn = null;
         LinkedList<String> mySqlList=null;
         try
@@ -272,7 +272,7 @@ public class DbConnections
             }
         }
 
-        return mySqlList.size();
+        return mySqlList;
     }
 
 
@@ -342,26 +342,39 @@ public class DbConnections
         return tableRes;
     }
 
-    public void runAllDBMS( String sqlquery)
+
+    public boolean diff(LinkedList<String> list1, LinkedList<String> list2)
+    {
+
+        if(list1.size() != list2.size())
         {
-            System.out.println("*****************");
-            connectToMySql(sqlquery);
-            /*System.out.println("*****************");
-            connectToPostgres();
-            System.out.println("*****************");
-            connectToIBMDb2();
-            System.out.println("*****************");*/
-            connectToMicrosoftSql(sqlquery);
-            System.out.println("*****************");
+            return false;
         }
 
-       /* public static void main(String[] args)
-
+        for(int i=0; i < list1.size(); i++)
         {
+            if(list1.get(i).compareTo(list2.get(i)) != 0)
+            {
+                return false;
+            }
+        }
 
-            runAllDBMS();
+        return true;
+    }
 
-        }*/
+    public void runAllDBMS( String sqlquery)
+    {
+        System.out.println("*****************");
+        connectToMySql(sqlquery);
+        /*System.out.println("*****************");
+        connectToPostgres();
+        System.out.println("*****************");
+        connectToIBMDb2();
+        System.out.println("*****************");*/
+        connectToMicrosoftSql(sqlquery);
+        System.out.println("*****************");
+    }
+
     }
 
 
