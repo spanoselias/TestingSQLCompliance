@@ -1,5 +1,5 @@
 <p align = "center">
-TestingSQLCompliance
+Random SQL Generator Engine
 
 <a>
 <p align = "center">
