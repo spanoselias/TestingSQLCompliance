@@ -2,7 +2,7 @@ TestingSQLCompliance
 ----------------------
 <a>
 <p align = "center">
-<img src="https://cdn2.iconfinder.com/data/icons/color-svg-vector-icons-part-2/512/run_sql_document_system-512.png" width="100" height="100"/>
+<img src="https://www.nuodb.com/sites/default/files/graphics/icons/SQL-icon-transparent.png" width="100" height="100"/>
 </a>
 
 
