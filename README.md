@@ -1,8 +1,6 @@
 <p align = "center">
-<a>
 TestingSQLCompliance
-</a>
-----------------------
+
 <a>
 <p align = "center">
 <img src="https://www.nuodb.com/sites/default/files/graphics/icons/SQL-icon-transparent.png" width="100" height="100"/>
