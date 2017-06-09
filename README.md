@@ -14,8 +14,8 @@ Our project will be implemented using Java Programming Language. This tool will 
 ** Compilation & Run instructions
 
 ```javascript
-: Compile: javac SQLEngine.java
-: Run: java SQLEngine
+ Compile: javac SQLEngine.java
+ Run: java SQLEngine
 ```
 
  **DBMSs to be checked:**
