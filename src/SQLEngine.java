@@ -421,7 +421,6 @@ public class SQLEngine
 
        if( dbcon.diff(myVal, MSVal) == false )
        {
-
             System.out.println("Difference found!!!");
 
             try
@@ -436,9 +435,11 @@ public class SQLEngine
             {
                 e.printStackTrace();
 
-            } finally
+            }
+            finally
             {
-                try {
+                try
+                {
 
                     if (bw != null)
                         bw.close();
@@ -493,22 +494,21 @@ public class SQLEngine
 
             case 3:
                 qry = nestQuery(uniqID, confPar);
-                wrtSql2File("rand_sql", qry);
+               // wrtSql2File("rand.", qry);
                 break;
         }
             System.out.println(qry);
-            wrtSql2File("rand_sql",qry);
+            wrtSql2File("rand.sql",qry);
 
 
-       while(true)
+  /*     while(true)
         {
             String sql = nestQuery(uniqID, confPar);
             wrtSql2File("rand_sql.sql",sql);
 
             genLogFile(sql);
 
-
-        }
+        }*/
 
 
     }
