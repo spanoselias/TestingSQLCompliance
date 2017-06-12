@@ -120,9 +120,18 @@ public class SELECT
 
              if(isRepAlias > 0 && isSubqry == false)
                 {
+
+                    int pick;
                     for(int i=0; i < curAlias.size(); i++)
                     {
-                        stm += ", " + curAlias.get(i);
+                        //We randomly choose if we will have repetition of
+                        //attributes in the SELECT CLAUSE based on the probability
+                        //which give in the configuration file
+                        pick = genRandChoice( 100 );
+                        if(pick <=  (int)(confParSel.repAlias * 100) )
+                        {
+                            stm += ", " + curAlias.get(i);
+                        }
                     }
                 }
             }

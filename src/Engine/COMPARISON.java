@@ -63,16 +63,24 @@ public class COMPARISON
         pick = genRandChoice(operators.size());
         String oper = operators.get(pick);
 
-        //The 0.1 represents the probability of having
+        //We randomly choose if the comparison will be
+        //one attribute with a constant
+        int pick2 = genRandChoice(5);
+
+        //The probWhr represents the probability of having
         //constants or NULLS to the WHERE comparisons
         pick = genRandChoice( 100 );
         if(pick <=  (int)(probWhr * 100) )
         {
-            pick = genRandChoice(4);
+            pick = genRandChoice(2);
+        }
+        else if(pick2 == 0)
+        {
+            pick = 2;
         }
         else
         {
-            pick = 4;
+            pick = 3;
         }
 
         //The idea of switch is to do comparisons between two relation's attributes or between
@@ -84,24 +92,25 @@ public class COMPARISON
                 rel2 =  constsAndNull.get(genRandChoice(constsAndNull.size()));
             break;
 
+
             case 1:
-                rel1 =  constsAndNull.get(genRandChoice(constsAndNull.size()));
-                rel2 = this.selectedTables.get(genRandChoice(this.selectedTables.size()));
-            break;
-
-            case 2:
-
-                rel1 = this.selectedTables.get(genRandChoice(this.selectedTables.size()));
-                rel2 = constsAndNull.get(genRandChoice(constsAndNull.size()));
-            break;
-
-            case 3:
 
                 rel1 = "NULL";
                 rel2 = constsAndNull.get(genRandChoice(constsAndNull.size()));
                 break;
 
-            case 4:
+            case 2:
+                rel1 = this.selectedTables.get(genRandChoice(this.selectedTables.size()));
+                rel2 = constsAndNull.get(genRandChoice(constsAndNull.size()));
+            break;
+
+           /* case 2:
+
+                rel1 =  constsAndNull.get(genRandChoice(constsAndNull.size()));
+                rel2 = this.selectedTables.get(genRandChoice(this.selectedTables.size()));
+            break;*/
+
+            case 3:
                 int pickRandRel = genRandChoice(this.selectedTables.size());
                 int pickRand;
 

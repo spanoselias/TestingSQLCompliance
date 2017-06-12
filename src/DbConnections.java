@@ -345,7 +345,6 @@ public class DbConnections
 
     public boolean diff(LinkedList<String> list1, LinkedList<String> list2)
     {
-
         if(list1.size() != list2.size())
         {
             return false;

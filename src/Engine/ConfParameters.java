@@ -8,7 +8,6 @@ import java.util.LinkedList;
  */
 public class ConfParameters
 {
-
     //Indicates the max number of tables that can exist in a From clause
     public  int maxTableFrom;
 
@@ -26,5 +25,7 @@ public class ConfParameters
 
     //Represents the nesting depth of an SQL query
     public int nestLev;
+
+    public LinkedList<String> genAlias = new LinkedList<>();
 
 }

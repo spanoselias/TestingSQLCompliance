@@ -59,6 +59,7 @@ public class SQLEngine
             confPar.maxCondWhere = Integer.parseInt( prop.getProperty( "maxCondWhere" ) );
             confPar.probWhrConst = Double.parseDouble( prop.getProperty( "probWhrConst" ) );
             confPar.nestLev =  Integer.parseInt( prop.getProperty( "nestLevel" ) );
+            confPar.repAlias =  Double.parseDouble( prop.getProperty( "repAlias" ) );
 
             //It retrieves all the relations with their associated attributes from mysql database
             retrieveDBSchema(confPar.relationsAttrs);
@@ -79,6 +80,8 @@ public class SQLEngine
                 }
             }
         }
+
+        confPar.genAlias = genAlias();
 
         return confPar;
     }
@@ -122,7 +125,6 @@ public class SQLEngine
         {
             e.printStackTrace();
         }
-
 
         Connection conn = null;
 
@@ -207,12 +209,43 @@ public class SQLEngine
 
     }
 
+    public static QRYREPRES aggrGuery(   long uniqID , ConfParameters confPar)
+    {
+
+        QRYREPRES res = new QRYREPRES();
+
+        LinkedList<String> alias =  confPar.genAlias;
+
+        String tmpStm="";
+        String finalQry="";
+
+        FROM frmQry = new FROM(alias, confPar.relationsAttrs, confPar);
+        WHERE whrQry = new WHERE(confPar.relationsAttrs);
+        SELECT selQry = new SELECT(false,false, alias, 2, confPar.relationsAttrs, confPar);
+        GROUPBY grpQry = new GROUPBY(confPar);
+        HAVING hvgQry = new HAVING(confPar);
+
+        String stm = frmQry.getFrom( (++uniqID) );
+        String grp = grpQry.getGroupBy(frmQry.getSelectedTables());
+        String hvg = hvgQry.genHaving(grpQry.getAttrInGroup());
+        tmpStm = selQry.getSelect(grpQry.getAttrInGroup(), false, false, confPar.repAlias);
+        finalQry = tmpStm + "\n" + stm;
+        finalQry += "\n" + whrQry.getSqlWhere(grpQry.getAttrInGroup(),false,  confPar, 5);
+        finalQry += "\n" + grp + "\n" + hvg;
+
+        res.qryStr = finalQry;
+        res.isOneAt = whrQry.getOneAttr();
+        res.selRelts = frmQry.getSelectedTables();
+
+        return res;
+    }
+
     public static QRYREPRES genQuery( LinkedList<String> frmRelts, long uniqID, boolean isNest, boolean isOneAttr ,  ConfParameters confPar)
     {
 
         QRYREPRES res = new QRYREPRES();
 
-        LinkedList<String> alias =  genAlias();
+        LinkedList<String> alias =  confPar.genAlias;
 
         String tmpStm="";
         String finalQry="";
@@ -227,16 +260,16 @@ public class SQLEngine
         //contains the binds attributes. Otherwise, we just select attributes from the from
         if(frmRelts != null && frmRelts.size() > 0)
         {
-             frmRelts = copySelRelts(frmRelts, frmQry.getSelectedTables());
-             tmpStm = selQry.getSelect(frmRelts, isOneAttr, false, 0.1);
-             finalQry = tmpStm + "\n" + stm;
-             finalQry += "\n" + whrQry.getSqlWhere(frmRelts, isNest, confPar, 5);
+            frmRelts = copySelRelts(frmRelts, frmQry.getSelectedTables());
+            tmpStm = selQry.getSelect(frmRelts, isOneAttr, false, 0.1);
+            finalQry = tmpStm + "\n" + stm;
+            finalQry += "\n" + whrQry.getSqlWhere(frmRelts, isNest, confPar, 5);
         }
         else
         {
-             tmpStm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, confPar.repAlias);
-             finalQry = tmpStm + "\n" + stm;
-             finalQry += "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),isNest,  confPar, 5);
+            tmpStm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, confPar.repAlias);
+            finalQry = tmpStm + "\n" + stm;
+            finalQry += "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),isNest,  confPar, 5);
         }
 
         res.qryStr = finalQry;
@@ -248,7 +281,7 @@ public class SQLEngine
 
     public static String genCompQuery(int subqry, LinkedList<String> frmRelts, long uniqID, boolean isNest, boolean isOneAttr,   ConfParameters confPar)
     {
-        LinkedList<String> alias =  genAlias();
+        LinkedList<String> alias =  confPar.genAlias;
 
         //We create new objects for each statement
         FROM frmQry = new FROM(alias, confPar.relationsAttrs, confPar);
@@ -380,7 +413,8 @@ public class SQLEngine
         } finally
         {
 
-            try {
+            try
+            {
 
                 if (bw != null)
                     bw.close();
@@ -486,6 +520,7 @@ public class SQLEngine
             break;
 
             case 2:
+
                 System.out.println("Simple query");
                 System.out.println("*******************");
                 QRYREPRES res = genQuery(null,uniqID, false, false, confPar);
@@ -495,6 +530,11 @@ public class SQLEngine
             case 3:
                 qry = nestQuery(uniqID, confPar);
                // wrtSql2File("rand.", qry);
+                break;
+
+            case 4:
+                QRYREPRES res1 =  aggrGuery(uniqID, confPar);
+                qry = res1.qryStr;
                 break;
         }
             System.out.println(qry);
