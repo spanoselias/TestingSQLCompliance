@@ -27,6 +27,9 @@ public class SELECT
     private HashMap<String, LinkedList<String>> allRelAttrs;
 
 
+    //This will be used to generate arithmetic comparison in the where clause
+    COMPARISON newCom;
+
     ConfParameters confParSel;
 
     private boolean isDistinct;
@@ -51,6 +54,8 @@ public class SELECT
         relAttrs = allRelAttrsIn;
 
         this.confParSel = confpar;
+
+        newCom = new COMPARISON();
     }
 
     //The isSubqry parameter is important in order to know if this is a subquery parameter to avoid having
@@ -120,7 +125,6 @@ public class SELECT
 
              if(isRepAlias > 0 && isSubqry == false)
                 {
-
                     int pick;
                     for(int i=0; i < curAlias.size(); i++)
                     {
@@ -132,6 +136,17 @@ public class SELECT
                         {
                             stm += ", " + curAlias.get(i);
                         }
+                    }
+                }
+
+                //We randomly choose if we will have constant comparison in the SELECT clause
+                int pick = genRandChoice( 100 );
+                if(pick <=  (int)(confParSel.arithmCompar * 100) )
+                {
+                    for(int i=0; i< genRandChoice(5); i++)
+                    {
+
+                        stm += ", " + newCom.getArithCompr();
                     }
                 }
             }

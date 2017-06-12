@@ -60,6 +60,7 @@ public class SQLEngine
             confPar.probWhrConst = Double.parseDouble( prop.getProperty( "probWhrConst" ) );
             confPar.nestLev =  Integer.parseInt( prop.getProperty( "nestLevel" ) );
             confPar.repAlias =  Double.parseDouble( prop.getProperty( "repAlias" ) );
+            confPar.arithmCompar =  Double.parseDouble( prop.getProperty( "arithCompSel" ) );
 
             //It retrieves all the relations with their associated attributes from mysql database
             retrieveDBSchema(confPar.relationsAttrs);

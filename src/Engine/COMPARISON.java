@@ -13,6 +13,14 @@ public class COMPARISON
     private LinkedList<String> selectedTables;
     private LinkedList<String> constsAndNull;
 
+
+    //This list will be used to have arithmetic with constants and NULL
+    //in the SELECT CLAUSE
+    private LinkedList<String> arithCompr;
+
+    private LinkedList<String> constAndNullAttr;
+
+
     public COMPARISON()
     {
         this.operators = new LinkedList<>();
@@ -31,6 +39,20 @@ public class COMPARISON
         for(int i=0; i< CONSTNO; i++)
         {
             constsAndNull.add(Integer.toString(i));
+        }
+
+        this.arithCompr = new LinkedList<>();
+        this.arithCompr.add("*");
+        this.arithCompr.add("-");
+        this.arithCompr.add("+");
+        this.arithCompr.add("/");
+        this.arithCompr.add("%");
+
+        this.constAndNullAttr = new LinkedList<>();
+        this.constAndNullAttr.add("NULL");
+        for(int i =0; i< 100; i++ )
+        {
+            this.constsAndNull.add(String.valueOf(i));
         }
     }
 
@@ -156,4 +178,15 @@ public class COMPARISON
 
     }
 
+
+    public String getArithCompr()
+    {
+        String arith = arithCompr.get( genRandChoice(arithCompr.size()) );
+        String const1 = constAndNullAttr.get( (genRandChoice(constAndNullAttr.size())));
+        String const2 = constAndNullAttr.get( (genRandChoice(constAndNullAttr.size())));
+
+        String stm = const1 + arith + const2;
+
+        return stm;
+    }
 }

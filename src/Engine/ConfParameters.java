@@ -26,6 +26,8 @@ public class ConfParameters
     //Represents the nesting depth of an SQL query
     public int nestLev;
 
+    public double arithmCompar;
+
     public LinkedList<String> genAlias = new LinkedList<>();
 
 }
