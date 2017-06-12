@@ -114,13 +114,16 @@ public  class WHERE
             {
                 stm += " )";
             }
-        }
+        }//For statement
 
         //In case where we have nested queries and this is the outer query
         if(isNested == true)
         {
             stm += " AND " + nestGenCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom);
         }
+
+
+
 
         return stm;
 

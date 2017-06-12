@@ -82,12 +82,17 @@ public class COMPARISON
         String rel1 = "";
         String rel2 = "";
 
+        String arithmCompStr = "";
+
+
         pick = genRandChoice(operators.size());
         String oper = operators.get(pick);
 
         //We randomly choose if the comparison will be
         //one attribute with a constant
         int pick2 = genRandChoice(5);
+
+        int pick3 = genRandChoice(1);
 
         //The probWhr represents the probability of having
         //constants or NULLS to the WHERE comparisons
@@ -100,9 +105,13 @@ public class COMPARISON
         {
             pick = 2;
         }
+       /* else if(pick3 ==0)
+        {
+            pick =3;
+        }*/
         else
         {
-            pick = 3;
+            pick = 4;
         }
 
         //The idea of switch is to do comparisons between two relation's attributes or between
@@ -113,7 +122,6 @@ public class COMPARISON
                 rel1 =  constsAndNull.get(genRandChoice(constsAndNull.size()));
                 rel2 =  constsAndNull.get(genRandChoice(constsAndNull.size()));
             break;
-
 
             case 1:
 
@@ -126,13 +134,18 @@ public class COMPARISON
                 rel2 = constsAndNull.get(genRandChoice(constsAndNull.size()));
             break;
 
+            case 3:
+                    arithmCompStr  = getArithCompr();
+            break;
+
+
            /* case 2:
 
                 rel1 =  constsAndNull.get(genRandChoice(constsAndNull.size()));
                 rel2 = this.selectedTables.get(genRandChoice(this.selectedTables.size()));
             break;*/
 
-            case 3:
+            case 4:
                 int pickRandRel = genRandChoice(this.selectedTables.size());
                 int pickRand;
 
@@ -166,13 +179,28 @@ public class COMPARISON
         pick = genRandChoice(10);
         if( pick ==0 )
         {
-            res = "NOT" + "(" + rel1 +  " " + oper + " " + rel2 + " ) "  ;
+            if(arithmCompStr != "")
+            {
+                res = "NOT" + "(" + arithmCompStr + " ) "  ;
+            }
+            else
+            {
+                res = "NOT" + "(" + rel1 +  " " + oper + " " + rel2 + " ) "  ;
+            }
+
         }
         else
         {
-            res =  rel1 + " " + oper + " " + rel2  ;
-        }
+            if(arithmCompStr != "")
+            {
+                res =arithmCompStr;
+            }
+            else
+            {
+                res =  rel1 + " " + oper + " " + rel2  ;
+            }
 
+        }
 
         return res;
 
