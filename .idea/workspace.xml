@@ -4,12 +4,9 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="Implementing Arithmetic Comparison in the SELECT CLAUSE">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestingSQLCompliance/Engine/COMPARISON.class" afterPath="$PROJECT_DIR$/out/production/TestingSQLCompliance/Engine/COMPARISON.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestingSQLCompliance/Engine/WHERE.class" afterPath="$PROJECT_DIR$/out/production/TestingSQLCompliance/Engine/WHERE.class" />
+    <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestingSQLCompliance/config.properties" afterPath="$PROJECT_DIR$/out/production/TestingSQLCompliance/config.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -110,8 +107,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="462">
-                <caret line="22" column="20" lean-forward="false" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
+              <first_editor relative-caret-position="315">
+                <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -963,14 +960,7 @@
       <workItem from="1496961414511" duration="84000" />
       <workItem from="1497023820777" duration="7106000" />
       <workItem from="1497118297380" duration="3918000" />
-      <workItem from="1497247594126" duration="14070000" />
-    </task>
-    <task id="LOCAL-00009" summary="implementing comparison operators">
-      <created>1495914211338</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1495914211338</updated>
+      <workItem from="1497247594126" duration="14104000" />
     </task>
     <task id="LOCAL-00010" summary="implementing comparison operators">
       <created>1495914867706</created>
@@ -1308,11 +1298,18 @@
       <option name="project" value="LOCAL" />
       <updated>1497262843746</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="Update project description">
+      <created>1497263058761</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1497263058761</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="256302000" />
+    <option name="totallyTimeSpent" value="256336000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-1359" width="2418" height="1308" extended-state="6" />
@@ -1403,7 +1400,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Implementing SELECT &amp; FROM statements" />
     <MESSAGE value="implementing WHERE statement" />
     <MESSAGE value="implementing comparison operators" />
     <MESSAGE value="Implementing modular code" />
@@ -1428,7 +1424,8 @@
     <MESSAGE value="#Working version" />
     <MESSAGE value="#Fixing bugs&#10;#Implementing aggregation(NOT FINISHED YET)" />
     <MESSAGE value="Implementing Arithmetic Comparison in the SELECT CLAUSE" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementing Arithmetic Comparison in the SELECT CLAUSE" />
+    <MESSAGE value="Update project description" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update project description" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2008,8 +2005,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="462">
-            <caret line="22" column="20" lean-forward="false" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
+          <first_editor relative-caret-position="315">
+            <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
             <folding />
           </first_editor>
           <second_editor />

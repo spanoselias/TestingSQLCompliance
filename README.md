@@ -13,7 +13,7 @@ and evaluate each query all on DBMSs in order to identify in the DBMSs are follo
 Our project will be implemented using Java Programming Language. This tool will be useful for not only checking existing DBMSs but most importantly, to check any DBMSs. 
 
 
-** Compilation & Run instructions
+Compilation & Run instructions
 
 ```javascript
  Compile: javac SQLEngine.java
