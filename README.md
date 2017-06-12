@@ -34,7 +34,7 @@ DBMSs to be checked:
 
 ```javascript
 > Linux or Windows
-> Java 8 Update 92 or higher (8u92+)
+> Java 8 Update 92 or higher 
   
   ```
 ## Goals
