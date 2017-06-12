@@ -23,18 +23,20 @@ Compilation & Run instructions
 DBMSs to be checked:
 
 ```javascript
- >- MySql
- >- Oracle
- >- PostgreSQL
- >- IBM DB2
- >- MSSQL Server
+ > MySql
+ > Oracle
+ > PostgreSQL
+ > IBM DB2
+ > MSSQL Server
 ```
 
 ## Requirements
 
-* Linux or Windows
-* Java 8 Update 92 or higher (8u92+)
+```javascript
+> Linux or Windows
+> Java 8 Update 92 or higher (8u92+)
   
+  ```
 ## Goals
 
 The goals of this implementation are:
