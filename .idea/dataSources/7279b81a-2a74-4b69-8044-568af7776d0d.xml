@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="test@localhost">
+<dataSource name="PostgresSQL">
   <database-model serializer="dbm" rdbms="POSTGRES" format-version="4.2">
     <root id="1"/>
     <database id="2" parent="1" name="test">
@@ -9,7 +9,7 @@
     </database>
     <schema id="3" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2017-06-05.22:31:34.447</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2017-06-14.13:42:06.043</IntrospectionTimestamp>
       <IntrospectionStateNumber>549</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>

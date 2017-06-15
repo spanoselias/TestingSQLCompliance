@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="MySQL - testdb@localhost" uuid="2eb0cf64-f3a4-4c43-a5e5-64ea370ec7d1">
+    <data-source source="LOCAL" name="MySQL" uuid="2eb0cf64-f3a4-4c43-a5e5-64ea370ec7d1">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
@@ -15,17 +15,32 @@
         <property name="yearIsDateType" value="false" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="testdb@localhost" uuid="3a9bff30-71a1-4294-b7bb-fde2857956db">
+    <data-source source="LOCAL" name="MS Server" uuid="3a9bff30-71a1-4294-b7bb-fde2857956db">
       <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
       <jdbc-url>jdbc:sqlserver://localhost;databaseName=testdb</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="test@localhost" uuid="7279b81a-2a74-4b69-8044-568af7776d0d">
+    <data-source source="LOCAL" name="PostgresSQL" uuid="7279b81a-2a74-4b69-8044-568af7776d0d">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/test</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="IBM DB2" uuid="83da5a5b-8897-47e7-807a-594e8ee0f5ea">
+      <driver-ref>db2</driver-ref>
+      <jdbc-driver>com.ibm.db2.jcc.DB2Driver</jdbc-driver>
+      <jdbc-url>jdbc:db2:testdb10</jdbc-url>
+      <driver-properties>
+        <property name="retrieveMessagesFromServerOnGetMessage" value="true" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="Oracle" uuid="d8b5e3d4-692a-4884-ab01-6b19bdad02a5">
+      <driver-ref>oracle</driver-ref>
+      <synchronize>true</synchronize>
+      <auto-commit>false</auto-commit>
+      <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
+      <jdbc-url>jdbc:oracle:thin:@localhost:1521:orcl</jdbc-url>
     </data-source>
   </component>
 </project>

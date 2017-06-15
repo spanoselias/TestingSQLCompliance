@@ -27,8 +27,8 @@ public class NESTCOMPARISON
             this.oper2 = new LinkedList<>();
             this.oper2.add("NOT IN");
             this.oper2.add("IN");
-            this.oper2.add("NOT IN");
-            this.oper2.add("IN");
+            //this.oper2.add("NOT IN");
+            //this.oper2.add("IN");
 
 
             this.oper3 = new LinkedList<>();

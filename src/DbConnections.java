@@ -100,34 +100,124 @@ public class DbConnections
 
     }
 
-    public  void connectToIBMDb2() {
+    public  void connectToIBMDb2()
+    {
         String jdbcClassName = "com.ibm.db2.jcc.DB2Driver";
 
-        String url = "jdbc:db2://localhost:50000/SAMPLE";
-        String user = "db2admin";
+        String url = "jdbc:db2://localhost:50000/testdb10";
+        String user = "elias881";
         String password = "testing1";
 
-        Connection connection = null;
-        try {
+        Connection conn = null;
+        try
+        {
             //Load class into memory
             Class.forName("com.ibm.db2.jcc.DB2Driver");
             //Establish connection
-            connection = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url, user, password);
+            conn.setAutoCommit(false);
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            if (connection != null) {
+        } finally
+        {
+          /*  if (conn != null)
+            {
                 System.out.println("IDB DB2 Connected successfully.");
-                try {
-                    connection.close();
-                } catch (SQLException e) {
+                try
+                {
+                   // conn.close();
+                } catch (SQLException e)
+                {
                     e.printStackTrace();
                 }
+            }*/
+        }
+
+        String schemaName = "elias881";
+        try
+        {
+
+            ResultSet rs;
+
+            // create the java statement
+            Statement st = conn.createStatement();
+
+
+            st.executeUpdate("set current sqlid = " + schemaName);
+
+            // execute the query, and get a java resultset
+            rs = st.executeQuery("SELECT A FROM r1");
+
+
+          //  DatabaseMetaData md = conn.getMetaData();
+           // ResultSet rs = md.getTables(null, null, "R1", null);
+
+
+
+
+
+       /*     ResultSetMetaData rsmd = rs.getMetaData();
+            int columnCount = rsmd.getColumnCount();
+
+            System.out.println("**********************************************");
+
+            String newRow="";
+            while (rs.next())
+            {
+                newRow = "";
+
+                // The column count starts from 1
+                for (int i = 1; i <= columnCount; i++ )
+                {
+                    String col = rsmd.getColumnLabel(i);
+
+                    if(i != columnCount)
+                    {
+                        newRow += rs.getInt(col) + " , ";
+                        //  System.out.print(rs.getInt(col) + " , ");
+                    }
+                    else
+                    {
+                        newRow += rs.getInt(col) + " , ";
+                        //System.out.print(rs.getInt(col));
+                    }
+
+                }
+
+
+                //tableRes.forEach(System.out::println);
+                //   System.out.println(tableRes.size());
+            }*/
+
+            while (rs.next())
+            {               // Position the cursor
+
+                System.out.println(rs.getString("A"));
+                //  empNo = rs.getString(1);             // Retrieve only the first column value
+                //System.out.println("Employee number = " + empNo);
+                // Print the column value
+            }
+            rs.close();                       // Close the ResultSet
+            st.close();                     // Close the Statement
+
+        } catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        } finally
+        {
+            try {
+                if (conn != null && !conn.isClosed()) {
+                 //   conn.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
             }
         }
+
+
 
     }
 
@@ -153,7 +243,7 @@ public class DbConnections
             try {
 
                 connection = DriverManager.getConnection(
-                        "jdbc:oracle:thin:@localhost:1521:TEMP", "elias881", "testing1");
+                        "jdbc:oracle:thin:@localhost:1521:orcl", "elias881", "testing1");
 
             } catch (SQLException e) {
 

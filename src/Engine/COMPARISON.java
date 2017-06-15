@@ -49,10 +49,13 @@ public class COMPARISON
         this.arithCompr.add("%");
 
         this.constAndNullAttr = new LinkedList<>();
-        this.constAndNullAttr.add("NULL");
-        for(int i =0; i< 100; i++ )
+        for(int i =0; i< 8; i++ )
         {
-            this.constsAndNull.add(String.valueOf(i));
+            this.constAndNullAttr.add(String.valueOf(i));
+        }
+        for(int i =0; i< 5; i++ )
+        {
+            this.constAndNullAttr.add("NULL");
         }
     }
 
