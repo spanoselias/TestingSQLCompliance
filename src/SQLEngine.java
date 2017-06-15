@@ -229,7 +229,7 @@ public class SQLEngine
         String stm = frmQry.getFrom( (++uniqID) );
         String grp = grpQry.getGroupBy(frmQry.getSelectedTables());
         String hvg = hvgQry.genHaving(grpQry.getAttrInGroup());
-        tmpStm = selQry.getSelect(grpQry.getAttrInGroup(), false, false, confPar.repAlias);
+        tmpStm = selQry.getSelect(grpQry.getAttrInGroup(), false, false, confPar.repAlias, true, grpQry.getAttrInGroup());
         finalQry = tmpStm + "\n" + stm;
         finalQry += "\n" + whrQry.getSqlWhere(grpQry.getAttrInGroup(),false,  confPar, 5);
         finalQry += "\n" + grp + "\n" + hvg;
@@ -262,13 +262,13 @@ public class SQLEngine
         if(frmRelts != null && frmRelts.size() > 0)
         {
             frmRelts = copySelRelts(frmRelts, frmQry.getSelectedTables());
-            tmpStm = selQry.getSelect(frmRelts, isOneAttr, false, 0.1);
+            tmpStm = selQry.getSelect(frmRelts, isOneAttr, false, 0.1, false, null);
             finalQry = tmpStm + "\n" + stm;
             finalQry += "\n" + whrQry.getSqlWhere(frmRelts, isNest, confPar, 5);
         }
         else
         {
-            tmpStm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, confPar.repAlias);
+            tmpStm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, confPar.repAlias, false, null);
             finalQry = tmpStm + "\n" + stm;
             finalQry += "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),isNest,  confPar, 5);
         }
@@ -296,7 +296,7 @@ public class SQLEngine
             String subName = "Q" + subqry;
 
             String frmstm = frmQry.getFrom(++uniqID);
-            String selstm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, 0.0);
+            String selstm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, 0.0, false, null);
             String whrstm = whrQry.getSqlWhere(frmQry.getSelectedTables(), false,  confPar, 3);
 
             if( (subqry ) > 0 )
@@ -321,7 +321,7 @@ public class SQLEngine
         }
 
         String stm = from + " , " + substm;
-        String tmpStm = selQry.getSelect(frmRelts, isOneAttr, false, confPar.repAlias);
+        String tmpStm = selQry.getSelect(frmRelts, isOneAttr, false, confPar.repAlias, false, null);
         String finalQry = tmpStm + "\n" + stm;
         finalQry += "\n" + whrQry.getSqlWhere(frmRelts , isNest,  confPar, 2);
 

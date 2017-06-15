@@ -138,7 +138,7 @@ public class COMPARISON
             break;
 
             case 3:
-                    arithmCompStr  = getArithCompr();
+                    arithmCompStr  = getArithCompr(this.selectedTables);
             break;
 
 
@@ -210,13 +210,41 @@ public class COMPARISON
     }
 
 
-    public String getArithCompr()
+    public String getArithCompr(LinkedList<String> selectedTablesIn)
     {
-        String arith = arithCompr.get( genRandChoice(arithCompr.size()) );
-        String const1 = constAndNullAttr.get( (genRandChoice(constAndNullAttr.size())));
-        String const2 = constAndNullAttr.get( (genRandChoice(constAndNullAttr.size())));
 
-        String stm = const1 + arith + const2;
+        String stm="";
+        int pick;
+        String rel1 = "";
+        String rel2 = "";
+        String const1 = "";
+        String const2 = "";
+
+        String arith = arithCompr.get( genRandChoice(arithCompr.size()) );
+
+        pick = genRandChoice(3);
+        switch (pick)
+        {
+            case 0:
+                const1 = constAndNullAttr.get( (genRandChoice(constAndNullAttr.size())));
+                const2 = constAndNullAttr.get( (genRandChoice(constAndNullAttr.size())));
+                stm = const1 + arith + const2;
+            break;
+
+            case 1:
+                rel1 = selectedTablesIn.get(genRandChoice(selectedTablesIn.size()));
+                rel2 = selectedTablesIn.get(genRandChoice(selectedTablesIn.size()));
+                stm = rel1 + arith + rel2;
+            break;
+
+            case 2:
+                rel1 = selectedTablesIn.get(genRandChoice(selectedTablesIn.size()));
+                const1 = constAndNullAttr.get( (genRandChoice(constAndNullAttr.size())));
+                stm = rel1 + arith + const1;
+            break;
+
+        }
+
 
         return stm;
     }

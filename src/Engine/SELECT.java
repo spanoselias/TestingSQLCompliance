@@ -32,6 +32,9 @@ public class SELECT
 
     ConfParameters confParSel;
 
+
+    private FUNCTIONS genFunctions;
+
     private boolean isDistinct;
     private boolean isAllAttrs;
 
@@ -56,6 +59,8 @@ public class SELECT
         this.confParSel = confpar;
 
         newCom = new COMPARISON();
+
+        genFunctions = new FUNCTIONS();
     }
 
     //The isSubqry parameter is important in order to know if this is a subquery parameter to avoid having
@@ -145,9 +150,21 @@ public class SELECT
                 {
                     for(int i=0; i< genRandChoice(5); i++)
                     {
-                        stm += ", " + newCom.getArithCompr();
+                        stm += ", " + newCom.getArithCompr(frmRels);
                     }
                 }
+
+            //The isAggr variable indicates if we have aggregation in this query. If yes, then we can
+            // have aggregation functions in the SELECT STATEMENT
+             if(isAggr == true)
+             {
+
+                 for(int i=0; i< genRandChoice(5); i++)
+                 {
+                     stm += ", " + genFunctions.getSelectAggr(aggrAttrsIn);
+                 }
+             }
+
             }
 
             //If isOneAttr is true, then it means that we need to have only one attribute in the select

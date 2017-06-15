@@ -10,9 +10,10 @@ public class FUNCTIONS
         private LinkedList<String> functions;
         private LinkedList<String> oper4;
 
-
         private HashMap<String, LinkedList<String>> relAttrs;
         private LinkedList<String> selAttrs;
+
+        private LinkedList<String> arithCompr;
 
         public FUNCTIONS()
         {
@@ -21,6 +22,7 @@ public class FUNCTIONS
             this.functions.add("AVG");
             this.functions.add("MIN");
             this.functions.add("MAX");
+            this.functions.add("SUM");
 
 
             this.oper4 = new LinkedList<>();
@@ -30,6 +32,14 @@ public class FUNCTIONS
             this.oper4.add("=");
             this.oper4.add(">=");
             this.oper4.add("<>");
+
+
+            this.arithCompr = new LinkedList<>();
+            this.arithCompr.add("*");
+            this.arithCompr.add("-");
+            this.arithCompr.add("+");
+            this.arithCompr.add("/");
+            this.arithCompr.add("%");
 
         }
 
@@ -96,6 +106,60 @@ public class FUNCTIONS
         }
 
 
+        public String getSelectAggr( LinkedList<String> grpAttrIn)
+        {
 
-    }
+            String arith = arithCompr.get( genRandChoice(arithCompr.size()) );
+
+            String stm="";
+
+            this.selAttrs = grpAttrIn;
+
+            String attr1 ="";
+            String attr2 ="";
+
+            String rel = "";
+            String curFun1 = "";
+            String curFun2 = "";
+
+
+            int pick = genRandChoice(4);
+            switch (pick)
+            {
+                case 0:
+                    attr1 = grpAttrIn.get(genRandChoice(grpAttrIn.size()));
+                    curFun1   =  functions.get(genRandChoice(functions.size()));
+                    stm = curFun1 + "(" + attr1 + ")" ;
+
+                break;
+
+                case 1:
+                    attr1 = grpAttrIn.get(genRandChoice(grpAttrIn.size()));
+                    curFun1   =  functions.get(genRandChoice(functions.size()));
+                    rel = grpAttrIn.get(genRandChoice(grpAttrIn.size()));
+                    stm = "(" + curFun1 + "(" + attr1 + ") " + arith + " " + rel + ")";
+
+                break;
+
+                case 2:
+                    attr1 = grpAttrIn.get(genRandChoice(grpAttrIn.size()));
+                    attr2 = grpAttrIn.get(genRandChoice(grpAttrIn.size()));
+                    curFun1   =  functions.get(genRandChoice(functions.size()));
+                    curFun2   =  functions.get(genRandChoice(functions.size()));
+                    stm = "(" +  curFun1 + "(" + attr1 + ") " + arith + " " + curFun2 + "(" + attr2 + ") " + ")";
+                break;
+
+                case 3:
+                    attr1 = grpAttrIn.get(genRandChoice(grpAttrIn.size()));
+                    curFun1   =  functions.get(genRandChoice(functions.size()));
+                    stm = "(" +  curFun1 + "(" + attr1 + ") " + arith + " " + "NULL" + ")";
+                break;
+
+            }
+
+            return stm;
+
+        }
+
+}
 
