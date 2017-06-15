@@ -44,7 +44,7 @@ public class SELECT
         this.alias = aliasIn;
         this.allRelAttrs = allRelAttrsIn;
 
-        //This linkedlist will be used to store all the alias
+        //This list will be used to store all the alias
         this.aliasAttr = new LinkedList<>();
 
         this.relAttr = new HashMap<>();
@@ -60,7 +60,7 @@ public class SELECT
 
     //The isSubqry parameter is important in order to know if this is a subquery parameter to avoid having
     //repetition of alias in the SELECT clause because is not valid
-    public String getSelect( LinkedList<String> frmRels, boolean isOneAttr, boolean isSubqry, double isRepAlias)
+    public String getSelect( LinkedList<String> frmRels, boolean isOneAttr, boolean isSubqry, double isRepAlias, boolean isAggr, LinkedList<String> aggrAttrsIn)
     {
         aliasAttr.clear();
 
@@ -139,13 +139,12 @@ public class SELECT
                     }
                 }
 
-                //We randomly choose if we will have constant comparison in the SELECT clause
+                //We randomly choose if we will have arithmetic comparison in the SELECT clause
                 int pick = genRandChoice( 100 );
                 if(pick <=  (int)(confParSel.arithmCompar * 100) )
                 {
                     for(int i=0; i< genRandChoice(5); i++)
                     {
-
                         stm += ", " + newCom.getArithCompr();
                     }
                 }
@@ -163,7 +162,6 @@ public class SELECT
             }
 
         return stm;
-
     }
 
     public static int genRandChoice(int inputSize)

@@ -7,10 +7,10 @@ Random SQL Generator Engine
 </a>
 
 
-The aim of this project is to build a complete framework that can be used to compare and test current DBMSs ( PostgreSQL, MySQL, IBM DB2, MS Server sql, Oracle's DB). 
-The core component of the framework will be the random SQL generator engine  that can test all the aforementioned DBMSs by generating thousands of  random queries 
-and evaluate each query all on DBMSs in order to identify in the DBMSs are follow the SQL standard in the same manner.
-Our project will be implemented using Java Programming Language. This tool will be useful for not only checking existing DBMSs but most importantly, to check any DBMSs. 
+The aim of this project is to build a complete framework that can be used to compare and test the current DBMSs ( PostgreSQL, MySQL, IBM DB2, MS Server sql, Oracle Database). 
+The core component of the framework is the random SQL generator engine that tests the aforementioned DBMSs by generating thousands of random queries 
+and evaluate each query on all of them in order to identify any differences.
+Our project is implemented in Java Programming Language. This framework will be useful for not only checking existing DBMSs but most importantly, to check new DBMSs. 
 
 
 Compilation & Run instructions
