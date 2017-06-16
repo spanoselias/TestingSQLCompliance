@@ -453,8 +453,12 @@ public class SQLEngine
         DbConnections dbcon = new DbConnections();
         LinkedList<String> myVal = dbcon.connectToMySql(sql);
         LinkedList<String> MSVal = dbcon.connectToMicrosoftSql(sql);
+        LinkedList<String> oracleDb = dbcon.connectToMySql(sql);
+        LinkedList<String> postgres = dbcon.connectToMicrosoftSql(sql);
 
-       if( dbcon.diff(myVal, MSVal) == false )
+        if( dbcon.diff(myVal, MSVal, oracleDb, postgres) == false )
+
+       if( dbcon.diff(MSVal,myVal , oracleDb, postgres) == false )
        {
             System.out.println("Difference found!!!");
 
@@ -493,8 +497,18 @@ public class SQLEngine
 
     }
 
+    public static int genRandChoice(int inputSize)
+    {
+        Random randomGenerator = new Random();
+
+        int pickRand = (randomGenerator.nextInt(inputSize) % inputSize);
+
+        return pickRand;
+    }
+
     public static void main(String[] args)
     {
+
         HashMap<String, LinkedList<String>> allRelAttr = new HashMap<>();
 
         //It retrieves all the relations which their associated attributes from MySQL database
@@ -511,29 +525,35 @@ public class SQLEngine
 
         String qry="";
 
-        //The option is given as input parameter to the program
-        switch(option)
+        int pick;
+
+        while(true)
         {
-            case 1:
+
+            pick = genRandChoice(4);
+
+        //The option is given as input parameter to the program
+        switch(pick)
+        {
+            case 0:
                 System.out.println("Complex query");
                 System.out.println("*******************");
                 qry  = genCompQuery(1, frmRelts,1,false,false, confPar);
             break;
 
-            case 2:
-
+            case 1:
                 System.out.println("Simple query");
                 System.out.println("*******************");
                 QRYREPRES res = genQuery(null,uniqID, false, false, confPar);
                 qry = res.qryStr;
                 break;
 
-            case 3:
+            case 2:
                 qry = nestQuery(uniqID, confPar);
                // wrtSql2File("rand.", qry);
                 break;
 
-            case 4:
+            case 3:
                 QRYREPRES res1 =  aggrGuery(uniqID, confPar);
                 qry = res1.qryStr;
                 break;
@@ -542,14 +562,12 @@ public class SQLEngine
             wrtSql2File("rand.sql",qry);
 
 
-  /*     while(true)
-        {
-            String sql = nestQuery(uniqID, confPar);
-            wrtSql2File("rand_sql.sql",sql);
+          //  String sql = nestQuery(uniqID, confPar);
+            wrtSql2File("rand.sql",qry);
 
-            genLogFile(sql);
+            genLogFile(qry);
 
-        }*/
+        }
 
 
     }

@@ -46,11 +46,13 @@ public class DbConnections
                 e.printStackTrace();
 
             }
+            finally {
 
-            LinkedList<String> mySqlList = execQuery(conn, sqlQuery);
-        //    System.out.println("MySQlResSize: " + mySqlList.size());
+                LinkedList<String> mySqlList = execQuery(conn, sqlQuery);
+                //    System.out.println("MySQlResSize: " + mySqlList.size());
 
-            return  mySqlList;
+                return mySqlList;
+            }
 
         }
 
@@ -262,6 +264,9 @@ public class DbConnections
             }
 
 
+            //Oracle does not support 'AS' in the FROM STATEMENT
+            sqlQuery.replace("AS", " ");
+
             mySqlList = execQuery(conn, sqlQuery);
 
         return mySqlList;
@@ -272,7 +277,6 @@ public class DbConnections
         LinkedList<String> mySqlList=null;
         try
         {
-
             //String dbURL = "jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=testdb";
             String dbURL = "jdbc:sqlserver://localhost; databaseName=testdb";
             //  String dbURL = "jdbc:sqlserver://localhost;user=elias;password=testing1; databaseName=testdb";
@@ -426,31 +430,36 @@ public class DbConnections
             ex.printStackTrace();
         } finally
         {
-            try {
+            try
+            {
                 if (conn != null && !conn.isClosed()) {
                     conn.close();
                 }
-            } catch (SQLException ex) {
+            } catch (SQLException ex)
+            {
                 ex.printStackTrace();
             }
+            return tableRes;
         }
 
-        return tableRes;
+
     }
 
 
     public boolean diff(LinkedList<String> MSServer, LinkedList<String> MySQL, LinkedList<String> OracleDB, LinkedList<String> PostGres )
     {
-        if(MSServer.size() != MySQL.size() || MSServer.size() != OracleDB.size() || MSServer.size() != PostGres.size())
+        if(MSServer.size() != MySQL.size()   || MSServer.size() != PostGres.size())
         {
             return false;
         }
 
         for(int i=0; i < MSServer.size(); i++)
         {
-            if(MSServer.get(i).compareTo(MySQL.get(i)) != 0 || MSServer.get(i).compareTo(OracleDB.get(i)) != 0 || MSServer.get(i).compareTo(PostGres.get(i))!= 0)
+            if(MSServer.get(i).compareTo(MySQL.get(i)) != 0   || MSServer.get(i).compareTo(PostGres.get(i))!= 0)
             {
+                System.out.println("Difference is found!");
                 return false;
+
             }
         }
 
