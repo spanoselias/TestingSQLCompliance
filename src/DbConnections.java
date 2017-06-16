@@ -217,11 +217,13 @@ public class DbConnections
             }
         }
 
-
-
     }
 
-    public  void connectToOracle() {
+    public  LinkedList<String> connectToOracle( String sqlQuery )
+    {
+            Connection conn = null;
+            LinkedList<String> mySqlList=null;
+
             System.out.println("-------- Oracle JDBC Connection Testing ------");
 
             try {
@@ -232,7 +234,7 @@ public class DbConnections
 
                 System.out.println("Where is your Oracle JDBC Driver?");
                 e.printStackTrace();
-                return;
+            //    return;
 
             }
 
@@ -249,7 +251,7 @@ public class DbConnections
 
                 System.out.println("Connection Failed! Check output console");
                 e.printStackTrace();
-                return;
+               // return;
 
             }
 
@@ -259,6 +261,10 @@ public class DbConnections
                 System.out.println("Failed to make connection!");
             }
 
+
+            mySqlList = execQuery(conn, sqlQuery);
+
+        return mySqlList;
         }
 
     public  LinkedList<String> connectToMicrosoftSql(String sqlQuery) {
@@ -433,16 +439,16 @@ public class DbConnections
     }
 
 
-    public boolean diff(LinkedList<String> list1, LinkedList<String> list2)
+    public boolean diff(LinkedList<String> MSServer, LinkedList<String> MySQL, LinkedList<String> OracleDB, LinkedList<String> PostGres )
     {
-        if(list1.size() != list2.size())
+        if(MSServer.size() != MySQL.size() || MSServer.size() != OracleDB.size() || MSServer.size() != PostGres.size())
         {
             return false;
         }
 
-        for(int i=0; i < list1.size(); i++)
+        for(int i=0; i < MSServer.size(); i++)
         {
-            if(list1.get(i).compareTo(list2.get(i)) != 0)
+            if(MSServer.get(i).compareTo(MySQL.get(i)) != 0 || MSServer.get(i).compareTo(OracleDB.get(i)) != 0 || MSServer.get(i).compareTo(PostGres.get(i))!= 0)
             {
                 return false;
             }

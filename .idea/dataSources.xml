@@ -35,7 +35,7 @@
         <property name="retrieveMessagesFromServerOnGetMessage" value="true" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="Oracle" uuid="d8b5e3d4-692a-4884-ab01-6b19bdad02a5">
+    <data-source source="LOCAL" name="Oracle" uuid="a4163fb4-19ed-4e58-b4dc-8b44440bffd4">
       <driver-ref>oracle</driver-ref>
       <synchronize>true</synchronize>
       <auto-commit>false</auto-commit>
