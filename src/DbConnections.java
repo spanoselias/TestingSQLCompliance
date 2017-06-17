@@ -402,7 +402,6 @@ public class DbConnections
                 }
 
                 tableRes.add(newRow);
-
             }
 
             Collections.sort(tableRes);

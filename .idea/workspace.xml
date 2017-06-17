@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestingSQLCompliance/SQLEngine.class" afterPath="$PROJECT_DIR$/out/production/TestingSQLCompliance/SQLEngine.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DbConnections.java" afterPath="$PROJECT_DIR$/src/DbConnections.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Engine/SELECT.java" afterPath="$PROJECT_DIR$/src/Engine/SELECT.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SQLEngine.java" afterPath="$PROJECT_DIR$/src/SQLEngine.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -30,11 +30,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="SQLEngine.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SQLEngine.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SQLEngine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="568" column="0" lean-forward="true" selection-start-line="568" selection-start-column="0" selection-end-line="568" selection-end-column="0" />
+            <state relative-caret-position="352">
+              <caret line="527" column="19" lean-forward="true" selection-start-line="527" selection-start-column="19" selection-end-line="527" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;method#genAlias#0;class#SQLEngine#0" expanded="false" />
@@ -44,8 +44,8 @@
                 <element signature="method#copySelRelts#0;class#SQLEngine#0" expanded="false" />
                 <element signature="method#wrtSql2File#0;class#SQLEngine#0" expanded="false" />
                 <element signature="method#genLogFile#0;class#SQLEngine#0" expanded="false" />
-                <marker date="1497704397609" expanded="true" signature="3758:3788" ph="SELECT TABLE... " />
-                <marker date="1497704397609" expanded="true" signature="3758:3850" ph="SELECT TABLE... COLUMNS" />
+                <marker date="1497706424390" expanded="true" signature="3758:3788" ph="SELECT TABLE... " />
+                <marker date="1497706424390" expanded="true" signature="3758:3850" ph="SELECT TABLE... COLUMNS" />
               </folding>
             </state>
           </provider>
@@ -91,7 +91,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DbConnections.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DbConnections.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DbConnections.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="204">
@@ -100,7 +100,7 @@
                 <element signature="method#connectToPostgres#0;class#DbConnections#0" expanded="false" />
                 <element signature="method#connectToIBMDb2#0;class#DbConnections#0" expanded="false" />
                 <element signature="method#connectToOracle#0;class#DbConnections#0" expanded="false" />
-                <marker date="1497706264109" expanded="true" signature="4084:4100" ph="SELECT A FRO... r1" />
+                <marker date="1497706288887" expanded="true" signature="4084:4100" ph="SELECT A FRO... r1" />
               </folding>
             </state>
           </provider>
@@ -177,8 +177,8 @@
       <find>read</find>
       <find>oracle</find>
       <find>random</find>
-      <find>execQuery</find>
       <find>past</find>
+      <find>execQuery</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -241,11 +241,11 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/a4163fb4-19ed-4e58-b4dc-8b44440bffd4/console.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/2eb0cf64-f3a4-4c43-a5e5-64ea370ec7d1/console.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7279b81a-2a74-4b69-8044-568af7776d0d/console.sql" />
-        <option value="$PROJECT_DIR$/src/SQLEngine.java" />
         <option value="$PROJECT_DIR$/src/Debugging.java" />
         <option value="$PROJECT_DIR$/src/1.csv" />
         <option value="$PROJECT_DIR$/src/Engine/SELECT.java" />
         <option value="$PROJECT_DIR$/src/DbConnections.java" />
+        <option value="$PROJECT_DIR$/src/SQLEngine.java" />
       </list>
     </option>
   </component>
@@ -304,6 +304,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="TestingSQLCompliance" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TestingSQLCompliance" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TestingSQLCompliance" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -957,14 +971,7 @@
       <workItem from="1497247594126" duration="54524000" />
       <workItem from="1497526974940" duration="4358000" />
       <workItem from="1497537732066" duration="403000" />
-      <workItem from="1497598932371" duration="34472000" />
-    </task>
-    <task id="LOCAL-00024" summary="Implementing SQLGeneratorEngine">
-      <created>1496001767162</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1496001767162</updated>
+      <workItem from="1497598932371" duration="34647000" />
     </task>
     <task id="LOCAL-00025" summary="Commenting SQLGenerator class">
       <created>1496056385685</created>
@@ -1302,11 +1309,18 @@
       <option name="project" value="LOCAL" />
       <updated>1497703998091</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="Fixing a bug in the Alias">
+      <created>1497706279723</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1497706279723</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="335989000" />
+    <option name="totallyTimeSpent" value="336164000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
@@ -1397,7 +1411,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Clearing the code" />
     <MESSAGE value="setting github" />
     <MESSAGE value="Implementing SQL Engine" />
     <MESSAGE value="Make the code more clear" />
@@ -1422,7 +1435,8 @@
     <MESSAGE value="Extending Comparison tool for comparing multiple DBMSs results simultaneously" />
     <MESSAGE value="Improving Comparing tool" />
     <MESSAGE value="Fixing bugs on Comparison tool" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixing bugs on Comparison tool" />
+    <MESSAGE value="Fixing a bug in the Alias" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing a bug in the Alias" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1435,7 +1449,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DbConnections.java</url>
-          <line>457</line>
+          <line>456</line>
           <properties />
           <option name="timeStamp" value="212" />
         </line-breakpoint>
@@ -1591,7 +1605,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DbConnections.java</url>
-          <line>437</line>
+          <line>436</line>
           <properties />
           <option name="timeStamp" value="299" />
         </line-breakpoint>
@@ -1603,7 +1617,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DbConnections.java</url>
-          <line>407</line>
+          <line>406</line>
           <properties />
           <option name="timeStamp" value="306" />
         </line-breakpoint>
@@ -1693,7 +1707,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/DbConnections.java</url>
-          <line>430</line>
+          <line>429</line>
           <properties class="DbConnections" method="diff">
             <option name="EMULATED" value="true" />
           </properties>
@@ -2083,25 +2097,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SQLEngine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="568" column="0" lean-forward="true" selection-start-line="568" selection-start-column="0" selection-end-line="568" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#genAlias#0;class#SQLEngine#0" expanded="false" />
-            <element signature="method#genAlias#0;class#SQLEngine#0" expanded="false" />
-            <element signature="method#retrieveDBSchema#0;class#SQLEngine#0" expanded="false" />
-            <element signature="method#nestQuery#0;class#SQLEngine#0" expanded="false" />
-            <element signature="method#copySelRelts#0;class#SQLEngine#0" expanded="false" />
-            <element signature="method#wrtSql2File#0;class#SQLEngine#0" expanded="false" />
-            <element signature="method#genLogFile#0;class#SQLEngine#0" expanded="false" />
-            <marker date="1497704397609" expanded="true" signature="3758:3788" ph="SELECT TABLE... " />
-            <marker date="1497704397609" expanded="true" signature="3758:3850" ph="SELECT TABLE... COLUMNS" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Debugging.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -2144,7 +2139,26 @@
             <element signature="method#connectToPostgres#0;class#DbConnections#0" expanded="false" />
             <element signature="method#connectToIBMDb2#0;class#DbConnections#0" expanded="false" />
             <element signature="method#connectToOracle#0;class#DbConnections#0" expanded="false" />
-            <marker date="1497706264109" expanded="true" signature="4084:4100" ph="SELECT A FRO... r1" />
+            <marker date="1497706288887" expanded="true" signature="4084:4100" ph="SELECT A FRO... r1" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SQLEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="527" column="19" lean-forward="true" selection-start-line="527" selection-start-column="19" selection-end-line="527" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#genAlias#0;class#SQLEngine#0" expanded="false" />
+            <element signature="method#genAlias#0;class#SQLEngine#0" expanded="false" />
+            <element signature="method#retrieveDBSchema#0;class#SQLEngine#0" expanded="false" />
+            <element signature="method#nestQuery#0;class#SQLEngine#0" expanded="false" />
+            <element signature="method#copySelRelts#0;class#SQLEngine#0" expanded="false" />
+            <element signature="method#wrtSql2File#0;class#SQLEngine#0" expanded="false" />
+            <element signature="method#genLogFile#0;class#SQLEngine#0" expanded="false" />
+            <marker date="1497706424390" expanded="true" signature="3758:3788" ph="SELECT TABLE... " />
+            <marker date="1497706424390" expanded="true" signature="3758:3850" ph="SELECT TABLE... COLUMNS" />
           </folding>
         </state>
       </provider>
