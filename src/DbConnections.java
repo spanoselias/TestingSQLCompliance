@@ -409,12 +409,12 @@ public class DbConnections
 
                     if(i != columnCount)
                     {
-                        newRow += rs.getInt(col) + " , ";
+                        newRow += String.valueOf(rs.getInt(col)).trim() + ",";
                         //  System.out.print(rs.getInt(col) + " , ");
                     }
                     else
                     {
-                        newRow += rs.getInt(col) + " , ";
+                        newRow += String.valueOf(rs.getInt(col)).trim();
                         //System.out.print(rs.getInt(col));
                     }
                     tableRes.add(newRow);
@@ -445,7 +445,6 @@ public class DbConnections
 
     }
 
-
     public boolean diff(LinkedList<String> MSServer, LinkedList<String> MySQL, LinkedList<String> OracleDB, LinkedList<String> PostGres )
     {
         if(MSServer.size() != MySQL.size()   || MSServer.size() != PostGres.size())
@@ -455,7 +454,7 @@ public class DbConnections
 
         for(int i=0; i < MSServer.size(); i++)
         {
-            if(MSServer.get(i).compareTo(MySQL.get(i)) != 0   || MSServer.get(i).compareTo(PostGres.get(i))!= 0)
+            if(MSServer.get(i).compareTo(MySQL.get(i)) != 0  || MSServer.get(i).compareTo(PostGres.get(i))!= 0 || MSServer.get(i).compareTo(OracleDB.get(i)) != 0 )
             {
                 System.out.println("Difference is found!");
                 return false;
