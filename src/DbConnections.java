@@ -232,7 +232,8 @@ public class DbConnections
 
                 Class.forName("oracle.jdbc.driver.OracleDriver");
 
-            } catch (ClassNotFoundException e) {
+            } catch (ClassNotFoundException e)
+            {
 
                 System.out.println("Where is your Oracle JDBC Driver?");
                 e.printStackTrace();
@@ -244,12 +245,14 @@ public class DbConnections
 
             Connection connection = null;
 
-            try {
+            try
+            {
 
                 connection = DriverManager.getConnection(
                         "jdbc:oracle:thin:@localhost:1521:orcl", "elias881", "testing1");
 
-            } catch (SQLException e) {
+            } catch (SQLException e)
+            {
 
                 System.out.println("Connection Failed! Check output console");
                 e.printStackTrace();
@@ -263,7 +266,6 @@ public class DbConnections
                 System.out.println("Failed to make connection!");
             }
 
-
             //Oracle does not support 'AS' in the FROM STATEMENT
             sqlQuery.replace("AS", " ");
 
@@ -272,87 +274,22 @@ public class DbConnections
         return mySqlList;
         }
 
-    public  LinkedList<String> connectToMicrosoftSql(String sqlQuery) {
+    public  LinkedList<String> connectToMicrosoftSql(String sqlQuery)
+    {
         Connection conn = null;
         LinkedList<String> mySqlList=null;
         try
         {
             //String dbURL = "jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=testdb";
             String dbURL = "jdbc:sqlserver://localhost; databaseName=testdb";
-            //  String dbURL = "jdbc:sqlserver://localhost;user=elias;password=testing1; databaseName=testdb";
-
-            // Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-
-            // the sql server url
-            // String dbURL = "jdbc:microsoft:sqlserver://HOST:1433;DatabaseName=testdb";
 
             String user = "elias881";
             String pass = "testing1";
             conn = DriverManager.getConnection(dbURL, user, pass);
             // conn = DriverManager.getConnection(dbURL);
 
-        /*    if (conn != null)
-            {
-                DatabaseMetaData dm = (DatabaseMetaData) conn.getMetaData();
-                System.out.println("Driver name: " + dm.getDriverName());
-                System.out.println("Driver version: " + dm.getDriverVersion());
-                System.out.println("Product name: " + dm.getDatabaseProductName());
-                System.out.println("Product version: " + dm.getDatabaseProductVersion());
-            }*/
-
-        /*    DatabaseMetaData md = conn.getMetaData();
-            ResultSet rs = md.getTables(null, null, "R1", null);
-
-
-            // create the java statement
-            Statement st = conn.createStatement();
-
-            // execute the query, and get a java resultset
-            rs = st.executeQuery(sqlQuery);
-
-
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int columnCount = rsmd.getColumnCount();
-
-            System.out.println("**********************************************");
-
-            LinkedList<String> tableRes= new LinkedList<>();
-            String newRow="";
-            while (rs.next())
-            {
-                newRow = "";
-
-                // The column count starts from 1
-                for (int i = 1; i <= columnCount; i++ )
-                {
-                    String col = rsmd.getColumnName(i);
-
-                    if(i != columnCount)
-                    {
-                        newRow += rs.getInt(col) + " , ";
-                      //  System.out.print(rs.getInt(col) + " , ");
-                    }
-                    else
-                    {
-                        newRow += rs.getInt(col) + " , ";
-                        //System.out.print(rs.getInt(col));
-                    }
-                    tableRes.add(newRow);
-                }
-
-                Collections.sort(tableRes);
-                //tableRes.forEach(System.out::println);*/
-
-              mySqlList = execQuery(conn, sqlQuery);
+            mySqlList = execQuery(conn, sqlQuery);
             //System.out.println("MS Server: " + mySqlList.size());
-
-
-          /*  System.out.println("**********************************************");
-
-
-            System.out.println("***********************************************");
-            System.out.println(sqlQuery);
-            System.out.println("**********************************************");*/
 
 
         } catch (SQLException ex)
@@ -384,7 +321,7 @@ public class DbConnections
         {
 
             DatabaseMetaData md = conn.getMetaData();
-            ResultSet rs = md.getTables(null, null, "R1", null);
+            ResultSet rs ;
 
             // create the java statement
             Statement st = conn.createStatement();
@@ -398,6 +335,7 @@ public class DbConnections
             System.out.println("**********************************************");
 
             String newRow="";
+
             while (rs.next())
             {
                 newRow = "";
@@ -409,7 +347,7 @@ public class DbConnections
 
                     if(i == columnCount-1)
                     {
-                        newRow += String.valueOf(rs.getString(col)).trim() + ",";
+                        newRow += String.valueOf(rs.getString(col)).trim()+ ",";
                     }
                     else
                     {
@@ -419,8 +357,6 @@ public class DbConnections
 
                 tableRes.add(newRow);
 
-                //tableRes.forEach(System.out::println);
-             //   System.out.println(tableRes.size());
             }
 
             Collections.sort(tableRes);
@@ -457,11 +393,8 @@ public class DbConnections
         {
             if(MSServer.get(i).compareTo(MySQL.get(i)) != 0  || MSServer.get(i).compareTo(PostGres.get(i))!= 0 || MSServer.get(i).compareTo(OracleDB.get(i)) != 0 )
             {
-             /*   System.out.println("MSServer: " + MSServer.get(i));
-                System.out.println("MySQl:    " + MySQL.get(i));
-                System.out.println("PostGres: " + PostGres.get(i));
-                System.out.println("OracleDB: " + OracleDB.get(i));
-                System.out.println("i: " + i);*/
+
+
                 return false;
 
             }
