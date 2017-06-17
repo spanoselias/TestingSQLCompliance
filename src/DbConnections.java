@@ -402,52 +402,53 @@ public class DbConnections
             {
                 newRow = "";
 
-                // The column count starts from 1
+                // The column count starts
                 for (int i = 1; i <= columnCount; i++ )
                 {
                     String col = rsmd.getColumnLabel(i);
 
-                    if(i != columnCount)
+                    if(i == columnCount-1)
                     {
-                        newRow += String.valueOf(rs.getInt(col)).trim() + ",";
-                        //  System.out.print(rs.getInt(col) + " , ");
+                        newRow += String.valueOf(rs.getString(col)).trim() + ",";
                     }
                     else
                     {
-                        newRow += String.valueOf(rs.getInt(col)).trim();
-                        //System.out.print(rs.getInt(col));
+                        newRow += String.valueOf(rs.getString(col)).trim()+ ",";
                     }
-                    tableRes.add(newRow);
                 }
 
-                Collections.sort(tableRes);
+                tableRes.add(newRow);
+
                 //tableRes.forEach(System.out::println);
              //   System.out.println(tableRes.size());
             }
 
-        } catch (SQLException ex)
+            Collections.sort(tableRes);
+        }
+        catch (SQLException ex)
         {
             ex.printStackTrace();
         } finally
         {
             try
             {
-                if (conn != null && !conn.isClosed()) {
+                if (conn != null && !conn.isClosed())
+                {
                     conn.close();
                 }
-            } catch (SQLException ex)
+            }
+            catch (SQLException ex)
             {
                 ex.printStackTrace();
             }
+
             return tableRes;
         }
-
-
     }
 
     public boolean diff(LinkedList<String> MSServer, LinkedList<String> MySQL, LinkedList<String> OracleDB, LinkedList<String> PostGres )
     {
-        if(MSServer.size() != MySQL.size()   || MSServer.size() != PostGres.size())
+        if(MSServer.size() != MySQL.size() || MSServer.size() != PostGres.size())
         {
             return false;
         }
@@ -456,7 +457,11 @@ public class DbConnections
         {
             if(MSServer.get(i).compareTo(MySQL.get(i)) != 0  || MSServer.get(i).compareTo(PostGres.get(i))!= 0 || MSServer.get(i).compareTo(OracleDB.get(i)) != 0 )
             {
-                System.out.println("Difference is found!");
+             /*   System.out.println("MSServer: " + MSServer.get(i));
+                System.out.println("MySQl:    " + MySQL.get(i));
+                System.out.println("PostGres: " + PostGres.get(i));
+                System.out.println("OracleDB: " + OracleDB.get(i));
+                System.out.println("i: " + i);*/
                 return false;
 
             }
