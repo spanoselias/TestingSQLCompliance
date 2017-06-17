@@ -456,7 +456,6 @@ public class SQLEngine
         LinkedList<String> oracleDb = dbcon.connectToMySql(sql);
         LinkedList<String> postgres = dbcon.connectToMicrosoftSql(sql);
 
-
        if( dbcon.diff(MSVal,myVal , oracleDb, postgres) == false )
        {
             System.out.println("Difference found!!!");

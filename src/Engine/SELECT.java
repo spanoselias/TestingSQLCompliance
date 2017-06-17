@@ -150,7 +150,7 @@ public class SELECT
                 {
                     for(int i=0; i< genRandChoice(5); i++)
                     {
-                        stm += ", " + newCom.getArithCompr(frmRels);
+                        stm += ", " + newCom.getArithCompr(frmRels) + " AS ART" + i ;
                     }
                 }
 
@@ -161,7 +161,7 @@ public class SELECT
 
                  for(int i=0; i< genRandChoice(5); i++)
                  {
-                     stm += ", " + genFunctions.getSelectAggr(aggrAttrsIn);
+                     stm += ", " + genFunctions.getSelectAggr(aggrAttrsIn) + " AS AGGR" + i ;
                  }
              }
 

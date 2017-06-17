@@ -1,7 +1,9 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.*;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedList;
+import java.sql.Date;
+import java.util.*;
 
 /*import java.sql.DriverManager;
 import java.sql.Connection;
@@ -280,7 +282,7 @@ public class DbConnections
         LinkedList<String> mySqlList=null;
         try
         {
-            //String dbURL = "jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=testdb";
+
             String dbURL = "jdbc:sqlserver://localhost; databaseName=testdb";
 
             String user = "elias881";
@@ -313,13 +315,57 @@ public class DbConnections
     }
 
 
+    public static void genCsv( String row)
+    {
+
+
+        BufferedWriter bw = null;
+        FileWriter fw = null;
+        String path = "C:\\Users\\Elias\\Documents\\TestingSQLCompliance\\src\\";
+
+
+
+        String filename = path + "1.csv";
+
+            try
+            {
+                fw = new FileWriter(filename, true);
+                bw = new BufferedWriter(fw);
+                bw.write(row);
+                bw.write("\n");
+
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+
+            }
+            finally
+            {
+                try
+                {
+
+                    if (bw != null)
+                        bw.close();
+
+                    if (fw != null)
+                        fw.close();
+
+                } catch (IOException ex) {
+
+                    ex.printStackTrace();
+
+                }
+
+            }
+
+    }
+
     public LinkedList<String> execQuery(Connection conn, String sqlQry)
     {
         LinkedList<String> tableRes= new LinkedList<>();
 
         try
         {
-
             DatabaseMetaData md = conn.getMetaData();
             ResultSet rs ;
 
@@ -332,7 +378,7 @@ public class DbConnections
             ResultSetMetaData rsmd = rs.getMetaData();
             int columnCount = rsmd.getColumnCount();
 
-            System.out.println("**********************************************");
+          //  System.out.println("**********************************************");
 
             String newRow="";
 
@@ -384,7 +430,7 @@ public class DbConnections
 
     public boolean diff(LinkedList<String> MSServer, LinkedList<String> MySQL, LinkedList<String> OracleDB, LinkedList<String> PostGres )
     {
-        if(MSServer.size() != MySQL.size() || MSServer.size() != PostGres.size())
+        if(MSServer.size() != MySQL.size() || MSServer.size() != PostGres.size() || MSServer.size() != OracleDB.size())
         {
             return false;
         }
@@ -393,8 +439,11 @@ public class DbConnections
         {
             if(MSServer.get(i).compareTo(MySQL.get(i)) != 0  || MSServer.get(i).compareTo(PostGres.get(i))!= 0 || MSServer.get(i).compareTo(OracleDB.get(i)) != 0 )
             {
-
-
+                System.out.println("MSServer: " + MSServer.get(i));
+                System.out.println("MySQl:    " + MySQL.get(i));
+                System.out.println("PostGres: " + PostGres.get(i));
+                System.out.println("OracleDB: " + OracleDB.get(i));
+                System.out.println("i: " + i);
                 return false;
 
             }
@@ -415,6 +464,7 @@ public class DbConnections
         connectToMicrosoftSql(sqlquery);
         System.out.println("*****************");
     }
+
 
     }
 
