@@ -393,11 +393,11 @@ public class DbConnections
 
                     if(i == columnCount-1)
                     {
-                        newRow += String.valueOf(rs.getString(col)).trim()+ ",";
+                        newRow += String.valueOf(rs.getString(col)).trim().split(".")[0] + ",";
                     }
                     else
                     {
-                        newRow += String.valueOf(rs.getString(col)).trim()+ ",";
+                        newRow += String.valueOf(rs.getString(col)).trim().split(".")[0] + ",";
                     }
                 }
 
