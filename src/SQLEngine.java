@@ -63,6 +63,7 @@ public class SQLEngine
             confPar.user =   prop.getProperty( "user" ) ;
             confPar.pass =   prop.getProperty( "pass" ) ;
             confPar.dbName =   prop.getProperty( "dbName" ) ;
+            confPar.DBMS = prop.getProperty( "DBMS" ) ;
 
             //It retrieves all the relations with their associated attributes from mysql database
             retrieveDBSchema(confPar.relationsAttrs, confPar);
@@ -123,7 +124,15 @@ public class SQLEngine
 
         try
         {
-            Class.forName("com.mysql.jdbc.Driver");
+            if(confIn.DBMS.compareTo("mysql") == 0)
+            {
+                Class.forName("com.mysql.jdbc.Driver");
+            }
+            else
+            {
+                Class.forName("org.postgresql.Driver");
+            }
+
         }
         catch (ClassNotFoundException e)
         {
@@ -134,8 +143,18 @@ public class SQLEngine
 
         try
         {
-            conn = DriverManager
-                    .getConnection(connStr,confIn.user, confIn.pass);
+
+            if(confIn.DBMS.compareTo("mysql") == 0)
+            {
+                conn = DriverManager
+                        .getConnection(connStr,confIn.user, confIn.pass);
+            }
+            else
+            {
+
+                conn = DriverManager.getConnection(
+                        "jdbc:postgresql://127.0.0.1:5432/test", confIn.user, confIn.pass);
+            }
 
         }
         catch (SQLException e)
@@ -158,8 +177,21 @@ public class SQLEngine
             rs = st.executeQuery( retSchema );*/
 
             //This sql queries retrieve all the tables with their associated attributes
-            stm = conn.prepareStatement(  "SELECT TABLE_NAME, COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA =?");
-            stm.setString(1, confIn.dbName);
+            if(confIn.DBMS.compareTo("mysql") == 0)
+            {
+                stm = conn.prepareStatement(  "SELECT TABLE_NAME, COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA =?");
+            }
+            else
+            {
+
+                stm = conn.prepareStatement(  "SELECT TABLE_NAME, column_name\n" +
+                        "FROM information_schema.columns\n" +
+                        "where table_schema = 'public' AND\n" +
+                        "table_catalog =?");
+            }
+
+            stm.setString(1, "test");
+
             rs = stm.executeQuery();
 
             ResultSetMetaData rsmd = rs.getMetaData();

@@ -33,5 +33,5 @@ public class ConfParameters
     public String user;
     public String pass;
     public String dbName;
-
+    public String DBMS;
 }
