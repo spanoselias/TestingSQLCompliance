@@ -117,8 +117,9 @@ public class SQLEngine
     public static void retrieveDBSchema( HashMap<String, LinkedList<String>> allRelAttr, ConfParameters confIn )
     {
 
-        //This sql queries retrieve all the tables with their associated attributes
-        String retSchema =  "SELECT TABLE_NAME, COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'testdb'";
+        PreparedStatement stm;
+
+        String connStr = "jdbc:mysql://localhost:3306/" + confIn.dbName;
 
         try
         {
@@ -134,7 +135,7 @@ public class SQLEngine
         try
         {
             conn = DriverManager
-                    .getConnection("jdbc:mysql://localhost:3306/testdb", "elias881", "testing1");
+                    .getConnection(connStr,confIn.user, confIn.pass);
 
         }
         catch (SQLException e)
@@ -151,10 +152,15 @@ public class SQLEngine
             ResultSet rs = md.getTables(null, null, "R1", null);
 
             // create the java statement
-            Statement st = conn.createStatement();
+         /*   Statement st = conn.createStatement();
 
             // execute the query, and get a java resultset
-            rs = st.executeQuery( retSchema );
+            rs = st.executeQuery( retSchema );*/
+
+            //This sql queries retrieve all the tables with their associated attributes
+            stm = conn.prepareStatement(  "SELECT TABLE_NAME, COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA =?");
+            stm.setString(1, confIn.dbName);
+            rs = stm.executeQuery();
 
             ResultSetMetaData rsmd = rs.getMetaData();
             int columnCount = rsmd.getColumnCount();

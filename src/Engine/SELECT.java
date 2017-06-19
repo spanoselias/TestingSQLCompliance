@@ -38,7 +38,6 @@ public class SELECT
     private boolean isDistinct;
     private boolean isAllAttrs;
 
-
     public SELECT(boolean isDistinctIn, boolean isAttrsIn,
                       LinkedList<String> aliasIn, int subqueryIn, HashMap<String, LinkedList<String>> allRelAttrsIn, ConfParameters confpar )
     {

@@ -7,7 +7,6 @@ import java.util.LinkedList;
  */
 public class SQLQURERY
 {
-
     public SQLQURERY()
     {
 
@@ -208,7 +207,6 @@ public class SQLQURERY
 
         return stm;
     }
-
 
     public LinkedList<String> copySelRelts(LinkedList<String> curSelRels, LinkedList<String> newRelts)
     {
