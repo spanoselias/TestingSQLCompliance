@@ -15,21 +15,22 @@ public class OPERATORS
     //This hashMap will be used to store all the attributes for each relation
     HashMap<String, LinkedList<String>> relationsAttrs;
 
-
     private LinkedList<String> oper1;
 
     public OPERATORS(ConfParameters confParIn)
     {
-
         this.oper1 = new LinkedList<>();
         this.oper1.add("UNION");
         this.oper1.add("UNION ALL");
         this.oper1.add("INTERSECT");
         this.oper1.add("INTERSECT ALL");
+        this.oper1.add("EXCEPT");
+        this.oper1.add("EXCEPT ALL");
     }
 
     public String getOper(LinkedList<String> frmRelts)
     {
+        stm = oper1.get(getRandChoice(oper1.size()));
 
         return stm;
     }

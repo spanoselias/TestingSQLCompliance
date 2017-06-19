@@ -15,7 +15,6 @@ public class SQLQURERY
 
     public QRYREPRES aggrGuery(   long uniqID , ConfParameters confPar)
     {
-
         QRYREPRES res = new QRYREPRES();
 
         LinkedList<String> alias =  confPar.genAlias;
@@ -83,7 +82,7 @@ public class SQLQURERY
         return res;
     }
 
-    public String genCompQuery(int subqry, LinkedList<String> frmRelts, long uniqID, boolean isNest, boolean isOneAttr,   ConfParameters confPar)
+    public String genCompQuery(int subqry, LinkedList<String> frmRelts, long uniqID, boolean isNest, boolean isOneAttr, ConfParameters confPar)
     {
         LinkedList<String> alias =  confPar.genAlias;
 
@@ -187,6 +186,29 @@ public class SQLQURERY
 
         return sqlRep;
     }
+
+    public String operQuery(long uniqID, ConfParameters confPar)
+    {
+        OPERATORS opert = new OPERATORS(confPar);
+
+        String stm="";
+        QRYREPRES res=null;
+
+        String outterQry;
+        SQLQURERY newSQL = new SQLQURERY();
+
+        res = newSQL.genQuery(null,uniqID, false, false, confPar);
+        outterQry = res.qryStr;
+
+        stm +=outterQry + "\n " + opert.getOper(null) + "\n";
+
+        res = newSQL.genQuery(null,uniqID, false, false, confPar);
+        outterQry = res.qryStr;
+        stm += outterQry;
+
+        return stm;
+    }
+
 
     public LinkedList<String> copySelRelts(LinkedList<String> curSelRels, LinkedList<String> newRelts)
     {

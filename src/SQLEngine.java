@@ -346,7 +346,7 @@ public class SQLEngine
         SQLQURERY newSQL = new SQLQURERY();
 
 
-        while(true)
+     /*   while(true)
         {
 
             pick = genRandChoice(4);
@@ -386,7 +386,9 @@ public class SQLEngine
 
             genLogFile(qry);
 
-        }
+        }*/
+
+        System.out.println( newSQL.operQuery(uniqID, confPar) );
 
 
 
