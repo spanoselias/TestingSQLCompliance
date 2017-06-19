@@ -30,4 +30,8 @@ public class ConfParameters
 
     public LinkedList<String> genAlias = new LinkedList<>();
 
+    public String user;
+    public String pass;
+    public String dbName;
+
 }
