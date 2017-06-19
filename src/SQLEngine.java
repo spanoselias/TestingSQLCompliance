@@ -35,20 +35,7 @@ public class SQLEngine
 
             //We read all the relations from the configuration file. Then, we
             //store each relation in the HashMap
-       /*   String[] relations = prop.getProperty("relations").split(",");
-            String[] attributes = prop.getProperty("attributes").split(",");
-            for (String relation : relations)
-            {
-                LinkedList<String> attrList = new LinkedList<>();
-                for (String attr : attributes)
-                {
-                   attrList.add(attr);
-                }
 
-                //We insert the relation (as key) in the hashMap, and a likedlist that stores all the
-                //attributes for the specific relation
-                relAttrs.put(relation, attrList);
-            }*/
 
             //It retrieves the parameters from the configuration file and store them
             //to the appropriate variables
@@ -83,11 +70,13 @@ public class SQLEngine
                     e.printStackTrace();
                 }
             }
+
+            confPar.genAlias = genAlias();
+
+            return confPar;
         }
 
-        confPar.genAlias = genAlias();
 
-        return confPar;
     }
 
     /**
@@ -118,6 +107,8 @@ public class SQLEngine
     public static void retrieveDBSchema( HashMap<String, LinkedList<String>> allRelAttr, ConfParameters confIn )
     {
 
+        boolean unable2Conn=false;
+
         PreparedStatement stm;
 
         String connStr = "jdbc:mysql://localhost:3306/" + confIn.dbName;
@@ -136,14 +127,15 @@ public class SQLEngine
         }
         catch (ClassNotFoundException e)
         {
+            unable2Conn = true;
             e.printStackTrace();
+
         }
 
         Connection conn = null;
 
-        try
-        {
-
+       try
+       {
             if(confIn.DBMS.compareTo("mysql") == 0)
             {
                 conn = DriverManager
@@ -156,17 +148,9 @@ public class SQLEngine
                         "jdbc:postgresql://127.0.0.1:5432/test", confIn.user, confIn.pass);
             }
 
-        }
-        catch (SQLException e)
-        {
-            System.out.println("Connection Failed! Check output console");
-            e.printStackTrace();
-        }
-
         LinkedList<String> tableRes= new LinkedList<>();
 
-        try
-        {
+
             DatabaseMetaData md = conn.getMetaData( );
             ResultSet rs = md.getTables(null, null, "R1", null);
 
@@ -231,13 +215,34 @@ public class SQLEngine
         }
         catch (SQLException ex)
         {
+            unable2Conn = true;
             ex.printStackTrace();
         }
 
         finally
         {
+            if(unable2Conn == true)
+            {
+                Properties prop = new Properties();
+                String[] relations = prop.getProperty("relations").split(",");
+                String[] attributes = prop.getProperty("attributes").split(",");
+                for (String relation : relations)
+                {
+                    LinkedList<String> attrList = new LinkedList<>();
+                    for (String attr : attributes)
+                    {
+                        attrList.add(attr);
+                    }
+
+                    //We insert the relation (as key) in the hashMap, and a likedlist that stores all the
+                    //attributes for the specific relation
+                    allRelAttr.put(relation, attrList);
+                }
+            }
+
             try
             {
+
                 if (conn != null && !conn.isClosed())
                 {
                     conn.close();
@@ -247,7 +252,6 @@ public class SQLEngine
                 ex.printStackTrace();
             }
         }
-
     }
 
     public static void wrtSql2File(String filename, String sql)
@@ -384,10 +388,7 @@ public class SQLEngine
         SQLQURERY newSQL = new SQLQURERY();
 
 
-     /*   while(true)
-        {
-
-            pick = genRandChoice(4);
+        pick = genRandChoice(4);
 
         //The option is given as input parameter to the program
         switch(pick)
@@ -420,14 +421,9 @@ public class SQLEngine
 
 
           //  String sql = nestQuery(uniqID, confPar);
-            wrtSql2File("rand.sql",qry);
+          //  wrtSql2File("rand.sql",qry);
 
-            genLogFile(qry);
-
-        }*/
-
-        System.out.println( newSQL.operQuery(uniqID, confPar) );
-
+            //genLogFile(qry);
 
 
     }
