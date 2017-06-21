@@ -129,7 +129,6 @@ public class SQLEngine
         {
             unable2Conn = true;
             e.printStackTrace();
-
         }
 
         Connection conn = null;

@@ -27,20 +27,21 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/test</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="IBM DB2" uuid="83da5a5b-8897-47e7-807a-594e8ee0f5ea">
-      <driver-ref>db2</driver-ref>
-      <jdbc-driver>com.ibm.db2.jcc.DB2Driver</jdbc-driver>
-      <jdbc-url>jdbc:db2:testdb10</jdbc-url>
-      <driver-properties>
-        <property name="retrieveMessagesFromServerOnGetMessage" value="true" />
-      </driver-properties>
-    </data-source>
     <data-source source="LOCAL" name="Oracle" uuid="a4163fb4-19ed-4e58-b4dc-8b44440bffd4">
       <driver-ref>oracle</driver-ref>
       <synchronize>true</synchronize>
       <auto-commit>false</auto-commit>
       <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
       <jdbc-url>jdbc:oracle:thin:@localhost:1521:orcl</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="testdb@localhost" uuid="4a6ddb4a-c52b-4de7-aaf2-32ca223a9628">
+      <driver-ref>db2</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.ibm.db2.jcc.DB2Driver</jdbc-driver>
+      <jdbc-url>jdbc:db2://localhost:50000/testdb</jdbc-url>
+      <driver-properties>
+        <property name="retrieveMessagesFromServerOnGetMessage" value="true" />
+      </driver-properties>
     </data-source>
   </component>
 </project>

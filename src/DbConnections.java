@@ -108,7 +108,7 @@ public class DbConnections
     {
         String jdbcClassName = "com.ibm.db2.jcc.DB2Driver";
 
-        String url = "jdbc:db2://localhost:50000/testdb10";
+        String url = "jdbc:db2://localhost:50000/testdb";
         String user = "elias881";
         String password = "testing1";
 
@@ -140,7 +140,7 @@ public class DbConnections
             }*/
         }
 
-        String schemaName = "elias881";
+        String schemaName = "ELIAS";
         try
         {
 
@@ -153,8 +153,10 @@ public class DbConnections
             st.executeUpdate("set current sqlid = " + schemaName);
 
             // execute the query, and get a java resultset
-            rs = st.executeQuery("SELECT A FROM r1");
+           // rs = st.executeQuery("SELECT A FROM r1");
 
+           // rs = st.executeQuery(" SELECT  NAME FROM  SYSIBM.SYSTABLES WHERE creator = 'ELIAS'");
+            rs = st.executeQuery(" SELECT  A FROM  r1");
 
           //  DatabaseMetaData md = conn.getMetaData();
            // ResultSet rs = md.getTables(null, null, "R1", null);
