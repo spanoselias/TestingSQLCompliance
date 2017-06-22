@@ -415,6 +415,11 @@ public class SQLEngine
                 qry = res1.qryStr;
                 break;
         }
+
+
+         /*   QRYREPRES res1 = newSQL.operQuery(null,uniqID, false, false, confPar);
+            qry = res1.qryStr;*/
+
             System.out.println(qry);
             wrtSql2File("rand.sql",qry);
 

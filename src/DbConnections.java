@@ -440,11 +440,11 @@ public class DbConnections
         {
             if(MSServer.get(i).compareTo(MySQL.get(i)) != 0  || MSServer.get(i).compareTo(PostGres.get(i))!= 0 || MSServer.get(i).compareTo(OracleDB.get(i)) != 0 )
             {
-                System.out.println("MSServer: " + MSServer.get(i));
+             /*   System.out.println("MSServer: " + MSServer.get(i));
                 System.out.println("MySQl:    " + MySQL.get(i));
                 System.out.println("PostGres: " + PostGres.get(i));
                 System.out.println("OracleDB: " + OracleDB.get(i));
-                System.out.println("i: " + i);
+                System.out.println("i: " + i);*/
                 return false;
 
             }

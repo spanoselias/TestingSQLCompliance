@@ -12,6 +12,38 @@ public class SQLQURERY
 
     }
 
+    public QRYREPRES operQuery( LinkedList<String> frmRelts, long uniqID, boolean isNest, boolean isOneAttr ,  ConfParameters confPar)
+    {
+
+        QRYREPRES res = new QRYREPRES();
+        OPERATORS oper = new OPERATORS(confPar);
+
+        LinkedList<String> alias =  confPar.genAlias;
+
+        String finalQry="";
+
+        FROM frmQry = new FROM(alias, confPar.relationsAttrs, confPar);
+        WHERE whrQry = new WHERE(confPar.relationsAttrs);
+        SELECT selQry = new SELECT(false,false, alias, 2, confPar.relationsAttrs, confPar);
+
+        String stm = frmQry.getFrom( (++uniqID) );
+        finalQry = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, confPar.repAlias, false, null);
+        finalQry += "\n" + stm + "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),isNest,  confPar, confPar.maxCondWhere);
+
+        finalQry += "\n" + oper.getOper(frmRelts) + "\n";
+
+        stm = frmQry.getFrom( (++uniqID) );
+        finalQry += selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, confPar.repAlias, false, null);
+        finalQry += "\n" + stm + "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),isNest,  confPar, confPar.maxCondWhere);
+
+
+        res.qryStr = finalQry;
+        res.isOneAt = whrQry.getOneAttr();
+        res.selRelts = frmQry.getSelectedTables();
+
+        return res;
+    }
+
     public QRYREPRES aggrGuery(   long uniqID , ConfParameters confPar)
     {
         QRYREPRES res = new QRYREPRES();
