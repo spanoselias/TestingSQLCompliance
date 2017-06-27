@@ -26,6 +26,8 @@ public class SQLEngine
 
         ConfParameters confPar = new ConfParameters();
 
+        HashMap<String, LinkedList<String>> allRelAttr = new HashMap<>();
+
         try
         {
             input = new FileInputStream("config.properties");
@@ -51,6 +53,7 @@ public class SQLEngine
             confPar.pass =   prop.getProperty( "pass" ) ;
             confPar.dbName =   prop.getProperty( "dbName" ) ;
             confPar.DBMS = prop.getProperty( "DBMS" ) ;
+
 
             //It retrieves all the relations with their associated attributes from mysql database
             retrieveDBSchema(confPar.relationsAttrs, confPar);
@@ -131,6 +134,9 @@ public class SQLEngine
             e.printStackTrace();
         }
 
+    finally
+        {
+
         Connection conn = null;
 
        try
@@ -147,7 +153,7 @@ public class SQLEngine
                         "jdbc:postgresql://127.0.0.1:5432/test", confIn.user, confIn.pass);
             }
 
-        LinkedList<String> tableRes= new LinkedList<>();
+              LinkedList<String> tableRes= new LinkedList<>();
 
 
             DatabaseMetaData md = conn.getMetaData( );
@@ -215,14 +221,26 @@ public class SQLEngine
         catch (SQLException ex)
         {
             unable2Conn = true;
-            ex.printStackTrace();
+          //  ex.printStackTrace();
         }
 
-        finally
+    finally
+    {
+
+        try
         {
+            //In case where the schema of the DB cannot be retrieved from the current databases, then, we retrieve
+            // it from the configuration file
             if(unable2Conn == true)
             {
                 Properties prop = new Properties();
+                InputStream input = null;
+
+                input = new FileInputStream("config.properties");
+
+                // load a properties file
+                prop.load(input);
+
                 String[] relations = prop.getProperty("relations").split(",");
                 String[] attributes = prop.getProperty("attributes").split(",");
                 for (String relation : relations)
@@ -237,19 +255,25 @@ public class SQLEngine
                     //attributes for the specific relation
                     allRelAttr.put(relation, attrList);
                 }
+
+                confIn.relationsAttrs = allRelAttr;
             }
-
-            try
+        }
+            catch (IOException ex)
             {
-
+                System.out.println("Unable to read the configuration file");
+                ex.printStackTrace();
+            }
+            try{
                 if (conn != null && !conn.isClosed())
                 {
                     conn.close();
                 }
             } catch (SQLException ex)
             {
-                ex.printStackTrace();
+              //  ex.printStackTrace();
             }
+        }
         }
     }
 
@@ -366,16 +390,10 @@ public class SQLEngine
 
         HashMap<String, LinkedList<String>> allRelAttr = new HashMap<>();
 
-
         //It retrieves parameters from the configuration file
         ConfParameters confPar = readConfFile();
 
-        //It retrieves all the relations which their associated attributes from MySQL database
-        retrieveDBSchema(allRelAttr, confPar );
-
         long uniqID=0;
-
-        int option  = Integer.parseInt(args[0]);
 
         LinkedList<String> frmRelts = new LinkedList<>();
 
@@ -383,9 +401,7 @@ public class SQLEngine
 
         int pick;
 
-
         SQLQURERY newSQL = new SQLQURERY();
-
 
         pick = genRandChoice(4);
 

@@ -33,7 +33,6 @@ public  class HAVING
 
     public String genHaving(LinkedList<String> frmRelts)
     {
-
         stm += genFunctions.getAttrComparison(frmRelts);
 
         return stm;
