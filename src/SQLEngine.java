@@ -178,7 +178,7 @@ public class SQLEngine
                         "table_catalog =?");
             }
 
-            stm.setString(1, "test");
+            stm.setString(1, confIn.dbName);
 
             rs = stm.executeQuery();
 
@@ -223,7 +223,13 @@ public class SQLEngine
                 }
             }
 
-        }
+           //In case where there is only one relation
+           if(curAttr.isEmpty() == false && prevName != "")
+           {
+               allRelAttr.put(prevName, ((LinkedList<String>)curAttr.clone()));
+           }
+
+       }
         catch (SQLException ex)
         {
             unable2Conn = true;
