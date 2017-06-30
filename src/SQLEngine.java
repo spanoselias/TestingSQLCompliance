@@ -79,7 +79,6 @@ public class SQLEngine
             return confPar;
         }
 
-
     }
 
     /**
