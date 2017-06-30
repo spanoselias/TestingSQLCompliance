@@ -149,7 +149,7 @@ public class SQLEngine
             {
 
                 conn = DriverManager.getConnection(
-                        "jdbc:postgresql://127.0.0.1:5432/test", confIn.user, confIn.pass);
+                        "jdbc:postgresql://127.0.0.1:5432/" + confIn.dbName, confIn.user, confIn.pass);
             }
 
               LinkedList<String> tableRes= new LinkedList<>();
@@ -191,6 +191,13 @@ public class SQLEngine
             String prevName = "";
 
             LinkedList<String> curAttr = new LinkedList<>();
+
+            if(rs.next() == false)
+            {
+                System.out.println("Error!!There is NO SCHEMA TO RETRIEVE!\nThe schema is retrieved from the configuration file");
+                unable2Conn=true;
+            }
+
             while (rs.next())
             {
 
