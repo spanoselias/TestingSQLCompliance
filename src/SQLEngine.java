@@ -276,7 +276,8 @@ public class SQLEngine
                 System.out.println("Unable to read the configuration file");
                 ex.printStackTrace();
             }
-            try{
+            try
+            {
                 if (conn != null && !conn.isClosed())
                 {
                     conn.close();

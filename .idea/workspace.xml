@@ -4,9 +4,9 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="Fixing a bug on retrieving the DB schema">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/linRun.sh" />
+    <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SQLEngine.java" afterPath="$PROJECT_DIR$/src/SQLEngine.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -59,8 +59,8 @@
           <file leaf-file-name="SQLQURERY.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Engine/SQLQURERY.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-412">
-                  <caret line="144" column="13" lean-forward="true" selection-start-line="144" selection-start-column="13" selection-end-line="144" selection-end-column="13" />
+                <state relative-caret-position="107">
+                  <caret line="162" column="5" lean-forward="true" selection-start-line="162" selection-start-column="5" selection-end-line="162" selection-end-column="5" />
                   <folding>
                     <element signature="method#operQuery#0;class#SQLQURERY#0" expanded="false" />
                     <element signature="method#aggrGuery#0;class#SQLQURERY#0" expanded="false" />
@@ -72,25 +72,25 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="SQLEngine.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="SQLEngine.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/SQLEngine.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1197">
-                  <caret line="224" column="0" lean-forward="true" selection-start-line="224" selection-start-column="0" selection-end-line="224" selection-end-column="0" />
+                <state relative-caret-position="588">
+                  <caret line="279" column="12" lean-forward="false" selection-start-line="279" selection-start-column="12" selection-end-line="279" selection-end-column="12" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="method#genAlias#0;class#SQLEngine#0" expanded="false" />
                     <element signature="method#wrtSql2File#0;class#SQLEngine#0" expanded="false" />
                     <element signature="method#genLogFile#0;class#SQLEngine#0" expanded="false" />
                     <element signature="method#genRandChoice#0;class#SQLEngine#0" expanded="false" />
-                    <marker date="1498855068352" expanded="true" signature="4910:4994" ph="SELECT TABLE... COLUMNS" />
-                    <marker date="1498855068352" expanded="true" signature="5091:5294" ph="SELECT TABLE... columns" />
+                    <marker date="1498897253854" expanded="true" signature="4910:4994" ph="SELECT TABLE... COLUMNS" />
+                    <marker date="1498897253854" expanded="true" signature="5091:5294" ph="SELECT TABLE... columns" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="linRun.sh" pinned="false" current-in-tab="true">
+          <file leaf-file-name="linRun.sh" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/linRun.sh">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="63">
@@ -118,15 +118,15 @@
             <entry file="file://$PROJECT_DIR$/src/SQLEngine.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="338">
-                  <caret line="405" column="48" lean-forward="false" selection-start-line="405" selection-start-column="48" selection-end-line="405" selection-end-column="48" />
+                  <caret line="406" column="48" lean-forward="false" selection-start-line="406" selection-start-column="48" selection-end-line="406" selection-end-column="48" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="method#genAlias#0;class#SQLEngine#0" expanded="false" />
                     <element signature="method#wrtSql2File#0;class#SQLEngine#0" expanded="false" />
                     <element signature="method#genLogFile#0;class#SQLEngine#0" expanded="false" />
                     <element signature="method#genRandChoice#0;class#SQLEngine#0" expanded="false" />
-                    <marker date="1498855068352" expanded="true" signature="4910:4994" ph="SELECT TABLE... COLUMNS" />
-                    <marker date="1498855068352" expanded="true" signature="5091:5294" ph="SELECT TABLE... columns" />
+                    <marker date="1498897253854" expanded="true" signature="4910:4994" ph="SELECT TABLE... COLUMNS" />
+                    <marker date="1498897253854" expanded="true" signature="5091:5294" ph="SELECT TABLE... columns" />
                   </folding>
                 </state>
               </provider>
@@ -249,9 +249,9 @@
         <option value="$PROJECT_DIR$/src/Engine/HAVING.java" />
         <option value="$PROJECT_DIR$/scripts/postGres.sql" />
         <option value="$PROJECT_DIR$/src/config.properties" />
-        <option value="$PROJECT_DIR$/src/SQLEngine.java" />
         <option value="$PROJECT_DIR$/scripts/runwin.bat" />
         <option value="$PROJECT_DIR$/src/linRun.sh" />
+        <option value="$PROJECT_DIR$/src/SQLEngine.java" />
       </list>
     </option>
   </component>
@@ -981,14 +981,7 @@
       <workItem from="1497868769079" duration="25987000" />
       <workItem from="1498147245184" duration="359000" />
       <workItem from="1498205208496" duration="17572000" />
-      <workItem from="1498812371976" duration="15758000" />
-    </task>
-    <task id="LOCAL-00044" summary="Supporting probability for comparison in the where clause">
-      <created>1496746580354</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1496746580354</updated>
+      <workItem from="1498812371976" duration="15977000" />
     </task>
     <task id="LOCAL-00045" summary="Implemented: retrieve database schema from DBMS">
       <created>1496787060961</created>
@@ -1326,11 +1319,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498895746389</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="Fixing a bug on retrieving the DB schema">
+      <created>1498897039705</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1498897039705</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="417878000" />
+    <option name="totallyTimeSpent" value="418097000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
@@ -1472,7 +1472,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/SQLEngine.java</url>
-          <line>431</line>
+          <line>432</line>
           <properties />
           <option name="timeStamp" value="250" />
         </line-breakpoint>
@@ -1550,13 +1550,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/SQLEngine.java</url>
-          <line>455</line>
+          <line>456</line>
           <properties />
           <option name="timeStamp" value="295" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/SQLEngine.java</url>
-          <line>420</line>
+          <line>421</line>
           <properties />
           <option name="timeStamp" value="297" />
         </line-breakpoint>
@@ -1568,7 +1568,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/SQLEngine.java</url>
-          <line>351</line>
+          <line>352</line>
           <properties />
           <option name="timeStamp" value="300" />
         </line-breakpoint>
@@ -1616,7 +1616,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/SQLEngine.java</url>
-          <line>447</line>
+          <line>448</line>
           <properties />
           <option name="timeStamp" value="327" />
         </line-breakpoint>
@@ -2120,17 +2120,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Engine/SQLQURERY.java">
+    <entry file="file://$PROJECT_DIR$/scripts/runwin.bat">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-412">
-          <caret line="144" column="13" lean-forward="true" selection-start-line="144" selection-start-column="13" selection-end-line="144" selection-end-column="13" />
-          <folding>
-            <element signature="method#operQuery#0;class#SQLQURERY#0" expanded="false" />
-            <element signature="method#aggrGuery#0;class#SQLQURERY#0" expanded="false" />
-            <element signature="method#genQuery#0;class#SQLQURERY#0" expanded="false" />
-            <element signature="method#nestQuery#0;class#SQLQURERY#0" expanded="false" />
-            <element signature="method#operQuery#1;class#SQLQURERY#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="105">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2142,26 +2136,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/runwin.bat">
+    <entry file="file://$PROJECT_DIR$/src/Engine/SQLQURERY.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SQLEngine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1197">
-          <caret line="224" column="0" lean-forward="true" selection-start-line="224" selection-start-column="0" selection-end-line="224" selection-end-column="0" />
+        <state relative-caret-position="107">
+          <caret line="162" column="5" lean-forward="true" selection-start-line="162" selection-start-column="5" selection-end-line="162" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#genAlias#0;class#SQLEngine#0" expanded="false" />
-            <element signature="method#wrtSql2File#0;class#SQLEngine#0" expanded="false" />
-            <element signature="method#genLogFile#0;class#SQLEngine#0" expanded="false" />
-            <element signature="method#genRandChoice#0;class#SQLEngine#0" expanded="false" />
-            <marker date="1498855068352" expanded="true" signature="4910:4994" ph="SELECT TABLE... COLUMNS" />
-            <marker date="1498855068352" expanded="true" signature="5091:5294" ph="SELECT TABLE... columns" />
+            <element signature="method#operQuery#0;class#SQLQURERY#0" expanded="false" />
+            <element signature="method#aggrGuery#0;class#SQLQURERY#0" expanded="false" />
+            <element signature="method#genQuery#0;class#SQLQURERY#0" expanded="false" />
+            <element signature="method#nestQuery#0;class#SQLQURERY#0" expanded="false" />
+            <element signature="method#operQuery#1;class#SQLQURERY#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2171,6 +2155,22 @@
         <state relative-caret-position="63">
           <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SQLEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="279" column="12" lean-forward="false" selection-start-line="279" selection-start-column="12" selection-end-line="279" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#genAlias#0;class#SQLEngine#0" expanded="false" />
+            <element signature="method#wrtSql2File#0;class#SQLEngine#0" expanded="false" />
+            <element signature="method#genLogFile#0;class#SQLEngine#0" expanded="false" />
+            <element signature="method#genRandChoice#0;class#SQLEngine#0" expanded="false" />
+            <marker date="1498897253854" expanded="true" signature="4910:4994" ph="SELECT TABLE... COLUMNS" />
+            <marker date="1498897253854" expanded="true" signature="5091:5294" ph="SELECT TABLE... columns" />
+          </folding>
         </state>
       </provider>
     </entry>
