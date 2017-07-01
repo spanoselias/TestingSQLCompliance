@@ -4,9 +4,9 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="">
+    <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="Fixing a bug on retrieving the DB schema">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/linRun.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/runwin.bat" afterPath="$PROJECT_DIR$/scripts/runwin.bat" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -90,11 +90,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="runwin.bat" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/scripts/runwin.bat">
+          <file leaf-file-name="linRun.sh" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/linRun.sh">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="105">
-                  <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+                <state relative-caret-position="63">
+                  <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -201,7 +201,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/2eb0cf64-f3a4-4c43-a5e5-64ea370ec7d1/console_1.sql" />
         <option value="$PROJECT_DIR$/src/ConfParameters.java" />
         <option value="$PROJECT_DIR$/src/Engine/FROM.java" />
         <option value="$PROJECT_DIR$/src/rand_sql" />
@@ -252,6 +251,7 @@
         <option value="$PROJECT_DIR$/src/config.properties" />
         <option value="$PROJECT_DIR$/src/SQLEngine.java" />
         <option value="$PROJECT_DIR$/scripts/runwin.bat" />
+        <option value="$PROJECT_DIR$/src/linRun.sh" />
       </list>
     </option>
   </component>
@@ -327,20 +327,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TestingSQLCompliance" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TestingSQLCompliance" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -995,14 +981,7 @@
       <workItem from="1497868769079" duration="25987000" />
       <workItem from="1498147245184" duration="359000" />
       <workItem from="1498205208496" duration="17572000" />
-      <workItem from="1498812371976" duration="15023000" />
-    </task>
-    <task id="LOCAL-00043" summary="Supporting probability for comparison in the where clause">
-      <created>1496746543253</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1496746543253</updated>
+      <workItem from="1498812371976" duration="15758000" />
     </task>
     <task id="LOCAL-00044" summary="Supporting probability for comparison in the where clause">
       <created>1496746580354</created>
@@ -1340,11 +1319,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498895542103</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="Fixing a bug on retrieving the DB schema">
+      <created>1498895746389</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1498895746389</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="417143000" />
+    <option name="totallyTimeSpent" value="417878000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
@@ -1766,7 +1752,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="dbDummy://dbtable:/a035fe/d8b5e3d4-692a-4884-ab01-6b19bdad02a5/ELIAS881.R1" />
     <entry file="dbDummy://dbtable:/a035fe/d8b5e3d4-692a-4884-ab01-6b19bdad02a5/ELIAS881.R4" />
     <entry file="dbDummy://dbtable:/a035fe/7279b81a-2a74-4b69-8044-568af7776d0d/test.public.r1">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
@@ -2157,6 +2142,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/runwin.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/SQLEngine.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1197">
@@ -2173,10 +2166,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/runwin.bat">
+    <entry file="file://$PROJECT_DIR$/src/linRun.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+        <state relative-caret-position="63">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
         </state>
       </provider>
