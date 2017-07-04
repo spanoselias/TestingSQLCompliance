@@ -17,71 +17,66 @@ import java.sql.DriverManager;*/
  *
  */
 
-public class DbConnections
+public class ComparisonTool
 {
     public  LinkedList<String> connectToMySql(String sqlQuery)
     {
-
-           // System.out.println("-------- MySQL JDBC Connection Testing ------------");
-
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
             } catch (ClassNotFoundException e)
             {
-            //    System.out.println("Where is your MySQL JDBC Driver?");
-                e.printStackTrace();
-
+                 e.printStackTrace();
             }
 
           //  System.out.println("MySQL JDBC Driver Registered!");
             Connection conn = null;
-
             try
             {
                 conn = DriverManager
                         .getConnection("jdbc:mysql://localhost:3306/testdb", "elias881", "testing1");
 
-            } catch (SQLException e)
+            }
+            catch (SQLException e)
             {
                 System.out.println("Connection Failed! Check output console");
                 e.printStackTrace();
 
             }
-            finally {
-
+            finally
+            {
                 LinkedList<String> mySqlList = execQuery(conn, sqlQuery);
-                //    System.out.println("MySQlResSize: " + mySqlList.size());
+              //System.out.println("MySQlResSize: " + mySqlList.size());
 
                 return mySqlList;
             }
-
         }
 
-    public  void connectToPostgres()
+    public LinkedList<String> connectToPostgres(String sqlQuery)
     {
 
       /*  System.out.println("-------- PostgreSQL "
                 + "JDBC Connection Testing ------------");*/
 
-        try {
-
+        try
+        {
             Class.forName("org.postgresql.Driver");
-
-        } catch (ClassNotFoundException e) {
+        }
+        catch (ClassNotFoundException e)
+        {
 
             System.out.println("Where is your PostgreSQL JDBC Driver? "
                     + "Include in your library path!");
             e.printStackTrace();
-            return;
-
+            //return;
         }
 
         System.out.println("PostgreSQL JDBC Driver Registered!");
 
         Connection connection = null;
 
-        try {
+        try
+        {
 
             connection = DriverManager.getConnection(
                     "jdbc:postgresql://127.0.0.1:5432/testdb", "postgres",
@@ -92,15 +87,25 @@ public class DbConnections
 
             System.out.println("Connection Failed! Check output console");
             e.printStackTrace();
-            return;
 
         }
+        finally
+        {
+            LinkedList<String> mySqlList = execQuery(connection, sqlQuery);
+            //System.out.println("MySQlResSize: " + mySqlList.size());
 
-        if (connection != null) {
+            return mySqlList;
+        }
+
+      /*  if (connection != null)
+        {
             System.out.println("You made it, take control your database now!");
-        } else {
-            System.out.println("Failed to make connection!");
         }
+        else
+        {
+            System.out.println("Failed to make connection!");
+        }*/
+
 
     }
 
@@ -121,9 +126,11 @@ public class DbConnections
             conn = DriverManager.getConnection(url, user, password);
             conn.setAutoCommit(false);
 
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e)
+        {
             e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (SQLException e)
+        {
             e.printStackTrace();
         } finally
         {
@@ -320,12 +327,9 @@ public class DbConnections
     public static void genCsv( String row)
     {
 
-
         BufferedWriter bw = null;
         FileWriter fw = null;
         String path = "C:\\Users\\Elias\\Documents\\TestingSQLCompliance\\src\\";
-
-
 
         String filename = path + "1.csv";
 
@@ -352,7 +356,8 @@ public class DbConnections
                     if (fw != null)
                         fw.close();
 
-                } catch (IOException ex) {
+                } catch (IOException ex)
+                {
 
                     ex.printStackTrace();
 
@@ -431,14 +436,14 @@ public class DbConnections
 
     public boolean diff(LinkedList<String> MSServer, LinkedList<String> MySQL, LinkedList<String> OracleDB, LinkedList<String> PostGres )
     {
-        if(MSServer.size() != MySQL.size() || MSServer.size() != PostGres.size() || MSServer.size() != OracleDB.size())
+        if(MSServer.size() != MySQL.size() || MSServer.size() != PostGres.size())
         {
             return false;
         }
 
         for(int i=0; i < MSServer.size(); i++)
         {
-            if(MSServer.get(i).compareTo(MySQL.get(i)) != 0  || MSServer.get(i).compareTo(PostGres.get(i))!= 0 || MSServer.get(i).compareTo(OracleDB.get(i)) != 0 )
+            if(MSServer.get(i).compareTo(MySQL.get(i)) != 0  || MSServer.get(i).compareTo(PostGres.get(i))!= 0 )
             {
              /*   System.out.println("MSServer: " + MSServer.get(i));
                 System.out.println("MySQl:    " + MySQL.get(i));
@@ -446,10 +451,8 @@ public class DbConnections
                 System.out.println("OracleDB: " + OracleDB.get(i));
                 System.out.println("i: " + i);*/
                 return false;
-
             }
         }
-
         return true;
     }
 
@@ -465,7 +468,6 @@ public class DbConnections
         connectToMicrosoftSql(sqlquery);
         System.out.println("*****************");
     }
-
 
     }
 

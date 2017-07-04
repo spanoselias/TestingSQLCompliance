@@ -9,7 +9,7 @@ public class Debugging
     public static void main (String args[])
     {
 
-        DbConnections conn = new DbConnections();
+        ComparisonTool conn = new ComparisonTool();
         SQLQURERY newSQL = new SQLQURERY();
 
 

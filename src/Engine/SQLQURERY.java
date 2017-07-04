@@ -27,15 +27,14 @@ public class SQLQURERY
         SELECT selQry = new SELECT(false,false, alias, 2, confPar.relationsAttrs, confPar);
 
         String stm = frmQry.getFrom( (++uniqID) );
-        finalQry = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, confPar.repAlias, false, null);
+        finalQry = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, confPar.repAlias, false, null, false);
         finalQry += "\n" + stm + "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),isNest,  confPar, confPar.maxCondWhere);
 
         finalQry += "\n" + oper.getOper(frmRelts) + "\n";
 
         stm = frmQry.getFrom( (++uniqID) );
-        finalQry += selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, confPar.repAlias, false, null);
+        finalQry += selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, confPar.repAlias, false, null, true);
         finalQry += "\n" + stm + "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),isNest,  confPar, confPar.maxCondWhere);
-
 
         res.qryStr = finalQry;
         res.isOneAt = whrQry.getOneAttr();
@@ -62,7 +61,7 @@ public class SQLQURERY
         String stm = frmQry.getFrom( (++uniqID) );
         String grp = grpQry.getGroupBy(frmQry.getSelectedTables());
         String hvg = hvgQry.genHaving(grpQry.getAttrInGroup());
-        tmpStm = selQry.getSelect(grpQry.getAttrInGroup(), false, false, confPar.repAlias, true, grpQry.getAttrInGroup());
+        tmpStm = selQry.getSelect(grpQry.getAttrInGroup(), false, false, confPar.repAlias, true, grpQry.getAttrInGroup(), false);
         finalQry = tmpStm + "\n" + stm;
         finalQry += "\n" + whrQry.getSqlWhere(grpQry.getAttrInGroup(),false,  confPar, 5);
         finalQry += "\n" + grp + "\n" + hvg;
@@ -95,13 +94,13 @@ public class SQLQURERY
         if(frmRelts != null && frmRelts.size() > 0)
         {
             frmRelts = copySelRelts(frmRelts, frmQry.getSelectedTables());
-            tmpStm = selQry.getSelect(frmRelts, isOneAttr, false, 0.1, false, null);
+            tmpStm = selQry.getSelect(frmRelts, isOneAttr, false, 0.1, false, null, false);
             finalQry = tmpStm + "\n" + stm;
             finalQry += "\n" + whrQry.getSqlWhere(frmRelts, isNest, confPar, 5);
         }
         else
         {
-            tmpStm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, confPar.repAlias, false, null);
+            tmpStm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, confPar.repAlias, false, null, false);
             finalQry = tmpStm + "\n" + stm;
             finalQry += "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),isNest,  confPar, 5);
         }
@@ -129,7 +128,7 @@ public class SQLQURERY
             String subName = "Q" + subqry;
 
             String frmstm = frmQry.getFrom(++uniqID);
-            String selstm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, 0.0, false, null);
+            String selstm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, 0.0, false, null, false);
             String whrstm = whrQry.getSqlWhere(frmQry.getSelectedTables(), false,  confPar, 3);
 
             if( (subqry ) > 0 )
@@ -154,7 +153,7 @@ public class SQLQURERY
         }
 
         String stm = from + " , " + substm;
-        String tmpStm = selQry.getSelect(frmRelts, isOneAttr, false, confPar.repAlias, false, null);
+        String tmpStm = selQry.getSelect(frmRelts, isOneAttr, false, confPar.repAlias, false, null, false);
         String finalQry = tmpStm + "\n" + stm;
         finalQry += "\n" + whrQry.getSqlWhere(frmRelts , isNest,  confPar, 2);
 

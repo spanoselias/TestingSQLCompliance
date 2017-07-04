@@ -33,6 +33,11 @@ public class SELECT
     ConfParameters confParSel;
 
 
+    //This variable will be used to count the total number of attributes
+    //in the SELECT CLAUSE.
+    private int countAttr;
+
+
     private FUNCTIONS genFunctions;
 
     private boolean isDistinct;
@@ -64,8 +69,15 @@ public class SELECT
 
     //The isSubqry parameter is important in order to know if this is a subquery parameter to avoid having
     //repetition of alias in the SELECT clause because is not valid
-    public String getSelect( LinkedList<String> frmRels, boolean isOneAttr, boolean isSubqry, double isRepAlias, boolean isAggr, LinkedList<String> aggrAttrsIn)
+    public String getSelect( LinkedList<String> frmRels, boolean isOneAttr, boolean isSubqry, double isRepAlias, boolean isAggr, LinkedList<String> aggrAttrsIn, boolean isOperator)
     {
+        //Operator represents operations like UNION, INTERSECTION.. Thus, we need to track
+        //the number of attributes
+        if(isOperator == false)
+        {
+            this.countAttr = 0;
+        }
+
         aliasAttr.clear();
 
         String stm = "SELECT";
@@ -94,11 +106,31 @@ public class SELECT
             {
                 for (String relName : frmRels)
                 {
-                    //We want to avoid having more attributes than the max attributes
-                    //which is given an a parameter in the configuration file
-                    if(confParSel.maxAttrSel == j)
+
+
+                    if( isOperator == false )
                     {
-                        break;
+                        //We want to avoid having more attributes than the max attributes
+                        //which is given an a parameter in the configuration file
+                        if(confParSel.maxAttrSel == j)
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        if( countAttr == j )
+                        {
+                            break;
+                        }
+                    }
+
+                    //It counts the attributes
+                    j +=1;
+
+                    if(isOperator == false)
+                    {
+                        countAttr +=1;
                     }
 
                         //This is useful if this query will be used as a subquery in the FROM clause
@@ -122,11 +154,11 @@ public class SELECT
                         //value the alias that we gave
                        // String key = String.format("%s", relName.toLowerCase(), relAttrs.get(relName).get(j));
                         //selectedAlias.put(key, alias.get(j));
-                 //   }
-                j++;
+                 //  }
 
                 }//For statement
 
+             //This code will run if we want repetition of alias
              if(isRepAlias > 0 && isSubqry == false)
                 {
                     int pick;
@@ -138,18 +170,45 @@ public class SELECT
                         pick = genRandChoice( 100 );
                         if(pick <=  (int)(confParSel.repAlias * 100) )
                         {
+                            j +=1;
+
                             stm += ", " + curAlias.get(i);
                         }
                     }
                 }
 
-                //We randomly choose if we will have arithmetic comparison in the SELECT clause
-                int pick = genRandChoice( 100 );
-                if(pick <=  (int)(confParSel.arithmCompar * 100) )
+                if( isOperator == true && j < countAttr )
                 {
-                    for(int i=0; i< genRandChoice(5); i++)
+
+                    for(int g=0; g < countAttr; g++)
                     {
-                        stm += ", " + newCom.getArithCompr(frmRels) + " AS ART" + i ;
+                        for(int i=0; i < curAlias.size(); i++)
+                        {
+
+                            if(j < countAttr)
+                            {
+                                j +=1;
+                                stm += ", " + curAlias.get(i);
+                            }
+
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if(isOperator == false)
+                {
+                    //We randomly choose if we will have arithmetic comparison in the SELECT clause
+                    int pick = genRandChoice( 100 );
+                    if(pick <=  (int)(confParSel.arithmCompar * 100) )
+                    {
+                        for(int i=0; i< genRandChoice(5); i++)
+                        {
+                            stm += ", " + newCom.getArithCompr(frmRels) + " AS ART" + i ;
+                        }
                     }
                 }
 
@@ -157,7 +216,6 @@ public class SELECT
             // have aggregation functions in the SELECT STATEMENT
              if(isAggr == true)
              {
-
                  for(int i=0; i< genRandChoice(5); i++)
                  {
                      stm += ", " + genFunctions.getSelectAggr(aggrAttrsIn) + " AS AGGR" + i ;

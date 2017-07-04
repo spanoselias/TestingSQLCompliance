@@ -78,7 +78,6 @@ public class SQLEngine
 
             return confPar;
         }
-
     }
 
     /**
@@ -132,7 +131,6 @@ public class SQLEngine
             unable2Conn = true;
             e.printStackTrace();
         }
-
     finally
         {
 
@@ -238,7 +236,6 @@ public class SQLEngine
 
     finally
     {
-
         try
         {
             //In case where the schema of the DB cannot be retrieved from the current databases, then, we retrieve
@@ -341,16 +338,16 @@ public class SQLEngine
 
         String filename = path + "1.log";
 
-
       //  String conten = String.valueOf(myval) + " : " + String.valueOf(msval) + "\n";
 
-        DbConnections dbcon = new DbConnections();
-        LinkedList<String> myVal = dbcon.connectToMySql(sql);
+        ComparisonTool dbcon = new ComparisonTool();
+        LinkedList<String> MyVal = dbcon.connectToMySql(sql);
         LinkedList<String> MSVal = dbcon.connectToMicrosoftSql(sql);
-        LinkedList<String> oracleDb = dbcon.connectToMySql(sql);
+        //LinkedList<String> oracleDb = dbcon.connectToOracle(sql);
         LinkedList<String> postgres = dbcon.connectToMicrosoftSql(sql);
+       // LinkedList<String> DB2 = dbcon.connectToIBMDb2();
 
-       if( dbcon.diff(MSVal,myVal , oracleDb, postgres) == false )
+       if( dbcon.diff(MSVal,MyVal , null, postgres) == false )
        {
             System.out.println("Difference found!!!");
 
@@ -371,19 +368,16 @@ public class SQLEngine
             {
                 try
                 {
-
                     if (bw != null)
                         bw.close();
 
                     if (fw != null)
                         fw.close();
 
-                } catch (IOException ex) {
-
+                } catch (IOException ex)
+                {
                     ex.printStackTrace();
-
                 }
-
              }
        }
 
@@ -400,7 +394,6 @@ public class SQLEngine
 
     public static void main(String[] args)
     {
-
         HashMap<String, LinkedList<String>> allRelAttr = new HashMap<>();
 
         //It retrieves parameters from the configuration file
@@ -416,20 +409,21 @@ public class SQLEngine
 
         SQLQURERY newSQL = new SQLQURERY();
 
-        pick = genRandChoice(4);
+        pick = genRandChoice(5);
+
 
         //The option is given as input parameter to the program
         switch(pick)
         {
             case 0:
-                System.out.println("Complex query");
-                System.out.println("*******************");
+               // System.out.println("Complex query");
+              //  System.out.println("*******************");
                 qry  = newSQL.genCompQuery(1, frmRelts,1,false,false, confPar);
             break;
 
             case 1:
-                System.out.println("Simple query");
-                System.out.println("*******************");
+              //  System.out.println("Simple query");
+              //  System.out.println("*******************");
                 QRYREPRES res = newSQL.genQuery(null,uniqID, false, false, confPar);
                 qry = res.qryStr;
                 break;
@@ -443,21 +437,25 @@ public class SQLEngine
                 QRYREPRES res1 = newSQL.aggrGuery(uniqID, confPar);
                 qry = res1.qryStr;
                 break;
+
+            case 4:
+                QRYREPRES res2 = newSQL.operQuery(null,uniqID, false, false, confPar);
+                qry = res2.qryStr;
+                break;
         }
 
-
-         /*   QRYREPRES res1 = newSQL.operQuery(null,uniqID, false, false, confPar);
+           /* QRYREPRES res1 = newSQL.operQuery(null,uniqID, false, false, confPar);
             qry = res1.qryStr;*/
 
             System.out.println(qry);
             wrtSql2File("rand.sql",qry);
 
-
           //  String sql = nestQuery(uniqID, confPar);
           //  wrtSql2File("rand.sql",qry);
 
-            //genLogFile(qry);
+          //  genLogFile(qry);
 
+     //   }//while statement
 
     }
 
