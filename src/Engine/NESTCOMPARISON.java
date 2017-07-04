@@ -47,22 +47,6 @@ public class NESTCOMPARISON
 
         }
 
-        /**
-         * This method generate numbers between 0..inputSize
-         *We can use this number in order to choose randomly relations or attributes
-         *Thus, the inputSize can be the total number of relations or attributes
-         *
-         *@param inputSize is the image that represents the NORTH Direction
-         */
-        public static int genRandChoice(int inputSize)
-        {
-            Random randomGenerator = new Random();
-
-            int pickRand = (randomGenerator.nextInt(inputSize) % inputSize);
-
-            return pickRand;
-        }
-
 
         public String getAttrComparison(HashMap<String, LinkedList<String>> relAttrs, LinkedList<String> selectedTablesIn)
         {
@@ -74,31 +58,29 @@ public class NESTCOMPARISON
 
             int pick;
 
-            int switchPick = genRandChoice(3);
+            int switchPick = Utilities.getRandChoice(3);
             switch(switchPick)
             {
                 case 0:
-                    pick = genRandChoice(oper1.size());
+                    pick = Utilities.getRandChoice(oper1.size());
                     stm = oper1.get(pick);
                 break;
 
                 case 1:
-                    String rel1 = this.selectedTables.get(genRandChoice(this.selectedTables.size()));
-                    stm +=rel1 + " " + oper2.get(genRandChoice(oper2.size()));
+                    String rel1 = this.selectedTables.get(Utilities.getRandChoice(this.selectedTables.size()));
+                    stm +=rel1 + " " + oper2.get(Utilities.getRandChoice(oper2.size()));
                     this.isOneAttr = true;
                 break;
 
                 case 2:
-                    String rel = this.selectedTables.get(genRandChoice(this.selectedTables.size()));
-                    stm +=rel + " " + oper4.get(genRandChoice(oper4.size())) + " " + oper3.get(genRandChoice(oper3.size()));
+                    String rel = this.selectedTables.get(Utilities.getRandChoice(this.selectedTables.size()));
+                    stm +=rel + " " + oper4.get(Utilities.getRandChoice(oper4.size())) + " " + oper3.get(Utilities.getRandChoice(oper3.size()));
                     this.isOneAttr = true;
                 break;
             }
 
             return stm;
-
         }
-
 
         public boolean getIsOneAttr()
         {

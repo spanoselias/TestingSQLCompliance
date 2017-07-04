@@ -43,14 +43,7 @@ public class FUNCTIONS
 
         }
 
-        public static int genRandChoice(int inputSize)
-        {
-            Random randomGenerator = new Random();
 
-            int pickRand = (randomGenerator.nextInt(inputSize) % inputSize);
-
-            return pickRand;
-        }
 
         public String getAttrComparison( LinkedList<String> selAttrsIn)
         {
@@ -58,18 +51,18 @@ public class FUNCTIONS
 
             this.selAttrs = selAttrsIn;
 
-            String attr = selAttrsIn.get(genRandChoice(selAttrsIn.size()));
+            String attr = selAttrsIn.get(Utilities.getRandChoice(selAttrsIn.size()));
 
-            int switchPick = genRandChoice(3);
-            String curFun1 =  functions.get(genRandChoice(functions.size()));
+            int switchPick = Utilities.getRandChoice(3);
+            String curFun1 =  functions.get(Utilities.getRandChoice(functions.size()));
             String curFun2 = "";
-            String oper = oper4.get(genRandChoice(oper4.size()));
+            String oper = oper4.get(Utilities.getRandChoice(oper4.size()));
 
             switch(switchPick)
             {
                 //Function with constant comparison
                 case 0:
-                    String con = String.valueOf(genRandChoice(10000));
+                    String con = String.valueOf(Utilities.getRandChoice(10000));
                     stm = curFun1 + "(" + attr + ")" + " " + oper + " " + con;
                 break;
 
@@ -80,7 +73,7 @@ public class FUNCTIONS
                     do
                     {
                         counter ++;
-                        curFun2 =functions.get(genRandChoice(functions.size()));
+                        curFun2 =functions.get(Utilities.getRandChoice(functions.size()));
                     }while(curFun2 == curFun1 && counter < 10000);
 
                     counter =0;
@@ -89,14 +82,14 @@ public class FUNCTIONS
                     do
                     {
                         counter ++;
-                        attr2 = selAttrsIn.get(genRandChoice(selAttrsIn.size()));
+                        attr2 = selAttrsIn.get(Utilities.getRandChoice(selAttrsIn.size()));
                     }while(attr == attr2 && counter < 10000);
 
                     stm = curFun1 + "(" + attr + ")" + " " + oper + " " + curFun2 + "(" + attr2 + ")";
                 break;
 
                 case 2:
-                    String constant = String.valueOf(genRandChoice(10000));
+                    String constant = String.valueOf(Utilities.getRandChoice(10000));
                     stm = attr  + " "  + oper + " " + constant;
                 break;
             }
@@ -109,7 +102,7 @@ public class FUNCTIONS
         public String getSelectAggr( LinkedList<String> grpAttrIn)
         {
 
-            String arith = arithCompr.get( genRandChoice(arithCompr.size()) );
+            String arith = arithCompr.get( Utilities.getRandChoice(arithCompr.size()) );
 
             String stm="";
 
@@ -123,35 +116,35 @@ public class FUNCTIONS
             String curFun2 = "";
 
 
-            int pick = genRandChoice(4);
+            int pick = Utilities.getRandChoice(4);
             switch (pick)
             {
                 case 0:
-                    attr1 = grpAttrIn.get(genRandChoice(grpAttrIn.size()));
-                    curFun1   =  functions.get(genRandChoice(functions.size()));
+                    attr1 = grpAttrIn.get(Utilities.getRandChoice(grpAttrIn.size()));
+                    curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
                     stm = curFun1 + "(" + attr1 + ")" ;
 
                 break;
 
                 case 1:
-                    attr1 = grpAttrIn.get(genRandChoice(grpAttrIn.size()));
-                    curFun1   =  functions.get(genRandChoice(functions.size()));
-                    rel = grpAttrIn.get(genRandChoice(grpAttrIn.size()));
+                    attr1 = grpAttrIn.get(Utilities.getRandChoice(grpAttrIn.size()));
+                    curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
+                    rel = grpAttrIn.get(Utilities.getRandChoice(grpAttrIn.size()));
                     stm = "(" + curFun1 + "(" + attr1 + ") " + arith + " " + rel + ")";
 
                 break;
 
                 case 2:
-                    attr1 = grpAttrIn.get(genRandChoice(grpAttrIn.size()));
-                    attr2 = grpAttrIn.get(genRandChoice(grpAttrIn.size()));
-                    curFun1   =  functions.get(genRandChoice(functions.size()));
-                    curFun2   =  functions.get(genRandChoice(functions.size()));
+                    attr1 = grpAttrIn.get(Utilities.getRandChoice(grpAttrIn.size()));
+                    attr2 = grpAttrIn.get(Utilities.getRandChoice(grpAttrIn.size()));
+                    curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
+                    curFun2   =  functions.get(Utilities.getRandChoice(functions.size()));
                     stm = "(" +  curFun1 + "(" + attr1 + ") " + arith + " " + curFun2 + "(" + attr2 + ") " + ")";
                 break;
 
                 case 3:
-                    attr1 = grpAttrIn.get(genRandChoice(grpAttrIn.size()));
-                    curFun1   =  functions.get(genRandChoice(functions.size()));
+                    attr1 = grpAttrIn.get(Utilities.getRandChoice(grpAttrIn.size()));
+                    curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
                     stm = "(" +  curFun1 + "(" + attr1 + ") " + arith + " " + "NULL" + ")";
                 break;
 

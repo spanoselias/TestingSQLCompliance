@@ -74,7 +74,7 @@ public  class FROM
         }
 
         //This random number indicates how many relation the Engine.FROM Clause will have
-        int pickRand = genRandChoice(maxRels);
+        int pickRand = Utilities.getRandChoice(maxRels);
 
         //We shuffle the array of the relations to avoid choosing always the same order.
         shuffleArray(rel);
@@ -113,15 +113,6 @@ public  class FROM
         fromStm = stm;
 
         return stm;
-    }
-
-    public static int genRandChoice(int inputSize)
-    {
-        Random randomGenerator = new Random();
-
-        int pickRand = (randomGenerator.nextInt(inputSize) % inputSize) + 1;
-
-        return pickRand;
     }
 
     //We retrieve the attributes that were chosen in the FROM clause

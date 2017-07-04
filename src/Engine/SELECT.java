@@ -167,7 +167,7 @@ public class SELECT
                         //We randomly choose if we will have repetition of
                         //attributes in the SELECT CLAUSE based on the probability
                         //which give in the configuration file
-                        pick = genRandChoice( 100 );
+                        pick = Utilities.getRandChoice( 100 );
                         if(pick <=  (int)(confParSel.repAlias * 100) )
                         {
                             j +=1;
@@ -202,10 +202,10 @@ public class SELECT
                 if(isOperator == false)
                 {
                     //We randomly choose if we will have arithmetic comparison in the SELECT clause
-                    int pick = genRandChoice( 100 );
+                    int pick = Utilities.getRandChoice( 100 );
                     if(pick <=  (int)(confParSel.arithmCompar * 100) )
                     {
-                        for(int i=0; i< genRandChoice(5); i++)
+                        for(int i=0; i< Utilities.getRandChoice(5); i++)
                         {
                             stm += ", " + newCom.getArithCompr(frmRels) + " AS ART" + i ;
                         }
@@ -216,7 +216,7 @@ public class SELECT
             // have aggregation functions in the SELECT STATEMENT
              if(isAggr == true)
              {
-                 for(int i=0; i< genRandChoice(5); i++)
+                 for(int i=0; i< Utilities.getRandChoice(5); i++)
                  {
                      stm += ", " + genFunctions.getSelectAggr(aggrAttrsIn) + " AS AGGR" + i ;
                  }
@@ -229,22 +229,13 @@ public class SELECT
             //an "IN" in the WHERE clause which only need one attribute
             else
             {
-                String randAttr = frmRels.get(genRandChoice(frmRels.size()));
+                String randAttr = frmRels.get(Utilities.getRandChoice(frmRels.size()));
 
                 aliasAttr.add(alias.get(j));
                 stm += String.format(" %s AS %s", randAttr, alias.get(j));
             }
 
         return stm;
-    }
-
-    public static int genRandChoice(int inputSize)
-    {
-        Random randomGenerator = new Random();
-
-        int pickRand = (randomGenerator.nextInt(inputSize) % inputSize);
-
-        return pickRand;
     }
 
     public LinkedList<String> getAliasAttr()

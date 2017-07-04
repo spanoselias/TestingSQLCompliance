@@ -52,15 +52,6 @@ public  class GROUPBY
         return stm;
     }
 
-    private  int getRandChoice(int inputSize)
-    {
-        Random randomGenerator = new Random();
-
-        int pickRand = (randomGenerator.nextInt(inputSize) % inputSize);
-
-        return pickRand;
-    }
-
     public LinkedList<String> getAttrInGroup()
     {
         return this.groubyAttr;

@@ -61,11 +61,11 @@ public  class WHERE
         {
             //We flip a coin to decide if we will open/close
             //a parenthesis
-            int pick = getRandChoice(2);
+            int pick = Utilities.getRandChoice(2);
 
             if (i == 0)
             {
-                 int pickNeg = getRandChoice(2);
+                 int pickNeg = Utilities.getRandChoice(2);
 
                  //we flip a coin to decide if there will be a negation or not
                  if(pickNeg == 1) {stm += "NOT" ;}
@@ -80,7 +80,7 @@ public  class WHERE
                 //the previous one
                 if( pick ==1 && isParenOpen == 1)
                 {
-                    stm += ") " + conn[getRandChoice(conn.length)] + " " + genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, confPar.probWhrConst);
+                    stm += ") " + conn[Utilities.getRandChoice(conn.length)] + " " + genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, confPar.probWhrConst);
                     isParenOpen = 0;
                 }
 
@@ -90,7 +90,7 @@ public  class WHERE
                     //We randomly choose if we will have negation outside
                     //of the parenthesis OR NOT
                     String par ="";
-                    int pickNeg = getRandChoice(10);
+                    int pickNeg = Utilities.getRandChoice(10);
                     if(pickNeg == 1)
                     {
                         par += " NOT" ;
@@ -98,12 +98,12 @@ public  class WHERE
 
                     par += " ( ";
 
-                    stm += conn[getRandChoice(conn.length)] + par + genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, confPar.probWhrConst);
+                    stm += conn[Utilities.getRandChoice(conn.length)] + par + genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, confPar.probWhrConst);
                     isParenOpen = 1;
                 }
                 else
                 {
-                    stm += conn[getRandChoice(conn.length)] + " " + genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, confPar.probWhrConst);
+                    stm += conn[Utilities.getRandChoice(conn.length)] + " " + genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, confPar.probWhrConst);
 
                 }
             }
@@ -135,14 +135,6 @@ public  class WHERE
         return nestGenCom.getIsOneAttr();
     }
 
-    private  int getRandChoice(int inputSize)
-    {
 
-        Random randomGenerator = new Random();
-
-        int pickRand = (randomGenerator.nextInt(inputSize) % inputSize);
-
-        return pickRand;
-    }
 
 }

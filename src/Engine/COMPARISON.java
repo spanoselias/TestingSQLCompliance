@@ -2,7 +2,7 @@ package Engine;
 
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Random;
+
 
 public class COMPARISON
 {
@@ -59,22 +59,6 @@ public class COMPARISON
         }
     }
 
-    /**
-     * This method generate numbers between 0..inputSize
-     *We can use this number in order to choose randomly relations or attributes
-     *Thus, the inputSize can be the total number of relations or attributes
-     *
-     *@param inputSize is the image that represents the NORTH Direction
-     */
-    public static int genRandChoice(int inputSize)
-    {
-        Random randomGenerator = new Random();
-
-        int pickRand = (randomGenerator.nextInt(inputSize) % inputSize);
-
-        return pickRand;
-    }
-
 
     public String getAttrComparison(HashMap<String, LinkedList<String>> relAttrs, LinkedList<String> selectedTablesIn, double probWhr)
     {
@@ -88,21 +72,21 @@ public class COMPARISON
         String arithmCompStr = "";
 
 
-        pick = genRandChoice(operators.size());
+        pick = Utilities.getRandChoice(operators.size());
         String oper = operators.get(pick);
 
         //We randomly choose if the comparison will be
         //one attribute with a constant
-        int pick2 = genRandChoice(5);
+        int pick2 =  Utilities.getRandChoice(5);
 
-        int pick3 = genRandChoice(1);
+        int pick3 = Utilities.getRandChoice(1);
 
         //The probWhr represents the probability of having
         //constants or NULLS to the WHERE comparisons
-        pick = genRandChoice( 100 );
+        pick = Utilities.getRandChoice( 100 );
         if(pick <=  (int)(probWhr * 100) )
         {
-            pick = genRandChoice(2);
+            pick = Utilities.getRandChoice(2);
         }
         else if(pick2 == 0)
         {
@@ -122,19 +106,19 @@ public class COMPARISON
         switch (pick)
         {
             case 0:
-                rel1 =  constsAndNull.get(genRandChoice(constsAndNull.size()));
-                rel2 =  constsAndNull.get(genRandChoice(constsAndNull.size()));
+                rel1 =  constsAndNull.get(Utilities.getRandChoice(constsAndNull.size()));
+                rel2 =  constsAndNull.get(Utilities.getRandChoice(constsAndNull.size()));
             break;
 
             case 1:
 
                 rel1 = "NULL";
-                rel2 = constsAndNull.get(genRandChoice(constsAndNull.size()));
+                rel2 = constsAndNull.get(Utilities.getRandChoice(constsAndNull.size()));
                 break;
 
             case 2:
-                rel1 = this.selectedTables.get(genRandChoice(this.selectedTables.size()));
-                rel2 = constsAndNull.get(genRandChoice(constsAndNull.size()));
+                rel1 = this.selectedTables.get(Utilities.getRandChoice(this.selectedTables.size()));
+                rel2 = constsAndNull.get(Utilities.getRandChoice(constsAndNull.size()));
             break;
 
             case 3:
@@ -149,7 +133,7 @@ public class COMPARISON
             break;*/
 
             case 4:
-                int pickRandRel = genRandChoice(this.selectedTables.size());
+                int pickRandRel = Utilities.getRandChoice(this.selectedTables.size());
                 int pickRand;
 
                 rel1 = this.selectedTables.get(pickRandRel);
@@ -160,7 +144,7 @@ public class COMPARISON
                 //We are trying to do the comparison from two different relations
                 do
                 {
-                    pickRand = genRandChoice(this.selectedTables.size());
+                    pickRand = Utilities.getRandChoice(this.selectedTables.size());
 
                     ++counter;
 
@@ -179,7 +163,7 @@ public class COMPARISON
         //this expression will have negation or not.
         String res="";
 
-        pick = genRandChoice(10);
+        pick = Utilities.getRandChoice(10);
         if( pick ==0 )
         {
             if(arithmCompStr != "")
@@ -220,26 +204,26 @@ public class COMPARISON
         String const1 = "";
         String const2 = "";
 
-        String arith = arithCompr.get( genRandChoice(arithCompr.size()) );
+        String arith = arithCompr.get( Utilities.getRandChoice(arithCompr.size()) );
 
-        pick = genRandChoice(3);
+        pick = Utilities.getRandChoice(3);
         switch (pick)
         {
             case 0:
-                const1 = constAndNullAttr.get( (genRandChoice(constAndNullAttr.size())));
-                const2 = constAndNullAttr.get( (genRandChoice(constAndNullAttr.size())));
+                const1 = constAndNullAttr.get( (Utilities.getRandChoice(constAndNullAttr.size())));
+                const2 = constAndNullAttr.get( (Utilities.getRandChoice(constAndNullAttr.size())));
                 stm = const1 + arith + const2;
             break;
 
             case 1:
-                rel1 = selectedTablesIn.get(genRandChoice(selectedTablesIn.size()));
-                rel2 = selectedTablesIn.get(genRandChoice(selectedTablesIn.size()));
+                rel1 = selectedTablesIn.get(Utilities.getRandChoice(selectedTablesIn.size()));
+                rel2 = selectedTablesIn.get(Utilities.getRandChoice(selectedTablesIn.size()));
                 stm = rel1 + arith + rel2;
             break;
 
             case 2:
-                rel1 = selectedTablesIn.get(genRandChoice(selectedTablesIn.size()));
-                const1 = constAndNullAttr.get( (genRandChoice(constAndNullAttr.size())));
+                rel1 = selectedTablesIn.get(Utilities.getRandChoice(selectedTablesIn.size()));
+                const1 = constAndNullAttr.get( (Utilities.getRandChoice(constAndNullAttr.size())));
                 stm = rel1 + arith + const1;
             break;
 
