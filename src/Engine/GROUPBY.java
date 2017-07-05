@@ -55,9 +55,7 @@ public  class GROUPBY
                 stm += String.format(", %s", relName);
             }
 
-
             j++;
-
         }
 
         return stm;

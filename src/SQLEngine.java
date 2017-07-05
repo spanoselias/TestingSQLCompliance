@@ -227,7 +227,6 @@ public class SQLEngine
            {
                allRelAttr.put(prevName, ((LinkedList<String>)curAttr.clone()));
            }
-
        }
         catch (SQLException ex)
         {
@@ -382,15 +381,6 @@ public class SQLEngine
              }
        }
 
-    }
-
-    public static int genRandChoice(int inputSize)
-    {
-        Random randomGenerator = new Random();
-
-        int pickRand = (randomGenerator.nextInt(inputSize) % inputSize);
-
-        return pickRand;
     }
 
     public static void main(String[] args)

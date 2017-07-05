@@ -106,7 +106,6 @@ public class SELECT
             {
                 for (String relName : frmRels)
                 {
-
                     if( isOperator == false )
                     {
                         //We want to avoid having more attributes than the max attributes
