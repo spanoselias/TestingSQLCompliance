@@ -174,7 +174,6 @@ public class COMPARISON
             {
                 res = "NOT" + "(" + rel1 +  " " + oper + " " + rel2 + " ) "  ;
             }
-
         }
         else
         {
@@ -186,7 +185,6 @@ public class COMPARISON
             {
                 res =  rel1 + " " + oper + " " + rel2  ;
             }
-
         }
 
         return res;
@@ -206,7 +204,7 @@ public class COMPARISON
 
         String arith = arithCompr.get( Utilities.getRandChoice(arithCompr.size()) );
 
-        pick = Utilities.getRandChoice(3);
+        pick = Utilities.getRandChoice(4);
         switch (pick)
         {
             case 0:
@@ -225,6 +223,12 @@ public class COMPARISON
                 rel1 = selectedTablesIn.get(Utilities.getRandChoice(selectedTablesIn.size()));
                 const1 = constAndNullAttr.get( (Utilities.getRandChoice(constAndNullAttr.size())));
                 stm = rel1 + arith + const1;
+            break;
+
+            case 3:
+                rel1 = selectedTablesIn.get(Utilities.getRandChoice(selectedTablesIn.size()));
+                const1 = constAndNullAttr.get( (Utilities.getRandChoice(constAndNullAttr.size())));
+                stm = const1 + arith + rel1;
             break;
 
         }

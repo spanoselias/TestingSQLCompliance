@@ -31,8 +31,15 @@ public  class GROUPBY
         //It is used for string format purpose
         boolean isOut = false;
 
+        int j=0;
+
         for (String relName : frmRelts)
         {
+            if( this.confPar.maxAttrGrpBy == j)
+            {
+                break;
+            }
+
             //We store each attribute which is selected in the GROUP BY
             //clause because we can only SELECT this attributes
             groubyAttr.add(relName);
@@ -47,6 +54,10 @@ public  class GROUPBY
             {
                 stm += String.format(", %s", relName);
             }
+
+
+            j++;
+
         }
 
         return stm;

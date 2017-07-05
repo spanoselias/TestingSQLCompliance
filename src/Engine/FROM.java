@@ -74,7 +74,7 @@ public  class FROM
         }
 
         //This random number indicates how many relation the Engine.FROM Clause will have
-        int pickRand = Utilities.getRandChoice(maxRels);
+        int pickRand = Utilities.getRandChoice(maxRels) + 1;
 
         //We shuffle the array of the relations to avoid choosing always the same order.
         shuffleArray(rel);

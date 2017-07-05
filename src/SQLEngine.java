@@ -48,6 +48,7 @@ public class SQLEngine
             confPar.nestLev =  Integer.parseInt( prop.getProperty( "nestLevel" ) );
             confPar.repAlias =  Double.parseDouble( prop.getProperty( "repAlias" ) );
             confPar.arithmCompar =  Double.parseDouble( prop.getProperty( "arithCompSel" ) );
+            confPar.maxAttrGrpBy =  Integer.parseInt( prop.getProperty( "maxAttrGrpBy" ) );
 
             confPar.user =   prop.getProperty( "user" ) ;
             confPar.pass =   prop.getProperty( "pass" ) ;
@@ -409,8 +410,9 @@ public class SQLEngine
 
         SQLQURERY newSQL = new SQLQURERY();
 
-        pick = genRandChoice(5);
+        pick = Utilities.getRandChoice(5);
 
+        pick =3;
 
         //The option is given as input parameter to the program
         switch(pick)

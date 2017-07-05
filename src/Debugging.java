@@ -25,10 +25,8 @@ public class Debugging
        // conn.connectToIBMDb2();
 
         //Engine.Utilities util = new Engine.Utilities();
-        System.out.println();
+        System.out.println(  Utilities.getRandChoice(5));
 
-
-     //   Utilities.getRandChoice()
 
     }
 

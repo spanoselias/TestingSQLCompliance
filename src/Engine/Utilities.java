@@ -22,7 +22,7 @@ public final class Utilities
     {
         Random randomGenerator = new Random();
 
-        int pickRand = (randomGenerator.nextInt(inputSize) % inputSize);
+        int pickRand = (randomGenerator.nextInt(inputSize) % inputSize) ;
 
         return pickRand;
     }

@@ -107,7 +107,6 @@ public class SELECT
                 for (String relName : frmRels)
                 {
 
-
                     if( isOperator == false )
                     {
                         //We want to avoid having more attributes than the max attributes
@@ -218,7 +217,7 @@ public class SELECT
              {
                  for(int i=0; i< Utilities.getRandChoice(5); i++)
                  {
-                     stm += ", " + genFunctions.getSelectAggr(aggrAttrsIn) + " AS AGGR" + i ;
+                     stm += ", " + genFunctions.getSelectAggr(frmRels) + " AS AGGR" + i ;
                  }
              }
 
