@@ -6,11 +6,6 @@ import java.util.Random;
 public final class Utilities
 {
 
-    // private constructor to avoid unnecessary instantiation of the class
-    public Utilities()
-    {
-    }
-
     /**
      * This method generate numbers between 0..inputSize
      *We can use this number in order to choose randomly relations or attributes
@@ -26,4 +21,5 @@ public final class Utilities
 
         return pickRand;
     }
+
 }

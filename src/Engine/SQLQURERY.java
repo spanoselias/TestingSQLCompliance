@@ -71,7 +71,7 @@ public class SQLQURERY
         String stm = frmQry.getFrom( (++uniqID) );
         String grp = grpQry.getGroupBy(frmQry.getSelectedTables());
         String hvg = hvgQry.genHaving(grpQry.getAttrInGroup());
-        tmpStm = selQry.getSelect(grpQry.getAttrInGroup(), false, false, confPar.repAlias, true, grpQry.getAttrInGroup(), false);
+        tmpStm = selQry.getSelect(frmQry.getSelectedTables(), false, false, confPar.repAlias, true, grpQry.getAttrInGroup(), false);
         finalQry = tmpStm + "\n" + stm;
         finalQry += "\n" + whrQry.getSqlWhere(grpQry.getAttrInGroup(),false,  confPar, 5);
         finalQry += "\n" + grp + "\n" + hvg;

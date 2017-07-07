@@ -443,7 +443,7 @@ public class ComparisonTool
 
         for(int i=0; i < MSServer.size(); i++)
         {
-            if(MSServer.get(i).compareTo(MySQL.get(i)) != 0  || MSServer.get(i).compareTo(PostGres.get(i))!= 0 )
+            if( MSServer.get(i).compareTo(MySQL.get(i)) != 0  || MSServer.get(i).compareTo(PostGres.get(i))!= 0  ||MSServer.get(i).compareTo(OracleDB.get(i))!= 0 )
             {
              /*   System.out.println("MSServer: " + MSServer.get(i));
                 System.out.println("MySQl:    " + MySQL.get(i));

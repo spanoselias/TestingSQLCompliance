@@ -2,13 +2,12 @@ package Engine;
 
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Random;
 
 public  class GROUPBY
 {
     private String stm;
 
-    //This linkedlist is used to store all the attributes which are selected in the
+    //This list is used to store all the attributes which are selected in the
     //GROUP by clause. The reason is that we cannot have attributes in the SELECT clause
     //that are not appear in the GROUP BY
     private LinkedList<String> groubyAttr;
@@ -40,10 +39,12 @@ public  class GROUPBY
                 break;
             }
 
-            //We store each attribute which is selected in the GROUP BY
-            //clause because we can only SELECT this attributes
+            //We store all the attributes that are chosen in the
+            //GROUP BY clause because we can only project these attributes in
+            //the SELECT clause
             groubyAttr.add(relName);
 
+            //This check is just for formatting reasons
             if (isOut == false)
             {
                 stm += String.format("%s", relName);
@@ -61,6 +62,8 @@ public  class GROUPBY
         return stm;
     }
 
+    //This methods is used for retrieving the attributes which are selected
+    //in the GROUPBY clause
     public LinkedList<String> getAttrInGroup()
     {
         return this.groubyAttr;

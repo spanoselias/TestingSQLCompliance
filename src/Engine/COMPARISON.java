@@ -191,10 +191,8 @@ public class COMPARISON
 
     }
 
-
     public String getArithCompr(LinkedList<String> selectedTablesIn)
     {
-
         String stm="";
         int pick;
         String rel1 = "";
@@ -230,9 +228,7 @@ public class COMPARISON
                 const1 = constAndNullAttr.get( (Utilities.getRandChoice(constAndNullAttr.size())));
                 stm = const1 + arith + rel1;
             break;
-
         }
-
 
         return stm;
     }

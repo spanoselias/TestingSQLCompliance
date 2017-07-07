@@ -5,7 +5,8 @@ R3,
 R4,
 R5;
 
-CREATE TABLE R1 ( -- df: size=4
+CREATE TABLE R1
+ ( -- df: size=4
        A smallint, -- df: size=2
        B smallint, -- df: size=2
        UNIQUE(A,B)

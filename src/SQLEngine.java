@@ -362,7 +362,6 @@ public class SQLEngine
             } catch (IOException e)
             {
                 e.printStackTrace();
-
             }
             finally
             {
@@ -400,44 +399,45 @@ public class SQLEngine
 
         SQLQURERY newSQL = new SQLQURERY();
 
-        pick = Utilities.getRandChoice(5);
-
-        pick =3;
-
-        //The option is given as input parameter to the program
-        switch(pick)
+        while(true)
         {
-            case 0:
-               // System.out.println("Complex query");
-              //  System.out.println("*******************");
-                qry  = newSQL.genCompQuery(1, frmRelts,1,false,false, confPar);
-            break;
 
-            case 1:
-              //  System.out.println("Simple query");
-              //  System.out.println("*******************");
-                QRYREPRES res = newSQL.genQuery(null,uniqID, false, false, confPar);
-                qry = res.qryStr;
+            pick = Utilities.getRandChoice(5);
+
+            //The option is given as input parameter to the program
+            switch(pick)
+            {
+                case 0:
+                   // System.out.println("Complex query");
+                  //  System.out.println("*******************");
+                    qry  = newSQL.genCompQuery(1, frmRelts,1,false,false, confPar);
                 break;
 
-            case 2:
-                qry = newSQL.nestQuery(uniqID, confPar);
-               // wrtSql2File("rand.", qry);
-                break;
+                case 1:
+                  //  System.out.println("Simple query");
+                  //  System.out.println("*******************");
+                    QRYREPRES res = newSQL.genQuery(null,uniqID, false, false, confPar);
+                    qry = res.qryStr;
+                    break;
 
-            case 3:
-                QRYREPRES res1 = newSQL.aggrGuery(uniqID, confPar);
-                qry = res1.qryStr;
-                break;
+                case 2:
+                    qry = newSQL.nestQuery(uniqID, confPar);
+                   // wrtSql2File("rand.", qry);
+                    break;
 
-            case 4:
-                QRYREPRES res2 = newSQL.operQuery(null,uniqID, false, false, confPar);
-                qry = res2.qryStr;
-                break;
-        }
+                case 3:
+                    QRYREPRES res1 = newSQL.aggrGuery(uniqID, confPar);
+                    qry = res1.qryStr;
+                    break;
 
-           /* QRYREPRES res1 = newSQL.operQuery(null,uniqID, false, false, confPar);
-            qry = res1.qryStr;*/
+                case 4:
+                    QRYREPRES res2 = newSQL.operQuery(null,uniqID, false, false, confPar);
+                    qry = res2.qryStr;
+                    break;
+            }
+
+               /* QRYREPRES res1 = newSQL.operQuery(null,uniqID, false, false, confPar);
+                qry = res1.qryStr;*/
 
             System.out.println(qry);
             wrtSql2File("rand.sql",qry);
@@ -445,9 +445,9 @@ public class SQLEngine
           //  String sql = nestQuery(uniqID, confPar);
           //  wrtSql2File("rand.sql",qry);
 
-          //  genLogFile(qry);
+            genLogFile(qry);
 
-     //   }//while statement
+        }//while statement
 
     }
 

@@ -71,11 +71,20 @@ public class SELECT
     //repetition of alias in the SELECT clause because is not valid
     public String getSelect( LinkedList<String> frmRels, boolean isOneAttr, boolean isSubqry, double isRepAlias, boolean isAggr, LinkedList<String> aggrAttrsIn, boolean isOperator)
     {
+
+        LinkedList<String> allSelAttrs=null;
+
         //Operator represents operations like UNION, INTERSECTION.. Thus, we need to track
         //the number of attributes
         if(isOperator == false)
         {
             this.countAttr = 0;
+        }
+
+        if(isAggr==true)
+        {
+            allSelAttrs = frmRels;
+            frmRels = aggrAttrsIn;
         }
 
         aliasAttr.clear();
@@ -95,7 +104,10 @@ public class SELECT
             stm += " *";
         }
 
+            //It is used for formatting purposes
             boolean isOut = false;
+
+            //It counts the attributes
             int j=0;
 
             //This LinkedList will be used store the current alias in order to generate
@@ -104,17 +116,22 @@ public class SELECT
 
             if( isOneAttr == false )
             {
+                //frmRels list stores all the attributes that we can project in the SELECT clause. Thus, we take
+                //into account the tables what we have chosen in the FROM clause and what attributes each table has
                 for (String relName : frmRels)
                 {
                     if( isOperator == false )
                     {
                         //We want to avoid having more attributes than the max attributes
-                        //which is given an a parameter in the configuration file
+                        //which is specified in the configuration file
                         if(confParSel.maxAttrSel == j)
                         {
                             break;
                         }
                     }
+
+                    //Operators like UNION, INTERSECTION need to have the same number of attributes. Thus, this
+                    //condition achieve that
                     else
                     {
                         if( countAttr == j )
@@ -199,7 +216,8 @@ public class SELECT
 
                 if(isOperator == false)
                 {
-                    //We randomly choose if we will have arithmetic comparison in the SELECT clause
+                    //We randomly choose if we will have arithmetic comparison in the SELECT clause. The probability
+                    //is calculated based on the probability which is given in the configuration file
                     int pick = Utilities.getRandChoice( 100 );
                     if(pick <=  (int)(confParSel.arithmCompar * 100) )
                     {
@@ -210,15 +228,15 @@ public class SELECT
                     }
                 }
 
-            //The isAggr variable indicates if we have aggregation in this query. If yes, then we can
-            // have aggregation functions in the SELECT STATEMENT
-             if(isAggr == true)
-             {
-                 for(int i=0; i< Utilities.getRandChoice(5); i++)
+                //The isAggr variable indicates if we have aggregation in this query. If yes, then we can
+                // have aggregation functions in the SELECT STATEMENT
+                 if(isAggr == true)
                  {
-                     stm += ", " + genFunctions.getSelectAggr(frmRels) + " AS AGGR" + i ;
+                     for(int i=0; i< Utilities.getRandChoice(5); i++)
+                     {
+                         stm += ", " + genFunctions.getSelectAggr(allSelAttrs) + " AS AGGR" + i ;
+                     }
                  }
-             }
 
             }
 
