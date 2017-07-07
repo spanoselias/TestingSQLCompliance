@@ -5,18 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestingSQLCompliance/Engine/SELECT.class" afterPath="$PROJECT_DIR$/out/production/TestingSQLCompliance/Engine/SELECT.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestingSQLCompliance/SQLEngine.class" afterPath="$PROJECT_DIR$/out/production/TestingSQLCompliance/SQLEngine.class" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/datafiller.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestingSQLCompliance/Engine/COMPARISON.class" afterPath="$PROJECT_DIR$/out/production/TestingSQLCompliance/Engine/COMPARISON.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/postGres.sql" afterPath="$PROJECT_DIR$/scripts/postGres.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ComparisonTool.java" afterPath="$PROJECT_DIR$/src/ComparisonTool.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Engine/COMPARISON.java" afterPath="$PROJECT_DIR$/src/Engine/COMPARISON.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Engine/GROUPBY.java" afterPath="$PROJECT_DIR$/src/Engine/GROUPBY.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Engine/SELECT.java" afterPath="$PROJECT_DIR$/src/Engine/SELECT.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Engine/SQLQURERY.java" afterPath="$PROJECT_DIR$/src/Engine/SQLQURERY.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Engine/Utilities.java" afterPath="$PROJECT_DIR$/src/Engine/Utilities.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SQLEngine.java" afterPath="$PROJECT_DIR$/src/SQLEngine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/config.properties" afterPath="$PROJECT_DIR$/src/config.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestingSQLCompliance/config.properties" afterPath="$PROJECT_DIR$/out/production/TestingSQLCompliance/config.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -305,6 +297,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Log" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TestingSQLCompliance" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TestingSQLCompliance" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -978,14 +984,7 @@
       <workItem from="1498984342070" duration="32753000" />
       <workItem from="1499101472625" duration="1980000" />
       <workItem from="1499157504431" duration="12970000" />
-      <workItem from="1499356714287" duration="10751000" />
-    </task>
-    <task id="LOCAL-00051" summary="Optimizing the code">
-      <created>1496850200463</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1496850200464</updated>
+      <workItem from="1499356714287" duration="11043000" />
     </task>
     <task id="LOCAL-00052" summary="Parameter nesting level is added to the configuration file">
       <created>1496857405305</created>
@@ -1323,15 +1322,21 @@
       <option name="project" value="LOCAL" />
       <updated>1499292432280</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="Extending Comparison Tool">
+      <created>1499462947200</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1499462947200</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="478507000" />
+    <option name="totallyTimeSpent" value="478799000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1355,7 +1360,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968238" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15819208" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12429378" sideWeight="0.846875" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17991407" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17991407" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1419,7 +1424,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Supporting probability for comparison in the where clause" />
     <MESSAGE value="Fixing balancing parenthesis problem" />
     <MESSAGE value="Parameter nesting level is added to the configuration file" />
     <MESSAGE value="#Working version" />
@@ -1444,7 +1448,8 @@
     <MESSAGE value="Optimizing the code" />
     <MESSAGE value="Fixing bugs" />
     <MESSAGE value="Implement DISTINCT" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement DISTINCT" />
+    <MESSAGE value="Extending Comparison Tool" />
+    <option name="LAST_COMMIT_MESSAGE" value="Extending Comparison Tool" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
