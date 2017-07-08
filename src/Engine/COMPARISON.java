@@ -10,7 +10,7 @@ public class COMPARISON
 
     private LinkedList<String> operators;
     private HashMap<String, LinkedList<String>> relAttrs;
-    private LinkedList<String> selectedTables;
+    private LinkedList<Attribute> selectedTables;
     private LinkedList<String> constsAndNull;
 
 
@@ -60,17 +60,16 @@ public class COMPARISON
     }
 
 
-    public String getAttrComparison(HashMap<String, LinkedList<String>> relAttrs, LinkedList<String> selectedTablesIn, double probWhr)
+    public String getAttrComparison(HashMap<String, LinkedList<Attribute>> relAttrs, LinkedList<Attribute> selectedTablesIn, double probWhr)
     {
 
         this.selectedTables = selectedTablesIn;
 
         int pick;
-        String rel1 = "";
-        String rel2 = "";
+        Attribute rel1 = new Attribute();
+        Attribute rel2 = new Attribute();
 
         String arithmCompStr = "";
-
 
         pick = Utilities.getRandChoice(operators.size());
         String oper = operators.get(pick);
@@ -106,19 +105,19 @@ public class COMPARISON
         switch (pick)
         {
             case 0:
-                rel1 =  constsAndNull.get(Utilities.getRandChoice(constsAndNull.size()));
-                rel2 =  constsAndNull.get(Utilities.getRandChoice(constsAndNull.size()));
+                rel1.attrName =  constsAndNull.get(Utilities.getRandChoice(constsAndNull.size()));
+                rel2.attrName =  constsAndNull.get(Utilities.getRandChoice(constsAndNull.size()));
             break;
 
             case 1:
 
-                rel1 = "NULL";
-                rel2 = constsAndNull.get(Utilities.getRandChoice(constsAndNull.size()));
+                rel1.attrName = "NULL";
+                rel2.attrName = constsAndNull.get(Utilities.getRandChoice(constsAndNull.size()));
                 break;
 
             case 2:
                 rel1 = this.selectedTables.get(Utilities.getRandChoice(this.selectedTables.size()));
-                rel2 = constsAndNull.get(Utilities.getRandChoice(constsAndNull.size()));
+                rel2.attrName = constsAndNull.get(Utilities.getRandChoice(constsAndNull.size()));
             break;
 
             case 3:
@@ -172,7 +171,7 @@ public class COMPARISON
             }
             else
             {
-                res = "NOT" + "(" + rel1 +  " " + oper + " " + rel2 + " ) "  ;
+                res = "NOT" + "(" + rel1.attrName +  " " + oper + " " + rel2.attrName + " ) "  ;
             }
         }
         else
@@ -183,7 +182,7 @@ public class COMPARISON
             }
             else
             {
-                res =  rel1 + " " + oper + " " + rel2  ;
+                res =  rel1.attrName + " " + oper + " " + rel2.attrName  ;
             }
         }
 
@@ -191,12 +190,12 @@ public class COMPARISON
 
     }
 
-    public String getArithCompr(LinkedList<String> selectedTablesIn)
+    public String getArithCompr(LinkedList<Attribute> selectedTablesIn)
     {
         String stm="";
         int pick;
-        String rel1 = "";
-        String rel2 = "";
+        Attribute rel1 = null;
+        Attribute rel2 = null;
         String const1 = "";
         String const2 = "";
 
@@ -214,19 +213,19 @@ public class COMPARISON
             case 1:
                 rel1 = selectedTablesIn.get(Utilities.getRandChoice(selectedTablesIn.size()));
                 rel2 = selectedTablesIn.get(Utilities.getRandChoice(selectedTablesIn.size()));
-                stm = rel1 + arith + rel2;
+                stm = rel1.attrName + arith + rel2.attrName;
             break;
 
             case 2:
                 rel1 = selectedTablesIn.get(Utilities.getRandChoice(selectedTablesIn.size()));
                 const1 = constAndNullAttr.get( (Utilities.getRandChoice(constAndNullAttr.size())));
-                stm = rel1 + arith + const1;
+                stm = rel1.attrName + arith + const1;
             break;
 
             case 3:
                 rel1 = selectedTablesIn.get(Utilities.getRandChoice(selectedTablesIn.size()));
                 const1 = constAndNullAttr.get( (Utilities.getRandChoice(constAndNullAttr.size())));
-                stm = const1 + arith + rel1;
+                stm = const1 + arith + rel1.attrName;
             break;
         }
 

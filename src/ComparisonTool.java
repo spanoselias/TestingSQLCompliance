@@ -229,12 +229,11 @@ public class ComparisonTool
                 ex.printStackTrace();
             }
         }
-
     }
 
     public  LinkedList<String> connectToOracle( String sqlQuery )
     {
-            Connection conn = null;
+
             LinkedList<String> mySqlList=null;
 
             System.out.println("-------- Oracle JDBC Connection Testing ------");
@@ -268,7 +267,6 @@ public class ComparisonTool
                 System.out.println("Connection Failed! Check output console");
                 e.printStackTrace();
                // return;
-
             }
 
             if (connection != null) {
@@ -280,7 +278,7 @@ public class ComparisonTool
             //Oracle does not support 'AS' in the FROM STATEMENT
             sqlQuery.replace("AS", " ");
 
-            mySqlList = execQuery(conn, sqlQuery);
+            mySqlList = execQuery(connection, sqlQuery);
 
         return mySqlList;
         }
@@ -302,7 +300,6 @@ public class ComparisonTool
             mySqlList = execQuery(conn, sqlQuery);
             //System.out.println("MS Server: " + mySqlList.size());
 
-
         } catch (SQLException ex)
         {
             ex.printStackTrace();
@@ -322,7 +319,6 @@ public class ComparisonTool
 
         return mySqlList;
     }
-
 
     public static void genCsv( String row)
     {
@@ -364,7 +360,6 @@ public class ComparisonTool
                 }
 
             }
-
     }
 
     public LinkedList<String> execQuery(Connection conn, String sqlQry)
@@ -400,11 +395,13 @@ public class ComparisonTool
 
                     if(i == columnCount-1)
                     {
-                        newRow += String.valueOf(rs.getString(col)).trim().split(".")[0] + ",";
+                       // newRow += String.valueOf(rs.getString(col)).trim().split(".")[0] + ",";
+                        newRow += String.valueOf(rs.getString(col)).trim() + ",";
                     }
                     else
                     {
-                        newRow += String.valueOf(rs.getString(col)).trim().split(".")[0] + ",";
+                        //newRow += String.valueOf(rs.getString(col)).trim().split(".")[0] + ",";
+                        newRow += String.valueOf(rs.getString(col)).trim() + ",";
                     }
                 }
 
@@ -416,6 +413,7 @@ public class ComparisonTool
         catch (SQLException ex)
         {
             ex.printStackTrace();
+            return null;
         } finally
         {
             try
@@ -436,6 +434,11 @@ public class ComparisonTool
 
     public boolean diff(LinkedList<String> MSServer, LinkedList<String> MySQL, LinkedList<String> OracleDB, LinkedList<String> PostGres )
     {
+
+        System.out.print("\n**************************\n");
+        System.out.print("DIff: " + MSServer.size());
+        System.out.print("\n**************************\n");
+
         if(MSServer.size() != MySQL.size() || MSServer.size() != PostGres.size())
         {
             return false;
@@ -445,11 +448,6 @@ public class ComparisonTool
         {
             if( MSServer.get(i).compareTo(MySQL.get(i)) != 0  || MSServer.get(i).compareTo(PostGres.get(i))!= 0  ||MSServer.get(i).compareTo(OracleDB.get(i))!= 0 )
             {
-             /*   System.out.println("MSServer: " + MSServer.get(i));
-                System.out.println("MySQl:    " + MySQL.get(i));
-                System.out.println("PostGres: " + PostGres.get(i));
-                System.out.println("OracleDB: " + OracleDB.get(i));
-                System.out.println("i: " + i);*/
                 return false;
             }
         }

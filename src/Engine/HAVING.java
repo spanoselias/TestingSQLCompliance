@@ -31,7 +31,7 @@ public  class HAVING
         genFunctions = new FUNCTIONS();
     }
 
-    public String genHaving(LinkedList<String> frmRelts)
+    public String genHaving(LinkedList<Attribute> frmRelts)
     {
         stm += genFunctions.getAttrComparison(frmRelts);
 

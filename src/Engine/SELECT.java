@@ -20,11 +20,11 @@ public class SELECT
     //in this sql query. This is useful in case where we need to have subquery
     private HashMap<String, String> selectedAlias;
 
-    private HashMap<String, LinkedList<String>> relAttrs;
+    private HashMap<String, LinkedList<Attribute>> relAttrs;
 
     //This HashMap is used to store all the relations with their associated attributes. The
     //key represents the relation name and the list stores all the attributes for each key (relation)
-    private HashMap<String, LinkedList<String>> allRelAttrs;
+    private HashMap<String, LinkedList<Attribute>> allRelAttrs;
 
 
     //This will be used to generate arithmetic comparison in the where clause
@@ -44,7 +44,7 @@ public class SELECT
     private boolean isAllAttrs;
 
     public SELECT(boolean isDistinctIn, boolean isAttrsIn,
-                      LinkedList<String> aliasIn, int subqueryIn, HashMap<String, LinkedList<String>> allRelAttrsIn, ConfParameters confpar )
+                      LinkedList<String> aliasIn, int subqueryIn, HashMap<String, LinkedList<Attribute>> allRelAttrsIn, ConfParameters confpar )
     {
         this.isDistinct = isDistinctIn;
         this.isAllAttrs = isAttrsIn;
@@ -69,10 +69,10 @@ public class SELECT
 
     //The isSubqry parameter is important in order to know if this is a subquery parameter to avoid having
     //repetition of alias in the SELECT clause because is not valid
-    public String getSelect( LinkedList<String> frmRels, boolean isOneAttr, boolean isSubqry, double isRepAlias, boolean isAggr, LinkedList<String> aggrAttrsIn, boolean isOperator)
+    public String getSelect( LinkedList<Attribute> frmRels, boolean isOneAttr, boolean isSubqry, double isRepAlias, boolean isAggr, LinkedList<Attribute> aggrAttrsIn, boolean isOperator)
     {
 
-        LinkedList<String> allSelAttrs=null;
+        LinkedList<Attribute> allSelAttrs=null;
 
         //Operator represents operations like UNION, INTERSECTION.. Thus, we need to track
         //the number of attributes
@@ -118,7 +118,7 @@ public class SELECT
             {
                 //frmRels list stores all the attributes that we can project in the SELECT clause. Thus, we take
                 //into account the tables what we have chosen in the FROM clause and what attributes each table has
-                for (String relName : frmRels)
+                for (Attribute relName : frmRels)
                 {
                     if( isOperator == false )
                     {
@@ -151,12 +151,12 @@ public class SELECT
                         //This is useful if this query will be used as a subquery in the FROM clause
                         aliasAttr.add(alias.get(j));
 
-                        String repAlias = String.format("%s AS %s", relName, alias.get(j));
+                        String repAlias = String.format("%s AS %s", relName.attrName, alias.get(j));
                         curAlias.add(repAlias);
 
                         if (isOut == false)
                         {
-                            stm += String.format(" %s AS %s", relName, alias.get(j));
+                            stm += String.format(" %s AS %s", relName.attrName, alias.get(j));
                             isOut = true;
                         }
                         else
@@ -245,10 +245,10 @@ public class SELECT
             //an "IN" in the WHERE clause which only need one attribute
             else
             {
-                String randAttr = frmRels.get(Utilities.getRandChoice(frmRels.size()));
+                Attribute randAttr = frmRels.get(Utilities.getRandChoice(frmRels.size()));
 
                 aliasAttr.add(alias.get(j));
-                stm += String.format(" %s AS %s", randAttr, alias.get(j));
+                stm += String.format(" %s AS %s", randAttr.attrName, alias.get(j));
             }
 
         return stm;

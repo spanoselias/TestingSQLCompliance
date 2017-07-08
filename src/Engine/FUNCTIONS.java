@@ -11,7 +11,7 @@ public class FUNCTIONS
         private LinkedList<String> oper4;
 
         private HashMap<String, LinkedList<String>> relAttrs;
-        private LinkedList<String> selAttrs;
+        private LinkedList<Attribute> selAttrs;
 
         private LinkedList<String> arithCompr;
 
@@ -43,15 +43,13 @@ public class FUNCTIONS
 
         }
 
-
-
-        public String getAttrComparison( LinkedList<String> selAttrsIn)
+        public String getAttrComparison( LinkedList<Attribute> selAttrsIn)
         {
             String stm="";
 
             this.selAttrs = selAttrsIn;
 
-            String attr = selAttrsIn.get(Utilities.getRandChoice(selAttrsIn.size()));
+            Attribute attr = selAttrsIn.get(Utilities.getRandChoice(selAttrsIn.size()));
 
             int switchPick = Utilities.getRandChoice(3);
             String curFun1 =  functions.get(Utilities.getRandChoice(functions.size()));
@@ -63,7 +61,7 @@ public class FUNCTIONS
                 //Function with constant comparison
                 case 0:
                     String con = String.valueOf(Utilities.getRandChoice(10000));
-                    stm = curFun1 + "(" + attr + ")" + " " + oper + " " + con;
+                    stm = curFun1 + "(" + attr.attrName + ")" + " " + oper + " " + con;
                 break;
 
                 //Function with function comparison
@@ -77,29 +75,28 @@ public class FUNCTIONS
                     }while(curFun2 == curFun1 && counter < 10000);
 
                     counter =0;
-                    String attr2 ;
+                    Attribute attr2 ;
                     //We trying to avoid comparing the same functions
                     do
                     {
                         counter ++;
                         attr2 = selAttrsIn.get(Utilities.getRandChoice(selAttrsIn.size()));
-                    }while(attr == attr2 && counter < 10000);
+                    }while(attr.attrName == attr2.attrName && counter < 10000);
 
-                    stm = curFun1 + "(" + attr + ")" + " " + oper + " " + curFun2 + "(" + attr2 + ")";
+                    stm = curFun1 + "(" + attr.attrName + ")" + " " + oper + " " + curFun2 + "(" + attr2.attrName + ")";
                 break;
 
                 case 2:
                     String constant = String.valueOf(Utilities.getRandChoice(10000));
-                    stm = attr  + " "  + oper + " " + constant;
+                    stm = attr.attrName  + " "  + oper + " " + constant;
                 break;
             }
 
             return stm;
-
         }
 
 
-        public String getSelectAggr( LinkedList<String> grpAttrIn)
+        public String getSelectAggr( LinkedList<Attribute> grpAttrIn)
         {
 
             String arith = arithCompr.get( Utilities.getRandChoice(arithCompr.size()) );
@@ -108,13 +105,12 @@ public class FUNCTIONS
 
             this.selAttrs = grpAttrIn;
 
-            String attr1 ="";
-            String attr2 ="";
+            Attribute attr1;
+            Attribute attr2;
 
-            String rel = "";
+            Attribute rel;
             String curFun1 = "";
             String curFun2 = "";
-
 
             int pick = Utilities.getRandChoice(4);
             switch (pick)
@@ -122,16 +118,14 @@ public class FUNCTIONS
                 case 0:
                     attr1 = grpAttrIn.get(Utilities.getRandChoice(grpAttrIn.size()));
                     curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
-                    stm = curFun1 + "(" + attr1 + ")" ;
-
+                    stm = curFun1 + "(" + attr1.attrName + ")" ;
                 break;
 
                 case 1:
                     attr1 = grpAttrIn.get(Utilities.getRandChoice(grpAttrIn.size()));
                     curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
                     rel = grpAttrIn.get(Utilities.getRandChoice(grpAttrIn.size()));
-                    stm = "(" + curFun1 + "(" + attr1 + ") " + arith + " " + rel + ")";
-
+                    stm = "(" + curFun1 + "(" + attr1.attrName + ") " + arith + " " + rel.attrName + ")";
                 break;
 
                 case 2:
@@ -139,13 +133,13 @@ public class FUNCTIONS
                     attr2 = grpAttrIn.get(Utilities.getRandChoice(grpAttrIn.size()));
                     curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
                     curFun2   =  functions.get(Utilities.getRandChoice(functions.size()));
-                    stm = "(" +  curFun1 + "(" + attr1 + ") " + arith + " " + curFun2 + "(" + attr2 + ") " + ")";
+                    stm = "(" +  curFun1 + "(" + attr1.attrName + ") " + arith + " " + curFun2 + "(" + attr2.attrName + ") " + ")";
                 break;
 
                 case 3:
                     attr1 = grpAttrIn.get(Utilities.getRandChoice(grpAttrIn.size()));
                     curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
-                    stm = "(" +  curFun1 + "(" + attr1 + ") " + arith + " " + "NULL" + ")";
+                    stm = "(" +  curFun1 + "(" + attr1.attrName + ") " + arith + " " + "NULL" + ")";
                 break;
 
             }

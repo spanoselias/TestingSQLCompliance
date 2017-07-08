@@ -106,8 +106,7 @@ public class SQLEngine
         return tmpAlias;
     }
 
-    public static void retrieveDBSchema( HashMap<String, LinkedList<String>> allRelAttr, ConfParameters confIn )
-    {
+    public static void retrieveDBSchema( HashMap<String, LinkedList<Attribute>> allRelAttr, ConfParameters confIn ) throws IOException {
 
         boolean unable2Conn=false;
 
@@ -125,7 +124,6 @@ public class SQLEngine
             {
                 Class.forName("org.postgresql.Driver");
             }
-
         }
         catch (ClassNotFoundException e)
         {
@@ -171,7 +169,7 @@ public class SQLEngine
             else
             {
 
-                stm = conn.prepareStatement(  "SELECT TABLE_NAME, column_name\n" +
+                stm = conn.prepareStatement(  "SELECT TABLE_NAME, column_name, data_type\n" +
                         "FROM information_schema.columns\n" +
                         "where table_schema = 'public' AND\n" +
                         "table_catalog =?");
@@ -189,7 +187,7 @@ public class SQLEngine
             String newRow="";
             String prevName = "";
 
-            LinkedList<String> curAttr = new LinkedList<>();
+            LinkedList<Attribute> curAttr = new LinkedList<>();
 
             if(rs.next() == false)
             {
@@ -200,32 +198,39 @@ public class SQLEngine
             while (rs.next())
             {
 
+                Attribute newAttr = new Attribute();
                 String relName = rs.getString("TABLE_NAME");
 
                 if(prevName == "")
                 {
                     prevName = relName;
-                    curAttr.add(rs.getString("COLUMN_NAME"));
+                    newAttr.attrName = rs.getString("COLUMN_NAME");
+                    newAttr.attrType = rs.getString("data_type");
+                    curAttr.add(newAttr);
                 }
 
                 else if(prevName.equals( relName))
                 {
-                    curAttr.add(rs.getString("COLUMN_NAME"));
+                    newAttr.attrName = rs.getString("COLUMN_NAME");
+                    newAttr.attrType = rs.getString("data_type");
+                    curAttr.add(newAttr);
                 }
                 else if( ! prevName.equals( relName))
                 {
-                    allRelAttr.put(prevName, ((LinkedList<String>)curAttr.clone()));
+                    allRelAttr.put(prevName, ((LinkedList<Attribute>)curAttr.clone()));
                     curAttr.clear();
                     prevName = relName;
 
-                    curAttr.add(rs.getString("COLUMN_NAME"));
+                    newAttr.attrName = rs.getString("COLUMN_NAME");
+                    newAttr.attrType = rs.getString("data_type");
+                    curAttr.add(newAttr);
                 }
             }
 
            //In case where there is only one relation
            if(curAttr.isEmpty() == false && prevName != "")
            {
-               allRelAttr.put(prevName, ((LinkedList<String>)curAttr.clone()));
+               allRelAttr.put(prevName, ((LinkedList<Attribute>)curAttr.clone()));
            }
        }
         catch (SQLException ex)
@@ -236,50 +241,46 @@ public class SQLEngine
 
     finally
     {
+        //In case where the schema of the DB cannot be retrieved from the current databases, then, we retrieve
+        // it from the configuration file
+        if(unable2Conn == true)
+         {
+
+             System.out.println("Error");
+
+            /* Properties prop = new Properties();
+             InputStream input = null;
+
+             input = new FileInputStream("config.properties");
+
+             // load a properties file
+             prop.load(input);
+
+             String[] relations = prop.getProperty("relations").split(",");
+             String[] attributes = prop.getProperty("attributes").split(",");
+             for (String relation : relations)
+             {
+                 LinkedList<String> attrList = new LinkedList<>();
+                 for (String attr : attributes)
+                 {
+                     attrList.add(attr);
+                 }
+
+                 //We insert the relation (as key) in the hashMap, and a likedlist that stores all the
+                 //attributes for the specific relation
+                 allRelAttr.put(relation, attrList);
+             }
+
+             confIn.relationsAttrs = allRelAttr;*/
+         }
         try
-        {
-            //In case where the schema of the DB cannot be retrieved from the current databases, then, we retrieve
-            // it from the configuration file
-            if(unable2Conn == true)
-            {
-                Properties prop = new Properties();
-                InputStream input = null;
-
-                input = new FileInputStream("config.properties");
-
-                // load a properties file
-                prop.load(input);
-
-                String[] relations = prop.getProperty("relations").split(",");
-                String[] attributes = prop.getProperty("attributes").split(",");
-                for (String relation : relations)
-                {
-                    LinkedList<String> attrList = new LinkedList<>();
-                    for (String attr : attributes)
-                    {
-                        attrList.add(attr);
-                    }
-
-                    //We insert the relation (as key) in the hashMap, and a likedlist that stores all the
-                    //attributes for the specific relation
-                    allRelAttr.put(relation, attrList);
-                }
-
-                confIn.relationsAttrs = allRelAttr;
-            }
-        }
-            catch (IOException ex)
-            {
-                System.out.println("Unable to read the configuration file");
-                ex.printStackTrace();
-            }
-            try
             {
                 if (conn != null && !conn.isClosed())
                 {
                     conn.close();
                 }
-            } catch (SQLException ex)
+            }
+            catch (SQLException ex)
             {
               //  ex.printStackTrace();
             }
@@ -332,6 +333,7 @@ public class SQLEngine
 
         BufferedWriter bw = null;
         FileWriter fw = null;
+
         String path = "C:\\Users\\Elias\\Documents\\TestingSQLCompliance\\src\\Log\\";
 
      //   String filename = path + dateFormat.format(date);
@@ -343,11 +345,11 @@ public class SQLEngine
         ComparisonTool dbcon = new ComparisonTool();
         LinkedList<String> MyVal = dbcon.connectToMySql(sql);
         LinkedList<String> MSVal = dbcon.connectToMicrosoftSql(sql);
-        //LinkedList<String> oracleDb = dbcon.connectToOracle(sql);
+        LinkedList<String> oracleDb = dbcon.connectToOracle(sql);
         LinkedList<String> postgres = dbcon.connectToMicrosoftSql(sql);
        // LinkedList<String> DB2 = dbcon.connectToIBMDb2();
 
-       if( dbcon.diff(MSVal,MyVal , null, postgres) == false )
+       if( dbcon.diff(MSVal,MyVal , oracleDb, postgres) == false )
        {
             System.out.println("Difference found!!!");
 
@@ -391,38 +393,36 @@ public class SQLEngine
 
         long uniqID=0;
 
-        LinkedList<String> frmRelts = new LinkedList<>();
+        LinkedList<Attribute> frmRelts = new LinkedList<>();
 
         String qry="";
 
         int pick;
 
-        SQLQURERY newSQL = new SQLQURERY();
+        SQLQUERY newSQL = new SQLQUERY();
 
-        while(true)
-        {
+        pick = Utilities.getRandChoice(5);
+        pick = 2;
 
-            pick = Utilities.getRandChoice(5);
 
             //The option is given as input parameter to the program
-            switch(pick)
-            {
+            switch (pick) {
                 case 0:
-                   // System.out.println("Complex query");
-                  //  System.out.println("*******************");
-                    qry  = newSQL.genCompQuery(1, frmRelts,1,false,false, confPar);
-                break;
+                    // System.out.println("Complex query");
+                    //  System.out.println("*******************");
+                    qry = newSQL.genCompQuery(1, frmRelts, 1, false, false, confPar);
+                    break;
 
                 case 1:
-                  //  System.out.println("Simple query");
-                  //  System.out.println("*******************");
-                    QRYREPRES res = newSQL.genQuery(null,uniqID, false, false, confPar);
+                    //  System.out.println("Simple query");
+                    //  System.out.println("*******************");
+                    QRYREPRES res = newSQL.genQuery(null, uniqID, false, false, confPar);
                     qry = res.qryStr;
                     break;
 
                 case 2:
                     qry = newSQL.nestQuery(uniqID, confPar);
-                   // wrtSql2File("rand.", qry);
+                    // wrtSql2File("rand.", qry);
                     break;
 
                 case 3:
@@ -431,7 +431,7 @@ public class SQLEngine
                     break;
 
                 case 4:
-                    QRYREPRES res2 = newSQL.operQuery(null,uniqID, false, false, confPar);
+                    QRYREPRES res2 = newSQL.operQuery(null, uniqID, false, false, confPar);
                     qry = res2.qryStr;
                     break;
             }
@@ -440,14 +440,13 @@ public class SQLEngine
                 qry = res1.qryStr;*/
 
             System.out.println(qry);
-            wrtSql2File("rand.sql",qry);
+            wrtSql2File("rand.sql", qry);
 
-          //  String sql = nestQuery(uniqID, confPar);
-          //  wrtSql2File("rand.sql",qry);
+            //  String sql = nestQuery(uniqID, confPar);
+            //  wrtSql2File("rand.sql",qry);
 
-            genLogFile(qry);
+             // genLogFile(qry);
 
-        }//while statement
 
     }
 

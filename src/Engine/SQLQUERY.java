@@ -5,9 +5,9 @@ import java.util.LinkedList;
 /**
  * Created by Elias on 6/19/2017.
  */
-public class SQLQURERY
+public class SQLQUERY
 {
-    public SQLQURERY()
+    public SQLQUERY()
     {
 
     }
@@ -83,7 +83,7 @@ public class SQLQURERY
         return res;
     }
 
-    public QRYREPRES genQuery( LinkedList<String> frmRelts, long uniqID, boolean isNest, boolean isOneAttr ,  ConfParameters confPar)
+    public QRYREPRES genQuery( LinkedList<Attribute> frmRelts, long uniqID, boolean isNest, boolean isOneAttr ,  ConfParameters confPar)
     {
 
         QRYREPRES res = new QRYREPRES();
@@ -127,10 +127,8 @@ public class SQLQURERY
         return res;
     }
 
-    public String genCompQuery(int subqry, LinkedList<String> frmRelts, long uniqID, boolean isNest, boolean isOneAttr, ConfParameters confPar)
+    public String genCompQuery(int subqry, LinkedList<Attribute> frmRelts, long uniqID, boolean isNest, boolean isOneAttr, ConfParameters confPar)
     {
-
-
         boolean isDistinct =false;
         int rand = Utilities.getRandChoice(2);
         if(rand ==1)
@@ -164,12 +162,15 @@ public class SQLQURERY
 
             for(String attr: selQry.getAliasAttr())
             {
-                frmRelts.add( subName + "." + attr );
+                Attribute newAttr = new Attribute();
+                newAttr.attrName = subName + "." + attr;
+
+                frmRelts.add( newAttr );
             }
         }
 
         String from = frmQry.getFrom(++uniqID);
-        for(String attr: frmQry.getSelectedTables())
+        for(Attribute attr: frmQry.getSelectedTables())
         {
             frmRelts.add( attr );
         }
@@ -194,7 +195,7 @@ public class SQLQURERY
 
         //This list will be used to store all the attributes from the current FROM clause and from outer
         //queries as well
-        LinkedList<String> levFrmBinds = new LinkedList<>();
+        LinkedList<Attribute> levFrmBinds = new LinkedList<>();
 
         //It creates the first outer query
         QRYREPRES curQuery = genQuery( levFrmBinds, ++uniqID, true, false, confPar);
@@ -248,7 +249,7 @@ public class SQLQURERY
         QRYREPRES res=null;
 
         String outterQry;
-        SQLQURERY newSQL = new SQLQURERY();
+        SQLQUERY newSQL = new SQLQUERY();
 
         res = newSQL.genQuery(null,uniqID, false, false, confPar);
         outterQry = res.qryStr;
@@ -262,10 +263,10 @@ public class SQLQURERY
         return stm;
     }
 
-    public LinkedList<String> copySelRelts(LinkedList<String> curSelRels, LinkedList<String> newRelts)
+    public LinkedList<Attribute> copySelRelts(LinkedList<Attribute> curSelRels, LinkedList<Attribute> newRelts)
     {
 
-        for(String newAttr: newRelts)
+        for(Attribute newAttr: newRelts)
         {
             curSelRels.add(newAttr);
         }

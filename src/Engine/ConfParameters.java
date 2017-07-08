@@ -21,7 +21,7 @@ public class ConfParameters
 
     public double repAlias;
 
-    public HashMap<String, LinkedList<String>> relationsAttrs = new HashMap<>();
+    public HashMap<String, LinkedList<Attribute>> relationsAttrs = new HashMap<>();
 
     //Represents the nesting depth of an SQL query
     public int nestLev;

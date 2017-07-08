@@ -9,6 +9,6 @@ public class QRYREPRES
 {
     public String qryStr;
     public boolean isOneAt;
-    public LinkedList<String> selRelts;
+    public LinkedList<Attribute> selRelts;
 
 }

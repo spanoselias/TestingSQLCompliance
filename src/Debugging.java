@@ -1,4 +1,3 @@
-import Engine.SQLQURERY;
 import Engine.Utilities;
 
 /**
@@ -11,7 +10,7 @@ public class Debugging
     {
 
         //ComparisonTool conn = new ComparisonTool();
-      //  SQLQURERY newSQL = new SQLQURERY();
+      //  SQLQUERY newSQL = new SQLQUERY();
 
 
      /*  String qury ="SELECT r31.A AS A0, r31.B AS A1, r11.A AS A2, r11.B AS A3, r31.B AS A4, SUM(r11.B), (MIN(r11.A) - MIN(r31.A) ), (SUM(r31.B) / NULL)\n" +

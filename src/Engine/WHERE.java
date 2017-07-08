@@ -19,7 +19,7 @@ public  class WHERE
     private String conn[] = {" AND", " OR"};
 
     //This hashMap will be used to store all the attributes for each relation
-    HashMap<String, LinkedList<String>> relationsAttrs;
+    HashMap<String, LinkedList<Attribute>> relationsAttrs;
 
     ConfParameters confPar;
 
@@ -31,7 +31,7 @@ public  class WHERE
      *
      *@param allReltsWithAttrs ,it stores all the relations with their accosiated attributes
      */
-    public WHERE(HashMap<String, LinkedList<String>> allReltsWithAttrs)
+    public WHERE(HashMap<String, LinkedList<Attribute>> allReltsWithAttrs)
     {
         this.relationsAttrs =  allReltsWithAttrs;
         stm = "WHERE ";
@@ -40,7 +40,7 @@ public  class WHERE
         genCom = new COMPARISON();
     }
 
-    public String getSqlWhere(LinkedList<String> selectedReltsInFrom,boolean isNested , ConfParameters confPar, int whereCompNo)
+    public String getSqlWhere(LinkedList<Attribute> selectedReltsInFrom,boolean isNested , ConfParameters confPar, int whereCompNo)
     {
         this.confPar = confPar;
 
@@ -72,7 +72,7 @@ public  class WHERE
 
                   stm += "("; isParenOpen =1;
 
-                stm +=  genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, confPar.probWhrConst);
+                  stm +=  genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, confPar.probWhrConst);
             }
             else
             {

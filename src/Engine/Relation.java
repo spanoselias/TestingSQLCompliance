@@ -9,7 +9,7 @@ public class Relation
 {
 
     String relName;
-    LinkedList<String> attributes;
+    LinkedList<Attribute> attributes;
 
     public Relation()
     {
@@ -22,7 +22,7 @@ public class Relation
         return this.relName;
     }
 
-    public  LinkedList<String> getRelAttrs()
+    public  LinkedList<Attribute> getRelAttrs()
     {
         return this.attributes;
     }
@@ -33,7 +33,7 @@ public class Relation
         this.relName = newRelName;
     }
 
-    public void setAttrName( String newattrName)
+    public void setAttrName( Attribute newattrName)
     {
        attributes.add(newattrName);
     }
@@ -43,7 +43,7 @@ public class Relation
         this.attributes = newAttrList;
     }
 
-    public void addAttribute (String newAttribute)
+    public void addAttribute (Attribute newAttribute)
     {
         this.attributes.add(newAttribute);
     }

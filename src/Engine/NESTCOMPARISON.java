@@ -16,7 +16,7 @@ public class NESTCOMPARISON
         private boolean isOneAttr;
 
         private HashMap<String, LinkedList<String>> relAttrs;
-        private LinkedList<String> selectedTables;
+        private LinkedList<Attribute> selectedTables;
 
         public NESTCOMPARISON()
         {
@@ -29,7 +29,6 @@ public class NESTCOMPARISON
             this.oper2.add("IN");
             //this.oper2.add("NOT IN");
             //this.oper2.add("IN");
-
 
             this.oper3 = new LinkedList<>();
             this.oper3.add("ANY");
@@ -47,8 +46,7 @@ public class NESTCOMPARISON
 
         }
 
-
-        public String getAttrComparison(HashMap<String, LinkedList<String>> relAttrs, LinkedList<String> selectedTablesIn)
+        public String getAttrComparison(HashMap<String, LinkedList<Attribute>> relAttrs, LinkedList<Attribute> selectedTablesIn)
         {
 
             this.isOneAttr = false;
@@ -67,14 +65,14 @@ public class NESTCOMPARISON
                 break;
 
                 case 1:
-                    String rel1 = this.selectedTables.get(Utilities.getRandChoice(this.selectedTables.size()));
-                    stm +=rel1 + " " + oper2.get(Utilities.getRandChoice(oper2.size()));
+                    Attribute rel1 = this.selectedTables.get(Utilities.getRandChoice(this.selectedTables.size()));
+                    stm += rel1.attrName + " " + oper2.get(Utilities.getRandChoice(oper2.size()));
                     this.isOneAttr = true;
                 break;
 
                 case 2:
-                    String rel = this.selectedTables.get(Utilities.getRandChoice(this.selectedTables.size()));
-                    stm +=rel + " " + oper4.get(Utilities.getRandChoice(oper4.size())) + " " + oper3.get(Utilities.getRandChoice(oper3.size()));
+                    Attribute rel = this.selectedTables.get(Utilities.getRandChoice(this.selectedTables.size()));
+                    stm += rel.attrName + " " + oper4.get(Utilities.getRandChoice(oper4.size())) + " " + oper3.get(Utilities.getRandChoice(oper3.size()));
                     this.isOneAttr = true;
                 break;
             }

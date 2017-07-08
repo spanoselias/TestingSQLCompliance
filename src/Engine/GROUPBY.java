@@ -10,7 +10,7 @@ public  class GROUPBY
     //This list is used to store all the attributes which are selected in the
     //GROUP by clause. The reason is that we cannot have attributes in the SELECT clause
     //that are not appear in the GROUP BY
-    private LinkedList<String> groubyAttr;
+    private LinkedList<Attribute> groubyAttr;
 
     //This hashMap will be used to store all the attributes for each relation
     HashMap<String, LinkedList<String>> relationsAttrs;
@@ -25,14 +25,14 @@ public  class GROUPBY
         stm = "GROUP BY ";
     }
 
-    public String getGroupBy(LinkedList<String> frmRelts)
+    public String getGroupBy(LinkedList<Attribute> frmRelts)
     {
         //It is used for string format purpose
         boolean isOut = false;
 
         int j=0;
 
-        for (String relName : frmRelts)
+        for (Attribute relName : frmRelts)
         {
             if( this.confPar.maxAttrGrpBy == j)
             {
@@ -47,13 +47,13 @@ public  class GROUPBY
             //This check is just for formatting reasons
             if (isOut == false)
             {
-                stm += String.format("%s", relName);
+                stm += String.format("%s", relName.attrName);
                 isOut = true;
             }
 
             else
             {
-                stm += String.format(", %s", relName);
+                stm += String.format(", %s", relName.attrName);
             }
 
             j++;
@@ -64,7 +64,7 @@ public  class GROUPBY
 
     //This methods is used for retrieving the attributes which are selected
     //in the GROUPBY clause
-    public LinkedList<String> getAttrInGroup()
+    public LinkedList<Attribute> getAttrInGroup()
     {
         return this.groubyAttr;
     }

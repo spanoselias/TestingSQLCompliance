@@ -1,5 +1,6 @@
 package Engine;
 
+import javax.smartcardio.ATR;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Random;
@@ -13,17 +14,17 @@ public  class FROM
 
     //This HashMap is used to store all the relations with their associated attributes. The
     //key represents the relation name and the list stores all the attributes for each key (relation)
-    private HashMap<String, LinkedList<String>> allRelAttrs;
+    private HashMap<String, LinkedList<Attribute>> allRelAttrs;
 
     //This LinkedList will be used to store all the relations that will be randomly chosen
     //for the Engine.FROM Clause
-    private LinkedList<String> selectedReltsInFrom;
+    private LinkedList<Attribute> selectedReltsInFrom;
 
     private LinkedList<String> alias;
 
     ConfParameters confParSel;
 
-    public FROM(  LinkedList<String> aliasIn, HashMap<String, LinkedList<String>> allRelAttrsIn, ConfParameters confPar )
+    public FROM(  LinkedList<String> aliasIn, HashMap<String, LinkedList<Attribute>> allRelAttrsIn, ConfParameters confPar )
     {
         this.alias = aliasIn;
 
@@ -44,7 +45,7 @@ public  class FROM
 
             rel[i].setRelName(relation);
 
-            for (String attr : this.allRelAttrs.get(relation))
+            for (Attribute attr : this.allRelAttrs.get(relation))
             {
                 rel[i].setAttrName(attr);
             }
@@ -99,9 +100,14 @@ public  class FROM
             newAlias = rel[i].getRelName().toLowerCase() + String.valueOf(uniqID);
 
            //to be checked
-           for(String attr: this.allRelAttrs.get(rel[i].getRelName()))
+           for(Attribute attr: this.allRelAttrs.get(rel[i].getRelName()))
            {
-               this.selectedReltsInFrom.add( (newAlias) + "." + attr);
+               Attribute newAttr = new Attribute();
+               newAttr.attrName = (newAlias) + "." + attr.attrName;
+               newAttr.attrType = attr.attrType;
+
+
+               this.selectedReltsInFrom.add( newAttr);
            }
 
             if (i == 0)
@@ -116,7 +122,7 @@ public  class FROM
     }
 
     //We retrieve the attributes that were chosen in the FROM clause
-    public LinkedList<String> getSelectedTables()
+    public LinkedList<Attribute> getSelectedTables()
     {
         return this.selectedReltsInFrom;
     }
@@ -125,7 +131,7 @@ public  class FROM
         return fromStm;
     }
 
-    public HashMap<String, LinkedList<String>> getRelAttrs() {
+    public HashMap<String, LinkedList<Attribute>> getRelAttrs() {
         return this.allRelAttrs;
     }
 
