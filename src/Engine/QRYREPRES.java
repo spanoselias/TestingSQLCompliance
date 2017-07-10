@@ -2,13 +2,11 @@ package Engine;
 
 import java.util.LinkedList;
 
-/**
- * Created by Elias on 6/2/2017.
- */
+//Simple class to store some information while generating SQL queries
 public class QRYREPRES
 {
     public String qryStr;
     public boolean isOneAt;
     public LinkedList<Attribute> selRelts;
-
+    public int totalAttr;
 }

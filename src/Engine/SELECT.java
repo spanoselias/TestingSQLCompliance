@@ -32,11 +32,9 @@ public class SELECT
 
     ConfParameters confParSel;
 
-
     //This variable will be used to count the total number of attributes
     //in the SELECT CLAUSE.
     private int countAttr;
-
 
     private FUNCTIONS genFunctions;
 
@@ -69,7 +67,7 @@ public class SELECT
 
     //The isSubqry parameter is important in order to know if this is a subquery parameter to avoid having
     //repetition of alias in the SELECT clause because is not valid
-    public String getSelect( LinkedList<Attribute> frmRels, boolean isOneAttr, boolean isSubqry, double isRepAlias, boolean isAggr, LinkedList<Attribute> aggrAttrsIn, boolean isOperator)
+    public String getSelect( LinkedList<Attribute> frmRels, boolean isOneAttr, boolean isSubqry, double isRepAlias, boolean isAggr, LinkedList<Attribute> aggrAttrsIn, boolean isOperator, int noOfAttrs)
     {
 
         LinkedList<Attribute> allSelAttrs=null;
@@ -161,7 +159,7 @@ public class SELECT
                         }
                         else
                         {
-                            stm += String.format(", %s AS %s", relName, alias.get(j));
+                            stm += String.format(", %s AS %s", relName.attrName, alias.get(j));
                         }
 
                         //We need to store all the alias that we chose in the Engine.SELECT_rmv clause because they will
@@ -234,10 +232,9 @@ public class SELECT
                  {
                      for(int i=0; i< Utilities.getRandChoice(5); i++)
                      {
-                         stm += ", " + genFunctions.getSelectAggr(allSelAttrs) + " AS AGGR" + i ;
+                         stm += ", " + genFunctions.getSelectAggr(frmRels, aggrAttrsIn) + " AS AGGR" + i ;
                      }
                  }
-
             }
 
             //If isOneAttr is true, then it means that we need to have only one attribute in the select
@@ -245,10 +242,31 @@ public class SELECT
             //an "IN" in the WHERE clause which only need one attribute
             else
             {
-                Attribute randAttr = frmRels.get(Utilities.getRandChoice(frmRels.size()));
+                //If the number of attributes that we need to project is 0, it means that the outer query
+                //is with EXIST OR NOT EXIST
+              /*  if(noOfAttrs == 0)
+                {
+                    noOfAttrs = Utilities.getRandChoice(frmRels.size());
+                }*/
 
-                aliasAttr.add(alias.get(j));
-                stm += String.format(" %s AS %s", randAttr.attrName, alias.get(j));
+                isOut=false;
+
+                for(int i=0; i < noOfAttrs; i++)
+                {
+                   // Attribute randAttr = frmRels.get(Utilities.getRandChoice(frmRels.size()));
+
+                    aliasAttr.add(alias.get(i));
+
+                    if (isOut == false)
+                    {
+                        stm += String.format(" %s AS %s", frmRels.get(i).attrName, alias.get(i));
+                        isOut = true;
+                    }
+                    else
+                    {
+                        stm += String.format(", %s AS %s", frmRels.get(i).attrName, alias.get(i));
+                    }
+                }
             }
 
         return stm;

@@ -3,9 +3,6 @@ package Engine;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-/**
- * Created by Elias on 6/6/2017.
- */
 public class ConfParameters
 {
     //Indicates the max number of tables that can exist in a From clause
@@ -29,6 +26,8 @@ public class ConfParameters
     public int maxAttrGrpBy;
 
     public double arithmCompar;
+
+    public double isDistinct;
 
     public LinkedList<String> genAlias = new LinkedList<>();
 

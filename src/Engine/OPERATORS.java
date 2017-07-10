@@ -2,7 +2,6 @@ package Engine;
 
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Random;
 
 /**
  * Created by Elias on 6/18/2017.
@@ -30,18 +29,9 @@ public class OPERATORS
 
     public String getOper(LinkedList<String> frmRelts)
     {
-        stm = oper1.get(getRandChoice(oper1.size()));
+        stm = oper1.get(Utilities.getRandChoice(oper1.size()));
 
         return stm;
-    }
-
-    private  int getRandChoice(int inputSize)
-    {
-        Random randomGenerator = new Random();
-
-        int pickRand = (randomGenerator.nextInt(inputSize) % inputSize);
-
-        return pickRand;
     }
 
 }

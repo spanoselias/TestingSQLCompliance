@@ -1,9 +1,7 @@
 package Engine;
 
-import javax.smartcardio.ATR;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Random;
 
 public  class FROM
 {
@@ -78,7 +76,7 @@ public  class FROM
         int pickRand = Utilities.getRandChoice(maxRels) + 1;
 
         //We shuffle the array of the relations to avoid choosing always the same order.
-        shuffleArray(rel);
+        Utilities.shuffleArray(rel);
 
         String stm = "";
 
@@ -89,7 +87,6 @@ public  class FROM
 
         for (int i = 0; i < pickRand; i++)
         {
-
             //We want to avoid having more attributes than the max attributes
             //which is given an a parameter in the configuration file
             if(confParSel.maxTableFrom == i)
@@ -105,7 +102,6 @@ public  class FROM
                Attribute newAttr = new Attribute();
                newAttr.attrName = (newAlias) + "." + attr.attrName;
                newAttr.attrType = attr.attrType;
-
 
                this.selectedReltsInFrom.add( newAttr);
            }
@@ -127,7 +123,8 @@ public  class FROM
         return this.selectedReltsInFrom;
     }
 
-    public String getFromSql() {
+    public String getFromSql()
+    {
         return fromStm;
     }
 
@@ -135,19 +132,5 @@ public  class FROM
         return this.allRelAttrs;
     }
 
-    public  void shuffleArray(Relation[] a) {
-        int n = a.length;
-        Random random = new Random();
-        random.nextInt();
-        for (int i = 0; i < n; i++) {
-            int change = i + random.nextInt(n - i);
-            swap(a, i, change);
-        }
-    }
 
-    private  void swap(Relation[] a, int i, int change) {
-        Relation helper = a[i];
-        a[i] = a[change];
-        a[change] = helper;
-    }
 }

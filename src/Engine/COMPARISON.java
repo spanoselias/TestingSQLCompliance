@@ -6,12 +6,13 @@ import java.util.LinkedList;
 
 public class COMPARISON
 {
+    //This variable is used in order to generate some constant numbers
     final int CONSTNO = 20;
 
     private LinkedList<String> operators;
     private HashMap<String, LinkedList<String>> relAttrs;
     private LinkedList<Attribute> selectedTables;
-    private LinkedList<String> constsAndNull;
+    private LinkedList<String> Null;
 
 
     //This list will be used to have arithmetic with constants and NULL
@@ -19,7 +20,6 @@ public class COMPARISON
     private LinkedList<String> arithCompr;
 
     private LinkedList<String> constAndNullAttr;
-
 
     public COMPARISON()
     {
@@ -31,14 +31,14 @@ public class COMPARISON
         this.operators.add(">=");
         this.operators.add("<>");
 
-        constsAndNull = new LinkedList<>();
-        constsAndNull.add("NULL");
+        Null = new LinkedList<>();
+        Null.add("NULL");
 
         //This loop in used to insert some constants in the linkedlist in order to
         //have some comparisons like NULL = NULL, attr > 2 and so for.
         for(int i=0; i< CONSTNO; i++)
         {
-            constsAndNull.add(Integer.toString(i));
+            Null.add(Integer.toString(i));
         }
 
         this.arithCompr = new LinkedList<>();
@@ -53,7 +53,7 @@ public class COMPARISON
         {
             this.constAndNullAttr.add(String.valueOf(i));
         }
-        for(int i =0; i< 5; i++ )
+        for(int i =0; i< 1; i++ )
         {
             this.constAndNullAttr.add("NULL");
         }
@@ -68,6 +68,8 @@ public class COMPARISON
         int pick;
         Attribute rel1 = new Attribute();
         Attribute rel2 = new Attribute();
+        rel1.attrName = "";
+        rel2.attrName = "";
 
         String arithmCompStr = "";
 
@@ -78,7 +80,6 @@ public class COMPARISON
         //one attribute with a constant
         int pick2 =  Utilities.getRandChoice(5);
 
-        int pick3 = Utilities.getRandChoice(1);
 
         //The probWhr represents the probability of having
         //constants or NULLS to the WHERE comparisons
@@ -100,36 +101,31 @@ public class COMPARISON
             pick = 4;
         }
 
-        //The idea of switch is to do comparisons between two relation's attributes or between
+        //The idea of current switch is to do comparisons between two relation's attributes or between
         //one attribute and one constant or between an attribute and a NULL
         switch (pick)
         {
             case 0:
-                rel1.attrName =  constsAndNull.get(Utilities.getRandChoice(constsAndNull.size()));
-                rel2.attrName =  constsAndNull.get(Utilities.getRandChoice(constsAndNull.size()));
+                //In this case both comparisons are nulls e.g r1.b > null
+                rel1.attrName =  Null.get(Utilities.getRandChoice(Null.size()));
+                rel2 = this.selectedTables.get(Utilities.getRandChoice(this.selectedTables.size()));
             break;
 
             case 1:
-
                 rel1.attrName = "NULL";
-                rel2.attrName = constsAndNull.get(Utilities.getRandChoice(constsAndNull.size()));
+                rel2.attrName = Null.get(Utilities.getRandChoice(Null.size()));
                 break;
 
             case 2:
                 rel1 = this.selectedTables.get(Utilities.getRandChoice(this.selectedTables.size()));
-                rel2.attrName = constsAndNull.get(Utilities.getRandChoice(constsAndNull.size()));
+                rel2.attrName = Null.get(Utilities.getRandChoice(Null.size()));
             break;
 
             case 3:
+                    //Comparison between two attributes, one attribute and one constant and so forth. Goto
+                    // getArithCompr method for more details
                     arithmCompStr  = getArithCompr(this.selectedTables);
             break;
-
-
-           /* case 2:
-
-                rel1 =  constsAndNull.get(genRandChoice(constsAndNull.size()));
-                rel2 = this.selectedTables.get(genRandChoice(this.selectedTables.size()));
-            break;*/
 
             case 4:
                 int pickRandRel = Utilities.getRandChoice(this.selectedTables.size());
@@ -147,10 +143,10 @@ public class COMPARISON
 
                     ++counter;
 
-                  //The idea is that we try to do the comparison in the WHERE clause with
-                  // with two different attributes. Thus, if the attributes are the same we try to
+                  // The idea is that we try to do the comparison in the WHERE clause with
+                  // two different attributes. Thus, if the attributes are the same we try to
                   // pick a new attribute. But we set up a threshold in order to avoid the case where
-                  //we have for many times the same attributes
+                  // we have for many times the same attributes
                 } while(prevPickRand == pickRand && counter < 1000);
 
 
@@ -163,6 +159,42 @@ public class COMPARISON
         String res="";
 
         pick = Utilities.getRandChoice(10);
+
+   /*     //We can have comparisons with more than one attributes e.g (r1.b, r2.a) > (r1.a, r2.c). Thus,
+        //we choose the number of attributes
+        int numOfAttr = Utilities.getRandChoice(this.selectedTables.size());
+
+        //Always have at least one attribute to compare
+        if(numOfAttr ==0)
+        { numOfAttr =1; }
+
+        if(numOfAttr > 0)
+        {
+            for (int j = 0; j < 2; j++)
+            {
+                //We create our format. For example (r1.b, r2.a)
+                String attrs = "";
+
+                for (int i = 0; i < numOfAttr; i++)
+                {
+                    if (i == 0) {
+                        attrs += "( " + selectedTablesIn.get(Utilities.getRandChoice(selectedTablesIn.size())).attrName;
+                    } else if (i < numOfAttr)
+                    {
+                        attrs += "," + selectedTablesIn.get(Utilities.getRandChoice(selectedTablesIn.size())).attrName;
+                    }
+                }
+                attrs += " )";
+
+                if (j == 0) {
+                    rel1.attrName = attrs;
+                } else if (j == 1)
+                {
+                    rel2.attrName = attrs;
+                }
+            }
+        }*/
+
         if( pick ==0 )
         {
             if(arithmCompStr != "")
@@ -194,8 +226,8 @@ public class COMPARISON
     {
         String stm="";
         int pick;
-        Attribute rel1 = null;
-        Attribute rel2 = null;
+        Attribute rel1 = new Attribute();
+        Attribute rel2 = new Attribute();
         String const1 = "";
         String const2 = "";
 
@@ -205,24 +237,28 @@ public class COMPARISON
         switch (pick)
         {
             case 0:
+                //The comparison is performed with two constants
                 const1 = constAndNullAttr.get( (Utilities.getRandChoice(constAndNullAttr.size())));
                 const2 = constAndNullAttr.get( (Utilities.getRandChoice(constAndNullAttr.size())));
                 stm = const1 + arith + const2;
             break;
 
             case 1:
+                //The comparison is performed with two attributes
                 rel1 = selectedTablesIn.get(Utilities.getRandChoice(selectedTablesIn.size()));
                 rel2 = selectedTablesIn.get(Utilities.getRandChoice(selectedTablesIn.size()));
                 stm = rel1.attrName + arith + rel2.attrName;
             break;
 
             case 2:
+                //The comparison is performed with one attribute and one constant
                 rel1 = selectedTablesIn.get(Utilities.getRandChoice(selectedTablesIn.size()));
                 const1 = constAndNullAttr.get( (Utilities.getRandChoice(constAndNullAttr.size())));
                 stm = rel1.attrName + arith + const1;
             break;
 
             case 3:
+                //The comparison is performed with one constant and one attribute
                 rel1 = selectedTablesIn.get(Utilities.getRandChoice(selectedTablesIn.size()));
                 const1 = constAndNullAttr.get( (Utilities.getRandChoice(constAndNullAttr.size())));
                 stm = const1 + arith + rel1.attrName;

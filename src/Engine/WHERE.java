@@ -122,9 +122,6 @@ public  class WHERE
             stm += " AND " + nestGenCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom);
         }
 
-
-
-
         return stm;
 
     }
@@ -136,5 +133,9 @@ public  class WHERE
     }
 
 
+    public int getAllAttr()
+    {
+        return nestGenCom.getTotalAttr();
+    }
 
 }

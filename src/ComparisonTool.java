@@ -57,7 +57,6 @@ public class ComparisonTool
 
       /*  System.out.println("-------- PostgreSQL "
                 + "JDBC Connection Testing ------------");*/
-
         try
         {
             Class.forName("org.postgresql.Driver");
@@ -105,7 +104,6 @@ public class ComparisonTool
         {
             System.out.println("Failed to make connection!");
         }*/
-
 
     }
 

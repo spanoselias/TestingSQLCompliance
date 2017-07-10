@@ -15,7 +15,7 @@ import java.util.Date;
  * SQL queries in order to evaluate them on all DBMS
  *
  * @author ELIAS SPANOS
- * @version 0.0.1
+ * @version 0.0.2
  */
 public class SQLEngine
 {
@@ -49,6 +49,7 @@ public class SQLEngine
             confPar.repAlias =  Double.parseDouble( prop.getProperty( "repAlias" ) );
             confPar.arithmCompar =  Double.parseDouble( prop.getProperty( "arithCompSel" ) );
             confPar.maxAttrGrpBy =  Integer.parseInt( prop.getProperty( "maxAttrGrpBy" ) );
+            confPar.isDistinct = Double.parseDouble( prop.getProperty( "distinct" ) );
 
             confPar.user =   prop.getProperty( "user" ) ;
             confPar.pass =   prop.getProperty( "pass" ) ;
@@ -197,7 +198,6 @@ public class SQLEngine
 
             while (rs.next())
             {
-
                 Attribute newAttr = new Attribute();
                 String relName = rs.getString("TABLE_NAME");
 
@@ -402,11 +402,12 @@ public class SQLEngine
         SQLQUERY newSQL = new SQLQUERY();
 
         pick = Utilities.getRandChoice(5);
-        pick = 2;
+        pick = 3;
 
 
             //The option is given as input parameter to the program
-            switch (pick) {
+            switch (pick)
+            {
                 case 0:
                     // System.out.println("Complex query");
                     //  System.out.println("*******************");
@@ -416,7 +417,7 @@ public class SQLEngine
                 case 1:
                     //  System.out.println("Simple query");
                     //  System.out.println("*******************");
-                    QRYREPRES res = newSQL.genQuery(null, uniqID, false, false, confPar);
+                    QRYREPRES res = newSQL.genQuery(null, uniqID, false, false, confPar, 0);
                     qry = res.qryStr;
                     break;
 

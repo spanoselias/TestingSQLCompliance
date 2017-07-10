@@ -2,8 +2,6 @@ package Engine;
 
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Random;
-
 
 public class FUNCTIONS
 {
@@ -96,14 +94,14 @@ public class FUNCTIONS
         }
 
 
-        public String getSelectAggr( LinkedList<Attribute> grpAttrIn)
+        public String getSelectAggr( LinkedList<Attribute> selAttrIn, LinkedList<Attribute> grpAttrIn)
         {
 
             String arith = arithCompr.get( Utilities.getRandChoice(arithCompr.size()) );
 
             String stm="";
 
-            this.selAttrs = grpAttrIn;
+            //this.selAttrs = grpAttrIn;
 
             Attribute attr1;
             Attribute attr2;
@@ -118,14 +116,14 @@ public class FUNCTIONS
                 case 0:
                     attr1 = grpAttrIn.get(Utilities.getRandChoice(grpAttrIn.size()));
                     curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
-                    stm = curFun1 + "(" + attr1.attrName + ")" ;
+                    stm = curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ")" ;
                 break;
 
                 case 1:
                     attr1 = grpAttrIn.get(Utilities.getRandChoice(grpAttrIn.size()));
                     curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
                     rel = grpAttrIn.get(Utilities.getRandChoice(grpAttrIn.size()));
-                    stm = "(" + curFun1 + "(" + attr1.attrName + ") " + arith + " " + rel.attrName + ")";
+                    stm = "(" + curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + arith + " " + rel.attrName + ")";
                 break;
 
                 case 2:
@@ -133,13 +131,13 @@ public class FUNCTIONS
                     attr2 = grpAttrIn.get(Utilities.getRandChoice(grpAttrIn.size()));
                     curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
                     curFun2   =  functions.get(Utilities.getRandChoice(functions.size()));
-                    stm = "(" +  curFun1 + "(" + attr1.attrName + ") " + arith + " " + curFun2 + "(" + attr2.attrName + ") " + ")";
+                    stm = "(" +  curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + arith + " " + curFun2 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + ")";
                 break;
 
                 case 3:
                     attr1 = grpAttrIn.get(Utilities.getRandChoice(grpAttrIn.size()));
                     curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
-                    stm = "(" +  curFun1 + "(" + attr1.attrName + ") " + arith + " " + "NULL" + ")";
+                    stm = "(" +  curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + arith + " " + "NULL" + ")";
                 break;
 
             }
