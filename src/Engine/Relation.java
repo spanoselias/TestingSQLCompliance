@@ -27,7 +27,6 @@ public class Relation
         return this.attributes;
     }
 
-
     public void setRelName( String newRelName)
     {
         this.relName = newRelName;
@@ -47,6 +46,4 @@ public class Relation
     {
         this.attributes.add(newAttribute);
     }
-
-
 }
