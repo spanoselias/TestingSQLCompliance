@@ -2,18 +2,11 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
-import java.sql.Date;
 import java.util.*;
-
-/*import java.sql.DriverManager;
-import java.sql.Connection;
-import java.sql.SQLException;
-import com.microsoft.sqlserver.jdbc.*;
-import java.sql.DriverManager;*/
 
 /**
  *
- * This tool is still in progress and will be used to evaluate all the DBMS
+ * The comparison Tool is used to test the SQL-Compliance of current DBMSs
  *
  */
 
@@ -55,8 +48,6 @@ public class ComparisonTool
     public LinkedList<String> connectToPostgres(String sqlQuery)
     {
 
-      /*  System.out.println("-------- PostgreSQL "
-                + "JDBC Connection Testing ------------");*/
         try
         {
             Class.forName("org.postgresql.Driver");
@@ -418,7 +409,7 @@ public class ComparisonTool
             {
                 if (conn != null && !conn.isClosed())
                 {
-                    conn.close();
+                   // conn.close();
                 }
             }
             catch (SQLException ex)

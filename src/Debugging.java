@@ -1,3 +1,4 @@
+import Engine.SQLQUERY;
 import Engine.Utilities;
 
 /**
@@ -10,7 +11,7 @@ public class Debugging
     {
 
         //ComparisonTool conn = new ComparisonTool();
-      //  SQLQUERY newSQL = new SQLQUERY();
+        SQLEngine newSQL = new SQLEngine();
 
 
      /*  String qury ="SELECT r31.A AS A0, r31.B AS A1, r11.A AS A2, r11.B AS A3, r31.B AS A4, SUM(r11.B), (MIN(r11.A) - MIN(r31.A) ), (SUM(r31.B) / NULL)\n" +
@@ -24,7 +25,7 @@ public class Debugging
        // conn.connectToIBMDb2();
 
         //Engine.Utilities util = new Engine.Utilities();
-        System.out.println(  Utilities.getRandChoice(5));
+      //  System.out.println( newSQL.genStrings(););
 
 
     }

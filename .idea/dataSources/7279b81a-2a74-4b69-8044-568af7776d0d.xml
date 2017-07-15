@@ -2,17 +2,14 @@
 <dataSource name="PostgresSQL">
   <database-model serializer="dbm" rdbms="POSTGRES" format-version="4.2">
     <root id="1"/>
-    <database id="2" parent="1" name="test">
-      <ObjectId>16393</ObjectId>
+    <database id="2" parent="1" name="testdb">
+      <ObjectId>16420</ObjectId>
       <Current>1</Current>
       <Visible>1</Visible>
     </database>
     <schema id="3" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2017-06-14.13:42:06.043</IntrospectionTimestamp>
-      <IntrospectionStateNumber>549</IntrospectionStateNumber>
       <Current>1</Current>
-      <Visible>1</Visible>
     </schema>
     <schema id="4" parent="2" name="pg_catalog">
       <ObjectId>11</ObjectId>
@@ -29,135 +26,5 @@
     <schema id="8" parent="2" name="information_schema">
       <ObjectId>12113</ObjectId>
     </schema>
-    <table id="9" parent="3" name="r1">
-      <ObjectId>16394</ObjectId>
-      <StateNumber>545</StateNumber>
-    </table>
-    <table id="10" parent="3" name="r2">
-      <ObjectId>16399</ObjectId>
-      <StateNumber>546</StateNumber>
-    </table>
-    <table id="11" parent="3" name="r3">
-      <ObjectId>16404</ObjectId>
-      <StateNumber>547</StateNumber>
-    </table>
-    <table id="12" parent="3" name="r4">
-      <ObjectId>16409</ObjectId>
-      <StateNumber>548</StateNumber>
-    </table>
-    <table id="13" parent="3" name="r5">
-      <ObjectId>16414</ObjectId>
-      <StateNumber>549</StateNumber>
-    </table>
-    <column id="14" parent="9" name="a">
-      <Position>1</Position>
-      <DataType>smallint|0</DataType>
-      <StateNumber>545</StateNumber>
-    </column>
-    <column id="15" parent="9" name="b">
-      <Position>2</Position>
-      <DataType>smallint|0</DataType>
-      <StateNumber>545</StateNumber>
-    </column>
-    <index id="16" parent="9" name="r1_a_b_key">
-      <ObjectId>16397</ObjectId>
-      <ColNames>a
-b</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="17" parent="9" name="r1_a_b_key">
-      <ObjectId>16398</ObjectId>
-      <ColNames>a
-b</ColNames>
-      <UnderlyingIndexName>r1_a_b_key</UnderlyingIndexName>
-    </key>
-    <column id="18" parent="10" name="a">
-      <Position>1</Position>
-      <DataType>smallint|0</DataType>
-      <StateNumber>546</StateNumber>
-    </column>
-    <column id="19" parent="10" name="b">
-      <Position>2</Position>
-      <DataType>smallint|0</DataType>
-      <StateNumber>546</StateNumber>
-    </column>
-    <index id="20" parent="10" name="r2_a_b_key">
-      <ObjectId>16402</ObjectId>
-      <ColNames>a
-b</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="21" parent="10" name="r2_a_b_key">
-      <ObjectId>16403</ObjectId>
-      <ColNames>a
-b</ColNames>
-      <UnderlyingIndexName>r2_a_b_key</UnderlyingIndexName>
-    </key>
-    <column id="22" parent="11" name="a">
-      <Position>1</Position>
-      <DataType>smallint|0</DataType>
-      <StateNumber>547</StateNumber>
-    </column>
-    <column id="23" parent="11" name="b">
-      <Position>2</Position>
-      <DataType>smallint|0</DataType>
-      <StateNumber>547</StateNumber>
-    </column>
-    <index id="24" parent="11" name="r3_a_b_key">
-      <ObjectId>16407</ObjectId>
-      <ColNames>a
-b</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="25" parent="11" name="r3_a_b_key">
-      <ObjectId>16408</ObjectId>
-      <ColNames>a
-b</ColNames>
-      <UnderlyingIndexName>r3_a_b_key</UnderlyingIndexName>
-    </key>
-    <column id="26" parent="12" name="a">
-      <Position>1</Position>
-      <DataType>smallint|0</DataType>
-      <StateNumber>548</StateNumber>
-    </column>
-    <column id="27" parent="12" name="b">
-      <Position>2</Position>
-      <DataType>smallint|0</DataType>
-      <StateNumber>548</StateNumber>
-    </column>
-    <index id="28" parent="12" name="r4_a_b_key">
-      <ObjectId>16412</ObjectId>
-      <ColNames>a
-b</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="29" parent="12" name="r4_a_b_key">
-      <ObjectId>16413</ObjectId>
-      <ColNames>a
-b</ColNames>
-      <UnderlyingIndexName>r4_a_b_key</UnderlyingIndexName>
-    </key>
-    <column id="30" parent="13" name="a">
-      <Position>1</Position>
-      <DataType>smallint|0</DataType>
-      <StateNumber>549</StateNumber>
-    </column>
-    <column id="31" parent="13" name="b">
-      <Position>2</Position>
-      <DataType>smallint|0</DataType>
-      <StateNumber>549</StateNumber>
-    </column>
-    <index id="32" parent="13" name="r5_a_b_key">
-      <ObjectId>16417</ObjectId>
-      <ColNames>a
-b</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="33" parent="13" name="r5_a_b_key">
-      <ObjectId>16418</ObjectId>
-      <ColNames>a
-b</ColNames>
-      <UnderlyingIndexName>r5_a_b_key</UnderlyingIndexName>
-    </key>
   </database-model>
 </dataSource>

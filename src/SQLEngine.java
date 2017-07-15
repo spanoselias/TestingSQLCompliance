@@ -35,10 +35,6 @@ public class SQLEngine
             // load a properties file
             prop.load(input);
 
-            //We read all the relations from the configuration file. Then, we
-            //store each relation in the HashMap
-
-
             //It retrieves the parameters from the configuration file and store them
             //to the appropriate variables
             confPar.maxTableFrom = Integer.parseInt( prop.getProperty( "maxTablesFrom" ) );
@@ -50,12 +46,13 @@ public class SQLEngine
             confPar.arithmCompar =  Double.parseDouble( prop.getProperty( "arithCompSel" ) );
             confPar.maxAttrGrpBy =  Integer.parseInt( prop.getProperty( "maxAttrGrpBy" ) );
             confPar.isDistinct = Double.parseDouble( prop.getProperty( "distinct" ) );
+            confPar.stringInSel = Double.parseDouble( prop.getProperty( "stringInSel" ) );
+            confPar.stringInSel = Double.parseDouble( prop.getProperty( "stringInWhere" ) );
 
             confPar.user =   prop.getProperty( "user" ) ;
             confPar.pass =   prop.getProperty( "pass" ) ;
             confPar.dbName =   prop.getProperty( "dbName" ) ;
             confPar.DBMS = prop.getProperty( "DBMS" ) ;
-
 
             //It retrieves all the relations with their associated attributes from mysql database
             retrieveDBSchema(confPar.relationsAttrs, confPar);
@@ -63,7 +60,8 @@ public class SQLEngine
         } catch (IOException ex)
         {
             ex.printStackTrace();
-        } finally
+        }
+        finally
         {
             if (input != null)
             {
@@ -106,6 +104,7 @@ public class SQLEngine
 
         return tmpAlias;
     }
+
 
     public static void retrieveDBSchema( HashMap<String, LinkedList<Attribute>> allRelAttr, ConfParameters confIn ) throws IOException {
 
@@ -189,6 +188,7 @@ public class SQLEngine
             String prevName = "";
 
             LinkedList<Attribute> curAttr = new LinkedList<>();
+            LinkedList<Attribute> strAttr = new LinkedList<>();
 
             if(rs.next() == false)
             {
@@ -206,31 +206,65 @@ public class SQLEngine
                     prevName = relName;
                     newAttr.attrName = rs.getString("COLUMN_NAME");
                     newAttr.attrType = rs.getString("data_type");
-                    curAttr.add(newAttr);
+
+                    if(rs.getString("data_type").compareTo("text") == 0)
+                    {
+                        strAttr.add(newAttr);
+                    }
+                    else
+                    {
+                        curAttr.add(newAttr);
+                    }
                 }
 
                 else if(prevName.equals( relName))
                 {
                     newAttr.attrName = rs.getString("COLUMN_NAME");
                     newAttr.attrType = rs.getString("data_type");
-                    curAttr.add(newAttr);
+
+                    if(rs.getString("data_type").compareTo("text") == 0)
+                    {
+                        strAttr.add(newAttr);
+                    }
+                    else
+                    {
+                        curAttr.add(newAttr);
+                    }
                 }
                 else if( ! prevName.equals( relName))
                 {
                     allRelAttr.put(prevName, ((LinkedList<Attribute>)curAttr.clone()));
+                    confIn.strAttrs.put(prevName,((LinkedList<Attribute>)strAttr.clone() ));
+
                     curAttr.clear();
+                    strAttr.clear();
                     prevName = relName;
 
                     newAttr.attrName = rs.getString("COLUMN_NAME");
                     newAttr.attrType = rs.getString("data_type");
-                    curAttr.add(newAttr);
+
+                    if(rs.getString("data_type").compareTo("text") == 0)
+                    {
+                        strAttr.add(newAttr);
+                    }
+                    else
+                    {
+                        curAttr.add(newAttr);
+                    }
                 }
             }
 
            //In case where there is only one relation
            if(curAttr.isEmpty() == false && prevName != "")
            {
-               allRelAttr.put(prevName, ((LinkedList<Attribute>)curAttr.clone()));
+               if(curAttr.size() > 0)
+               {
+                   allRelAttr.put(prevName, ((LinkedList<Attribute>)curAttr.clone()));
+               }
+               if(strAttr.size() > 0)
+               {
+                   confIn.strAttrs.put(prevName,((LinkedList<Attribute>)strAttr.clone() ));
+               }
            }
        }
         catch (SQLException ex)
@@ -285,6 +319,81 @@ public class SQLEngine
               //  ex.printStackTrace();
             }
         }
+        }
+    }
+
+    public static void genStrings(  ConfParameters confIn ) throws IOException
+    {
+
+        boolean unable2Conn = false;
+
+        PreparedStatement stm;
+        Connection conn = null;
+
+        String connStr = "jdbc:mysql://localhost:3306/" + confIn.dbName;
+
+        try
+        {
+            if (confIn.DBMS.compareTo("mysql") == 0)
+            {
+                Class.forName("com.mysql.jdbc.Driver");
+            } else
+                {
+                Class.forName("org.postgresql.Driver");
+                }
+        } catch (ClassNotFoundException e) {
+            unable2Conn = true;
+            e.printStackTrace();
+        } finally
+        {
+
+
+            try
+            {
+                if (confIn.DBMS.compareTo("mysql") == 0)
+                {
+                    conn = DriverManager
+                            .getConnection(connStr, confIn.user, confIn.pass);
+                }
+                else
+                {
+                    conn = DriverManager.getConnection(
+                            "jdbc:postgresql://127.0.0.1:5432/" + confIn.dbName, confIn.user, confIn.pass);
+                }
+
+                System.out.println("**********************************************");
+            }
+            catch (SQLException ex)
+            {
+                unable2Conn = true;
+                //  ex.printStackTrace();
+            }
+            finally
+            {
+                //In case where the schema of the DB cannot be retrieved from the current databases, then, we retrieve
+                // it from the configuration file
+                if (unable2Conn == true)
+                {
+                    System.out.println("Error");
+                }
+            }
+
+            ComparisonTool ctool = new ComparisonTool();
+            String sql="";
+            LinkedList<String> allStrings = new LinkedList<>();
+
+            for(String relname: confIn.strAttrs.keySet())
+            {
+                for (Attribute attr : confIn.strAttrs.get(relname))
+                {
+                    sql = "SELECT " + attr.attrName + " FROM " + relname;
+                }
+
+                LinkedList<String> res = ctool.execQuery(conn, sql);
+                allStrings.addAll(res);
+            }
+
+            confIn.dictonary = allStrings;
         }
     }
 
@@ -384,12 +493,12 @@ public class SQLEngine
 
     }
 
-    public static void main(String[] args)
-    {
-        HashMap<String, LinkedList<String>> allRelAttr = new HashMap<>();
+    public static void main(String[] args) throws IOException {
 
         //It retrieves parameters from the configuration file
         ConfParameters confPar = readConfFile();
+
+        genStrings(confPar);
 
         long uniqID=0;
 
@@ -447,6 +556,7 @@ public class SQLEngine
             //  wrtSql2File("rand.sql",qry);
 
              // genLogFile(qry);
+
 
 
     }

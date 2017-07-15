@@ -36,6 +36,7 @@ public class SELECT
     private int countAttr;
 
     private FUNCTIONS genFunctions;
+    private STRINGS genStrings;
 
     private boolean isDistinct;
     private boolean isAllAttrs;
@@ -62,6 +63,8 @@ public class SELECT
         newCom = new COMPARISON();
 
         genFunctions = new FUNCTIONS();
+
+        genStrings = new STRINGS(this.confParSel);
     }
 
     //The isSubqry parameter is important in order to know if this is a subquery parameter to avoid having
@@ -234,6 +237,14 @@ public class SELECT
                          stm += ", " + genFunctions.getSelectAggr(frmRels, aggrAttrsIn) + " AS AGGR" + i ;
                      }
                  }
+
+                //We randomly choose if we will have string comparisons in the
+                //SELECT Clause
+                int pick = Utilities.getRandChoice( 100 );
+                if(pick <=  (int)(confParSel.stringInSel * 100) )
+                {
+                    stm += " , " + genStrings.genStringSelect(confParSel.dictonary);
+                }
             }
 
             //If isOneAttr is true, then it means that we need to have only one attribute in the select

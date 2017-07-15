@@ -14,6 +14,8 @@ public  class WHERE
     //nested queries
     private NESTCOMPARISON nestGenCom;
 
+    private STRINGS stringGenCom;
+
     // Represents the connectivities in the WHERE clause. The "NOT"  will
     //be added as well
     private String conn[] = {" AND", " OR"};
@@ -31,16 +33,17 @@ public  class WHERE
      *
      *@param allReltsWithAttrs ,it stores all the relations with their accosiated attributes
      */
-    public WHERE(HashMap<String, LinkedList<Attribute>> allReltsWithAttrs)
+    public WHERE(HashMap<String, LinkedList<Attribute>> allReltsWithAttrs, ConfParameters confIn)
     {
         this.relationsAttrs =  allReltsWithAttrs;
         stm = "WHERE ";
 
         nestGenCom = new NESTCOMPARISON();
         genCom = new COMPARISON();
+        stringGenCom = new STRINGS(confIn);
     }
 
-    public String getSqlWhere(LinkedList<Attribute> selectedReltsInFrom,boolean isNested , ConfParameters confPar, int whereCompNo)
+    public String getSqlWhere(LinkedList<Attribute> selectedReltsInFrom,boolean isNested , ConfParameters confPar, int whereCompNo, LinkedList<Attribute> stringAttrs)
     {
         this.confPar = confPar;
 
@@ -72,7 +75,17 @@ public  class WHERE
 
                   stm += "("; isParenOpen =1;
 
-                  stm +=  genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, confPar.probWhrConst);
+                //We check if we will have string comparisons in the WHERE Clause
+                //based on the probability which is given in the configuration file
+                int newPick = Utilities.getRandChoice( 100 );
+                if(newPick <=  (int)(confPar.stringInSel * 100) )
+                {
+                    stm += stringGenCom.genStrings(stringAttrs);
+                }
+                else
+                {
+                    stm +=  genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, confPar.probWhrConst);
+                }
             }
             else
             {
@@ -80,13 +93,43 @@ public  class WHERE
                 //the previous one
                 if( pick ==1 && isParenOpen == 1)
                 {
-                    stm += ") " + conn[Utilities.getRandChoice(conn.length)] + " " + genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, confPar.probWhrConst);
+                    String newGen="";
+
+                    //We check if we will have string comparisons in the WHERE Clause
+                    //based on the probability which is given in the configuration file
+                    int newPick = Utilities.getRandChoice( 100 );
+                    if(newPick <=  (int)(confPar.stringInSel * 100) )
+                    {
+                        newGen = stringGenCom.genStrings(stringAttrs);
+                    }
+                    else
+                    {
+
+                        newGen = genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, confPar.probWhrConst);
+                    }
+
+                    stm += ") " + conn[Utilities.getRandChoice(conn.length)] + " " +  newGen;
                     isParenOpen = 0;
                 }
 
                 //If there is not open parenthesis then we can open a new one
                 else if ( pick ==1 && isParenOpen == 0 )
                 {
+
+                    String newGen="";
+
+                    //We check if we will have string comparisons in the WHERE Clause
+                    //based on the probability which is given in the configuration file
+                    int newPick = Utilities.getRandChoice( 100 );
+                    if(newPick <=  (int)(confPar.stringInSel * 100) )
+                    {
+                        newGen = stringGenCom.genStrings(stringAttrs);
+                    }
+                    else
+                    {
+                        newGen = genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, confPar.probWhrConst);
+                    }
+
                     //We randomly choose if we will have negation outside
                     //of the parenthesis OR NOT
                     String par ="";
@@ -98,13 +141,26 @@ public  class WHERE
 
                     par += " ( ";
 
-                    stm += conn[Utilities.getRandChoice(conn.length)] + par + genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, confPar.probWhrConst);
+                    stm += conn[Utilities.getRandChoice(conn.length)] + par + newGen;
                     isParenOpen = 1;
                 }
                 else
                 {
-                    stm += conn[Utilities.getRandChoice(conn.length)] + " " + genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, confPar.probWhrConst);
+                    String newGen="";
 
+                    //We check if we will have string comparisons in the WHERE Clause
+                    //based on the probability which is given in the configuration file
+                    int newPick = Utilities.getRandChoice( 100 );
+                    if(newPick <=  (int)(confPar.stringInSel * 100) )
+                    {
+                        newGen = stringGenCom.genStrings(stringAttrs);
+                    }
+                    else
+                    {
+                        newGen = genCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom, confPar.probWhrConst);
+                    }
+
+                    stm += conn[Utilities.getRandChoice(conn.length)] + " " + newGen;
                 }
             }
 

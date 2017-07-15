@@ -6,7 +6,6 @@ import java.util.Random;
 //final, because it's not supposed to be subclassed
 public final class Utilities
 {
-
     /**
      * This method generate numbers between 0..inputSize
      *We can use this number in order to choose randomly relations or attributes
@@ -120,6 +119,5 @@ public final class Utilities
         a[i] = a[change];
         a[change] = helper;
     }
-
 
 }

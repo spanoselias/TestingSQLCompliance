@@ -25,7 +25,7 @@
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/test</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost:5432/testdb</jdbc-url>
     </data-source>
     <data-source source="LOCAL" name="Oracle" uuid="a4163fb4-19ed-4e58-b4dc-8b44440bffd4">
       <driver-ref>oracle</driver-ref>

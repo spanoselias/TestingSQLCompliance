@@ -32,18 +32,18 @@ public class SQLQUERY
         String finalQry="";
 
         FROM frmQry = new FROM(alias, confPar.relationsAttrs, confPar);
-        WHERE whrQry = new WHERE(confPar.relationsAttrs);
+        WHERE whrQry = new WHERE(confPar.relationsAttrs, confPar);
         SELECT selQry = new SELECT(isDistinct,false, alias, 2, confPar.relationsAttrs, confPar);
 
         String stm = frmQry.getFrom( (++uniqID) );
         finalQry = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, confPar.repAlias, false, null, false, 0);
-        finalQry += "\n" + stm + "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),isNest,  confPar, confPar.maxCondWhere);
+        finalQry += "\n" + stm + "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),isNest,  confPar, confPar.maxCondWhere, frmQry.getStringAttrs());
 
         finalQry += "\n" + oper.getOper(frmRelts) + "\n";
 
         stm = frmQry.getFrom( (++uniqID) );
         finalQry += selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, confPar.repAlias, false, null, true, 0);
-        finalQry += "\n" + stm + "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),isNest,  confPar, confPar.maxCondWhere);
+        finalQry += "\n" + stm + "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),isNest,  confPar, confPar.maxCondWhere, frmQry.getStringAttrs());
 
         res.qryStr = finalQry;
         res.isOneAt = whrQry.getOneAttr();
@@ -71,7 +71,7 @@ public class SQLQUERY
         String finalQry="";
 
         FROM frmQry = new FROM(alias, confPar.relationsAttrs, confPar);
-        WHERE whrQry = new WHERE(confPar.relationsAttrs);
+        WHERE whrQry = new WHERE(confPar.relationsAttrs, confPar);
         SELECT selQry = new SELECT(isDistinct,false, alias, 2, confPar.relationsAttrs, confPar);
         GROUPBY grpQry = new GROUPBY(confPar);
         HAVING hvgQry = new HAVING(confPar);
@@ -81,7 +81,7 @@ public class SQLQUERY
         String hvg = hvgQry.genHaving(grpQry.getAttrInGroup());
         tmpStm = selQry.getSelect(frmQry.getSelectedTables(), false, false, confPar.repAlias, true, grpQry.getAttrInGroup(), false, 0);
         finalQry = tmpStm + "\n" + stm;
-        finalQry += "\n" + whrQry.getSqlWhere(grpQry.getAttrInGroup(),false,  confPar, 5);
+        finalQry += "\n" + whrQry.getSqlWhere(grpQry.getAttrInGroup(),false,  confPar, 5, frmQry.getStringAttrs());
         finalQry += "\n" + grp + "\n" + hvg;
 
         res.qryStr = finalQry;
@@ -107,7 +107,7 @@ public class SQLQUERY
             isDistinct = true;
 
         FROM frmQry = new FROM(alias, confPar.relationsAttrs, confPar);
-        WHERE whrQry = new WHERE(confPar.relationsAttrs);
+        WHERE whrQry = new WHERE(confPar.relationsAttrs, confPar);
         SELECT selQry = new SELECT(isDistinct,false, alias, 2, confPar.relationsAttrs, confPar);
 
         String stm = frmQry.getFrom( (++uniqID) );
@@ -119,13 +119,13 @@ public class SQLQUERY
             frmRelts = copySelRelts(frmRelts, frmQry.getSelectedTables());
             tmpStm = selQry.getSelect(frmRelts, isOneAttr, false, 0.1, false, null, false,allAttr);
             finalQry = tmpStm + "\n" + stm;
-            finalQry += "\n" + whrQry.getSqlWhere(frmRelts, isNest, confPar, 5);
+            finalQry += "\n" + whrQry.getSqlWhere(frmRelts, isNest, confPar, 5, frmQry.getStringAttrs());
         }
         else
         {
             tmpStm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, confPar.repAlias, false, null, false, allAttr);
             finalQry = tmpStm + "\n" + stm;
-            finalQry += "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),isNest,  confPar, 5);
+            finalQry += "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),isNest,  confPar, 5, frmQry.getStringAttrs());
         }
 
         res.qryStr = finalQry;
@@ -151,7 +151,7 @@ public class SQLQUERY
 
         //We create new objects for each statement
         FROM frmQry = new FROM(alias, confPar.relationsAttrs, confPar);
-        WHERE whrQry = new WHERE(confPar.relationsAttrs);
+        WHERE whrQry = new WHERE(confPar.relationsAttrs, confPar);
         SELECT selQry = new SELECT(isDistinct,false, alias, 2,confPar.relationsAttrs, confPar);
 
         String substm="";
@@ -162,7 +162,7 @@ public class SQLQUERY
 
             String frmstm = frmQry.getFrom(++uniqID);
             String selstm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, 0.0, false, null, false, 0);
-            String whrstm = whrQry.getSqlWhere(frmQry.getSelectedTables(), false,  confPar, 3);
+            String whrstm = whrQry.getSqlWhere(frmQry.getSelectedTables(), false,  confPar, 3, frmQry.getStringAttrs());
 
             if( (subqry ) > 0 )
             {
@@ -191,7 +191,7 @@ public class SQLQUERY
         String stm = from + " , " + substm;
         String tmpStm = selQry.getSelect(frmRelts, isOneAttr, false, confPar.repAlias, false, null, false, 0);
         String finalQry = tmpStm + "\n" + stm;
-        finalQry += "\n" + whrQry.getSqlWhere(frmRelts , isNest,  confPar, 2);
+        finalQry += "\n" + whrQry.getSqlWhere(frmRelts , isNest,  confPar, 2, frmQry.getStringAttrs());
 
         return  finalQry;
 

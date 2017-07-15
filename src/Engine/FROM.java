@@ -18,6 +18,10 @@ public  class FROM
     //for the Engine.FROM Clause
     private LinkedList<Attribute> selectedReltsInFrom;
 
+    //This list will be used to store all the attributes that of type String. This list will
+    //be useful when we will generate SQL with like operation and other string manipulations
+    private LinkedList<Attribute> selStringAttr;
+
     private LinkedList<String> alias;
 
     ConfParameters confParSel;
@@ -54,6 +58,9 @@ public  class FROM
         //This list will be used to track which relations have been selected from the generator. Thus, it will be useful
         //to know the relations in the Engine.FROM statement in order to know what attributes to include in the Engine.SELECT_rmv statement
         selectedReltsInFrom = new LinkedList<>();
+
+        selStringAttr = new LinkedList<>();
+
     }
 
     public String getFrom(long uniqID)
@@ -106,6 +113,18 @@ public  class FROM
                this.selectedReltsInFrom.add( newAttr);
            }
 
+           if(confParSel.strAttrs.get(rel[i].getRelName()) != null)
+            {
+                for (Attribute attr : confParSel.strAttrs.get(rel[i].getRelName()))
+                {
+                    Attribute newAttr = new Attribute();
+                    newAttr.attrName = (newAlias) + "." + attr.attrName;
+                    newAttr.attrType = attr.attrType;
+
+                    this.selStringAttr.add(newAttr);
+                }
+            }
+
             if (i == 0)
                 stm += String.format(" %s AS %s", rel[i].getRelName(), newAlias );
             else
@@ -121,6 +140,12 @@ public  class FROM
     public LinkedList<Attribute> getSelectedTables()
     {
         return this.selectedReltsInFrom;
+    }
+
+
+    public LinkedList<Attribute> getStringAttrs()
+    {
+        return this.selStringAttr;
     }
 
     public String getFromSql()

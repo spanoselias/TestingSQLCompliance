@@ -31,6 +31,14 @@ public class ConfParameters
 
     public LinkedList<String> genAlias = new LinkedList<>();
 
+    public HashMap<String, LinkedList<Attribute>> strAttrs = new HashMap<>();
+
+    public LinkedList<String> dictonary;
+
+    public double stringInSel;
+
+    public double stringInWhere;
+
     public String user;
     public String pass;
     public String dbName;
