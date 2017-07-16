@@ -164,13 +164,6 @@ public class SELECT
                             stm += String.format(", %s AS %s", relName.attrName, alias.get(j));
                         }
 
-                        //We need to store all the alias that we chose in the Engine.SELECT_rmv clause because they will
-                        //be useful when we will implement subqueries. We store the as key (relation.attributeName) and as
-                        //value the alias that we gave
-                       // String key = String.format("%s", relName.toLowerCase(), relAttrs.get(relName).get(j));
-                        //selectedAlias.put(key, alias.get(j));
-                 //  }
-
                 }//For statement
 
              //This code will run if we want repetition of alias
@@ -183,7 +176,7 @@ public class SELECT
                         //attributes in the SELECT CLAUSE based on the probability
                         //which give in the configuration file
                         pick = Utilities.getRandChoice( 100 );
-                        if(pick <=  (int)(confParSel.repAlias * 100) )
+                        if(pick <  (int)(confParSel.repAlias * 100) )
                         {
                             j +=1;
 
@@ -192,9 +185,9 @@ public class SELECT
                     }
                 }
 
-                if( isOperator == true && j < countAttr )
+               //to be checked
+               if( isOperator == true && j < countAttr )
                 {
-
                     for(int g=0; g < countAttr; g++)
                     {
                         for(int i=0; i < curAlias.size(); i++)
@@ -219,7 +212,7 @@ public class SELECT
                     //We randomly choose if we will have arithmetic comparison in the SELECT clause. The probability
                     //is calculated based on the probability which is given in the configuration file
                     int pick = Utilities.getRandChoice( 100 );
-                    if(pick <=  (int)(confParSel.arithmCompar * 100) )
+                    if(pick <  (int)(confParSel.arithmCompar * 100) )
                     {
                         for(int i=0; i< Utilities.getRandChoice(5); i++)
                         {
@@ -234,17 +227,21 @@ public class SELECT
                  {
                      for(int i=0; i< Utilities.getRandChoice(5); i++)
                      {
-                         stm += ", " + genFunctions.getSelectAggr(frmRels, aggrAttrsIn) + " AS AGGR" + i ;
+                         stm += ", " + genFunctions.getSelectAggr(allSelAttrs, aggrAttrsIn) + " AS AGGR" + i ;
                      }
                  }
 
-                //We randomly choose if we will have string comparisons in the
-                //SELECT Clause
-                int pick = Utilities.getRandChoice( 100 );
-                if(pick <=  (int)(confParSel.stringInSel * 100) )
+                if(isOperator == false)
                 {
-                    stm += " , " + genStrings.genStringSelect(confParSel.dictonary);
+                    //We randomly choose if we will have string comparisons in the
+                    //SELECT Clause
+                    int pick = Utilities.getRandChoice( 100 );
+                    if(pick <  (int)(confParSel.stringInSel * 100) )
+                    {
+                        stm += " , " + genStrings.genStringSelect(confParSel.dictonary);
+                    }
                 }
+
             }
 
             //If isOneAttr is true, then it means that we need to have only one attribute in the select

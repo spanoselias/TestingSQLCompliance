@@ -93,7 +93,6 @@ public class FUNCTIONS
             return stm;
         }
 
-
         public String getSelectAggr( LinkedList<Attribute> selAttrIn, LinkedList<Attribute> grpAttrIn)
         {
 

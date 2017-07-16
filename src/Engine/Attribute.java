@@ -1,11 +1,10 @@
 package Engine;
 
 /**
- * Created by Elias on 7/8/2017.
+ * Created by Elias Spanos
  */
 
-//This class is used in HashMap in order to store each table with its associated attributed and
-//addition to store each type for each attribute
+//This class is used to track both type and relation name
 public class Attribute
 {
    public String attrName = "";

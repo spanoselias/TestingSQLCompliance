@@ -7,11 +7,14 @@ import java.util.LinkedList;
 public class COMPARISON
 {
     //This variable is used in order to generate some constant numbers
+    //which can be used for comparisons
     final int CONSTNO = 20;
 
+    //Stores all the operators that can be used for any comparison
     private LinkedList<String> operators;
-    private HashMap<String, LinkedList<String>> relAttrs;
+
     private LinkedList<Attribute> selectedTables;
+
     private LinkedList<String> Null;
 
 
@@ -154,13 +157,9 @@ public class COMPARISON
             break;
         }
 
-        //We want to use negation within some the expressions. Thus, we randomly decide if
-        //this expression will have negation or not.
-        String res="";
 
-        pick = Utilities.getRandChoice(10);
 
-   /*     //We can have comparisons with more than one attributes e.g (r1.b, r2.a) > (r1.a, r2.c). Thus,
+   /*   //We can have comparisons with more than one attributes e.g (r1.b, r2.a) > (r1.a, r2.c). Thus,
         //we choose the number of attributes
         int numOfAttr = Utilities.getRandChoice(this.selectedTables.size());
 
@@ -195,6 +194,11 @@ public class COMPARISON
             }
         }*/
 
+        //We want to use negation in some of the expressions. Thus, we randomly decide if
+        //the below expression will have negation or not.
+        String res="";
+
+        pick = Utilities.getRandChoice(10);
         if( pick ==0 )
         {
             if(arithmCompStr != "")

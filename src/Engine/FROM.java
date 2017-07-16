@@ -113,8 +113,15 @@ public  class FROM
                this.selectedReltsInFrom.add( newAttr);
            }
 
+           this.selStringAttr.clear();
+
+             //We check if the strAttrs hashMap has attributes type of strings. This attributes are retrieved from the
+            // databases and they will be used to generate SQL queries with strings functions and operation
+           // 'LIKE'.
            if(confParSel.strAttrs.get(rel[i].getRelName()) != null)
             {
+                //Based on the tables that are chosen in the FROM Clause, we store the attributes with
+                //the appropriate alias to know how to access them in the SELECT and WHERE Clause
                 for (Attribute attr : confParSel.strAttrs.get(rel[i].getRelName()))
                 {
                     Attribute newAttr = new Attribute();
@@ -142,7 +149,6 @@ public  class FROM
         return this.selectedReltsInFrom;
     }
 
-
     public LinkedList<Attribute> getStringAttrs()
     {
         return this.selStringAttr;
@@ -156,6 +162,5 @@ public  class FROM
     public HashMap<String, LinkedList<Attribute>> getRelAttrs() {
         return this.allRelAttrs;
     }
-
 
 }

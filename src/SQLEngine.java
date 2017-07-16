@@ -511,6 +511,7 @@ public class SQLEngine
         SQLQUERY newSQL = new SQLQUERY();
 
         pick = Utilities.getRandChoice(5);
+        pick = 3;
 
             //The option is given as input parameter to the program
             switch (pick)

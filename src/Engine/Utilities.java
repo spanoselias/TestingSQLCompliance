@@ -1,5 +1,6 @@
 package Engine;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -32,7 +33,7 @@ public final class Utilities
         }
     }
 
-    public static String chooseRandAttr(LinkedList<Attribute> attributesIn)
+       public static String chooseRandAttr(LinkedList<Attribute> attributesIn)
     {
 
         //This method is used for row comparisons. (r1.b,r2.a) > (r2.b, r1.a)
@@ -62,8 +63,11 @@ public final class Utilities
         return attributesIn.get(getRandChoice(attributesIn.size())).attrName;
     }
 
-    public static String chooseRandAttrGrpBy(LinkedList<Attribute> grpAttrIn, LinkedList<Attribute> allAttr)
+    public static String chooseRandAttrGrpBy( LinkedList<Attribute> grpAttrIn, LinkedList<Attribute> allAttr)
     {
+
+        //This list will be used to store attributes that do not appear
+        //in the GROUP BY Clause
         LinkedList<Attribute> newAttrs = new LinkedList<>();
 
         for(Attribute atr: allAttr)
@@ -75,7 +79,6 @@ public final class Utilities
                 if(atr.attrName.compareTo(grp.attrName) == 0)
                 {
                     isFound = true;
-
                 }
             }
 
@@ -90,9 +93,8 @@ public final class Utilities
             newAttrs = grpAttrIn;
         }
 
-        //This method is used for row comparisons. (r1.b,r2.a) > (r2.b, r1.a)
         int pick  = getRandChoice(100);
-        if(pick <=  (int)(0.1 * 100) )
+        if(pick <  (int)(0.1 * 100) )
         {
             pick = 0;
         }
@@ -112,6 +114,26 @@ public final class Utilities
         }
 
         return newAttrs.get(getRandChoice(newAttrs.size())).attrName;
+    }
+
+     public static String chooseBetStringAndInt(HashMap<String, LinkedList<Attribute>> relationsAttrsIn, LinkedList<Attribute> selectedReltsInFrom, ConfParameters confPar, STRINGS stringGenCom, COMPARISON genCom, LinkedList<Attribute> stringAttrs )
+    {
+
+        String newGen="";
+
+        //We check if we will have string comparisons in the WHERE Clause
+        //based on the probability which is given in the configuration file
+        int newPick = Utilities.getRandChoice( 100 );
+        if(newPick <=  (int)(confPar.stringInSel * 100) )
+        {
+            newGen = stringGenCom.genStrings(stringAttrs);
+        }
+        else
+        {
+            newGen = genCom.getAttrComparison(relationsAttrsIn, selectedReltsInFrom, confPar.probWhrConst);
+        }
+
+        return  newGen;
     }
 
     private static void swap(Relation[] a, int i, int change) {
