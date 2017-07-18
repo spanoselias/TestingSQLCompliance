@@ -47,7 +47,7 @@ public class SQLEngine
             confPar.maxAttrGrpBy =  Integer.parseInt( prop.getProperty( "maxAttrGrpBy" ) );
             confPar.isDistinct = Double.parseDouble( prop.getProperty( "distinct" ) );
             confPar.stringInSel = Double.parseDouble( prop.getProperty( "stringInSel" ) );
-            confPar.stringInSel = Double.parseDouble( prop.getProperty( "stringInWhere" ) );
+            confPar.stringInWhere = Double.parseDouble( prop.getProperty( "stringInWhere" ) );
 
             confPar.user =   prop.getProperty( "user" ) ;
             confPar.pass =   prop.getProperty( "pass" ) ;
@@ -182,7 +182,7 @@ public class SQLEngine
             ResultSetMetaData rsmd = rs.getMetaData();
             int columnCount = rsmd.getColumnCount();
 
-            System.out.println("**********************************************");
+           // System.out.println("**********************************************");
 
             String newRow="";
             String prevName = "";
@@ -361,7 +361,7 @@ public class SQLEngine
                             "jdbc:postgresql://127.0.0.1:5432/" + confIn.dbName, confIn.user, confIn.pass);
                 }
 
-                System.out.println("**********************************************");
+                //System.out.println("**********************************************");
             }
             catch (SQLException ex)
             {
@@ -507,11 +507,11 @@ public class SQLEngine
         String qry="";
 
         int pick;
+        pick=2;
 
         SQLQUERY newSQL = new SQLQUERY();
 
         pick = Utilities.getRandChoice(5);
-        pick = 3;
 
             //The option is given as input parameter to the program
             switch (pick)
@@ -520,29 +520,29 @@ public class SQLEngine
                     // System.out.println("Complex query");
                     //  System.out.println("*******************");
                     qry = newSQL.genCompQuery(1, frmRelts, 1, false, false, confPar);
-                    break;
+                break;
 
                 case 1:
                     //  System.out.println("Simple query");
                     //  System.out.println("*******************");
                     QRYREPRES res = newSQL.genQuery(null, uniqID, false, false, confPar, 0);
                     qry = res.qryStr;
-                    break;
+                break;
 
                 case 2:
                     qry = newSQL.nestQuery(uniqID, confPar);
                     // wrtSql2File("rand.", qry);
-                    break;
+                break;
 
                 case 3:
                     QRYREPRES res1 = newSQL.aggrGuery(uniqID, confPar);
                     qry = res1.qryStr;
-                    break;
+                break;
 
                 case 4:
                     QRYREPRES res2 = newSQL.operQuery(null, uniqID, false, false, confPar);
                     qry = res2.qryStr;
-                    break;
+                break;
             }
 
                /* QRYREPRES res1 = newSQL.operQuery(null,uniqID, false, false, confPar);
@@ -552,7 +552,7 @@ public class SQLEngine
             wrtSql2File("rand.sql", qry);
 
             //  String sql = nestQuery(uniqID, confPar);
-            //  wrtSql2File("rand.sql",qry);
+              wrtSql2File("rand.sql",qry);
 
              // genLogFile(qry);
 

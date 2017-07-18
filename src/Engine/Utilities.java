@@ -33,7 +33,7 @@ public final class Utilities
         }
     }
 
-       public static String chooseRandAttr(LinkedList<Attribute> attributesIn)
+    public static String chooseRandAttr(LinkedList<Attribute> attributesIn)
     {
 
         //This method is used for row comparisons. (r1.b,r2.a) > (r2.b, r1.a)
@@ -124,7 +124,7 @@ public final class Utilities
         //We check if we will have string comparisons in the WHERE Clause
         //based on the probability which is given in the configuration file
         int newPick = Utilities.getRandChoice( 100 );
-        if(newPick <=  (int)(confPar.stringInSel * 100) )
+        if(newPick <=  (int)(confPar.stringInWhere * 100) )
         {
             newGen = stringGenCom.genStrings(stringAttrs);
         }

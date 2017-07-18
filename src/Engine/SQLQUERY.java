@@ -24,6 +24,8 @@ public class SQLQUERY
             isDistinct = true;
         }
 
+        confPar.arithmCompar=0.0;
+
         QRYREPRES res = new QRYREPRES();
         OPERATORS oper = new OPERATORS(confPar);
 

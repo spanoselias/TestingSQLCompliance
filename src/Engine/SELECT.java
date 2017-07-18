@@ -241,7 +241,6 @@ public class SELECT
                         stm += " , " + genStrings.genStringSelect(confParSel.dictonary);
                     }
                 }
-
             }
 
             //If isOneAttr is true, then it means that we need to have only one attribute in the select

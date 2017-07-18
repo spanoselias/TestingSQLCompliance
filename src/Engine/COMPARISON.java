@@ -71,38 +71,37 @@ public class COMPARISON
         int pick;
         Attribute rel1 = new Attribute();
         Attribute rel2 = new Attribute();
+
         rel1.attrName = "";
         rel2.attrName = "";
 
         String arithmCompStr = "";
 
-        pick = Utilities.getRandChoice(operators.size());
-        String oper = operators.get(pick);
-
-        //We randomly choose if the comparison will be
-        //one attribute with a constant
-        int pick2 =  Utilities.getRandChoice(5);
+        String oper = operators.get(Utilities.getRandChoice(operators.size()));
 
 
         //The probWhr represents the probability of having
         //constants or NULLS to the WHERE comparisons
         pick = Utilities.getRandChoice( 100 );
-        if(pick <=  (int)(probWhr * 100) )
+        if(pick <  (int)(probWhr * 100) )
         {
-            pick = Utilities.getRandChoice(2);
+            pick = Utilities.getRandChoice(3);
         }
-        else if(pick2 == 0)
-        {
-            pick = 2;
-        }
-       /* else if(pick3 ==0)
-        {
-            pick =3;
-        }*/
         else
         {
-            pick = 4;
+            //We randomly choose if the comparison will be
+            //one attribute with a constant
+             pick =  Utilities.getRandChoice(1);
+             if(pick == 0 )
+             {
+                 pick = 4;
+             }
+             else
+             {
+                 pick = 5;
+             }
         }
+
 
         //The idea of current switch is to do comparisons between two relation's attributes or between
         //one attribute and one constant or between an attribute and a NULL
@@ -117,7 +116,7 @@ public class COMPARISON
             case 1:
                 rel1.attrName = "NULL";
                 rel2.attrName = Null.get(Utilities.getRandChoice(Null.size()));
-                break;
+            break;
 
             case 2:
                 rel1 = this.selectedTables.get(Utilities.getRandChoice(this.selectedTables.size()));
@@ -155,44 +154,46 @@ public class COMPARISON
 
                 rel2 = this.selectedTables.get(pickRand);
             break;
-        }
 
+            case 5:
 
+                //We can have comparisons with more than one attributes e.g (r1.b, r2.a) > (r1.a, r2.c). Thus,
+                //we choose the number of attributes
+                int numOfAttr = Utilities.getRandChoice(this.selectedTables.size());
 
-   /*   //We can have comparisons with more than one attributes e.g (r1.b, r2.a) > (r1.a, r2.c). Thus,
-        //we choose the number of attributes
-        int numOfAttr = Utilities.getRandChoice(this.selectedTables.size());
+                //Always have at least one attribute to compare
+                if(numOfAttr ==0)
+                { numOfAttr =1; }
 
-        //Always have at least one attribute to compare
-        if(numOfAttr ==0)
-        { numOfAttr =1; }
-
-        if(numOfAttr > 0)
-        {
-            for (int j = 0; j < 2; j++)
-            {
-                //We create our format. For example (r1.b, r2.a)
-                String attrs = "";
-
-                for (int i = 0; i < numOfAttr; i++)
+                if(numOfAttr > 0)
                 {
-                    if (i == 0) {
-                        attrs += "( " + selectedTablesIn.get(Utilities.getRandChoice(selectedTablesIn.size())).attrName;
-                    } else if (i < numOfAttr)
+                    for (int j = 0; j < 2; j++)
                     {
-                        attrs += "," + selectedTablesIn.get(Utilities.getRandChoice(selectedTablesIn.size())).attrName;
+                        //We create our format. For example (r1.b, r2.a)
+                        String attrs = "";
+
+                        for (int i = 0; i < numOfAttr; i++)
+                        {
+                            if (i == 0)
+                            {
+                                attrs +=   selectedTablesIn.get(Utilities.getRandChoice(selectedTablesIn.size())).attrName;
+                            } else if (i < numOfAttr)
+                            {
+                                attrs += "," + selectedTablesIn.get(Utilities.getRandChoice(selectedTablesIn.size())).attrName;
+                            }
+                        }
+                        //  attrs += " )";
+
+                        if (j == 0) {
+                            rel1.attrName = "(" + attrs + ")" ;
+                        } else if (j == 1)
+                        {
+                            rel2.attrName = "(" +  attrs + ")" ;
+                        }
                     }
                 }
-                attrs += " )";
-
-                if (j == 0) {
-                    rel1.attrName = attrs;
-                } else if (j == 1)
-                {
-                    rel2.attrName = attrs;
-                }
-            }
-        }*/
+            break;
+        }
 
         //We want to use negation in some of the expressions. Thus, we randomly decide if
         //the below expression will have negation or not.

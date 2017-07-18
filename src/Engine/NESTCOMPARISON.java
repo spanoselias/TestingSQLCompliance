@@ -63,7 +63,8 @@ public class NESTCOMPARISON
 
             this.noAllAttr = numOfAttr;
 
-            //We create our format. For example (r1.b, r2.a)
+            //The below code is used to perform row comparisons. Comparisons with
+            //more than one attribute. For example, (r1.a, r2.b) > ANY (SELECT r1.c, r2.a ..... )
             String allAttr="";
             for(int g=0; g < numOfAttr; g++ )
             {
@@ -76,10 +77,6 @@ public class NESTCOMPARISON
                 {
                     allAttr += "," + Utilities.chooseRandAttr(selectedTablesIn);
                 }
-              /*  else if( g  >=  numOfAttr  )
-                {
-                   allAttr +=" )";
-                }*/
             }
 
             allAttr +=" )";
