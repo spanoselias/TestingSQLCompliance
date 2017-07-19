@@ -1,5 +1,16 @@
+/***********************************************************************************/
+/*                                                                                 */
+/*Name: Elias Spanos                                                 			   */
+/*Date: 10/07/2017                                                                 */
+/*Filename: Utilities.java                                                         */
+/*                                                                                 */
+/***********************************************************************************/
 package Engine;
 
+
+/***********************************************************************************/
+/*                                     LIBRARIES                                   */
+/***********************************************************************************/
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Random;
@@ -14,6 +25,7 @@ public final class Utilities
      *
      *@param inputSize is the image that represents the NORTH Direction
      */
+
     public static  int getRandChoice(int inputSize)
     {
         Random randomGenerator = new Random();
@@ -116,7 +128,7 @@ public final class Utilities
         return newAttrs.get(getRandChoice(newAttrs.size())).attrName;
     }
 
-     public static String chooseBetStringAndInt(HashMap<String, LinkedList<Attribute>> relationsAttrsIn, LinkedList<Attribute> selectedReltsInFrom, ConfParameters confPar, STRINGS stringGenCom, COMPARISON genCom, LinkedList<Attribute> stringAttrs )
+    public static String chooseBetStringAndInt(HashMap<String, LinkedList<Attribute>> relationsAttrsIn, LinkedList<Attribute> selectedReltsInFrom, ConfParameters confPar, STRINGS stringGenCom, COMPARISON genCom, LinkedList<Attribute> stringAttrs )
     {
 
         String newGen="";

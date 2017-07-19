@@ -105,7 +105,7 @@ public class SQLEngine
         return tmpAlias;
     }
 
-
+    //The purpose of this method is to retrieve the schema of db in order to generate random sql queries based on this schema
     public static void retrieveDBSchema( HashMap<String, LinkedList<Attribute>> allRelAttr, ConfParameters confIn ) throws IOException {
 
         boolean unable2Conn=false;
@@ -149,14 +149,15 @@ public class SQLEngine
                         "jdbc:postgresql://127.0.0.1:5432/" + confIn.dbName, confIn.user, confIn.pass);
             }
 
-              LinkedList<String> tableRes= new LinkedList<>();
+
+            LinkedList<String> tableRes= new LinkedList<>();
 
 
             DatabaseMetaData md = conn.getMetaData( );
             ResultSet rs = md.getTables(null, null, "R1", null);
 
             // create the java statement
-         /*   Statement st = conn.createStatement();
+           /*  Statement st = conn.createStatement();
 
             // execute the query, and get a java resultset
             rs = st.executeQuery( retSchema );*/
@@ -164,7 +165,7 @@ public class SQLEngine
             //This sql queries retrieve all the tables with their associated attributes
             if(confIn.DBMS.compareTo("mysql") == 0)
             {
-                stm = conn.prepareStatement(  "SELECT TABLE_NAME, COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA =?");
+                stm = conn.prepareStatement(  "SELECT TABLE_NAME, COLUMN_NAME, data_type FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA =?");
             }
             else
             {
@@ -234,10 +235,15 @@ public class SQLEngine
                 else if( ! prevName.equals( relName))
                 {
                     allRelAttr.put(prevName, ((LinkedList<Attribute>)curAttr.clone()));
-                    confIn.strAttrs.put(prevName,((LinkedList<Attribute>)strAttr.clone() ));
+
+                    if(strAttr.size() > 0)
+                    {
+                        confIn.strAttrs.put(prevName,((LinkedList<Attribute>)strAttr.clone() ));
+                        strAttr.clear();
+                    }
 
                     curAttr.clear();
-                    strAttr.clear();
+
                     prevName = relName;
 
                     newAttr.attrName = rs.getString("COLUMN_NAME");
@@ -279,10 +285,9 @@ public class SQLEngine
         // it from the configuration file
         if(unable2Conn == true)
          {
-
              System.out.println("Error");
 
-            /* Properties prop = new Properties();
+             Properties prop = new Properties();
              InputStream input = null;
 
              input = new FileInputStream("config.properties");
@@ -294,10 +299,12 @@ public class SQLEngine
              String[] attributes = prop.getProperty("attributes").split(",");
              for (String relation : relations)
              {
-                 LinkedList<String> attrList = new LinkedList<>();
+                 LinkedList<Attribute> attrList = new LinkedList<>();
                  for (String attr : attributes)
                  {
-                     attrList.add(attr);
+                     Attribute newAttr = new Attribute();
+                     newAttr.attrName = attr;
+                     attrList.add(newAttr);
                  }
 
                  //We insert the relation (as key) in the hashMap, and a likedlist that stores all the
@@ -305,7 +312,7 @@ public class SQLEngine
                  allRelAttr.put(relation, attrList);
              }
 
-             confIn.relationsAttrs = allRelAttr;*/
+             confIn.relationsAttrs = allRelAttr;
          }
         try
             {
@@ -324,7 +331,6 @@ public class SQLEngine
 
     public static void genStrings(  ConfParameters confIn ) throws IOException
     {
-
         boolean unable2Conn = false;
 
         PreparedStatement stm;
@@ -346,7 +352,6 @@ public class SQLEngine
             e.printStackTrace();
         } finally
         {
-
 
             try
             {
@@ -382,18 +387,23 @@ public class SQLEngine
             String sql="";
             LinkedList<String> allStrings = new LinkedList<>();
 
-            for(String relname: confIn.strAttrs.keySet())
+            if(confIn.strAttrs.size() > 0)
             {
-                for (Attribute attr : confIn.strAttrs.get(relname))
+
+                for(String relname: confIn.strAttrs.keySet())
                 {
-                    sql = "SELECT " + attr.attrName + " FROM " + relname;
+                    for (Attribute attr : confIn.strAttrs.get(relname))
+                    {
+                        sql = "SELECT " + attr.attrName + " FROM " + relname;
+                    }
+
+                    LinkedList<String> res = ctool.execQuery(conn, sql);
+                    allStrings.addAll(res);
                 }
 
-                LinkedList<String> res = ctool.execQuery(conn, sql);
-                allStrings.addAll(res);
-            }
+                confIn.dictonary = allStrings;
 
-            confIn.dictonary = allStrings;
+            }
         }
     }
 
@@ -493,6 +503,10 @@ public class SQLEngine
 
     }
 
+
+    /***********************************************************************************/
+    /*                                     MAIN CLASS                                  */
+    /***********************************************************************************/
     public static void main(String[] args) throws IOException {
 
         //It retrieves parameters from the configuration file
@@ -507,7 +521,6 @@ public class SQLEngine
         String qry="";
 
         int pick;
-        pick=2;
 
         SQLQUERY newSQL = new SQLQUERY();
 
@@ -551,7 +564,7 @@ public class SQLEngine
             System.out.println(qry);
             wrtSql2File("rand.sql", qry);
 
-            //  String sql = nestQuery(uniqID, confPar);
+            // String sql = nestQuery(uniqID, confPar);
               wrtSql2File("rand.sql",qry);
 
              // genLogFile(qry);
