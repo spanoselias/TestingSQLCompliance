@@ -1,8 +1,13 @@
+/***********************************************************************************/
+/*                                                                                 */
+/*Name: Elias Spanos                                                               */
+/*Date: 5/06/2017                                                                  */
+/*Filename: Attribute.java                                                         */
+/*                                                                                 */
+/***********************************************************************************/
+
 package Engine;
 
-/**
- * Created by Elias Spanos
- */
 
 //This class is used to track both type and relation name
 public class Attribute

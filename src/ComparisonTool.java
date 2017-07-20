@@ -1,15 +1,20 @@
+/***********************************************************************************/
+/*                                                                                 */
+/*Name: Elias Spanos                                                               */
+/*Date: 5/06/2017                                                                  */
+/*Filename: COMPARISONTool.java                                                    */
+/*                                                                                 */
+/***********************************************************************************/
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
 import java.util.*;
 
-/**
- *
- * The comparison Tool is used to test the SQL-Compliance of current DBMSs
- *
- */
 
+/***********************************************************************************/
+/*                                     LIBRARIES                                   */
+/***********************************************************************************/
 public class ComparisonTool
 {
     public  LinkedList<String> connectToMySql(String sqlQuery)

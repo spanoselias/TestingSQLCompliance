@@ -1,5 +1,17 @@
+/***********************************************************************************/
+/*                                                                                 */
+/*Name: Elias Spanos                                                 			   */
+/*Date: 5/06/2017                                                                  */
+/*Filename: FUNCTIONS.java                                                          */
+/*                                                                                 */
+/***********************************************************************************/
+
 package Engine;
 
+
+/***********************************************************************************/
+/*                                     LIBRARIES                                   */
+/***********************************************************************************/
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -15,6 +27,7 @@ public class FUNCTIONS
 
         public FUNCTIONS()
         {
+            //Aggregation Functions
             this.functions = new LinkedList<>();
             this.functions.add("COUNT");
             this.functions.add("AVG");
@@ -115,37 +128,42 @@ public class FUNCTIONS
             switch (pick)
             {
                 case 0:
+                    //"E.g MAX(r1.b)"
                     curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
                     stm = curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ")" ;
                 break;
 
                 case 1:
+                    //"E.g MAX(r1.b) < r2.b "
                     curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
                     rel = grpAttrIn.get(Utilities.getRandChoice(grpAttrIn.size()));
                     stm = "(" + curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + arith + " " + rel.attrName + ")";
                 break;
 
                 case 2:
+                    //"E.g MAX(r1.b) < AVG(r2.b)"
                     curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
                     curFun2   =  functions.get(Utilities.getRandChoice(functions.size()));
                     stm = "(" +  curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + arith + " " + curFun2 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + ")";
                 break;
 
                 case 3:
+                    //"E.g MAX(r1.b) < NULL"
                     curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
                     stm = "(" +  curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + arith + " " + "NULL" + ")";
                 break;
 
                 case 4:
+                    //E.g MAX(r1.b) < 25"
                     curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
                     stm = "(" +  curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + arith + " " + Utilities.getRandChoice(1000) + ")";
                 break;
 
                 case 5:
+                    //E.g 25 > MAX(r1.b)"
                     curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
                     stm =  "(" + Utilities.getRandChoice(1000) + arith +  "(" +  curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ")" ;
                 break;
-
             }
 
             return stm;
