@@ -110,10 +110,12 @@ public class SELECT
         }
 
         //This condition check if all the attributes should be included in the output
-        if (isAllAttrs)
+        if (Utilities.randChoice() == true)
         {
             stm += " *";
         }
+        else
+        {
 
             //It is used for formatting purposes
             boolean isOut = false;
@@ -285,6 +287,7 @@ public class SELECT
                     }
                 }
             }
+        }
 
         return stm;
     }

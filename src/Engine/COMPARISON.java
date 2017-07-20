@@ -101,7 +101,7 @@ public class COMPARISON
         {
             //We randomly choose if the comparison will be
             //one attribute with a constant
-             pick =  Utilities.getRandChoice(1);
+             pick =  Utilities.getRandChoice(2);
              if(pick == 0 )
              {
                  pick = 4;

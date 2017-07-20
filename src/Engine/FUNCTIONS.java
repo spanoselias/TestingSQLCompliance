@@ -162,7 +162,7 @@ public class FUNCTIONS
                 case 5:
                     //E.g 25 > MAX(r1.b)"
                     curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
-                    stm =  "(" + Utilities.getRandChoice(1000) + arith +  "(" +  curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ")" ;
+                    stm =  "(" + Utilities.getRandChoice(1000) + arith +   curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") )"  ;
                 break;
             }
 

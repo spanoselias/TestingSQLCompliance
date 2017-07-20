@@ -156,6 +156,18 @@ public final class Utilities
         return  newGen;
     }
 
+    public static boolean randChoice()
+    {
+
+        int pick = Utilities.getRandChoice(20);
+        if(pick < 1)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     private static void swap(Relation[] a, int i, int change) {
         Relation helper = a[i];
         a[i] = a[change];
