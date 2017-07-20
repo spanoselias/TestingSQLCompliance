@@ -231,7 +231,7 @@ public class SELECT
                      }
                  }
 
-                if(isOperator == false)
+                if(isOperator == false && confParSel.strAttrs.size() > 0)
                 {
                     //We randomly choose if we will have string comparisons in the
                     //SELECT Clause

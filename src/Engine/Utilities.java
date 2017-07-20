@@ -133,17 +133,25 @@ public final class Utilities
 
         String newGen="";
 
-        //We check if we will have string comparisons in the WHERE Clause
-        //based on the probability which is given in the configuration file
-        int newPick = Utilities.getRandChoice( 100 );
-        if(newPick <=  (int)(confPar.stringInWhere * 100) )
+        if(stringAttrs.size() > 0)
         {
-            newGen = stringGenCom.genStrings(stringAttrs);
+            //We check if we will have string comparisons in the WHERE Clause
+            //based on the probability which is given in the configuration file
+            int newPick = Utilities.getRandChoice( 100 );
+            if(newPick <=  (int)(confPar.stringInWhere * 100) )
+            {
+                newGen = stringGenCom.genStrings(stringAttrs);
+            }
+            else
+            {
+                newGen = genCom.getAttrComparison(relationsAttrsIn, selectedReltsInFrom, confPar.probWhrConst);
+            }
         }
         else
         {
             newGen = genCom.getAttrComparison(relationsAttrsIn, selectedReltsInFrom, confPar.probWhrConst);
         }
+
 
         return  newGen;
     }

@@ -93,6 +93,8 @@ public class FUNCTIONS
             return stm;
         }
 
+        //This method is used for performing aggregation functions in the SELECT Clause based on the
+        //attributes which are selected in the GROUP BY Clause. E.g MAX(r1.a) > 100, MAX(r1.a) > AVG(r2.b).
         public String getSelectAggr( LinkedList<Attribute> selAttrIn, LinkedList<Attribute> grpAttrIn)
         {
 
@@ -109,34 +111,39 @@ public class FUNCTIONS
             String curFun1 = "";
             String curFun2 = "";
 
-            int pick = Utilities.getRandChoice(4);
+            int pick = Utilities.getRandChoice(6);
             switch (pick)
             {
                 case 0:
-                    attr1 = grpAttrIn.get(Utilities.getRandChoice(grpAttrIn.size()));
                     curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
                     stm = curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ")" ;
                 break;
 
                 case 1:
-                    attr1 = grpAttrIn.get(Utilities.getRandChoice(grpAttrIn.size()));
                     curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
                     rel = grpAttrIn.get(Utilities.getRandChoice(grpAttrIn.size()));
                     stm = "(" + curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + arith + " " + rel.attrName + ")";
                 break;
 
                 case 2:
-                    attr1 = grpAttrIn.get(Utilities.getRandChoice(grpAttrIn.size()));
-                    attr2 = grpAttrIn.get(Utilities.getRandChoice(grpAttrIn.size()));
                     curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
                     curFun2   =  functions.get(Utilities.getRandChoice(functions.size()));
                     stm = "(" +  curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + arith + " " + curFun2 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + ")";
                 break;
 
                 case 3:
-                    attr1 = grpAttrIn.get(Utilities.getRandChoice(grpAttrIn.size()));
                     curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
                     stm = "(" +  curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + arith + " " + "NULL" + ")";
+                break;
+
+                case 4:
+                    curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
+                    stm = "(" +  curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + arith + " " + Utilities.getRandChoice(1000) + ")";
+                break;
+
+                case 5:
+                    curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
+                    stm =  "(" + Utilities.getRandChoice(1000) + arith +  "(" +  curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ")" ;
                 break;
 
             }
