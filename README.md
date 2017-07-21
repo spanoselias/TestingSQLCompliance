@@ -1,5 +1,5 @@
 <p align = "center">
-Random SQL Generator Engine
+A framework for evaluating the SQL-Compliance of current DBMSs
 
 <a>
 <p align = "center">
