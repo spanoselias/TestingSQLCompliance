@@ -4,11 +4,11 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="#Refactor code">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Libs/IBM_DB2/db2jcc4.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Libs/MS_Server/sqljdbc4.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Libs/MySQL/mysql-connector-java-5.1.41-bin.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Libs/postgresql/postgresql-42.0.0.jar" />
+    <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Libs/IBM_DB2/db2jcc4.jar" afterPath="$PROJECT_DIR$/Libs/IBM_DB2/db2jcc4.jar" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Libs/MS_Server/sqljdbc4.jar" afterPath="$PROJECT_DIR$/Libs/MS_Server/sqljdbc4.jar" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Libs/MySQL/mysql-connector-java-5.1.41-bin.jar" afterPath="$PROJECT_DIR$/Libs/MySQL/mysql-connector-java-5.1.41-bin.jar" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Libs/postgresql/postgresql-42.0.0.jar" afterPath="$PROJECT_DIR$/Libs/postgresql/postgresql-42.0.0.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -296,7 +296,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Libs" />
+              <option name="myItemId" value="ComparisonTool" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -310,11 +310,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ComparisonTool" />
+              <option name="myItemId" value="Libs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -340,9 +336,9 @@
       <recent name="Engine" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Elias\Documents\TestingSQLCompliance" />
       <recent name="C:\Users\Elias\Documents\TestingSQLCompliance\scripts" />
       <recent name="C:\Users\Elias\Documents\TestingSQLCompliance\src" />
-      <recent name="C:\Users\Elias\Documents\TestingSQLCompliance" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -978,14 +974,7 @@
       <workItem from="1499157504431" duration="12970000" />
       <workItem from="1499356714287" duration="112011000" />
       <workItem from="1500145403541" duration="42919000" />
-      <workItem from="1500483167027" duration="25942000" />
-    </task>
-    <task id="LOCAL-00068" summary="Extending Comparison tool for comparing multiple DBMSs results simultaneously">
-      <created>1497644155904</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1497644155904</updated>
+      <workItem from="1500483167027" duration="25997000" />
     </task>
     <task id="LOCAL-00069" summary="Extending Comparison tool for comparing multiple DBMSs results simultaneously">
       <created>1497686498617</created>
@@ -1323,11 +1312,18 @@
       <option name="project" value="LOCAL" />
       <updated>1500665867360</updated>
     </task>
-    <option name="localTasksCounter" value="117" />
+    <task id="LOCAL-00117" summary="#Add require libraries for the Comparison Tool">
+      <created>1500666089853</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1500666089853</updated>
+    </task>
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="648628000" />
+    <option name="totallyTimeSpent" value="648683000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1924" height="1050" extended-state="0" />
@@ -1418,7 +1414,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Improving Comparing tool" />
     <MESSAGE value="Fixing bugs on Comparison tool" />
     <MESSAGE value="Fixing a bug in the Alias" />
     <MESSAGE value="Fixing a bug" />
@@ -1443,7 +1438,8 @@
     <MESSAGE value="#Adding '*' command" />
     <MESSAGE value="#Extending project description" />
     <MESSAGE value="#Refactor code" />
-    <option name="LAST_COMMIT_MESSAGE" value="#Refactor code" />
+    <MESSAGE value="#Add require libraries for the Comparison Tool" />
+    <option name="LAST_COMMIT_MESSAGE" value="#Add require libraries for the Comparison Tool" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
