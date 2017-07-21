@@ -48,6 +48,8 @@ public class STRINGS
         int pick;
 
         String word = confPar.dictonary.get(Utilities.getRandChoice(confPar.dictonary.size()));
+        String word2 = confPar.dictonary.get(Utilities.getRandChoice(confPar.dictonary.size()));
+
         int firspos = Utilities.getRandChoice(word.length())-1;
         int secpos;
 
@@ -62,7 +64,7 @@ public class STRINGS
 
         String subWord = word.substring( firspos, secpos );
 
-        pick = Utilities.getRandChoice(9);
+        pick = Utilities.getRandChoice(10);
 
         switch(pick)
         {
@@ -100,6 +102,11 @@ public class STRINGS
             case 8:
                 str =  "'" + word + "'" + " " + comproper.get(Utilities.getRandChoice(this.comproper.size())) + " " + attr1;
             break;
+
+            case 9:
+                str =  "'" + word + "'" + " " + comproper.get(Utilities.getRandChoice(this.comproper.size())) + " " +  "'" + word2 + "'" ;
+            break;
+
         }
 
         return str;
