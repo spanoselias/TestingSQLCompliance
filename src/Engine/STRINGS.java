@@ -18,7 +18,7 @@ public class STRINGS
     private String stm;
 
     //This list stores arithmetic operators for comparing different strings
-    private LinkedList<String> arithOper;
+    private LinkedList<String> comproper;
 
     //This hashMap will be used to store all the attributes for each relation
     HashMap<String, LinkedList<String>> relationsAttrs;
@@ -31,13 +31,13 @@ public class STRINGS
         stm = "LIKE ";
         stm = "NOT LIKE ";
 
-        this.arithOper = new LinkedList<>();
-        this.arithOper.add("<");
-        this.arithOper.add(">");
-        this.arithOper.add("<=");
-        this.arithOper.add("=");
-        this.arithOper.add(">=");
-        this.arithOper.add("<>");
+        this.comproper = new LinkedList<>();
+        this.comproper.add("<");
+        this.comproper.add(">");
+        this.comproper.add("<=");
+        this.comproper.add("=");
+        this.comproper.add(">=");
+        this.comproper.add("<>");
     }
 
     public String genStrings(LinkedList<Attribute> stringAttrs)
@@ -63,7 +63,6 @@ public class STRINGS
         String subWord = word.substring( firspos, secpos );
 
         pick = Utilities.getRandChoice(9);
-        pick = 1;
 
         switch(pick)
         {
@@ -91,15 +90,15 @@ public class STRINGS
             break;
 
             case 6:
-                str = attr1 + " " + arithOper.get(Utilities.getRandChoice(this.arithOper.size())) + " " + attr2;
+                str = attr1 + " " + comproper.get(Utilities.getRandChoice(this.comproper.size())) + " " + attr2;
             break;
 
             case 7:
-                str = attr1 + " " + arithOper.get(Utilities.getRandChoice(this.arithOper.size())) + " " + "'"+ word + "'";
+                str = attr1 + " " + comproper.get(Utilities.getRandChoice(this.comproper.size())) + " " + "'"+ word + "'";
             break;
 
             case 8:
-                str =  "'" + word + "'" + " " + arithOper.get(Utilities.getRandChoice(this.arithOper.size())) + " " + attr1;
+                str =  "'" + word + "'" + " " + comproper.get(Utilities.getRandChoice(this.comproper.size())) + " " + attr1;
             break;
         }
 

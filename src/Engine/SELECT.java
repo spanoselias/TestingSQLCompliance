@@ -109,14 +109,14 @@ public class SELECT
             stm += " DISTINCT";
         }
 
-        //This condition check if all the attributes should be included in the output
+        //This condition check if all the attributes should be included in the output. The probability
+        //is given in the Utilities class
         if (Utilities.randChoice() == true)
         {
             stm += " *";
         }
         else
         {
-
             //It is used for formatting purposes
             boolean isOut = false;
 
@@ -211,7 +211,6 @@ public class SELECT
                                 j +=1;
                                 stm += ", " + curAlias.get(i);
                             }
-
                             else
                             {
                                 break;
@@ -243,7 +242,6 @@ public class SELECT
                          stm += ", " + genFunctions.getSelectAggr(allSelAttrs, aggrAttrsIn) + " AS AGGR" + i ;
                      }
                  }
-
                 if(isOperator == false && confParSel.strAttrs.size() > 0)
                 {
                     //We randomly choose if we will have string comparisons in the

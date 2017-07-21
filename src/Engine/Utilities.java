@@ -45,12 +45,13 @@ public final class Utilities
         }
     }
 
+
     public static String chooseRandAttr(LinkedList<Attribute> attributesIn)
     {
 
         //This method is used for row comparisons. (r1.b,r2.a) > (r2.b, r1.a)
         int pick  = getRandChoice(100);
-        if(pick <=  (int)(0.2 * 100) )
+        if(pick <  (int)(0.2 * 100) )
         {
             pick = getRandChoice(2);
         }
@@ -65,7 +66,7 @@ public final class Utilities
                 return "null";
 
             case 1:
-                return Integer.toString(getRandChoice(1000));
+                return Integer.toString(getRandChoice(10000));
 
             case 2:
                 return attributesIn.get(getRandChoice(attributesIn.size())).attrName;
@@ -75,11 +76,15 @@ public final class Utilities
         return attributesIn.get(getRandChoice(attributesIn.size())).attrName;
     }
 
+    //This method is used to find which attributes are not appeared in the group by clause. As we
+    //want to give higher chance for these attributes to appear in an aggregation function in the
+    //select clause
     public static String chooseRandAttrGrpBy( LinkedList<Attribute> grpAttrIn, LinkedList<Attribute> allAttr)
     {
 
         //This list will be used to store attributes that do not appear
-        //in the GROUP BY Clause
+        //in the GROUP BY Clause as we want to give higher chance to be
+        //appear in the SELECT Clause
         LinkedList<Attribute> newAttrs = new LinkedList<>();
 
         for(Attribute atr: allAttr)
@@ -128,9 +133,10 @@ public final class Utilities
         return newAttrs.get(getRandChoice(newAttrs.size())).attrName;
     }
 
+    //This method is called from the WHERE Clause and is used for string or integer attributes. If there is no string attribute
+    //then it generates comparisons between attributes and constants
     public static String chooseBetStringAndInt(HashMap<String, LinkedList<Attribute>> relationsAttrsIn, LinkedList<Attribute> selectedReltsInFrom, ConfParameters confPar, STRINGS stringGenCom, COMPARISON genCom, LinkedList<Attribute> stringAttrs )
     {
-
         String newGen="";
 
         if(stringAttrs.size() > 0)
@@ -138,7 +144,7 @@ public final class Utilities
             //We check if we will have string comparisons in the WHERE Clause
             //based on the probability which is given in the configuration file
             int newPick = Utilities.getRandChoice( 100 );
-            if(newPick <=  (int)(confPar.stringInWhere * 100) )
+            if(newPick <  (int)(confPar.stringInWhere * 100) )
             {
                 newGen = stringGenCom.genStrings(stringAttrs);
             }
@@ -152,10 +158,11 @@ public final class Utilities
             newGen = genCom.getAttrComparison(relationsAttrsIn, selectedReltsInFrom, confPar.probWhrConst);
         }
 
-
         return  newGen;
     }
 
+    //It returns true or false based on a probability which is given
+    //in the configuration file
     public static boolean randChoice()
     {
 

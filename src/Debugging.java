@@ -10,7 +10,7 @@ public class Debugging
     public static void main (String args[])
     {
 
-        //ComparisonTool conn = new ComparisonTool();
+        //ComparisonTool.ComparisonTool conn = new ComparisonTool.ComparisonTool();
         SQLEngine newSQL = new SQLEngine();
 
 

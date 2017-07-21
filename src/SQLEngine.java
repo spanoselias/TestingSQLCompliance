@@ -5,6 +5,7 @@
 /*Filename: SQLEngine.java                                                         */
 /*                                                                                 */
 /***********************************************************************************/
+import ComparisonTool.ComparisonTool;
 import Engine.*;
 
 
@@ -536,25 +537,21 @@ public class SQLEngine
         SQLQUERY newSQL = new SQLQUERY();
 
         pick = Utilities.getRandChoice(5);
+
                //The option is given as input parameter to the program
             switch (pick)
             {
                 case 0:
-                    // System.out.println("Complex query");
-                    //  System.out.println("*******************");
                     qry = newSQL.genCompQuery(1, frmRelts, 1, false, false, confPar);
                 break;
 
                 case 1:
-                    //  System.out.println("Simple query");
-                    //  System.out.println("*******************");
                     QRYREPRES res = newSQL.genQuery(null, uniqID, false, false, confPar, 0);
                     qry = res.qryStr;
                 break;
 
                 case 2:
                     qry = newSQL.nestQuery(uniqID, confPar);
-                    // wrtSql2File("rand.", qry);
                 break;
 
                 case 3:

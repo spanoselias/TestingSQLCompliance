@@ -21,28 +21,28 @@ public class COMPARISON
     final int CONSTNO = 20;
 
     //Stores all the operators that can be used for any comparison
-    private LinkedList<String> operators;
+    private LinkedList<String> comproper;
+
 
     private LinkedList<Attribute> selectedTables;
 
     private LinkedList<String> Null;
 
-
     //This list will be used to have arithmetic with constants and NULL
     //in the SELECT CLAUSE
-    private LinkedList<String> arithCompr;
+    private LinkedList<String> arithmOper;
 
     private LinkedList<String> constAndNullAttr;
 
     public COMPARISON()
     {
-        this.operators = new LinkedList<>();
-        this.operators.add("<");
-        this.operators.add(">");
-        this.operators.add("<=");
-        this.operators.add("=");
-        this.operators.add(">=");
-        this.operators.add("<>");
+        this.comproper = new LinkedList<>();
+        this.comproper.add("<");
+        this.comproper.add(">");
+        this.comproper.add("<=");
+        this.comproper.add("=");
+        this.comproper.add(">=");
+        this.comproper.add("<>");
 
         Null = new LinkedList<>();
         Null.add("NULL");
@@ -54,12 +54,12 @@ public class COMPARISON
             Null.add(Integer.toString(i));
         }
 
-        this.arithCompr = new LinkedList<>();
-        this.arithCompr.add("*");
-        this.arithCompr.add("-");
-        this.arithCompr.add("+");
-        this.arithCompr.add("/");
-        this.arithCompr.add("%");
+        this.arithmOper = new LinkedList<>();
+        this.arithmOper.add("*");
+        this.arithmOper.add("-");
+        this.arithmOper.add("+");
+        this.arithmOper.add("/");
+        this.arithmOper.add("%");
 
         this.constAndNullAttr = new LinkedList<>();
         for(int i =0; i< 8; i++ )
@@ -87,7 +87,7 @@ public class COMPARISON
 
         String arithmCompStr = "";
 
-        String oper = operators.get(Utilities.getRandChoice(operators.size()));
+        String oper = comproper.get(Utilities.getRandChoice(comproper.size()));
 
 
         //The probWhr represents the probability of having
@@ -246,7 +246,7 @@ public class COMPARISON
         String const1 = "";
         String const2 = "";
 
-        String arith = arithCompr.get( Utilities.getRandChoice(arithCompr.size()) );
+        String arith = arithmOper.get( Utilities.getRandChoice(arithmOper.size()) );
 
         pick = Utilities.getRandChoice(4);
         switch (pick)

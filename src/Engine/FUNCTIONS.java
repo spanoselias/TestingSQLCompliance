@@ -17,8 +17,10 @@ import java.util.LinkedList;
 
 public class FUNCTIONS
 {
-        private LinkedList<String> functions;
-        private LinkedList<String> oper4;
+        private LinkedList<String> aggrFunctions;
+
+        private LinkedList<String> comprOper;
+
 
         private HashMap<String, LinkedList<String>> relAttrs;
         private LinkedList<Attribute> selAttrs;
@@ -28,22 +30,21 @@ public class FUNCTIONS
         public FUNCTIONS()
         {
             //Aggregation Functions
-            this.functions = new LinkedList<>();
-            this.functions.add("COUNT");
-            this.functions.add("AVG");
-            this.functions.add("MIN");
-            this.functions.add("MAX");
-            this.functions.add("SUM");
+            this.aggrFunctions = new LinkedList<>();
+            this.aggrFunctions.add("COUNT");
+            this.aggrFunctions.add("AVG");
+            this.aggrFunctions.add("MIN");
+            this.aggrFunctions.add("MAX");
+            this.aggrFunctions.add("SUM");
 
 
-            this.oper4 = new LinkedList<>();
-            this.oper4.add("<");
-            this.oper4.add(">");
-            this.oper4.add("<=");
-            this.oper4.add("=");
-            this.oper4.add(">=");
-            this.oper4.add("<>");
-
+            this.comprOper = new LinkedList<>();
+            this.comprOper.add("<");
+            this.comprOper.add(">");
+            this.comprOper.add("<=");
+            this.comprOper.add("=");
+            this.comprOper.add(">=");
+            this.comprOper.add("<>");
 
             this.arithCompr = new LinkedList<>();
             this.arithCompr.add("*");
@@ -51,7 +52,6 @@ public class FUNCTIONS
             this.arithCompr.add("+");
             this.arithCompr.add("/");
             this.arithCompr.add("%");
-
         }
 
         public String getAttrComparison( LinkedList<Attribute> selAttrsIn)
@@ -63,9 +63,9 @@ public class FUNCTIONS
             Attribute attr = selAttrsIn.get(Utilities.getRandChoice(selAttrsIn.size()));
 
             int switchPick = Utilities.getRandChoice(3);
-            String curFun1 =  functions.get(Utilities.getRandChoice(functions.size()));
+            String curFun1 =  aggrFunctions.get(Utilities.getRandChoice(aggrFunctions.size()));
             String curFun2 = "";
-            String oper = oper4.get(Utilities.getRandChoice(oper4.size()));
+            String oper = comprOper.get(Utilities.getRandChoice(comprOper.size()));
 
             switch(switchPick)
             {
@@ -82,7 +82,7 @@ public class FUNCTIONS
                     do
                     {
                         counter ++;
-                        curFun2 =functions.get(Utilities.getRandChoice(functions.size()));
+                        curFun2 =aggrFunctions.get(Utilities.getRandChoice(aggrFunctions.size()));
                     }while(curFun2 == curFun1 && counter < 10000);
 
                     counter =0;
@@ -129,39 +129,39 @@ public class FUNCTIONS
             {
                 case 0:
                     //"E.g MAX(r1.b)"
-                    curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
+                    curFun1   =  aggrFunctions.get(Utilities.getRandChoice(aggrFunctions.size()));
                     stm = curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ")" ;
                 break;
 
                 case 1:
                     //"E.g MAX(r1.b) < r2.b "
-                    curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
+                    curFun1   =  aggrFunctions.get(Utilities.getRandChoice(aggrFunctions.size()));
                     rel = grpAttrIn.get(Utilities.getRandChoice(grpAttrIn.size()));
                     stm = "(" + curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + arith + " " + rel.attrName + ")";
                 break;
 
                 case 2:
                     //"E.g MAX(r1.b) < AVG(r2.b)"
-                    curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
-                    curFun2   =  functions.get(Utilities.getRandChoice(functions.size()));
+                    curFun1   =  aggrFunctions.get(Utilities.getRandChoice(aggrFunctions.size()));
+                    curFun2   =  aggrFunctions.get(Utilities.getRandChoice(aggrFunctions.size()));
                     stm = "(" +  curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + arith + " " + curFun2 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + ")";
                 break;
 
                 case 3:
                     //"E.g MAX(r1.b) < NULL"
-                    curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
+                    curFun1   =  aggrFunctions.get(Utilities.getRandChoice(aggrFunctions.size()));
                     stm = "(" +  curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + arith + " " + "NULL" + ")";
                 break;
 
                 case 4:
                     //E.g MAX(r1.b) < 25"
-                    curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
+                    curFun1   =  aggrFunctions.get(Utilities.getRandChoice(aggrFunctions.size()));
                     stm = "(" +  curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + arith + " " + Utilities.getRandChoice(1000) + ")";
                 break;
 
                 case 5:
                     //E.g 25 > MAX(r1.b)"
-                    curFun1   =  functions.get(Utilities.getRandChoice(functions.size()));
+                    curFun1   =  aggrFunctions.get(Utilities.getRandChoice(aggrFunctions.size()));
                     stm =  "(" + Utilities.getRandChoice(1000) + arith +   curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") )"  ;
                 break;
             }

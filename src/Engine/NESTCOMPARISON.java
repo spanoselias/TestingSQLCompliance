@@ -19,7 +19,7 @@ public class NESTCOMPARISON
         private LinkedList<String> oper1;
         private LinkedList<String> oper2;
         private LinkedList<String> oper3;
-        private LinkedList<String> oper4;
+        private LinkedList<String> comproper;
 
         private boolean isOneAttr;
 
@@ -42,13 +42,13 @@ public class NESTCOMPARISON
             this.oper3.add("ANY");
             this.oper3.add("ALL");
 
-            this.oper4 = new LinkedList<>();
-            this.oper4.add("<");
-            this.oper4.add(">");
-            this.oper4.add("<=");
-            this.oper4.add("=");
-            this.oper4.add(">=");
-            this.oper4.add("<>");
+            this.comproper = new LinkedList<>();
+            this.comproper.add("<");
+            this.comproper.add(">");
+            this.comproper.add("<=");
+            this.comproper.add("=");
+            this.comproper.add(">=");
+            this.comproper.add("<>");
 
             this.isOneAttr = false;
         }
@@ -108,7 +108,7 @@ public class NESTCOMPARISON
 
                 case 2:
                    // Attribute rel = this.selectedTables.get(Utilities.getRandChoice(this.selectedTables.size()));
-                    stm += allAttr + " " + oper4.get(Utilities.getRandChoice(oper4.size())) + " " + oper3.get(Utilities.getRandChoice(oper3.size()));
+                    stm += allAttr + " " + comproper.get(Utilities.getRandChoice(comproper.size())) + " " + oper3.get(Utilities.getRandChoice(oper3.size()));
                     this.isOneAttr = true;
                 break;
             }
