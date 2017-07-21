@@ -5,10 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Libs/IBM_DB2/db2jcc4.jar" afterPath="$PROJECT_DIR$/Libs/IBM_DB2/db2jcc4.jar" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Libs/MS_Server/sqljdbc4.jar" afterPath="$PROJECT_DIR$/Libs/MS_Server/sqljdbc4.jar" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Libs/MySQL/mysql-connector-java-5.1.41-bin.jar" afterPath="$PROJECT_DIR$/Libs/MySQL/mysql-connector-java-5.1.41-bin.jar" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Libs/postgresql/postgresql-42.0.0.jar" afterPath="$PROJECT_DIR$/Libs/postgresql/postgresql-42.0.0.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -974,14 +970,7 @@
       <workItem from="1499157504431" duration="12970000" />
       <workItem from="1499356714287" duration="112011000" />
       <workItem from="1500145403541" duration="42919000" />
-      <workItem from="1500483167027" duration="25997000" />
-    </task>
-    <task id="LOCAL-00069" summary="Extending Comparison tool for comparing multiple DBMSs results simultaneously">
-      <created>1497686498617</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1497686498617</updated>
+      <workItem from="1500483167027" duration="26052000" />
     </task>
     <task id="LOCAL-00070" summary="Improving Comparing tool">
       <created>1497687316398</created>
@@ -1319,11 +1308,18 @@
       <option name="project" value="LOCAL" />
       <updated>1500666089853</updated>
     </task>
-    <option name="localTasksCounter" value="118" />
+    <task id="LOCAL-00118" summary="#Add require libraries for the Comparison Tool">
+      <created>1500666132012</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1500666132012</updated>
+    </task>
+    <option name="localTasksCounter" value="119" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="648683000" />
+    <option name="totallyTimeSpent" value="648738000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1924" height="1050" extended-state="0" />
