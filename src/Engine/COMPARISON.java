@@ -23,6 +23,8 @@ public class COMPARISON
     //Stores all the operators that can be used for any comparison
     private LinkedList<String> comproper;
 
+    private LinkedList<String> checkNull;
+
 
     private LinkedList<Attribute> selectedTables;
 
@@ -33,6 +35,8 @@ public class COMPARISON
     private LinkedList<String> arithmOper;
 
     private LinkedList<String> constAndNullAttr;
+
+
 
     public COMPARISON()
     {
@@ -70,6 +74,10 @@ public class COMPARISON
         {
             this.constAndNullAttr.add("NULL");
         }
+
+        this.checkNull = new LinkedList<>();
+        this.checkNull.add("IS NULL");
+        this.checkNull.add("IS NOT NULL");
     }
 
 
@@ -89,7 +97,6 @@ public class COMPARISON
 
         String oper = comproper.get(Utilities.getRandChoice(comproper.size()));
 
-
         //The probWhr represents the probability of having
         //constants or NULLS to the WHERE comparisons
         pick = Utilities.getRandChoice( 100 );
@@ -106,12 +113,16 @@ public class COMPARISON
              {
                  pick = 4;
              }
+             pick =  Utilities.getRandChoice(10);
+             if(pick == 0 )
+             {
+                 pick = 6;
+             }
              else
              {
                  pick = 5;
              }
         }
-
 
         //The idea of current switch is to do comparisons between two relation's attributes or between
         //one attribute and one constant or between an attribute and a NULL
@@ -203,7 +214,12 @@ public class COMPARISON
                     }
                 }
             break;
-        }
+
+            case 6:
+                arithmCompStr = selectedTablesIn.get(Utilities.getRandChoice(selectedTablesIn.size())).attrName + " " + this.checkNull.get(Utilities.getRandChoice(this.checkNull.size()));
+            break;
+
+        }//Switch
 
         //We want to use negation in some of the expressions. Thus, we randomly decide if
         //the below expression will have negation or not.
