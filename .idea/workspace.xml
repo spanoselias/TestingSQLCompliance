@@ -4,7 +4,8 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="">
+    <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="#Add require libraries for the Comparison Tool">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Libs/Oracle/ojdbc7-12.1.0.2.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -275,24 +276,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TestingSQLCompliance" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TestingSQLCompliance" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ComparisonTool" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -970,14 +953,7 @@
       <workItem from="1499157504431" duration="12970000" />
       <workItem from="1499356714287" duration="112011000" />
       <workItem from="1500145403541" duration="42919000" />
-      <workItem from="1500483167027" duration="26052000" />
-    </task>
-    <task id="LOCAL-00070" summary="Improving Comparing tool">
-      <created>1497687316398</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1497687316398</updated>
+      <workItem from="1500483167027" duration="26412000" />
     </task>
     <task id="LOCAL-00071" summary="Fixing bugs on Comparison tool">
       <created>1497702640366</created>
@@ -1315,11 +1291,18 @@
       <option name="project" value="LOCAL" />
       <updated>1500666132012</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="#Add require libraries for the Comparison Tool">
+      <created>1500666186157</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1500666186157</updated>
+    </task>
+    <option name="localTasksCounter" value="120" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="648738000" />
+    <option name="totallyTimeSpent" value="649098000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1924" height="1050" extended-state="0" />
