@@ -7,7 +7,7 @@
 /***********************************************************************************/
 import ComparisonTool.ComparisonTool;
 import Engine.*;
-
+import  ComparisonTool.ResInfo;
 
 /***********************************************************************************/
 /*                                     LIBRARIES                                   */
@@ -409,7 +409,8 @@ public class SQLEngine
                         sql = "SELECT " + attr.attrName + " FROM " + relname;
                     }
 
-                    LinkedList<String> res = ctool.execQuery(conn, sql);
+                    ResInfo info = new ResInfo();
+                    LinkedList<String> res = ctool.execQuery(conn, sql, info);
                     allStrings.addAll(res);
                 }
 
@@ -473,22 +474,57 @@ public class SQLEngine
 
       //  String conten = String.valueOf(myval) + " : " + String.valueOf(msval) + "\n";
 
+        ResInfo MySQL = new ResInfo();
+        ResInfo MicrosoftSQL = new ResInfo();
+        ResInfo OracleDb = new ResInfo();
+        ResInfo Postgres = new ResInfo();
+
         ComparisonTool dbcon = new ComparisonTool();
-        LinkedList<String> MyVal = dbcon.connectToMySql(sql);
-        LinkedList<String> MSVal = dbcon.connectToMicrosoftSql(sql);
-        LinkedList<String> oracleDb = dbcon.connectToOracle(sql);
-        LinkedList<String> postgres = dbcon.connectToMicrosoftSql(sql);
+        MySQL = dbcon.connectToMySql(sql);
+        MicrosoftSQL = dbcon.connectToMicrosoftSql(sql);
+        OracleDb = dbcon.connectToOracle(sql);
+        Postgres = dbcon.connectToMicrosoftSql(sql);
        // LinkedList<String> DB2 = dbcon.connectToIBMDb2();
 
-       if( dbcon.diff(MSVal,MyVal , oracleDb, postgres) == false )
-       {
-            System.out.println("Difference found!!!");
+           System.out.println("Difference found!!!");
 
             try
             {
                 fw = new FileWriter(filename, true);
                 bw = new BufferedWriter(fw);
+
                 bw.write("*******************************************************************\n");
+                bw.write("New Result!!\n");
+                bw.write("+++++++++++++++++++++++++++++++++++++++++++++\n");
+                if(MySQL.res == false)
+                {
+                    bw.write("----------------------------------------------------------\n");
+                    bw.write("MySQl Error: \n");
+                    bw.write(MySQL.msg);
+                    bw.write("----------------------------------------------------------\n");
+                }
+                if(MicrosoftSQL.res == false)
+                {
+                    bw.write("----------------------------------------------------------\n");
+                    bw.write("Microsoft SQL Server Error: \n");
+                    bw.write(MicrosoftSQL.msg);
+                    bw.write("----------------------------------------------------------\n");
+                }
+                if(OracleDb.res == false)
+                {
+                    bw.write("----------------------------------------------------------\n");
+                    bw.write("Oracle DB Error: \n");
+                    bw.write(OracleDb.msg);
+                    bw.write("----------------------------------------------------------\n");
+                }
+                if(Postgres.res == false)
+                {
+                    bw.write("----------------------------------------------------------\n");
+                    bw.write("PostgreSQL Error: \n");
+                    bw.write(Postgres.msg);
+                    bw.write("----------------------------------------------------------\n");
+                }
+
                 bw.write(sql);
                 bw.write("\n*******************************************************************");
 
@@ -506,12 +542,13 @@ public class SQLEngine
                     if (fw != null)
                         fw.close();
 
-                } catch (IOException ex)
+                }
+                catch (IOException ex)
                 {
                     ex.printStackTrace();
                 }
              }
-       }
+
 
     }
 
@@ -535,6 +572,11 @@ public class SQLEngine
         int pick;
 
         SQLQUERY newSQL = new SQLQUERY();
+
+        int counter=0;
+
+        while(true)
+        {
 
         pick = Utilities.getRandChoice(5);
 
@@ -565,6 +607,8 @@ public class SQLEngine
                 break;
             }
 
+            System.out.println(counter++);
+
                /* QRYREPRES res1 = newSQL.operQuery(null,uniqID, false, false, confPar);
                 qry = res1.qryStr;*/
 
@@ -574,8 +618,8 @@ public class SQLEngine
             // String sql = nestQuery(uniqID, confPar);
               wrtSql2File("rand.sql",qry);
 
-             // genLogFile(qry);
-
+              genLogFile(qry);
+        }
 
 
     }

@@ -2,7 +2,7 @@
 /*                                                                                 */
 /*Name: Elias Spanos                                                               */
 /*Date: 5/06/2017                                                                  */
-/*Filename: SETOPERATORS.java                                                         */
+/*Filename: SETOPERATORS.java                                                      */
 /*                                                                                 */
 /***********************************************************************************/
 

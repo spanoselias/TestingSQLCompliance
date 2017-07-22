@@ -19,7 +19,7 @@
       <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://localhost;databaseName=testdb</jdbc-url>
+      <jdbc-url>jdbc:sqlserver://localhost;databaseName=teststr</jdbc-url>
     </data-source>
     <data-source source="LOCAL" name="PostgresSQL" uuid="7279b81a-2a74-4b69-8044-568af7776d0d">
       <driver-ref>postgresql</driver-ref>
@@ -41,6 +41,26 @@
       <jdbc-url>jdbc:db2://localhost:50000/testdb</jdbc-url>
       <driver-properties>
         <property name="retrieveMessagesFromServerOnGetMessage" value="true" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="String-MS Server" uuid="2164fc39-a0cc-448b-9428-ae8857183282">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://localhost;databaseName=teststr</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="String-MySQL" uuid="5b5c27c6-a97f-42cc-aeaa-feaed1d35afa">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/teststr</jdbc-url>
+      <driver-properties>
+        <property name="autoReconnect" value="true" />
+        <property name="zeroDateTimeBehavior" value="convertToNull" />
+        <property name="tinyInt1isBit" value="false" />
+        <property name="characterEncoding" value="utf8" />
+        <property name="characterSetResults" value="utf8" />
+        <property name="yearIsDateType" value="false" />
       </driver-properties>
     </data-source>
   </component>

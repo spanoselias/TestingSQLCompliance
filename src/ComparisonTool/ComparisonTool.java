@@ -16,9 +16,12 @@ import java.util.*;
 /***********************************************************************************/
 public class ComparisonTool
 {
-    public  LinkedList<String> connectToMySql(String sqlQuery)
+    public ResInfo connectToMySql(String sqlQuery)
     {
-            try
+
+        ResInfo info = new ResInfo();
+
+        try
             {
                 Class.forName("com.mysql.jdbc.Driver");
             } catch (ClassNotFoundException e)
@@ -31,7 +34,7 @@ public class ComparisonTool
             try
             {
                 conn = DriverManager
-                        .getConnection("jdbc:mysql://localhost:3306/testdb", "elias881", "testing1");
+                        .getConnection("jdbc:mysql://localhost:3306/teststr", "elias881", "testing1");
 
             }
             catch (SQLException e)
@@ -42,15 +45,17 @@ public class ComparisonTool
             }
             finally
             {
-                LinkedList<String> mySqlList = execQuery(conn, sqlQuery);
+                LinkedList<String> mySqlList = execQuery(conn, sqlQuery, info);
               //System.out.println("MySQlResSize: " + mySqlList.size());
 
-                return mySqlList;
+                return info;
             }
         }
 
-    public LinkedList<String> connectToPostgres(String sqlQuery)
+    public ResInfo connectToPostgres(String sqlQuery)
     {
+
+        ResInfo info = new ResInfo();
 
         try
         {
@@ -85,10 +90,10 @@ public class ComparisonTool
         }
         finally
         {
-            LinkedList<String> mySqlList = execQuery(connection, sqlQuery);
+            LinkedList<String> mySqlList = execQuery(connection, sqlQuery, info);
             //System.out.println("MySQlResSize: " + mySqlList.size());
 
-            return mySqlList;
+            return info;
         }
 
       /*  if (connection != null)
@@ -104,6 +109,9 @@ public class ComparisonTool
 
     public  void connectToIBMDb2()
     {
+
+
+
         String jdbcClassName = "com.ibm.db2.jcc.DB2Driver";
 
         String url = "jdbc:db2://localhost:50000/testdb";
@@ -224,21 +232,26 @@ public class ComparisonTool
         }
     }
 
-    public  LinkedList<String> connectToOracle( String sqlQuery )
+    public ResInfo connectToOracle(String sqlQuery )
     {
+            ResInfo info = new ResInfo();
 
             LinkedList<String> mySqlList=null;
 
             System.out.println("-------- Oracle JDBC Connection Testing ------");
 
-            try {
+            try
+            {
 
                 Class.forName("oracle.jdbc.driver.OracleDriver");
 
-            } catch (ClassNotFoundException e)
+            }
+            catch (ClassNotFoundException e)
             {
 
-                System.out.println("Where is your Oracle JDBC Driver?");
+                info.res = false;
+                info.msg = e.toString();
+
                 e.printStackTrace();
             //    return;
 
@@ -257,40 +270,47 @@ public class ComparisonTool
             } catch (SQLException e)
             {
 
+                info.res = false;
+                info.msg = e.toString();
+
                 System.out.println("Connection Failed! Check output console");
                 e.printStackTrace();
                // return;
             }
 
-            if (connection != null) {
+            if (connection != null)
+            {
                 System.out.println("You made it, take control your database now!");
-            } else {
+            } else
+            {
                 System.out.println("Failed to make connection!");
             }
 
             //Oracle does not support 'AS' in the FROM STATEMENT
             sqlQuery.replace("AS", " ");
 
-            mySqlList = execQuery(connection, sqlQuery);
+            mySqlList = execQuery(connection, sqlQuery, info);
+            info.mySqlList = mySqlList;
 
-        return mySqlList;
-        }
+        return info;
+    }
 
-    public  LinkedList<String> connectToMicrosoftSql(String sqlQuery)
+    public ResInfo connectToMicrosoftSql(String sqlQuery)
     {
+        ResInfo info = new ResInfo();
+
         Connection conn = null;
         LinkedList<String> mySqlList=null;
         try
         {
-
-            String dbURL = "jdbc:sqlserver://localhost; databaseName=testdb";
+            String dbURL = "jdbc:sqlserver://localhost; databaseName=teststr";
 
             String user = "elias881";
-            String pass = "testing1";
+            String pass = "testing1@";
             conn = DriverManager.getConnection(dbURL, user, pass);
             // conn = DriverManager.getConnection(dbURL);
 
-            mySqlList = execQuery(conn, sqlQuery);
+            mySqlList = execQuery(conn, sqlQuery, info);
             //System.out.println("MS Server: " + mySqlList.size());
 
         } catch (SQLException ex)
@@ -310,7 +330,7 @@ public class ComparisonTool
             }
         }
 
-        return mySqlList;
+        return info;
     }
 
     public static void genCsv( String row)
@@ -355,7 +375,7 @@ public class ComparisonTool
             }
     }
 
-    public LinkedList<String> execQuery(Connection conn, String sqlQry)
+    public LinkedList<String> execQuery(Connection conn, String sqlQry, ResInfo info)
     {
         LinkedList<String> tableRes= new LinkedList<>();
 
@@ -405,6 +425,9 @@ public class ComparisonTool
         }
         catch (SQLException ex)
         {
+            info.res = false;
+            info.msg  = ex.toString();
+
             ex.printStackTrace();
             return null;
         } finally
@@ -421,6 +444,8 @@ public class ComparisonTool
                 ex.printStackTrace();
             }
 
+            info.mySqlList = tableRes;
+
             return tableRes;
         }
     }
@@ -432,18 +457,28 @@ public class ComparisonTool
         System.out.print("DIff: " + MSServer.size());
         System.out.print("\n**************************\n");
 
-        if(MSServer.size() != MySQL.size() || MSServer.size() != PostGres.size())
+        if(MSServer.size() != MySQL.size() || MSServer.size() != PostGres.size() || MSServer.size() != OracleDB.size())
         {
             return false;
         }
 
         for(int i=0; i < MSServer.size(); i++)
         {
-            if( MSServer.get(i).compareTo(MySQL.get(i)) != 0  || MSServer.get(i).compareTo(PostGres.get(i))!= 0  ||MSServer.get(i).compareTo(OracleDB.get(i))!= 0 )
+            if( MSServer.get(i).compareTo(MySQL.get(i)) != 0)
+            {
+                return false;
+            }
+            if( MSServer.get(i).compareTo(PostGres.get(i))!= 0 )
+            {
+                return false;
+
+            }
+            if( MSServer.get(i).compareTo(OracleDB.get(i))!= 0 )
             {
                 return false;
             }
         }
+
         return true;
     }
 
