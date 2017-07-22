@@ -35,7 +35,7 @@ public class SQLQUERY
         confPar.arithmCompar=0.0;
 
         QRYREPRES res = new QRYREPRES();
-        OPERATORS oper = new OPERATORS(confPar);
+        SETOPERATORS oper = new SETOPERATORS(confPar);
 
         LinkedList<String> alias =  confPar.genAlias;
 
@@ -264,7 +264,7 @@ public class SQLQUERY
 
     public String operQuery(long uniqID, ConfParameters confPar)
     {
-        OPERATORS opert = new OPERATORS(confPar);
+        SETOPERATORS opert = new SETOPERATORS(confPar);
 
         String stm="";
         QRYREPRES res=null;
