@@ -47,6 +47,8 @@ public class ConfParameters
 
     public LinkedList<String> dictonary;
 
+    public LinkedList<Attribute> allStringAttrs = new LinkedList<>();
+
     public double stringInSel;
 
     public double stringInWhere;
@@ -55,4 +57,19 @@ public class ConfParameters
     public String pass;
     public String dbName;
     public String DBMS;
+
+
+    public LinkedList<String> trackDomainAttr = new LinkedList<>();
+
+    //This Hashmap is used to track the type of all attributes for all relations
+    public HashMap<String, String> typeOfAllAttr = new HashMap<>();
+
+    //This Hashmap is used to track the type of selected attributes
+    public HashMap<String, String> selectedAttrType = new HashMap<>();
+
+    public LinkedList<String> selectedTypeAttributesForSet = new LinkedList<>();
+
+    public int intCounterAttr = 0;
+    public int stringCounterAttr = 0;
+
 }

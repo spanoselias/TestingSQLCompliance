@@ -287,7 +287,7 @@ public class ComparisonTool
             }
 
             //Oracle does not support 'AS' in the FROM STATEMENT
-            sqlQuery.replace("AS", " ");
+           sqlQuery =  sqlQuery.replace("AS", " ");
 
             mySqlList = execQuery(connection, sqlQuery, info);
             info.mySqlList = mySqlList;
@@ -378,6 +378,7 @@ public class ComparisonTool
     public LinkedList<String> execQuery(Connection conn, String sqlQry, ResInfo info)
     {
         LinkedList<String> tableRes= new LinkedList<>();
+        info.res = true;
 
         try
         {

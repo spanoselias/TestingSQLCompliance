@@ -82,7 +82,6 @@ public class SELECT
     //repetition of alias in the SELECT clause because is not valid
     public String getSelect( LinkedList<Attribute> frmRels, boolean isOneAttr, boolean isSubqry, double isRepAlias, boolean isAggr, LinkedList<Attribute> aggrAttrsIn, boolean isOperator, int noOfAttrs)
     {
-
         LinkedList<Attribute> allSelAttrs=null;
 
         //Operator represents operations like UNION, INTERSECTION.. Thus, we need to track
@@ -104,14 +103,14 @@ public class SELECT
 
         //This condition is used to check if the sql query will include DISTINCT keyword
         //in the Engine.SELECT_rmv statement
-        if (this.isDistinct)
+        if (this.isDistinct && isOperator == false)
         {
             stm += " DISTINCT";
         }
 
         //This condition check if all the attributes should be included in the output. The probability
         //is given in the Utilities class
-        if (Utilities.randChoice() == true)
+        if (Utilities.randChoice() == true && isOperator == false )
         {
             stm += " *";
         }
@@ -145,7 +144,7 @@ public class SELECT
 
                     //Operators like UNION, INTERSECTION need to have the same number of attributes. Thus, this
                     //condition achieve that
-                    else
+                    else if (isOperator == true)
                     {
                         if( countAttr == j )
                         {
@@ -155,6 +154,9 @@ public class SELECT
 
                     //It counts the attributes
                     j +=1;
+
+                    //It counts the integer attributes
+                    confParSel.intCounterAttr +=1;
 
                     if(isOperator == false)
                     {
@@ -177,10 +179,14 @@ public class SELECT
                             stm += String.format(", %s AS %s", relName.attrName, alias.get(j));
                         }
 
+                        //It stores the type for each attribute. This is quite important in case where we have
+                        //set operators
+                        confParSel.selectedTypeAttributesForSet.add(confParSel.selectedAttrType.get(relName));
+
                 }//For statement
 
              //This code will run if we want repetition of alias
-             if(isRepAlias > 0 && isSubqry == false)
+             if(isRepAlias > 0 && isSubqry == false && isOperator == false)
                 {
                     int pick;
                     for(int i=0; i < curAlias.size(); i++)
@@ -198,14 +204,14 @@ public class SELECT
                     }
                 }
 
-               //to be checked
+               //The isOperator variable is used to indicate if we have set operators such as
+               // UNION, INTERSECTION and EXCEPT
                if( isOperator == true && j < countAttr )
                 {
                     for(int g=0; g < countAttr; g++)
                     {
                         for(int i=0; i < curAlias.size(); i++)
                         {
-
                             if(j < countAttr)
                             {
                                 j +=1;
@@ -233,8 +239,8 @@ public class SELECT
                     }
                 }
 
-                //The isAggr variable indicates if we have aggregation in this query. If yes, then we can
-                // have aggregation functions in the SELECT STATEMENT
+                 //The isAggr variable indicates if we have aggregation in this query. If yes, then we can
+                 // have aggregation functions in the SELECT STATEMENT
                  if(isAggr == true)
                  {
                      for(int i=0; i< Utilities.getRandChoice(5); i++)
@@ -242,15 +248,30 @@ public class SELECT
                          stm += ", " + genFunctions.getSelectAggr(allSelAttrs, aggrAttrsIn) + " AS AGGR" + i ;
                      }
                  }
-                if(isOperator == false && confParSel.strAttrs.size() > 0)
+                if( confParSel.strAttrs.size() > 0)
                 {
-                    //We randomly choose if we will have string comparisons in the
-                    //SELECT Clause
-                    int pick = Utilities.getRandChoice( 100 );
-                    if(pick <  (int)(confParSel.stringInSel * 100) )
+
+                    if(isOperator ==true)
                     {
-                        stm += " , " + genStrings.genStringSelect(confParSel.dictonary);
+                        for(int i=0; i < confParSel.stringCounterAttr; i++ )
+                        {
+                            stm += " , " + genStrings.genStringSelect(confParSel.dictonary);
+                        }
                     }
+
+                    else if (isOperator == false)
+                    {
+                        //We randomly choose if we will have string comparisons in the
+                        //SELECT Clause
+                        int pick = Utilities.getRandChoice( 100 );
+                        if(pick <  (int)(confParSel.stringInSel * 100) )
+                        {
+                            stm += " , " + genStrings.genStringSelect(confParSel.dictonary);
+
+                            confParSel.stringCounterAttr +=1;
+                        }
+                    }
+
                 }
             }
 

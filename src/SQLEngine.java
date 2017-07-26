@@ -220,6 +220,10 @@ public class SQLEngine
                     newAttr.attrName = rs.getString("COLUMN_NAME");
                     newAttr.attrType = rs.getString("data_type");
 
+                    //
+                    String name = prevName + "." + newAttr.attrName;
+                    confIn.typeOfAllAttr.put(name,newAttr.attrType);
+
                     if(rs.getString("data_type").compareTo("text") == 0)
                     {
                         strAttr.add(newAttr);
@@ -234,6 +238,9 @@ public class SQLEngine
                 {
                     newAttr.attrName = rs.getString("COLUMN_NAME");
                     newAttr.attrType = rs.getString("data_type");
+
+                    String name = prevName + "." + newAttr.attrName;
+                    confIn.typeOfAllAttr.put(name,newAttr.attrType);
 
                     if(rs.getString("data_type").compareTo("text") == 0)
                     {
@@ -260,6 +267,9 @@ public class SQLEngine
 
                     newAttr.attrName = rs.getString("COLUMN_NAME");
                     newAttr.attrType = rs.getString("data_type");
+
+                    String name = prevName + "." + newAttr.attrName;
+                    confIn.typeOfAllAttr.put(name,newAttr.attrType);
 
                     if(rs.getString("data_type").compareTo("text") == 0)
                     {
@@ -474,10 +484,11 @@ public class SQLEngine
 
       //  String conten = String.valueOf(myval) + " : " + String.valueOf(msval) + "\n";
 
-        ResInfo MySQL = new ResInfo();
-        ResInfo MicrosoftSQL = new ResInfo();
-        ResInfo OracleDb = new ResInfo();
-        ResInfo Postgres = new ResInfo();
+        ResInfo MySQL;
+        ResInfo MicrosoftSQL ;
+        ResInfo OracleDb ;
+        ResInfo Postgres;
+
 
         ComparisonTool dbcon = new ComparisonTool();
         MySQL = dbcon.connectToMySql(sql);
@@ -575,10 +586,11 @@ public class SQLEngine
 
         int counter=0;
 
-        while(true)
-        {
+  //  while(true)
+    //{
 
-        pick = Utilities.getRandChoice(5);
+        pick = Utilities.getRandChoice(4);
+
 
                //The option is given as input parameter to the program
             switch (pick)
@@ -618,9 +630,9 @@ public class SQLEngine
             // String sql = nestQuery(uniqID, confPar);
               wrtSql2File("rand.sql",qry);
 
-              genLogFile(qry);
-        }
+             genLogFile(qry);
 
+   // }
 
     }
 

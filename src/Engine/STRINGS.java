@@ -119,16 +119,20 @@ public class STRINGS
 
         int pick = Utilities.getRandChoice(5);
 
+        String word1 = confPar.dictonary.get(Utilities.getRandChoice(confPar.dictonary.size()));
+        String word2 = confPar.dictonary.get(Utilities.getRandChoice(confPar.dictonary.size()));
+
         switch(pick)
         {
             case 0:
-                String word1 = confPar.dictonary.get(Utilities.getRandChoice(confPar.dictonary.size()));
-                String word2 = confPar.dictonary.get(Utilities.getRandChoice(confPar.dictonary.size()));
-
-                stm =  "'" +  word1 +  "'"  + " || " + "'" + word2 + "'";
+                   stm = confPar.allStringAttrs.get(Utilities.getRandChoice(confPar.allStringAttrs.size())).attrName ;
             break;
 
             case 1:
+                stm =  "'" +  word1 +  "'"  + " || " + "'" + word2 + "'";
+            break;
+
+            case 2:
                 fun = "CONCAT";
 
                 fun +="(";
@@ -150,7 +154,7 @@ public class STRINGS
                 stm = fun;
             break;
 
-            case 2:
+            case 3:
 
                 fun = "REPLACE";
 
@@ -163,7 +167,7 @@ public class STRINGS
                 stm = fun;
             break;
 
-            case 3:
+            case 4:
                 fun = "SUBSTR( ";
                 String newWord1 = confPar.dictonary.get(Utilities.getRandChoice(confPar.dictonary.size()));
                 int firspos = Utilities.getRandChoice(newWord1.length())-1;
@@ -180,7 +184,7 @@ public class STRINGS
                 stm = fun;
             break;
 
-            case 4:
+            case 5:
                 fun = "TRIM";
 
                 fun += "( " + " " + "' " + confPar.dictonary.get(Utilities.getRandChoice(confPar.dictonary.size())) + " '" + " )";

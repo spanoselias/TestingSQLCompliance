@@ -121,6 +121,9 @@ public class FROM
                newAttr.attrName = (newAlias) + "." + attr.attrName;
                newAttr.attrType = attr.attrType;
 
+            //to be check
+            confParSel.selectedAttrType.put(newAttr.attrName, newAttr.attrType);
+
                this.selectedReltsInFrom.add( newAttr);
            }
 
@@ -140,7 +143,12 @@ public class FROM
                     newAttr.attrType = attr.attrType;
 
                     this.selStringAttr.add(newAttr);
+
+                    //to be check
+                    confParSel.selectedAttrType.put(newAttr.attrName, newAttr.attrType);
                 }
+
+                confParSel.allStringAttrs = this.selStringAttr;
             }
 
             if (i == 0)
