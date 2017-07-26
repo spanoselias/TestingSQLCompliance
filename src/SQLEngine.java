@@ -62,7 +62,6 @@ public class SQLEngine
             confPar.stringInWhere = Double.parseDouble( prop.getProperty( "stringInWhere" ) );
             confPar.rowcompar = Double.parseDouble( prop.getProperty( "rowcompar" ) );
 
-
             confPar.user =   prop.getProperty( "user" ) ;
             confPar.pass =   prop.getProperty( "pass" ) ;
             confPar.dbName =   prop.getProperty( "dbName" ) ;
@@ -182,7 +181,6 @@ public class SQLEngine
             }
             else
             {
-
                 stm = conn.prepareStatement(  "SELECT TABLE_NAME, column_name, data_type\n" +
                         "FROM information_schema.columns\n" +
                         "where table_schema = 'public' AND\n" +
@@ -225,7 +223,9 @@ public class SQLEngine
                     String name = prevName + "." + newAttr.attrName;
                     confIn.typeOfAllAttr.put(name,newAttr.attrType);
 
-                    if(rs.getString("data_type").compareTo("text") == 0)
+
+                    String type = rs.getString("data_type");
+                    if(  Arrays.asList("text", "character varying").contains(type) == true)
                     {
                         strAttr.add(newAttr);
                     }
@@ -243,7 +243,8 @@ public class SQLEngine
                     String name = prevName + "." + newAttr.attrName;
                     confIn.typeOfAllAttr.put(name,newAttr.attrType);
 
-                    if(rs.getString("data_type").compareTo("text") == 0)
+                    String type = rs.getString("data_type");
+                    if(  Arrays.asList("text", "character varying").contains(type) == true)
                     {
                         strAttr.add(newAttr);
                     }
@@ -272,7 +273,8 @@ public class SQLEngine
                     String name = prevName + "." + newAttr.attrName;
                     confIn.typeOfAllAttr.put(name,newAttr.attrType);
 
-                    if(rs.getString("data_type").compareTo("text") == 0)
+                    String type = rs.getString("data_type");
+                    if(  Arrays.asList("text", "character varying").contains(type) == true)
                     {
                         strAttr.add(newAttr);
                     }
@@ -299,7 +301,6 @@ public class SQLEngine
         catch (SQLException ex)
         {
             unable2Conn = true;
-          //  ex.printStackTrace();
         }
 
     finally
@@ -497,9 +498,13 @@ public class SQLEngine
         MicrosoftSQL = dbcon.connectToMicrosoftSql(sql);
         OracleDb = dbcon.connectToOracle(sql);
         Postgres = dbcon.connectToMicrosoftSql(sql);
+
+
+        boolean isDiffFound = false;
+
        // LinkedList<String> DB2 = dbcon.connectToIBMDb2();
 
-           System.out.println("Difference found!!!");
+           //System.out.println("Difference found!!!");
 
             try
             {
@@ -515,6 +520,7 @@ public class SQLEngine
                     bw.write("MySQl Error: \n");
                     bw.write(MySQL.msg);
                     bw.write("----------------------------------------------------------\n");
+                    isDiffFound = true;
                 }
                 if(MicrosoftSQL.res == false)
                 {
@@ -522,6 +528,8 @@ public class SQLEngine
                     bw.write("Microsoft SQL Server Error: \n");
                     bw.write(MicrosoftSQL.msg);
                     bw.write("----------------------------------------------------------\n");
+                    isDiffFound = true;
+
                 }
                 if(OracleDb.res == false)
                 {
@@ -529,6 +537,8 @@ public class SQLEngine
                     bw.write("Oracle DB Error: \n");
                     bw.write(OracleDb.msg);
                     bw.write("----------------------------------------------------------\n");
+                    isDiffFound = true;
+
                 }
                 if(Postgres.res == false)
                 {
@@ -536,10 +546,21 @@ public class SQLEngine
                     bw.write("PostgreSQL Error: \n");
                     bw.write(Postgres.msg);
                     bw.write("----------------------------------------------------------\n");
+                    isDiffFound = true;
+
                 }
 
+                if( dbcon.diff(MicrosoftSQL.mySqlList, MySQL.mySqlList , OracleDb.mySqlList,Postgres.mySqlList ) == false)
+                {
+                    isDiffFound = true;
+                }
+
+            if(isDiffFound == true)
+            {
                 bw.write(sql);
                 bw.write("\n*******************************************************************");
+            }
+
 
             } catch (IOException e)
             {
@@ -561,8 +582,6 @@ public class SQLEngine
                     ex.printStackTrace();
                 }
              }
-
-
     }
 
 
@@ -620,6 +639,10 @@ public class SQLEngine
                     qry = res2.qryStr;
                 break;
             }
+
+            qry = "SELECT DISTINCT r11.c1 AS A1, r11.c2 AS A2\n" +
+                    "FROM r1 AS r11\n" +
+                    "WHERE (r11.c2 IS NOT NULL AND '770 Armistice Crossing,' >= '9576 Prentice Drive,' )";
 
             System.out.println(counter++);
 
