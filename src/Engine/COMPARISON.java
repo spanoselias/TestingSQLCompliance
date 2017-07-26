@@ -81,7 +81,7 @@ public class COMPARISON
     }
 
 
-    public String getAttrComparison(HashMap<String, LinkedList<Attribute>> relAttrs, LinkedList<Attribute> selectedTablesIn, double probWhr)
+    public String getAttrComparison(HashMap<String, LinkedList<Attribute>> relAttrs, LinkedList<Attribute> selectedTablesIn, ConfParameters confIn)
     {
 
         this.selectedTables = selectedTablesIn;
@@ -100,28 +100,29 @@ public class COMPARISON
         //The probWhr represents the probability of having
         //constants or NULLS to the WHERE comparisons
         pick = Utilities.getRandChoice( 100 );
-        if(pick <  (int)(probWhr * 100) )
+        if(pick <  (int)(confIn.probWhrConst * 100) )
         {
             pick = Utilities.getRandChoice(3);
         }
         else
         {
-            //We randomly choose if the comparison will be
-            //one attribute with a constant
+             //We randomly choose if the comparison will be
+             //with one attribute and one constant
              pick =  Utilities.getRandChoice(2);
              if(pick == 0 )
              {
                  pick = 4;
              }
-             pick =  Utilities.getRandChoice(10);
-             if(pick == 0 )
-             {
-                 pick = 6;
-             }
-             else
-             {
-                 pick = 5;
-             }
+
+            pick = Utilities.getRandChoice( 100 );
+            if(pick <  (int)(confIn.rowcompar * 100) )
+            {
+                pick = 5;
+            }
+            else
+            {
+                pick = 6;
+            }
         }
 
         //The idea of current switch is to do comparisons between two relation's attributes or between
@@ -178,7 +179,7 @@ public class COMPARISON
 
             case 5:
 
-                //We can have comparisons with more than one attributes e.g (r1.b, r2.a) > (r1.a, r2.c). Thus,
+                //This case is used to generate row comparisons e.g (r1.b, r2.a) > (r1.a, r2.c). Thus,
                 //we choose the number of attributes
                 int numOfAttr = Utilities.getRandChoice(this.selectedTables.size());
 
@@ -203,7 +204,6 @@ public class COMPARISON
                                 attrs += "," + selectedTablesIn.get(Utilities.getRandChoice(selectedTablesIn.size())).attrName;
                             }
                         }
-                        //  attrs += " )";
 
                         if (j == 0) {
                             rel1.attrName = "(" + attrs + ")" ;

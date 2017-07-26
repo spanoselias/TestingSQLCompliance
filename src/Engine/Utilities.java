@@ -146,12 +146,12 @@ public final class Utilities
             }
             else
             {
-                newGen = genCom.getAttrComparison(relationsAttrsIn, selectedReltsInFrom, confPar.probWhrConst);
+                newGen = genCom.getAttrComparison(relationsAttrsIn, selectedReltsInFrom, confPar);
             }
         }
         else
         {
-            newGen = genCom.getAttrComparison(relationsAttrsIn, selectedReltsInFrom, confPar.probWhrConst);
+            newGen = genCom.getAttrComparison(relationsAttrsIn, selectedReltsInFrom, confPar);
         }
 
         return  newGen;

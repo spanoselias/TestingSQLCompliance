@@ -60,6 +60,8 @@ public class SQLEngine
             confPar.isDistinct = Double.parseDouble( prop.getProperty( "distinct" ) );
             confPar.stringInSel = Double.parseDouble( prop.getProperty( "stringInSel" ) );
             confPar.stringInWhere = Double.parseDouble( prop.getProperty( "stringInWhere" ) );
+            confPar.rowcompar = Double.parseDouble( prop.getProperty( "rowcompar" ) );
+
 
             confPar.user =   prop.getProperty( "user" ) ;
             confPar.pass =   prop.getProperty( "pass" ) ;
@@ -163,7 +165,6 @@ public class SQLEngine
 
 
             LinkedList<String> tableRes= new LinkedList<>();
-
 
             DatabaseMetaData md = conn.getMetaData( );
             ResultSet rs = md.getTables(null, null, "R1", null);
@@ -348,6 +349,7 @@ public class SQLEngine
               //  ex.printStackTrace();
             }
         }
+
         }
     }
 

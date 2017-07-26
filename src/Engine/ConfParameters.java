@@ -41,6 +41,9 @@ public class ConfParameters
 
     public double isDistinct;
 
+    //Probability of having row comparisons
+    public double rowcompar;
+
     public LinkedList<String> genAlias = new LinkedList<>();
 
     public HashMap<String, LinkedList<Attribute>> strAttrs = new HashMap<>();
