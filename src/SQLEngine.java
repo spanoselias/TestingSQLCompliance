@@ -592,7 +592,7 @@ public class SQLEngine extends Thread
 
     public void gen(){
 
-            //It retrieves parameters from the configuration file
+        //It retrieves parameters from the configuration file
         ConfParameters confPar = readConfFile();
 
             try {
@@ -658,7 +658,8 @@ public class SQLEngine extends Thread
             // String sql = nestQuery(uniqID, confPar);
             wrtSql2File("rand.sql",qry);
 
-           // genLogFile(qry);
+            qry = "SELECT * FROM R1";
+            genLogFile(qry);
 
        // }
 
