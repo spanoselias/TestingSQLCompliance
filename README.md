@@ -12,11 +12,11 @@ The core component of the framework is consisted by the random SQL generator too
 random realistic data. The project is implemented in Java Programming Language. This framework will be useful for not only checking existing DBMSs but most importantly, to check new DBMSs. 
 
 
-Compilation & Run instructions
+Compilation & Run instructions using PostgreSQL 
 
 ```javascript
- Compile: javac SQLEngine.java
- Run: java SQLEngine
+ Compile: javac -cp '.:postgresql-42.1.1.jar' SQLEngine.java
+ Run: java -cp '.:postgresql-42.1.1.jar' SQLEngine
 ```
 
 Currently supported DBMSs:
@@ -29,11 +29,12 @@ Currently supported DBMSs:
  > MSSQL Server
 ```
 
-## Requirements
+## Dependencies 
 
 ```javascript
 > Linux or Windows
 > Java 8 Update 92 or higher 
+> Datafiller 
   
   ```
 ## Goals
