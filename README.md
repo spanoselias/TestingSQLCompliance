@@ -1,5 +1,5 @@
 <p align = "center">
-# Implementation of a complete framework for evaluating the SQL-Compliance of current DBMSs
+ Implementation of a complete framework for evaluating the SQL-Compliance of current DBMSs
 
 <a>
 <p align = "center">
@@ -8,8 +8,9 @@
 
 
 This project aims to build a complete framework for testing the SQL-Compliance of current DBMSs ( PostgreSQL, MySQL, IBM DB2, MS Server sql, Oracle Database). 
-The core component of the framework is consisted by the random SQL generator tool, the comparison tool and the datafiller for genereate 
-random realistic data. The project is implemented in Java Programming Language. This framework will be useful for not only checking existing DBMSs but most importantly, to check new DBMSs. 
+The core component of the framework is consisted by the random SQL generator tool, the comparison tool and the datafiller for generate random realistic data. 
+The project is implemented in Java Programming Language. Moreover, this framework is implemented in such a way that a new DBMS can be added efficiently without 
+the need to change the whole code. 
 
 
 ### Compilation & Run instructions using PostgreSQL 
