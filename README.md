@@ -38,7 +38,14 @@ the need to change the whole code.
 > Datafiller 
   
   ```
-## Goals
+  
+ ### Dependencies 
+ 
+ ```javascript
+ python datafiller.py --drop -n 0.33 schema.sql  > data.sql
+   ```
+    
+### Goals
 
 The goals of this project are summarized as follow:
 
@@ -51,7 +58,6 @@ The goals of this project are summarized as follow:
 * Highlight main differences among current DBMSs
 
 
-##Dependencies
 
 
 
