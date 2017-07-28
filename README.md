@@ -1,5 +1,5 @@
 <p align = "center">
-Implementation of a complete framework for evaluating the SQL-Compliance of current DBMSs
+# Implementation of a complete framework for evaluating the SQL-Compliance of current DBMSs
 
 <a>
 <p align = "center">
