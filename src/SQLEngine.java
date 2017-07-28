@@ -29,8 +29,8 @@ import java.util.Date;
  * @author ELIAS SPANOS
  * @version 0.0.2
  */
-public class SQLEngine
-{
+public class SQLEngine extends Thread
+    {
     public static ConfParameters readConfFile()
     {
         Properties prop = new Properties();
@@ -500,6 +500,7 @@ public class SQLEngine
         Postgres = dbcon.connectToMicrosoftSql(sql);
 
 
+        String error="";
         boolean isDiffFound = false;
 
        // LinkedList<String> DB2 = dbcon.connectToIBMDb2();
@@ -511,52 +512,57 @@ public class SQLEngine
                 fw = new FileWriter(filename, true);
                 bw = new BufferedWriter(fw);
 
-                bw.write("*******************************************************************\n");
-                bw.write("New Result!!\n");
-                bw.write("+++++++++++++++++++++++++++++++++++++++++++++\n");
+
                 if(MySQL.res == false)
                 {
-                    bw.write("----------------------------------------------------------\n");
-                    bw.write("MySQl Error: \n");
-                    bw.write(MySQL.msg);
-                    bw.write("----------------------------------------------------------\n");
+                    error += "----------------------------------------------------------\n";
+                    error += "MySQl Error: \n" ;
+                    error += MySQL.msg;
+                    error += "----------------------------------------------------------\n";
                     isDiffFound = true;
                 }
                 if(MicrosoftSQL.res == false)
                 {
-                    bw.write("----------------------------------------------------------\n");
-                    bw.write("Microsoft SQL Server Error: \n");
+                    error += "----------------------------------------------------------\n" ;
+                    error += "Microsoft SQL Server Error: \n" ;
                     bw.write(MicrosoftSQL.msg);
-                    bw.write("----------------------------------------------------------\n");
+                    error += "----------------------------------------------------------\n" ;
                     isDiffFound = true;
 
                 }
                 if(OracleDb.res == false)
                 {
-                    bw.write("----------------------------------------------------------\n");
-                    bw.write("Oracle DB Error: \n");
+                    error += "----------------------------------------------------------\n" ;
+                    error += "Oracle DB Error: \n" ;
                     bw.write(OracleDb.msg);
-                    bw.write("----------------------------------------------------------\n");
+                    error += "----------------------------------------------------------\n" ;
                     isDiffFound = true;
 
                 }
                 if(Postgres.res == false)
                 {
-                    bw.write("----------------------------------------------------------\n");
-                    bw.write("PostgreSQL Error: \n");
+                    error += "----------------------------------------------------------\n" ;
+                    error += "PostgreSQL Error: \n";
                     bw.write(Postgres.msg);
-                    bw.write("----------------------------------------------------------\n");
+                    error += "----------------------------------------------------------\n";
                     isDiffFound = true;
-
                 }
 
                 if( dbcon.diff(MicrosoftSQL.mySqlList, MySQL.mySqlList , OracleDb.mySqlList,Postgres.mySqlList ) == false)
                 {
-                    isDiffFound = true;
+                    if(error.compareTo("") != 0)
+                    {
+                        isDiffFound = true;
+                    }
                 }
 
             if(isDiffFound == true)
             {
+                bw.write("*******************************************************************\n");
+                bw.write("New Result!!\n");
+                bw.write("+++++++++++++++++++++++++++++++++++++++++++++\n");
+
+
                 bw.write(sql);
                 bw.write("\n*******************************************************************");
             }
@@ -584,18 +590,18 @@ public class SQLEngine
              }
     }
 
+    public void gen(){
 
-    /***********************************************************************************/
-    /*                                     MAIN CLASS                                  */
-    /***********************************************************************************/
-    public static void main(String[] args) throws IOException {
-
-        //It retrieves parameters from the configuration file
+            //It retrieves parameters from the configuration file
         ConfParameters confPar = readConfFile();
 
-        genStrings(confPar);
+            try {
+                genStrings(confPar);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-        long uniqID=0;
+            long uniqID=0;
 
         LinkedList<Attribute> frmRelts = new LinkedList<>();
 
@@ -607,42 +613,39 @@ public class SQLEngine
 
         int counter=0;
 
-  //  while(true)
-    //{
+     //   while(true)
+       // {
 
-        pick = Utilities.getRandChoice(4);
+            pick = Utilities.getRandChoice(4);
 
 
-               //The option is given as input parameter to the program
+            //The option is given as input parameter to the program
             switch (pick)
             {
                 case 0:
                     qry = newSQL.genCompQuery(1, frmRelts, 1, false, false, confPar);
-                break;
+                    break;
 
                 case 1:
                     QRYREPRES res = newSQL.genQuery(null, uniqID, false, false, confPar, 0);
                     qry = res.qryStr;
-                break;
+                    break;
 
                 case 2:
                     qry = newSQL.nestQuery(uniqID, confPar);
-                break;
+                    break;
 
                 case 3:
                     QRYREPRES res1 = newSQL.aggrGuery(uniqID, confPar);
                     qry = res1.qryStr;
-                break;
+                    break;
 
                 case 4:
                     QRYREPRES res2 = newSQL.operQuery(null, uniqID, false, false, confPar);
                     qry = res2.qryStr;
-                break;
+                    break;
             }
 
-            qry = "SELECT DISTINCT r11.c1 AS A1, r11.c2 AS A2\n" +
-                    "FROM r1 AS r11\n" +
-                    "WHERE (r11.c2 IS NOT NULL AND '770 Armistice Crossing,' >= '9576 Prentice Drive,' )";
 
             System.out.println(counter++);
 
@@ -653,11 +656,25 @@ public class SQLEngine
             wrtSql2File("rand.sql", qry);
 
             // String sql = nestQuery(uniqID, confPar);
-              wrtSql2File("rand.sql",qry);
+            wrtSql2File("rand.sql",qry);
 
-             genLogFile(qry);
+           // genLogFile(qry);
 
-   // }
+       // }
+
+    }
+
+
+
+    /***********************************************************************************/
+    /*                                     MAIN CLASS                                  */
+    /***********************************************************************************/
+    public static void main(String[] args) throws IOException
+    {
+
+       SQLEngine t1=new SQLEngine();
+
+       t1.gen();
 
     }
 
