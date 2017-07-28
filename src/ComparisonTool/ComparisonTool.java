@@ -1,13 +1,14 @@
-package ComparisonTool; /***********************************************************************************/
+package ComparisonTool;
+
+/***********************************************************************************/
 /*                                                                                 */
 /*Name: Elias Spanos                                                               */
 /*Date: 5/06/2017                                                                  */
 /*Filename: COMPARISONTool.java                                                    */
 /*                                                                                 */
 /***********************************************************************************/
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+
+import java.io.*;
 import java.sql.*;
 import java.util.*;
 
@@ -16,11 +17,75 @@ import java.util.*;
 /***********************************************************************************/
 public class ComparisonTool
 {
+    private ConfComparison confSettings=null;
+
+    public ComparisonTool()
+    {
+
+        confSettings = readComprConfig();
+    }
+
+    public ConfComparison readComprConfig()
+    {
+        Properties prop = new Properties();
+        InputStream input = null;
+
+        ConfComparison conComp= new ConfComparison();
+
+        try
+        {
+            input = new FileInputStream("compr.properties");
+
+            // load a properties file
+            prop.load(input);
+
+            conComp.MySQLUser = String.valueOf( prop.getProperty( "MySQLUser" ) );
+            conComp.MySQLPass = String.valueOf( prop.getProperty( "MySQLPass" ) );
+            conComp.MySQLDB = String.valueOf( prop.getProperty( "MySQLDB" ) );
+
+            conComp.DB2User = String.valueOf( prop.getProperty( "DB2User" ) );
+            conComp.DB2Pass = String.valueOf( prop.getProperty( "DB2Pass" ) );
+            conComp.DB2DB = String.valueOf( prop.getProperty( "DB2DB" ) );
+
+            conComp.MicrosoftSqlUser = String.valueOf( prop.getProperty( "MicrosoftSqlUser" ) );
+            conComp.MicrosoftSqlPass = String.valueOf( prop.getProperty( "MicrosoftSqlPass" ) );
+            conComp.MicrosoftSqlDB = String.valueOf( prop.getProperty( "MicrosoftSqlDB" ) );
+
+            conComp.PostgreUser = String.valueOf( prop.getProperty( "PostgreUser" ) );
+            conComp.PostgrePass = String.valueOf( prop.getProperty( "PostgrePass" ) );
+            conComp.PostgreDB = String.valueOf( prop.getProperty( "PostgreDB" ) );
+
+            conComp.OracleUser = String.valueOf( prop.getProperty( "OracleUser" ) );
+            conComp.OraclePass = String.valueOf( prop.getProperty( "OraclePass" ) );
+            conComp.OracleDB = String.valueOf( prop.getProperty( "OracleDB" ) );
+
+        }
+        catch (IOException ex)
+        {
+            ex.printStackTrace();
+        }
+        finally
+        {
+            if (input != null)
+            {
+                try
+                {
+                    input.close();
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+
+            return conComp;
+        }
+    }
+
     public ResInfo connectToMySql(String sqlQuery)
     {
 
         ResInfo info = new ResInfo();
-
         try
             {
                 Class.forName("com.mysql.jdbc.Driver");
@@ -34,7 +99,7 @@ public class ComparisonTool
             try
             {
                 conn = DriverManager
-                        .getConnection("jdbc:mysql://localhost:3306/teststr", "elias881", "testing1");
+                        .getConnection("jdbc:mysql://localhost:3306/" + confSettings.MySQLDB, confSettings.MySQLUser, confSettings.MySQLPass);
 
             }
             catch (SQLException e)
@@ -78,10 +143,11 @@ public class ComparisonTool
         {
 
             connection = DriverManager.getConnection(
-                    "jdbc:postgresql://127.0.0.1:5432/testdb", "postgres",
-                    "testing1");
+                    "jdbc:postgresql://127.0.0.1:5432" + confSettings.PostgreDB, confSettings.PostgreUser,
+                    confSettings.PostgrePass);
 
-        } catch (SQLException e)
+        }
+        catch (SQLException e)
         {
 
             System.out.println("Connection Failed! Check output console");
@@ -109,8 +175,6 @@ public class ComparisonTool
 
     public  void connectToIBMDb2()
     {
-
-
 
         String jdbcClassName = "com.ibm.db2.jcc.DB2Driver";
 
@@ -264,8 +328,12 @@ public class ComparisonTool
             try
             {
 
+               /* connection = DriverManager.getConnection(
+                        "jdbc:oracle:thin:@localhost:1521:" + confSettings.OracleDB +","+  confSettings.OracleUser  +","+ confSettings.OraclePass) ;*/
+
                 connection = DriverManager.getConnection(
                         "jdbc:oracle:thin:@localhost:1521:orcl", "elias881", "testing1");
+
 
             } catch (SQLException e)
             {
