@@ -39,7 +39,7 @@ the need to change the whole code.
   
   ```
   
- ### Dependencies 
+ ### How to generate realistic data using datafiller 
  
  ```javascript
  python datafiller.py --drop -n 0.33 schema.sql  > data.sql
