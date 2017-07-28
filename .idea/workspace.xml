@@ -4,10 +4,9 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="#Working_Version">
+    <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SQLEngine.java" afterPath="$PROJECT_DIR$/src/SQLEngine.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -106,8 +105,8 @@
             <entry file="file://$PROJECT_DIR$/README.md">
               <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
                 <state split_layout="FIRST">
-                  <first_editor relative-caret-position="231">
-                    <caret line="14" column="3" lean-forward="false" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
+                  <first_editor relative-caret-position="588">
+                    <caret line="31" column="3" lean-forward="false" selection-start-line="31" selection-start-column="3" selection-end-line="31" selection-end-column="3" />
                     <folding />
                   </first_editor>
                   <second_editor />
@@ -1068,14 +1067,7 @@
       <workItem from="1499157504431" duration="12970000" />
       <workItem from="1499356714287" duration="112011000" />
       <workItem from="1500145403541" duration="42919000" />
-      <workItem from="1500483167027" duration="96672000" />
-    </task>
-    <task id="LOCAL-00084" summary="Fixing a bug on retrieving the DB schema">
-      <created>1498543098642</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1498543098643</updated>
+      <workItem from="1500483167027" duration="96705000" />
     </task>
     <task id="LOCAL-00085" summary="Fixing a bug on retrieving the DB schema">
       <created>1498815902258</created>
@@ -1413,11 +1405,18 @@
       <option name="project" value="LOCAL" />
       <updated>1501266405827</updated>
     </task>
-    <option name="localTasksCounter" value="133" />
+    <task id="LOCAL-00133" summary="#Working_Version">
+      <created>1501266438401</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1501266438401</updated>
+    </task>
+    <option name="localTasksCounter" value="134" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="719358000" />
+    <option name="totallyTimeSpent" value="719391000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-10" y="0" width="1924" height="1050" extended-state="0" />
@@ -1531,10 +1530,10 @@
     <MESSAGE value="#Fixing a bug with String and set operators" />
     <MESSAGE value="#Adding probability for row comparison" />
     <MESSAGE value="#Improving Accuracy of Comparison tool" />
-    <MESSAGE value="#Working_Version" />
     <MESSAGE value="#Comparison Tool, improving portability by implementing configuration file" />
     <MESSAGE value="#Extending project Description" />
-    <option name="LAST_COMMIT_MESSAGE" value="#Extending project Description" />
+    <MESSAGE value="#Working_Version" />
+    <option name="LAST_COMMIT_MESSAGE" value="#Working_Version" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2056,8 +2055,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="231">
-            <caret line="14" column="3" lean-forward="false" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
+          <first_editor relative-caret-position="588">
+            <caret line="31" column="3" lean-forward="false" selection-start-line="31" selection-start-column="3" selection-end-line="31" selection-end-column="3" />
             <folding />
           </first_editor>
           <second_editor />
