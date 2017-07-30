@@ -61,6 +61,8 @@ public class SQLEngine extends Thread
             confPar.stringInSel = Double.parseDouble( prop.getProperty( "stringInSel" ) );
             confPar.stringInWhere = Double.parseDouble( prop.getProperty( "stringInWhere" ) );
             confPar.rowcompar = Double.parseDouble( prop.getProperty( "rowcompar" ) );
+            confPar.isNULL = Double.parseDouble( prop.getProperty( "isNULL" ) );
+
 
             confPar.user =   prop.getProperty( "user" ) ;
             confPar.pass =   prop.getProperty( "pass" ) ;
@@ -377,7 +379,6 @@ public class SQLEngine extends Thread
             e.printStackTrace();
         } finally
         {
-
             try
             {
                 if (confIn.DBMS.compareTo("mysql") == 0)

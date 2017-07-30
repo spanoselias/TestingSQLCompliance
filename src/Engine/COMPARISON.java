@@ -113,16 +113,26 @@ public class COMPARISON
              {
                  pick = 4;
              }
-
-            pick = Utilities.getRandChoice( 100 );
-            if(pick <  (int)(confIn.rowcompar * 100) )
-            {
-                pick = 5;
-            }
-            else
-            {
-                pick = 6;
-            }
+             else
+             {
+                 pick = Utilities.getRandChoice(100);
+                 if (pick < (int) (confIn.rowcompar * 100))
+                 {
+                     pick = 5;
+                 }
+                 else
+                 {
+                     pick = Utilities.getRandChoice(100);
+                     if (pick < (int) (confIn.isNULL * 100))
+                     {
+                         pick = 6;
+                     }
+                     else
+                     {
+                         pick = 4;
+                     }
+                 }
+             }
         }
 
         //The idea of current switch is to do comparisons between two relation's attributes or between

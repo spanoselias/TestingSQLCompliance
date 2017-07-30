@@ -41,6 +41,8 @@ public class ConfParameters
 
     public double isDistinct;
 
+    public double isNULL;
+
     //Probability of having row comparisons
     public double rowcompar;
 
