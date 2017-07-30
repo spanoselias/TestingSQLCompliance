@@ -590,18 +590,23 @@ public class SQLEngine extends Thread
              }
     }
 
-    public void gen(){
 
+    /***********************************************************************************/
+    /*                                     MAIN CLASS                                  */
+    /***********************************************************************************/
+    public static void main(String[] args) throws IOException
+    {
         //It retrieves parameters from the configuration file
         ConfParameters confPar = readConfFile();
 
-            try {
-                genStrings(confPar);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try
+        {
+            genStrings(confPar);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-            long uniqID=0;
+        long uniqID=0;
 
         LinkedList<Attribute> frmRelts = new LinkedList<>();
 
@@ -613,69 +618,55 @@ public class SQLEngine extends Thread
 
         int counter=0;
 
-     //   while(true)
-       // {
+        //   while(true)
+        // {
 
-            pick = Utilities.getRandChoice(4);
+        pick = Utilities.getRandChoice(4);
+
+        //The option is given as input parameter to the program
+        switch (pick)
+        {
+            case 0:
+                qry = newSQL.genCompQuery(1, frmRelts, 1, false, false, confPar);
+                break;
+
+            case 1:
+                QRYREPRES res = newSQL.genQuery(null, uniqID, false, false, confPar, 0);
+                qry = res.qryStr;
+                break;
+
+            case 2:
+                qry = newSQL.nestQuery(uniqID, confPar);
+                break;
+
+            case 3:
+                QRYREPRES res1 = newSQL.aggrGuery(uniqID, confPar);
+                qry = res1.qryStr;
+                break;
+
+            case 4:
+                QRYREPRES res2 = newSQL.operQuery(null, uniqID, false, false, confPar);
+                qry = res2.qryStr;
+                break;
+        }
 
 
-            //The option is given as input parameter to the program
-            switch (pick)
-            {
-                case 0:
-                    qry = newSQL.genCompQuery(1, frmRelts, 1, false, false, confPar);
-                    break;
-
-                case 1:
-                    QRYREPRES res = newSQL.genQuery(null, uniqID, false, false, confPar, 0);
-                    qry = res.qryStr;
-                    break;
-
-                case 2:
-                    qry = newSQL.nestQuery(uniqID, confPar);
-                    break;
-
-                case 3:
-                    QRYREPRES res1 = newSQL.aggrGuery(uniqID, confPar);
-                    qry = res1.qryStr;
-                    break;
-
-                case 4:
-                    QRYREPRES res2 = newSQL.operQuery(null, uniqID, false, false, confPar);
-                    qry = res2.qryStr;
-                    break;
-            }
-
-
-            System.out.println(counter++);
+        System.out.println(counter++);
 
                /* QRYREPRES res1 = newSQL.operQuery(null,uniqID, false, false, confPar);
                 qry = res1.qryStr;*/
 
-            System.out.println(qry);
-            wrtSql2File("rand.sql", qry);
+        System.out.println(qry);
+        wrtSql2File("rand.sql", qry);
 
-            // String sql = nestQuery(uniqID, confPar);
-            wrtSql2File("rand.sql",qry);
+        // String sql = nestQuery(uniqID, confPar);
+        wrtSql2File("rand.sql",qry);
 
-            qry = "SELECT * FROM R1";
-            genLogFile(qry);
+        qry = "SELECT * FROM R1";
+      //  genLogFile(qry);
 
-       // }
+        // }
 
-    }
-
-
-
-    /***********************************************************************************/
-    /*                                     MAIN CLASS                                  */
-    /***********************************************************************************/
-    public static void main(String[] args) throws IOException
-    {
-
-       SQLEngine t1=new SQLEngine();
-
-       t1.gen();
 
     }
 
