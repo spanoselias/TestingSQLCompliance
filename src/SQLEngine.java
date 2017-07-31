@@ -651,7 +651,6 @@ public class SQLEngine extends Thread
                 break;
         }
 
-
         System.out.println(counter++);
 
                /* QRYREPRES res1 = newSQL.operQuery(null,uniqID, false, false, confPar);
@@ -663,7 +662,6 @@ public class SQLEngine extends Thread
         // String sql = nestQuery(uniqID, confPar);
         wrtSql2File("rand.sql",qry);
 
-        qry = "SELECT * FROM R1";
       //  genLogFile(qry);
 
         // }

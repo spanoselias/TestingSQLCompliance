@@ -18,13 +18,12 @@ public class COMPARISON
 {
     //This variable is used in order to generate some constant numbers
     //which can be used for comparisons
-    final int CONSTNO = 20;
+    final int CONSTNO = 50;
 
     //Stores all the operators that can be used for any comparison
     private LinkedList<String> comproper;
 
     private LinkedList<String> checkNull;
-
 
     private LinkedList<Attribute> selectedTables;
 
@@ -35,8 +34,6 @@ public class COMPARISON
     private LinkedList<String> arithmOper;
 
     private LinkedList<String> constAndNullAttr;
-
-
 
     public COMPARISON()
     {

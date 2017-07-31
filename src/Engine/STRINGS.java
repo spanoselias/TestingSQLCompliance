@@ -20,9 +20,6 @@ public class STRINGS
     //This list stores arithmetic operators for comparing different strings
     private LinkedList<String> comproper;
 
-    //This hashMap will be used to store all the attributes for each relation
-    HashMap<String, LinkedList<String>> relationsAttrs;
-
     ConfParameters confPar;
 
     public STRINGS(ConfParameters confParIn)
@@ -50,17 +47,15 @@ public class STRINGS
         String word = confPar.dictonary.get(Utilities.getRandChoice(confPar.dictonary.size()));
         String word2 = confPar.dictonary.get(Utilities.getRandChoice(confPar.dictonary.size()));
 
+        //The purpose of the below code is to choose two positions in order
+        //to be used in the substring function
         int firspos = Utilities.getRandChoice(word.length())-1;
-        int secpos;
+
+        //We choose the second position to be used in the substring function
+        int secpos = Utilities.getRandChoice((word.length() - firspos));
 
         String attr1 =  stringAttrs.get(Utilities.getRandChoice(stringAttrs.size())).attrName;
         String attr2 =  stringAttrs.get(Utilities.getRandChoice(stringAttrs.size())).attrName;
-
-        do
-        {
-          secpos = Utilities.getRandChoice(word.length()) - 1;
-        }
-        while(secpos < firspos);
 
         String subWord = word.substring( firspos, secpos );
 
