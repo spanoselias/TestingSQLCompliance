@@ -95,11 +95,8 @@ public class SQLEngine extends Thread
         }
     }
 
-    /**
-     *The genAlias methods is used to generate random alias that will be used as alias for attributes
-     * in the SELECT clause or for a subquery
-     *
-     */
+     //The genAlias methods is used to generate random alias that will be used as alias for attributes
+     //in the SELECT clause or for a subquery
     public static LinkedList<String> genAlias()
     {
         LinkedList<String> tmpAlias = new LinkedList<>();
@@ -619,8 +616,8 @@ public class SQLEngine extends Thread
 
         int counter=0;
 
-        //   while(true)
-        // {
+    //      while(true)
+      //    {
 
         pick = Utilities.getRandChoice(4);
 
@@ -664,7 +661,7 @@ public class SQLEngine extends Thread
 
       //  genLogFile(qry);
 
-        // }
+   //   }
 
 
     }

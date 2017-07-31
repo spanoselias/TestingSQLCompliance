@@ -31,6 +31,14 @@ public final class Utilities
         return pickRand;
     }
 
+    public static  int getRandChoiceBetween(int low, int high)
+    {
+        Random r = new Random();
+        int res = r.nextInt(high - low) + low;
+
+        return res;
+    }
+
     public static void shuffleArray(Relation[] a) {
         int n = a.length;
         Random random = new Random();
@@ -170,6 +178,8 @@ public final class Utilities
 
         return false;
     }
+
+
 
     private static void swap(Relation[] a, int i, int change) {
         Relation helper = a[i];
