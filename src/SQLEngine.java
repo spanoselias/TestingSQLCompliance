@@ -616,10 +616,9 @@ public class SQLEngine extends Thread
 
         int counter=0;
 
-    //      while(true)
-      //    {
 
         pick = Utilities.getRandChoice(4);
+        pick =3;
 
         //The option is given as input parameter to the program
         switch (pick)
@@ -660,8 +659,6 @@ public class SQLEngine extends Thread
         wrtSql2File("rand.sql",qry);
 
       //  genLogFile(qry);
-
-   //   }
 
 
     }

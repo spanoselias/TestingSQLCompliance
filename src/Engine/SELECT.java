@@ -248,9 +248,8 @@ public class SELECT
                          stm += ", " + genFunctions.getSelectAggr(allSelAttrs, aggrAttrsIn) + " AS AGGR" + i ;
                      }
                  }
-                if( confParSel.strAttrs.size() > 0)
+                if( confParSel.strAttrs.size() > 0 && isAggr == false)
                 {
-
                     if(isOperator ==true)
                     {
                         for(int i=0; i < confParSel.stringCounterAttr; i++ )
