@@ -20,6 +20,15 @@ the need to change the whole code.
  Run: java -cp '.:postgresql-42.1.1.jar' SQLEngine
 ```
 
+### Example of passing some parameters as arguments 
+
+```javascript
+ Compile: javac -cp '.:postgresql-42.1.1.jar' SQLEngine.java
+ Run: java -cp '.:postgresql-42.1.1.jar' SQLEngine -pass testing1  -DBMS mysql -dbname  teststr -user root
+```
+
+
+
 ### Currently supported DBMSs:
 
 ```javascript

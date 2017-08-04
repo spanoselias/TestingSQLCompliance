@@ -5,23 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/compr.properties" afterPath="$PROJECT_DIR$/src/comparisonTool.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestingSQLCompliance/Engine/FROM.class" afterPath="$PROJECT_DIR$/out/production/TestingSQLCompliance/Engine/FROM.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestingSQLCompliance/Engine/SELECT.class" afterPath="$PROJECT_DIR$/out/production/TestingSQLCompliance/Engine/SELECT.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestingSQLCompliance/SQLEngine.class" afterPath="$PROJECT_DIR$/out/production/TestingSQLCompliance/SQLEngine.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestingSQLCompliance/config.properties" afterPath="$PROJECT_DIR$/out/production/TestingSQLCompliance/config.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ComparisonTool/ComparisonTool.java" afterPath="$PROJECT_DIR$/src/ComparisonTool/ComparisonTool.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Engine/ConfParameters.java" afterPath="$PROJECT_DIR$/src/Engine/ConfParameters.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Engine/FROM.java" afterPath="$PROJECT_DIR$/src/Engine/FROM.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Engine/FUNCTIONS.java" afterPath="$PROJECT_DIR$/src/Engine/FUNCTIONS.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Engine/GROUPBY.java" afterPath="$PROJECT_DIR$/src/Engine/GROUPBY.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Engine/SELECT.java" afterPath="$PROJECT_DIR$/src/Engine/SELECT.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Engine/SQLQUERY.java" afterPath="$PROJECT_DIR$/src/Engine/SQLQUERY.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Engine/STRINGS.java" afterPath="$PROJECT_DIR$/src/Engine/STRINGS.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Engine/Utilities.java" afterPath="$PROJECT_DIR$/src/Engine/Utilities.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SQLEngine.java" afterPath="$PROJECT_DIR$/src/SQLEngine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/config.properties" afterPath="$PROJECT_DIR$/src/config.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,7 +30,7 @@
     <splitter split-orientation="horizontal" split-proportion="0.6350682">
       <split-first>
         <leaf>
-          <file leaf-file-name="SQLEngine.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="SQLEngine.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/SQLEngine.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="337">
@@ -63,6 +48,19 @@
                     <marker date="1501876071199" expanded="true" signature="6318:6413" ph="SELECT TABLE... COLUMNS" />
                     <marker date="1501876071199" expanded="true" signature="6509:6723" ph="SELECT TABLE... columns" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/README.md">
+              <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+                <state split_layout="FIRST">
+                  <first_editor relative-caret-position="394">
+                    <caret line="27" column="3" lean-forward="true" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
+                    <folding />
+                  </first_editor>
+                  <second_editor />
                 </state>
               </provider>
             </entry>
@@ -264,7 +262,6 @@
         <option value="$PROJECT_DIR$/src/ComparisonTool/compr.properties" />
         <option value="$PROJECT_DIR$/src/ComparisonTool/ConfComparison.java" />
         <option value="$PROJECT_DIR$/src/ComparisonTool/ComparisonTool.java" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/4a6ddb4a-c52b-4de7-aaf2-32ca223a9628/console.sql" />
         <option value="$PROJECT_DIR$/src/Engine/COMPARISON.java" />
         <option value="$PROJECT_DIR$/src/rand.sql" />
@@ -283,6 +280,7 @@
         <option value="$PROJECT_DIR$/src/Engine/SELECT.java" />
         <option value="$PROJECT_DIR$/src/config.properties" />
         <option value="$PROJECT_DIR$/src/SQLEngine.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -1035,14 +1033,7 @@
       <workItem from="1499157504431" duration="12970000" />
       <workItem from="1499356714287" duration="112011000" />
       <workItem from="1500145403541" duration="42919000" />
-      <workItem from="1500483167027" duration="133716000" />
-    </task>
-    <task id="LOCAL-00096" summary="Fixing a bug on retrieving the DB schema">
-      <created>1499191144475</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1499191144475</updated>
+      <workItem from="1500483167027" duration="133936000" />
     </task>
     <task id="LOCAL-00097" summary="Optimizing the code">
       <created>1499193510681</created>
@@ -1380,11 +1371,18 @@
       <option name="project" value="LOCAL" />
       <updated>1501758388026</updated>
     </task>
-    <option name="localTasksCounter" value="145" />
+    <task id="LOCAL-00145" summary="#New Extension, all the configure settings can be passed as parameters">
+      <created>1501876175079</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1501876175080</updated>
+    </task>
+    <option name="localTasksCounter" value="146" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="756402000" />
+    <option name="totallyTimeSpent" value="756622000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-10" y="0" width="1924" height="1050" extended-state="0" />
@@ -1408,7 +1406,7 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3819209" sideWeight="0.6729323" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25084746" sideWeight="0.6729323" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968238" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15819208" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37288135" sideWeight="0.7593985" order="8" side_tool="false" content_ui="tabs" />
@@ -1476,7 +1474,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="#Implementing_String_Comparisons" />
     <MESSAGE value="#Fixing bug, giving priority to attributes that do not appear in the group by" />
     <MESSAGE value="#Fixing bugs, class Comparison" />
     <MESSAGE value="#Fixing bugs in case where there is no string type in mysql DBMS" />
@@ -1501,7 +1498,8 @@
     <MESSAGE value="#Adding isNULL parameter" />
     <MESSAGE value="#Fixing substring issue" />
     <MESSAGE value="#Fixing an issue with aggregation and Strings" />
-    <option name="LAST_COMMIT_MESSAGE" value="#Fixing an issue with aggregation and Strings" />
+    <MESSAGE value="#New Extension, all the configure settings can be passed as parameters" />
+    <option name="LAST_COMMIT_MESSAGE" value="#New Extension, all the configure settings can be passed as parameters" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1758,17 +1756,6 @@
         <state relative-caret-position="42">
           <caret line="2" column="44" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="44" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="348">
-            <caret line="41" column="52" lean-forward="false" selection-start-line="41" selection-start-column="52" selection-end-line="41" selection-end-column="52" />
-            <folding />
-          </first_editor>
-          <second_editor />
         </state>
       </provider>
     </entry>
@@ -2048,6 +2035,17 @@
             <marker date="1501876071199" expanded="true" signature="6318:6413" ph="SELECT TABLE... COLUMNS" />
             <marker date="1501876071199" expanded="true" signature="6509:6723" ph="SELECT TABLE... columns" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="394">
+            <caret line="27" column="3" lean-forward="true" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
