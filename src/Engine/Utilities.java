@@ -85,11 +85,11 @@ public final class Utilities
     //select clause
     public static String chooseRandAttrGrpBy( LinkedList<Attribute> grpAttrIn, LinkedList<Attribute> allAttr)
     {
-
         //This list will be used to store attributes that do not appear
-        //in the GROUP BY Clause as we want to give higher chance to be
+        //in the GROUP BY Clause as we want to give higher priority to be
         //appear in the SELECT Clause
         LinkedList<Attribute> newAttrs = new LinkedList<>();
+
 
         for(Attribute atr: allAttr)
         {
@@ -135,6 +135,7 @@ public final class Utilities
         }
 
         return newAttrs.get(getRandChoice(newAttrs.size())).attrName;
+
     }
 
     //This method is called from the WHERE Clause and is used for string or integer attributes. If there is no string attribute
@@ -167,18 +168,17 @@ public final class Utilities
 
     //It returns true or false based on a probability which is given
     //in the configuration file
-    public static boolean randChoice()
+    public static boolean randChoice(ConfParameters conf)
     {
-
-        int pick = Utilities.getRandChoice(20);
-        if(pick < 1)
+        int pick;
+        pick = Utilities.getRandChoice( 100 );
+        if(pick <  (int)(conf.isSelectAll * 100) )
         {
-            return true;
+           return true;
         }
 
         return false;
     }
-
 
 
     private static void swap(Relation[] a, int i, int change) {

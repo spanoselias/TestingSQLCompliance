@@ -46,6 +46,9 @@ public class ConfParameters
     //Probability of having row comparisons
     public double rowcompar;
 
+    //Probability of having IS NULL and NOT IS NULL in the where clause
+    public double isSelectAll;
+
     public LinkedList<String> genAlias = new LinkedList<>();
 
     public HashMap<String, LinkedList<Attribute>> strAttrs = new HashMap<>();

@@ -110,7 +110,7 @@ public class SELECT
 
         //This condition check if all the attributes should be included in the output. The probability
         //is given in the Utilities class
-        if (Utilities.randChoice() == true && isOperator == false )
+        if (Utilities.randChoice(confParSel) == true && isOperator == false  )
         {
             stm += " *";
         }
@@ -162,7 +162,6 @@ public class SELECT
                     {
                         countAttr +=1;
                     }
-
                         //This is useful if this query will be used as a subquery in the FROM clause
                         aliasAttr.add(alias.get(j));
 
@@ -186,7 +185,7 @@ public class SELECT
                 }//For statement
 
              //This code will run if we want repetition of alias
-             if(isRepAlias > 0 && isSubqry == false && isOperator == false)
+             if(isRepAlias > 0 && isOperator == false)
                 {
                     int pick;
                     for(int i=0; i < curAlias.size(); i++)

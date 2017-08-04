@@ -21,7 +21,6 @@ public class FUNCTIONS
 
         private LinkedList<String> comprOper;
 
-
         private HashMap<String, LinkedList<String>> relAttrs;
         private LinkedList<Attribute> selAttrs;
 

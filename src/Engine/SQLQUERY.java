@@ -62,11 +62,11 @@ public class SQLQUERY
         return res;
     }
 
-    public QRYREPRES aggrGuery(   long uniqID , ConfParameters confPar)
+    public QRYREPRES aggrGuery(  long uniqID , ConfParameters confPar)
     {
         boolean isDistinct =false;
-        //The probWhr represents the probability of having
-        //constants or NULLS to the WHERE comparisons
+
+
         int rand = Utilities.getRandChoice( 100 );
         if(rand <=  (int)(confPar.isDistinct * 100) )
         {
@@ -103,7 +103,6 @@ public class SQLQUERY
 
     public QRYREPRES genQuery( LinkedList<Attribute> frmRelts, long uniqID, boolean isNest, boolean isOneAttr ,  ConfParameters confPar, int allAttr)
     {
-
         QRYREPRES res = new QRYREPRES();
 
         LinkedList<String> alias =  confPar.genAlias;
@@ -112,9 +111,11 @@ public class SQLQUERY
         String finalQry="";
 
         boolean isDistinct =false;
-        int rand = Utilities.getRandChoice(2);
-        if(rand ==1)
+        int rand = Utilities.getRandChoice( 100 );
+        if(rand <=  (int)(confPar.isDistinct * 100) )
+        {
             isDistinct = true;
+        }
 
         FROM frmQry = new FROM(alias, confPar.relationsAttrs, confPar);
         WHERE whrQry = new WHERE(confPar.relationsAttrs, confPar);
@@ -127,7 +128,7 @@ public class SQLQUERY
         if(frmRelts != null && frmRelts.size() > 0)
         {
             frmRelts = copySelRelts(frmRelts, frmQry.getSelectedTables());
-            tmpStm = selQry.getSelect(frmRelts, isOneAttr, false, 0.1, false, null, false,allAttr);
+            tmpStm = selQry.getSelect(frmRelts, isOneAttr, false, 0.1, false, null, false, allAttr);
             finalQry = tmpStm + "\n" + stm;
             finalQry += "\n" + whrQry.getSqlWhere(frmRelts, isNest, confPar, 5, frmQry.getStringAttrs());
         }
@@ -210,7 +211,7 @@ public class SQLQUERY
     public String nestQuery( long uniqID, ConfParameters confPar)
     {
         //Store the depth of the nesting query
-        int nestLev = confPar.nestLev;
+        int nestLev = Utilities.getRandChoice(confPar.nestLev - 1 ) + 2;
 
         String sqlRep="";
 
@@ -237,20 +238,20 @@ public class SQLQUERY
         //and as key we store the nesting level
         for(int curLev=1; curLev < nestLev +1; curLev++)
         {
-            if( curLev == nestLev  )
+            if( curLev == nestLev )
                 isNest = false;
 
             //It creates the right format
             sqlRep += " (";
 
-            //It create the inner queries
+            //It creates the inner queries
             curQuery =  genQuery( levFrmBinds, ++uniqID, isNest, curQuery.isOneAt, confPar, curQuery.totalAttr);
 
             //It creates the right format
             sqlRep +="\n\t" + curQuery.qryStr;
 
             //We retrieve all the attributes that are selected in the FROM clause
-            //from the outer sql. In other words, we store the binds attributes
+            //from the outer sql. Thus, we store the binds attributes
             levFrmBinds = copySelRelts(levFrmBinds,curQuery.selRelts);
         }
 

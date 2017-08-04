@@ -34,7 +34,7 @@ public class ComparisonTool
 
         try
         {
-            input = new FileInputStream("compr.properties");
+            input = new FileInputStream("comparisonTool.properties");
 
             // load a properties file
             prop.load(input);

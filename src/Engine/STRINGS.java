@@ -10,7 +10,6 @@ package Engine;
 /***********************************************************************************/
 /*                                     LIBRARIES                                   */
 /***********************************************************************************/
-import java.util.HashMap;
 import java.util.LinkedList;
 
 public class STRINGS
@@ -105,7 +104,6 @@ public class STRINGS
             case 9:
                 str =  "'" + word + "'" + " " + comproper.get(Utilities.getRandChoice(this.comproper.size())) + " " +  "'" + word2 + "'" ;
             break;
-
         }
 
         return str;

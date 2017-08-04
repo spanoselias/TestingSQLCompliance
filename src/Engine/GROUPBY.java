@@ -38,6 +38,15 @@ public  class GROUPBY
 
     public String getGroupBy(LinkedList<Attribute> frmRelts)
     {
+
+        /*LinkedList<Attribute> newfrmRelts = new LinkedList<>();
+        newfrmRelts.addAll(frmRelts);
+
+        if(confPar.allStringAttrs.size() > 0)
+        {
+            newfrmRelts.addAll(confPar.allStringAttrs);
+        }*/
+
         //It is used for string format purpose
         boolean isOut = false;
 
@@ -73,7 +82,7 @@ public  class GROUPBY
         return stm;
     }
 
-    //This methods is used for retrieving the attributes which are selected
+    //This methods is used to retrieve the attributes which are selected
     //in the GROUPBY clause
     public LinkedList<Attribute> getAttrInGroup()
     {

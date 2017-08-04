@@ -62,15 +62,13 @@ public class SQLEngine extends Thread
             confPar.stringInWhere = Double.parseDouble( prop.getProperty( "stringInWhere" ) );
             confPar.rowcompar = Double.parseDouble( prop.getProperty( "rowcompar" ) );
             confPar.isNULL = Double.parseDouble( prop.getProperty( "isNULL" ) );
-
+            confPar.isSelectAll = Double.parseDouble( prop.getProperty( "isSelectAll" ) );
 
             confPar.user =   prop.getProperty( "user" ) ;
             confPar.pass =   prop.getProperty( "pass" ) ;
             confPar.dbName =   prop.getProperty( "dbName" ) ;
             confPar.DBMS = prop.getProperty( "DBMS" ) ;
 
-            //It retrieves all the relations with their associated attributes from mysql database
-            retrieveDBSchema(confPar.relationsAttrs, confPar);
 
         } catch (IOException ex)
         {
@@ -588,6 +586,103 @@ public class SQLEngine extends Thread
              }
     }
 
+    public static void readProgramParam(ConfParameters confIn, String [] args)
+    {
+        String param = "";
+        String value = "";
+
+        for(int i=1; i <= args.length; i++)
+        {
+
+          if(i % 2 != 0)
+          {
+              param = args[i -1 ];
+              param = args[i -1 ].substring(1, param.length());
+          }
+          else
+          {
+
+            value  = args[i -1 ];
+
+            switch(param.toLowerCase())
+            {
+                case "maxtablefrom":
+                    confIn.maxTableFrom = Integer.parseInt(value);
+                break;
+
+                case "maxattrsel":
+                    confIn.maxAttrSel = Integer.parseInt(value);
+                break;
+
+                case "maxcondwhere":
+                     confIn.maxCondWhere = Integer.parseInt(value);
+                break;
+
+                case "probwhrconst":
+                    confIn.probWhrConst = Double.parseDouble(value);
+                break;
+
+                case "repalias":
+                    confIn.repAlias = Double.parseDouble(value);
+                break;
+
+                case "nestlev":
+                    confIn.nestLev = Integer.parseInt(value);
+                break;
+
+                case "maxattrgrpby":
+                    confIn.maxAttrGrpBy = Integer.parseInt(value);
+                break;
+
+                case "arithmcompar":
+                    confIn.arithmCompar = Double.parseDouble(value);
+                break;
+
+                case "isdistinct":
+                    confIn.isDistinct = Double.parseDouble(value);
+                break;
+
+                case "isnull":
+                    confIn.isNULL = Double.parseDouble(value);
+                break;
+
+                case "rowcompar":
+                    confIn.rowcompar = Double.parseDouble(value);
+                break;
+
+                case "isselectall":
+                    confIn.isSelectAll = Double.parseDouble(value);
+                break;
+
+                case "stringinsel":
+                    confIn.stringInSel = Double.parseDouble(value);
+                break;
+
+                case "stringinwhere":
+                    confIn.stringInWhere = Double.parseDouble(value);
+                break;
+
+                case "user":
+                    confIn.user = value;
+                break;
+
+                case "pass":
+                    confIn.pass = value;
+                break;
+
+                case "dbname":
+                    confIn.dbName = value;
+                break;
+
+                case "dbms":
+                    confIn.DBMS = value;
+                break;
+        }
+
+        }
+
+        }
+    }
 
     /***********************************************************************************/
     /*                                     MAIN CLASS                                  */
@@ -600,9 +695,16 @@ public class SQLEngine extends Thread
         try
         {
             genStrings(confPar);
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             e.printStackTrace();
         }
+
+        readProgramParam(confPar, args);
+
+        //It retrieves all the relations with their associated attributes from mysql database
+        retrieveDBSchema(confPar.relationsAttrs, confPar);
 
         long uniqID=0;
 
@@ -616,41 +718,40 @@ public class SQLEngine extends Thread
 
         int counter=0;
 
-
         pick = Utilities.getRandChoice(4);
-        pick =3;
+        pick =0;
 
         //The option is given as input parameter to the program
         switch (pick)
         {
             case 0:
                 qry = newSQL.genCompQuery(1, frmRelts, 1, false, false, confPar);
-                break;
+            break;
 
             case 1:
                 QRYREPRES res = newSQL.genQuery(null, uniqID, false, false, confPar, 0);
                 qry = res.qryStr;
-                break;
+            break;
 
             case 2:
                 qry = newSQL.nestQuery(uniqID, confPar);
-                break;
+            break;
 
             case 3:
                 QRYREPRES res1 = newSQL.aggrGuery(uniqID, confPar);
                 qry = res1.qryStr;
-                break;
+            break;
 
             case 4:
                 QRYREPRES res2 = newSQL.operQuery(null, uniqID, false, false, confPar);
                 qry = res2.qryStr;
-                break;
+            break;
         }
 
         System.out.println(counter++);
 
-               /* QRYREPRES res1 = newSQL.operQuery(null,uniqID, false, false, confPar);
-                qry = res1.qryStr;*/
+       /* QRYREPRES res1 = newSQL.operQuery(null,uniqID, false, false, confPar);
+        qry = res1.qryStr;*/
 
         System.out.println(qry);
         wrtSql2File("rand.sql", qry);
