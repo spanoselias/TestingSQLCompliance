@@ -8,6 +8,7 @@
 import ComparisonTool.ComparisonTool;
 import Engine.*;
 import  ComparisonTool.ResInfo;
+import javafx.geometry.Pos;
 
 /***********************************************************************************/
 /*                                     LIBRARIES                                   */
@@ -488,12 +489,11 @@ public class SQLEngine extends Thread
         ResInfo OracleDb ;
         ResInfo Postgres;
 
-
         ComparisonTool dbcon = new ComparisonTool();
         MySQL = dbcon.connectToMySql(sql);
         MicrosoftSQL = dbcon.connectToMicrosoftSql(sql);
         OracleDb = dbcon.connectToOracle(sql);
-        Postgres = dbcon.connectToMicrosoftSql(sql);
+        Postgres = dbcon.connectToPostgres(sql);
 
 
         String error="";
@@ -684,7 +684,62 @@ public class SQLEngine extends Thread
         }
     }
 
-    /***********************************************************************************/
+    public static void checkImplementation(String query) {
+        BufferedWriter bw = null;
+        FileWriter fw = null;
+
+        String path = "C:\\Users\\Elias\\Documents\\TestingSQLCompliance\\src\\Log\\";
+
+        //   String filename = path + dateFormat.format(date);
+
+        String filename = path + "checking.log";
+
+        ResInfo MySQL;
+        ResInfo Postgres;
+
+        ComparisonTool dbcon = new ComparisonTool();
+        MySQL = dbcon.connectToMySql(query);
+        Postgres = dbcon.connectToPostgres(query);
+
+        String error = "";
+        boolean isDiffFound = false;
+
+        try {
+            fw = new FileWriter(filename, true);
+            bw = new BufferedWriter(fw);
+
+            if (MySQL.res == false && Postgres.res == false) {
+                bw.write("*******************************************************************\n");
+                bw.write(query);
+                bw.write("\n+++++++++++++++++++++++++++++++++++++++++++++\n");
+            }
+
+
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        finally
+        {
+            try
+            {
+                if (bw != null)
+                    bw.close();
+
+                if (fw != null)
+                    fw.close();
+
+            }
+            catch (IOException ex)
+            {
+                ex.printStackTrace();
+            }
+        }
+
+    }
+
+        /***********************************************************************************/
     /*                                     MAIN CLASS                                  */
     /***********************************************************************************/
     public static void main(String[] args) throws IOException
@@ -718,8 +773,10 @@ public class SQLEngine extends Thread
 
         int counter=0;
 
+     while(true)
+     {
+
         pick = Utilities.getRandChoice(4);
-        pick =0;
 
         //The option is given as input parameter to the program
         switch (pick)
@@ -754,11 +811,10 @@ public class SQLEngine extends Thread
         qry = res1.qryStr;*/
 
         System.out.println(qry);
-        wrtSql2File("rand.sql", qry);
+      //  wrtSql2File("rand.sql", qry);
 
-        // String sql = nestQuery(uniqID, confPar);
-        wrtSql2File("rand.sql",qry);
-
+        checkImplementation(qry);
+     }
       //  genLogFile(qry);
 
 

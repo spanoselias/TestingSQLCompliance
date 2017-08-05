@@ -103,14 +103,15 @@ public class SELECT
 
         //This condition is used to check if the sql query will include DISTINCT keyword
         //in the Engine.SELECT_rmv statement
-        if (this.isDistinct && isOperator == false)
+        if (this.isDistinct && isOperator == false )
         {
             stm += " DISTINCT";
         }
 
         //This condition check if all the attributes should be included in the output. The probability
-        //is given in the Utilities class
-        if (Utilities.randChoice(confParSel) == true && isOperator == false  )
+        //is given in the Utilities class. We check also if this query is aggregation, if yet, then we
+        //do not need the "*"
+        if (Utilities.randChoice(confParSel) == true && isOperator == false  && isAggr == false )
         {
             stm += " *";
         }

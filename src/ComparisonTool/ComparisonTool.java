@@ -143,8 +143,10 @@ public class ComparisonTool
         {
 
             connection = DriverManager.getConnection(
-                    "jdbc:postgresql://127.0.0.1:5432" + confSettings.PostgreDB, confSettings.PostgreUser,
+                    "jdbc:postgresql://127.0.0.1:5432/" + confSettings.PostgreDB, confSettings.PostgreUser,
                     confSettings.PostgrePass);
+
+
 
         }
         catch (SQLException e)

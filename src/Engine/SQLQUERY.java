@@ -12,7 +12,6 @@ package Engine;
 /***********************************************************************************/
 import java.util.LinkedList;
 
-
 public class SQLQUERY
 {
     public SQLQUERY()
@@ -91,7 +90,7 @@ public class SQLQUERY
         String hvg = hvgQry.genHaving(grpQry.getAttrInGroup());
         tmpStm = selQry.getSelect(frmQry.getSelectedTables(), false, false, confPar.repAlias, true, grpQry.getAttrInGroup(), false, 0);
         finalQry = tmpStm + "\n" + stm;
-        finalQry += "\n" + whrQry.getSqlWhere(grpQry.getAttrInGroup(),false,  confPar, 5, frmQry.getStringAttrs());
+        finalQry += "\n" + whrQry.getSqlWhere(grpQry.getAttrInGroup(),false,  confPar, confPar.maxCondWhere, frmQry.getStringAttrs());
         finalQry += "\n" + grp + "\n" + hvg;
 
         res.qryStr = finalQry;
@@ -130,13 +129,13 @@ public class SQLQUERY
             frmRelts = copySelRelts(frmRelts, frmQry.getSelectedTables());
             tmpStm = selQry.getSelect(frmRelts, isOneAttr, false, 0.1, false, null, false, allAttr);
             finalQry = tmpStm + "\n" + stm;
-            finalQry += "\n" + whrQry.getSqlWhere(frmRelts, isNest, confPar, 5, frmQry.getStringAttrs());
+            finalQry += "\n" + whrQry.getSqlWhere(frmRelts, isNest, confPar, confPar.maxCondWhere, frmQry.getStringAttrs());
         }
         else
         {
             tmpStm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, confPar.repAlias, false, null, false, allAttr);
             finalQry = tmpStm + "\n" + stm;
-            finalQry += "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),isNest,  confPar, 5, frmQry.getStringAttrs());
+            finalQry += "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),isNest,  confPar, confPar.maxCondWhere, frmQry.getStringAttrs());
         }
 
         res.qryStr = finalQry;
@@ -149,6 +148,9 @@ public class SQLQUERY
 
     public String genCompQuery(int subqry, LinkedList<Attribute> frmRelts, long uniqID, boolean isNest, boolean isOneAttr, ConfParameters confPar)
     {
+
+        frmRelts.clear();
+
         boolean isDistinct =false;
         //The probWhr represents the probability of having
         //constants or NULLS to the WHERE comparisons
@@ -158,22 +160,22 @@ public class SQLQUERY
             isDistinct = true;
         }
 
-        LinkedList<String> alias =  confPar.genAlias;
+       //LinkedList<String> alias =  confPar.genAlias;
 
         //We create new objects for each statement
-        FROM frmQry = new FROM(alias, confPar.relationsAttrs, confPar);
+        FROM frmQry = new FROM(confPar.genAlias, confPar.relationsAttrs, confPar);
         WHERE whrQry = new WHERE(confPar.relationsAttrs, confPar);
-        SELECT selQry = new SELECT(isDistinct,false, alias, 2,confPar.relationsAttrs, confPar);
+        SELECT selQry = new SELECT(isDistinct,false, confPar.genAlias, 2,confPar.relationsAttrs, confPar);
 
         String substm="";
 
-        while( (subqry--) > 0)
+        while( (subqry--) > 0 )
         {
             String subName = "Q" + subqry;
 
             String frmstm = frmQry.getFrom(++uniqID);
             String selstm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, 0.0, false, null, false, 0);
-            String whrstm = whrQry.getSqlWhere(frmQry.getSelectedTables(), false,  confPar, 3, frmQry.getStringAttrs());
+            String whrstm = whrQry.getSqlWhere(frmQry.getSelectedTables(), false,  confPar, confPar.maxCondWhere, frmQry.getStringAttrs());
 
             if( (subqry ) > 0 )
             {
