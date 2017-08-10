@@ -144,7 +144,7 @@ public final class Utilities
     {
         String newGen="";
 
-        if(stringAttrs.size() > 0)
+        if(stringAttrs.size() > 0 && confPar.dictonary.size() > 0)
         {
             //We check if we will have string comparisons in the WHERE Clause
             //based on the probability which is given in the configuration file
