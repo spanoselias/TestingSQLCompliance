@@ -12,7 +12,6 @@ The core component of the framework is consisted by the random SQL generator too
 The project is implemented in Java Programming Language. Moreover, this framework is implemented in such a way that a new DBMS can be added efficiently without 
 the need to change the whole code. 
 
-
 ### Compilation & Run instructions using PostgreSQL 
 
 #### Linux
