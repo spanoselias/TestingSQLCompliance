@@ -10,7 +10,6 @@
       <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/R3.csv" afterPath="$PROJECT_DIR$/scripts/Datasets/R3.csv" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/R4.csv" afterPath="$PROJECT_DIR$/scripts/Datasets/R4.csv" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/R5.csv" afterPath="$PROJECT_DIR$/scripts/Datasets/R5.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestingSQLCompliance/SQLEngine.class" afterPath="$PROJECT_DIR$/out/production/TestingSQLCompliance/SQLEngine.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/mySQL.sql" afterPath="$PROJECT_DIR$/scripts/mySQL.sql" />
@@ -60,7 +59,7 @@
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
               <first_editor relative-caret-position="357">
-                <caret line="23" column="3" lean-forward="false" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
+                <caret line="23" column="4" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -948,14 +947,7 @@
       <workItem from="1500145403541" duration="42919000" />
       <workItem from="1500483167027" duration="137833000" />
       <workItem from="1501889515278" duration="1912000" />
-      <workItem from="1501891662306" duration="19590000" />
-    </task>
-    <task id="LOCAL-00102" summary="Implementing attribute type tracking">
-      <created>1499524867548</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
-      <option name="project" value="LOCAL" />
-      <updated>1499524867548</updated>
+      <workItem from="1501891662306" duration="19630000" />
     </task>
     <task id="LOCAL-00103" summary="#Fixing_bugs#WorkingVersion.V0.2">
       <created>1499693619625</created>
@@ -1293,11 +1285,18 @@
       <option name="project" value="LOCAL" />
       <updated>1502350631465</updated>
     </task>
-    <option name="localTasksCounter" value="151" />
+    <task id="LOCAL-00151" summary="#Updating documentation">
+      <created>1502350682697</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1502350682697</updated>
+    </task>
+    <option name="localTasksCounter" value="152" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="782021000" />
+    <option name="totallyTimeSpent" value="782061000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-10" y="0" width="1924" height="1050" extended-state="0" />
@@ -1389,7 +1388,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="#Fixing bugs, class Comparison" />
     <MESSAGE value="#Fixing bugs in case where there is no string type in mysql DBMS" />
     <MESSAGE value="#Fixing Bug in getSelectAggr() method. Include arithmetic comparison between aggr functions and constants" />
     <MESSAGE value="#Comments the code" />
@@ -1414,7 +1412,8 @@
     <MESSAGE value="#New Extension, all the configure settings can be passed as parameters" />
     <MESSAGE value="#Working_Version" />
     <MESSAGE value="#Extending string comparisons" />
-    <option name="LAST_COMMIT_MESSAGE" value="#Extending string comparisons" />
+    <MESSAGE value="#Updating documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="#Updating documentation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1942,7 +1941,7 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
           <first_editor relative-caret-position="357">
-            <caret line="23" column="3" lean-forward="false" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
+            <caret line="23" column="4" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
             <folding />
           </first_editor>
           <second_editor />
