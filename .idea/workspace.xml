@@ -10,9 +10,7 @@
       <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/R3.csv" afterPath="$PROJECT_DIR$/scripts/Datasets/R3.csv" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/R4.csv" afterPath="$PROJECT_DIR$/scripts/Datasets/R4.csv" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/R5.csv" afterPath="$PROJECT_DIR$/scripts/Datasets/R5.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestingSQLCompliance/SQLEngine.class" afterPath="$PROJECT_DIR$/out/production/TestingSQLCompliance/SQLEngine.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/mySQL.sql" afterPath="$PROJECT_DIR$/scripts/mySQL.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SQLEngine.java" afterPath="$PROJECT_DIR$/src/SQLEngine.java" />
     </list>
@@ -49,20 +47,19 @@
       <file leaf-file-name="SQLEngine.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SQLEngine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="775" column="8" lean-forward="false" selection-start-line="775" selection-start-column="8" selection-end-line="775" selection-end-column="8" />
+            <state relative-caret-position="189">
+              <caret line="9" column="31" lean-forward="false" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
               <folding>
-                <element signature="e#0#25691#0" expanded="true" />
-                <element signature="imports" expanded="true" />
+                <element signature="e#0#25663#0" expanded="true" />
                 <element signature="method#readConfFile#0;class#SQLEngine#0" expanded="false" />
                 <element signature="method#genAlias#0;class#SQLEngine#0" expanded="false" />
-                <element signature="e#10831#10933#0" expanded="false" />
+                <element signature="e#10803#10905#0" expanded="false" />
                 <element signature="method#wrtSql2File#0;class#SQLEngine#0" expanded="false" />
                 <element signature="method#genLogFile#0;class#SQLEngine#0" expanded="false" />
                 <element signature="method#readProgramParam#0;class#SQLEngine#0" expanded="false" />
                 <element signature="method#checkImplementation#0;class#SQLEngine#0" expanded="false" />
-                <marker date="1502371082460" expanded="true" signature="6346:6441" ph="SELECT TABLE... COLUMNS" />
-                <marker date="1502371082460" expanded="true" signature="6537:6751" ph="SELECT TABLE... columns" />
+                <marker date="1502371497444" expanded="true" signature="6318:6413" ph="SELECT TABLE... COLUMNS" />
+                <marker date="1502371497444" expanded="true" signature="6509:6723" ph="SELECT TABLE... columns" />
               </folding>
             </state>
           </provider>
@@ -227,8 +224,8 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7279b81a-2a74-4b69-8044-568af7776d0d/console_4.sql" />
         <option value="$PROJECT_DIR$/scripts/Schemas/sch3.sql" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/SQLEngine.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7279b81a-2a74-4b69-8044-568af7776d0d/console_5.sql" />
+        <option value="$PROJECT_DIR$/src/SQLEngine.java" />
       </list>
     </option>
   </component>
@@ -987,14 +984,7 @@
       <workItem from="1500145403541" duration="42919000" />
       <workItem from="1500483167027" duration="137833000" />
       <workItem from="1501889515278" duration="1912000" />
-      <workItem from="1501891662306" duration="21461000" />
-    </task>
-    <task id="LOCAL-00105" summary="#Fixing_bugs#WorkingVersion.V0.2">
-      <created>1499765333879</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1499765333879</updated>
+      <workItem from="1501891662306" duration="21542000" />
     </task>
     <task id="LOCAL-00106" summary="#Implementing_String_Comparisons">
       <created>1500147566590</created>
@@ -1332,11 +1322,18 @@
       <option name="project" value="LOCAL" />
       <updated>1502350764764</updated>
     </task>
-    <option name="localTasksCounter" value="154" />
+    <task id="LOCAL-00154" summary="#Update Readme">
+      <created>1502371442594</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1502371442594</updated>
+    </task>
+    <option name="localTasksCounter" value="155" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="783892000" />
+    <option name="totallyTimeSpent" value="783973000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-10" y="0" width="1924" height="1050" extended-state="0" />
@@ -1428,7 +1425,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="#Fixing Bug in getSelectAggr() method. Include arithmetic comparison between aggr functions and constants" />
     <MESSAGE value="#Comments the code" />
     <MESSAGE value="#Adding '*' command" />
     <MESSAGE value="#Extending project description" />
@@ -1453,7 +1449,8 @@
     <MESSAGE value="#Updating documentation" />
     <MESSAGE value="#Extending string comparisons" />
     <MESSAGE value="#Updating Documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="#Updating Documentation" />
+    <MESSAGE value="#Update Readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="#Update Readme" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1478,25 +1475,25 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/SQLEngine.java</url>
-          <line>425</line>
+          <line>424</line>
           <properties />
           <option name="timeStamp" value="437" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/SQLEngine.java</url>
-          <line>411</line>
+          <line>410</line>
           <properties />
           <option name="timeStamp" value="438" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/SQLEngine.java</url>
-          <line>273</line>
+          <line>272</line>
           <properties />
           <option name="timeStamp" value="439" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/SQLEngine.java</url>
-          <line>756</line>
+          <line>755</line>
           <properties />
           <option name="timeStamp" value="440" />
         </line-breakpoint>
@@ -1968,20 +1965,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SQLEngine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="775" column="8" lean-forward="false" selection-start-line="775" selection-start-column="8" selection-end-line="775" selection-end-column="8" />
+        <state relative-caret-position="189">
+          <caret line="9" column="31" lean-forward="false" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
           <folding>
-            <element signature="e#0#25691#0" expanded="true" />
-            <element signature="imports" expanded="true" />
+            <element signature="e#0#25663#0" expanded="true" />
             <element signature="method#readConfFile#0;class#SQLEngine#0" expanded="false" />
             <element signature="method#genAlias#0;class#SQLEngine#0" expanded="false" />
-            <element signature="e#10831#10933#0" expanded="false" />
+            <element signature="e#10803#10905#0" expanded="false" />
             <element signature="method#wrtSql2File#0;class#SQLEngine#0" expanded="false" />
             <element signature="method#genLogFile#0;class#SQLEngine#0" expanded="false" />
             <element signature="method#readProgramParam#0;class#SQLEngine#0" expanded="false" />
             <element signature="method#checkImplementation#0;class#SQLEngine#0" expanded="false" />
-            <marker date="1502371082460" expanded="true" signature="6346:6441" ph="SELECT TABLE... COLUMNS" />
-            <marker date="1502371082460" expanded="true" signature="6537:6751" ph="SELECT TABLE... columns" />
+            <marker date="1502371497444" expanded="true" signature="6318:6413" ph="SELECT TABLE... COLUMNS" />
+            <marker date="1502371497444" expanded="true" signature="6509:6723" ph="SELECT TABLE... columns" />
           </folding>
         </state>
       </provider>

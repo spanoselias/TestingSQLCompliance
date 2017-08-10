@@ -8,7 +8,6 @@
 import ComparisonTool.ComparisonTool;
 import Engine.*;
 import  ComparisonTool.ResInfo;
-import javafx.geometry.Pos;
 
 /***********************************************************************************/
 /*                                     LIBRARIES                                   */
