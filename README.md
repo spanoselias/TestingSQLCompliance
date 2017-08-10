@@ -15,10 +15,18 @@ the need to change the whole code.
 
 ### Compilation & Run instructions using PostgreSQL 
 
+##Linux
 ```javascript
  Compile: javac -cp '.:postgresql-42.1.1.jar' SQLEngine.java
  Run: java -cp '.:postgresql-42.1.1.jar' SQLEngine
 ```
+
+##Windows
+```javascript
+ Compile: javac -cp '.;postgresql-42.1.1.jar' SQLEngine.java
+ Run: java -cp '.;postgresql-42.1.1.jar' SQLEngine
+```
+
 
 ### Example of passing some parameters as arguments 
 

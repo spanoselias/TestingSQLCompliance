@@ -746,6 +746,12 @@ public class SQLEngine extends Thread
         //It retrieves parameters from the configuration file
         ConfParameters confPar = readConfFile();
 
+
+        readProgramParam(confPar, args);
+
+        //It retrieves all the relations with their associated attributes from mysql database
+        retrieveDBSchema(confPar.relationsAttrs, confPar);
+
         try
         {
             genStrings(confPar);
@@ -754,13 +760,6 @@ public class SQLEngine extends Thread
         {
             e.printStackTrace();
         }
-
-        readProgramParam(confPar, args);
-
-        //It retrieves all the relations with their associated attributes from mysql database
-        retrieveDBSchema(confPar.relationsAttrs, confPar);
-
-        genStrings(confPar);
 
         long uniqID=0;
 
@@ -774,7 +773,7 @@ public class SQLEngine extends Thread
 
         int counter=0;
 
-     //   while(true) {
+        while(true) {
 
             pick = Utilities.getRandChoice(4);
 
@@ -811,7 +810,7 @@ public class SQLEngine extends Thread
             wrtSql2File("rand.sql", qry);
             //checkImplementation(qry);
            //genLogFile(qry);
-        //}
+        }
 
    }
 
