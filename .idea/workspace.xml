@@ -4,16 +4,16 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="">
+    <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="#Extending string comparisons">
       <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/R1.csv" afterPath="$PROJECT_DIR$/scripts/Datasets/R1.csv" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/R2.csv" afterPath="$PROJECT_DIR$/scripts/Datasets/R2.csv" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/R3.csv" afterPath="$PROJECT_DIR$/scripts/Datasets/R3.csv" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/R4.csv" afterPath="$PROJECT_DIR$/scripts/Datasets/R4.csv" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/R5.csv" afterPath="$PROJECT_DIR$/scripts/Datasets/R5.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TestingSQLCompliance/SQLEngine.class" afterPath="$PROJECT_DIR$/out/production/TestingSQLCompliance/SQLEngine.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/mySQL.sql" afterPath="$PROJECT_DIR$/scripts/mySQL.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SQLEngine.java" afterPath="$PROJECT_DIR$/src/SQLEngine.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -59,8 +59,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="420">
-                <caret line="26" column="18" lean-forward="false" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
+              <first_editor relative-caret-position="357">
+                <caret line="23" column="3" lean-forward="false" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -948,14 +948,7 @@
       <workItem from="1500145403541" duration="42919000" />
       <workItem from="1500483167027" duration="137833000" />
       <workItem from="1501889515278" duration="1912000" />
-      <workItem from="1501891662306" duration="19545000" />
-    </task>
-    <task id="LOCAL-00101" summary="Extending Comparison Tool">
-      <created>1499463222620</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1499463222620</updated>
+      <workItem from="1501891662306" duration="19590000" />
     </task>
     <task id="LOCAL-00102" summary="Implementing attribute type tracking">
       <created>1499524867548</created>
@@ -1293,11 +1286,18 @@
       <option name="project" value="LOCAL" />
       <updated>1502348047223</updated>
     </task>
-    <option name="localTasksCounter" value="150" />
+    <task id="LOCAL-00150" summary="#Extending string comparisons">
+      <created>1502350631465</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1502350631465</updated>
+    </task>
+    <option name="localTasksCounter" value="151" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="781976000" />
+    <option name="totallyTimeSpent" value="782021000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-10" y="0" width="1924" height="1050" extended-state="0" />
@@ -1941,8 +1941,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="420">
-            <caret line="26" column="18" lean-forward="false" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
+          <first_editor relative-caret-position="357">
+            <caret line="23" column="3" lean-forward="false" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
             <folding />
           </first_editor>
           <second_editor />
