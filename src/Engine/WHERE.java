@@ -150,7 +150,6 @@ public  class WHERE
         return stm;
     }
 
-
     public boolean getOneAttr()
     {
         return nestGenCom.getIsOneAttr();

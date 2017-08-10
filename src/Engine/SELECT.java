@@ -111,7 +111,7 @@ public class SELECT
         //This condition check if all the attributes should be included in the output. The probability
         //is given in the Utilities class. We check also if this query is aggregation, if yet, then we
         //do not need the "*"
-        if (Utilities.randChoice(confParSel) == true && isOperator == false  && isAggr == false )
+        if (Utilities.randChoice(confParSel) == true && isOperator == false  && isAggr == false && confParSel.nesting ==false )
         {
             stm += " *";
         }

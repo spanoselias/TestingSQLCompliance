@@ -66,6 +66,9 @@ public class ConfParameters
     public String dbName;
     public String DBMS;
 
+    //We use this boolean to check if the current query is nesting, in this way we avoid
+    //the problem to have IN operator and then * in a subquery
+    public boolean nesting;
 
     public LinkedList<String> trackDomainAttr = new LinkedList<>();
 

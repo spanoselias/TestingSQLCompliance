@@ -411,7 +411,6 @@ public class SQLEngine extends Thread
 
             if(confIn.strAttrs.size() > 0)
             {
-
                 for(String relname: confIn.strAttrs.keySet())
                 {
                     for (Attribute attr : confIn.strAttrs.get(relname))
@@ -761,6 +760,8 @@ public class SQLEngine extends Thread
         //It retrieves all the relations with their associated attributes from mysql database
         retrieveDBSchema(confPar.relationsAttrs, confPar);
 
+        genStrings(confPar);
+
         long uniqID=0;
 
         LinkedList<Attribute> frmRelts = new LinkedList<>();
@@ -773,52 +774,46 @@ public class SQLEngine extends Thread
 
         int counter=0;
 
-     while(true)
-     {
+     //   while(true) {
 
-        pick = Utilities.getRandChoice(4);
-
-        //The option is given as input parameter to the program
-        switch (pick)
-        {
-            case 0:
-                qry = newSQL.genCompQuery(1, frmRelts, 1, false, false, confPar);
-            break;
-
-            case 1:
-                QRYREPRES res = newSQL.genQuery(null, uniqID, false, false, confPar, 0);
-                qry = res.qryStr;
-            break;
-
-            case 2:
-                qry = newSQL.nestQuery(uniqID, confPar);
-            break;
-
-            case 3:
-                QRYREPRES res1 = newSQL.aggrGuery(uniqID, confPar);
-                qry = res1.qryStr;
-            break;
-
-            case 4:
-                QRYREPRES res2 = newSQL.operQuery(null, uniqID, false, false, confPar);
-                qry = res2.qryStr;
-            break;
-        }
-
-        System.out.println(counter++);
-
-       /* QRYREPRES res1 = newSQL.operQuery(null,uniqID, false, false, confPar);
-        qry = res1.qryStr;*/
-
-        System.out.println(qry);
-      //  wrtSql2File("rand.sql", qry);
-
-        checkImplementation(qry);
-     }
-      //  genLogFile(qry);
+            pick = Utilities.getRandChoice(4);
 
 
-    }
+            //The option is given as input parameter to the program
+            switch (pick) {
+                case 0:
+                    qry = newSQL.genCompQuery(1, frmRelts, 1, false, false, confPar);
+                    break;
+
+                case 1:
+                    QRYREPRES res = newSQL.genQuery(null, uniqID, false, false, confPar, 0);
+                    qry = res.qryStr;
+                    break;
+
+                case 2:
+                    qry = newSQL.nestQuery(uniqID, confPar);
+                    break;
+
+                case 3:
+                    QRYREPRES res1 = newSQL.aggrGuery(uniqID, confPar);
+                    qry = res1.qryStr;
+                    break;
+
+                case 4:
+                    QRYREPRES res2 = newSQL.operQuery(null, uniqID, false, false, confPar);
+                    qry = res2.qryStr;
+                    break;
+            }
+
+
+            System.out.println(qry);
+            //System.out.println(counter++);
+            wrtSql2File("rand.sql", qry);
+            //checkImplementation(qry);
+           //genLogFile(qry);
+        //}
+
+   }
 
 }
 

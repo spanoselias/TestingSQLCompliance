@@ -228,6 +228,7 @@ public class SQLQUERY
         levFrmBinds = copySelRelts(levFrmBinds,curQuery.selRelts);
 
         boolean isNest = true;
+        confPar.nesting = true;
 
         //It creates the right format
         if(nestLev >= 2)
@@ -241,7 +242,9 @@ public class SQLQUERY
         for(int curLev=1; curLev < nestLev +1; curLev++)
         {
             if( curLev == nestLev )
+            {
                 isNest = false;
+            }
 
             //It creates the right format
             sqlRep += " (";
@@ -261,6 +264,8 @@ public class SQLQUERY
         {
             sqlRep += ")";
         }
+
+        confPar.nesting=false;
 
         return sqlRep;
     }
@@ -296,5 +301,6 @@ public class SQLQUERY
 
         return  curSelRels;
     }
+
 
 }
