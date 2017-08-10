@@ -26,7 +26,6 @@ the need to change the whole code.
  Run: java -cp '.;postgresql-42.1.1.jar' SQLEngine
 ```
 
-
 ### Example of passing some parameters as arguments 
 
 ```javascript

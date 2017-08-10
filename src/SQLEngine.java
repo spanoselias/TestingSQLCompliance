@@ -773,7 +773,7 @@ public class SQLEngine extends Thread
 
         int counter=0;
 
-        while(true) {
+      //  while(true) {
 
             pick = Utilities.getRandChoice(4);
 
@@ -810,7 +810,7 @@ public class SQLEngine extends Thread
             wrtSql2File("rand.sql", qry);
             //checkImplementation(qry);
            //genLogFile(qry);
-        }
+      //  }
 
    }
 
