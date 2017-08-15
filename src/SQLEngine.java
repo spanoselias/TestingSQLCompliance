@@ -65,6 +65,7 @@ public static ConfParameters readConfFile()
         confPar.rowcompar = Double.parseDouble( prop.getProperty( "rowcompar" ) );
         confPar.isNULL = Double.parseDouble( prop.getProperty( "isNULL" ) );
         confPar.isSelectAll = Double.parseDouble( prop.getProperty( "isSelectAll" ) );
+        confPar.compTool = Integer.parseInt( prop.getProperty( "compTool" ) );
 
         confPar.user =   prop.getProperty( "user" ) ;
         confPar.pass =   prop.getProperty( "pass" ) ;
@@ -696,6 +697,10 @@ public static void readProgramParam(ConfParameters confIn, String [] args)
                 case "dbms":
                     confIn.DBMS = value;
                 break;
+
+                case "comptool":
+                    confIn.compTool = Integer.parseInt(value);
+                break;
         }
 
         }
@@ -792,14 +797,17 @@ public static void main(String[] args) throws IOException
 
     int counter=0;
 
-    while(true)
+
+
+    for(int i= 0; i < confPar.compTool; i++)
     {
 
-        pick = Utilities.getRandChoice(4);
+        pick = Utilities.getRandChoice(5);
 
 
         //The option is given as input parameter to the program
-        switch (pick) {
+        switch (pick)
+        {
             case 0:
                 qry = newSQL.genCompQuery(1, frmRelts, 1, false, false, confPar);
                 break;
@@ -824,13 +832,15 @@ public static void main(String[] args) throws IOException
                 break;
         }
 
-        genLogFile(qry);
+        if(confPar.compTool > 1)
+        {
+            genLogFile(qry);
+        }
 
         System.out.println(qry);
-        //System.out.println(counter++);
+
         wrtSql2File("rand.sql", qry);
-        //checkImplementation(qry);
-       //genLogFile(qry);
+
     }
 
 }
