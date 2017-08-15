@@ -832,13 +832,18 @@ public static void main(String[] args) throws IOException
                 break;
         }
 
+
+        //The comparison tool runs only if the compTool parameter is greater than one. Otherwise, it just generated
+        //a random SQL query based on the parameters which are given in the configuration file
         if(confPar.compTool > 1)
         {
             genLogFile(qry);
         }
 
+        //It outputs the random generated SQL query
         System.out.println(qry);
 
+        //It write to the rand.sql file the random generated SQL query
         wrtSql2File("rand.sql", qry);
 
     }
