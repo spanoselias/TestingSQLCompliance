@@ -12,6 +12,9 @@ package Engine;
 /***********************************************************************************/
 import java.util.LinkedList;
 
+/***********************************************************************************/
+/*                                  SQLQUERY CLASS                                 */
+/***********************************************************************************/
 public class SQLQUERY
 {
     public SQLQUERY()
@@ -19,288 +22,303 @@ public class SQLQUERY
 
     }
 
-    public QRYREPRES operQuery( LinkedList<String> frmRelts, long uniqID, boolean isNest, boolean isOneAttr ,  ConfParameters confPar)
+/***********************************************************************************/
+/*                              OPERATOR  QUERY                                    */
+/***********************************************************************************/
+public QRYREPRES operQuery( LinkedList<String> frmRelts, long uniqID, boolean isNest, boolean isOneAttr ,  ConfParameters confPar)
+{
+
+    boolean isDistinct =false;
+    //The probWhr represents the probability of having
+    //constants or NULLS to the WHERE comparisons
+    int rand = Utilities.getRandChoice( 100 );
+    if(rand <=  (int)(confPar.isDistinct * 100) )
     {
-
-        boolean isDistinct =false;
-        //The probWhr represents the probability of having
-        //constants or NULLS to the WHERE comparisons
-        int rand = Utilities.getRandChoice( 100 );
-        if(rand <=  (int)(confPar.isDistinct * 100) )
-        {
-            isDistinct = true;
-        }
-
-        confPar.arithmCompar=0.0;
-
-        QRYREPRES res = new QRYREPRES();
-        SETOPERATORS oper = new SETOPERATORS(confPar);
-
-        LinkedList<String> alias =  confPar.genAlias;
-
-        String finalQry="";
-
-        FROM frmQry = new FROM(alias, confPar.relationsAttrs, confPar);
-        WHERE whrQry = new WHERE(confPar.relationsAttrs, confPar);
-        SELECT selQry = new SELECT(isDistinct,false, alias, 2, confPar.relationsAttrs, confPar);
-
-        String stm = frmQry.getFrom( (++uniqID) );
-        finalQry = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, confPar.repAlias, false, null, false, 0);
-        finalQry += "\n" + stm + "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),isNest,  confPar, confPar.maxCondWhere, frmQry.getStringAttrs());
-
-        finalQry += "\n" + oper.getOper(frmRelts) + "\n";
-
-        stm = frmQry.getFrom( (++uniqID) );
-        finalQry += selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, confPar.repAlias, false, null, true, 0);
-        finalQry += "\n" + stm + "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),isNest,  confPar, confPar.maxCondWhere, frmQry.getStringAttrs());
-
-        res.qryStr = finalQry;
-        res.isOneAt = whrQry.getOneAttr();
-        res.selRelts = frmQry.getSelectedTables();
-
-        return res;
+        isDistinct = true;
     }
 
-    public QRYREPRES aggrGuery(  long uniqID , ConfParameters confPar)
+    confPar.arithmCompar=0.0;
+
+    QRYREPRES res = new QRYREPRES();
+    SETOPERATORS oper = new SETOPERATORS(confPar);
+
+    LinkedList<String> alias =  confPar.genAlias;
+
+    String finalQry="";
+
+    FROM frmQry = new FROM(alias, confPar.relationsAttrs, confPar);
+    WHERE whrQry = new WHERE(confPar.relationsAttrs, confPar);
+    SELECT selQry = new SELECT(isDistinct,false, alias, 2, confPar.relationsAttrs, confPar);
+
+    String stm = frmQry.getFrom( (++uniqID) );
+    finalQry = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, confPar.repAlias, false, null, false, 0);
+    finalQry += "\n" + stm + "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),isNest,  confPar, confPar.maxCondWhere, frmQry.getStringAttrs());
+
+    finalQry += "\n" + oper.getOper(frmRelts) + "\n";
+
+    stm = frmQry.getFrom( (++uniqID) );
+    finalQry += selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, confPar.repAlias, false, null, true, 0);
+    finalQry += "\n" + stm + "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),isNest,  confPar, confPar.maxCondWhere, frmQry.getStringAttrs());
+
+    res.qryStr = finalQry;
+    res.isOneAt = whrQry.getOneAttr();
+    res.selRelts = frmQry.getSelectedTables();
+
+    return res;
+}
+
+/***********************************************************************************/
+/*                              AGGREGATION  QUERY                                 */
+/***********************************************************************************/
+public QRYREPRES aggrGuery(  long uniqID , ConfParameters confPar)
+{
+    boolean isDistinct =false;
+
+
+    int rand = Utilities.getRandChoice( 100 );
+    if(rand <=  (int)(confPar.isDistinct * 100) )
     {
-        boolean isDistinct =false;
+        isDistinct = true;
+    }
 
+    QRYREPRES res = new QRYREPRES();
 
-        int rand = Utilities.getRandChoice( 100 );
-        if(rand <=  (int)(confPar.isDistinct * 100) )
-        {
-            isDistinct = true;
-        }
+    LinkedList<String> alias =  confPar.genAlias;
 
-        QRYREPRES res = new QRYREPRES();
+    String tmpStm="";
+    String finalQry="";
 
-        LinkedList<String> alias =  confPar.genAlias;
+    FROM frmQry = new FROM(alias, confPar.relationsAttrs, confPar);
+    WHERE whrQry = new WHERE(confPar.relationsAttrs, confPar);
+    SELECT selQry = new SELECT(isDistinct,false, alias, 2, confPar.relationsAttrs, confPar);
+    GROUPBY grpQry = new GROUPBY(confPar);
+    HAVING hvgQry = new HAVING(confPar);
 
-        String tmpStm="";
-        String finalQry="";
+    String stm = frmQry.getFrom( (++uniqID) );
+    String grp = grpQry.getGroupBy(frmQry.getSelectedTables());
+    String hvg = hvgQry.genHaving(grpQry.getAttrInGroup());
+    tmpStm = selQry.getSelect(frmQry.getSelectedTables(), false, false, confPar.repAlias, true, grpQry.getAttrInGroup(), false, 0);
+    finalQry = tmpStm + "\n" + stm;
+    finalQry += "\n" + whrQry.getSqlWhere(grpQry.getAttrInGroup(),false,  confPar, confPar.maxCondWhere, frmQry.getStringAttrs());
+    finalQry += "\n" + grp + "\n" + hvg;
 
-        FROM frmQry = new FROM(alias, confPar.relationsAttrs, confPar);
-        WHERE whrQry = new WHERE(confPar.relationsAttrs, confPar);
-        SELECT selQry = new SELECT(isDistinct,false, alias, 2, confPar.relationsAttrs, confPar);
-        GROUPBY grpQry = new GROUPBY(confPar);
-        HAVING hvgQry = new HAVING(confPar);
+    res.qryStr = finalQry;
+    res.isOneAt = whrQry.getOneAttr();
+    res.selRelts = frmQry.getSelectedTables();
 
-        String stm = frmQry.getFrom( (++uniqID) );
-        String grp = grpQry.getGroupBy(frmQry.getSelectedTables());
-        String hvg = hvgQry.genHaving(grpQry.getAttrInGroup());
-        tmpStm = selQry.getSelect(frmQry.getSelectedTables(), false, false, confPar.repAlias, true, grpQry.getAttrInGroup(), false, 0);
+    return res;
+}
+
+/***********************************************************************************/
+/*                              SIMPLE  QUERY                                      */
+/***********************************************************************************/
+public QRYREPRES genQuery( LinkedList<Attribute> frmRelts, long uniqID, boolean isNest, boolean isOneAttr ,  ConfParameters confPar, int allAttr)
+{
+    QRYREPRES res = new QRYREPRES();
+
+    LinkedList<String> alias =  confPar.genAlias;
+
+    String tmpStm="";
+    String finalQry="";
+
+    boolean isDistinct =false;
+    int rand = Utilities.getRandChoice( 100 );
+    if(rand <=  (int)(confPar.isDistinct * 100) )
+    {
+        isDistinct = true;
+    }
+
+    FROM frmQry = new FROM(alias, confPar.relationsAttrs, confPar);
+    WHERE whrQry = new WHERE(confPar.relationsAttrs, confPar);
+    SELECT selQry = new SELECT(isDistinct,false, alias, 2, confPar.relationsAttrs, confPar);
+
+    String stm = frmQry.getFrom( (++uniqID) );
+
+    //In case where this is a nested query then the frmRelts list
+    //contains the binds attributes. Otherwise, we just select attributes from the from
+    if(frmRelts != null && frmRelts.size() > 0)
+    {
+        frmRelts = copySelRelts(frmRelts, frmQry.getSelectedTables());
+        tmpStm = selQry.getSelect(frmRelts, isOneAttr, false, 0.1, false, null, false, allAttr);
         finalQry = tmpStm + "\n" + stm;
-        finalQry += "\n" + whrQry.getSqlWhere(grpQry.getAttrInGroup(),false,  confPar, confPar.maxCondWhere, frmQry.getStringAttrs());
-        finalQry += "\n" + grp + "\n" + hvg;
-
-        res.qryStr = finalQry;
-        res.isOneAt = whrQry.getOneAttr();
-        res.selRelts = frmQry.getSelectedTables();
-
-        return res;
+        finalQry += "\n" + whrQry.getSqlWhere(frmRelts, isNest, confPar, confPar.maxCondWhere, frmQry.getStringAttrs());
+    }
+    else
+    {
+        tmpStm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, confPar.repAlias, false, null, false, allAttr);
+        finalQry = tmpStm + "\n" + stm;
+        finalQry += "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),isNest,  confPar, confPar.maxCondWhere, frmQry.getStringAttrs());
     }
 
-    public QRYREPRES genQuery( LinkedList<Attribute> frmRelts, long uniqID, boolean isNest, boolean isOneAttr ,  ConfParameters confPar, int allAttr)
+    res.qryStr = finalQry;
+    res.isOneAt = whrQry.getOneAttr();
+    res.selRelts = frmQry.getSelectedTables();
+    res.totalAttr = whrQry.getAllAttr();
+
+    return res;
+}
+
+/***********************************************************************************/
+/*                             COMPLEX QUERY                                       */
+/***********************************************************************************/
+public String genCompQuery(int subqry, LinkedList<Attribute> frmRelts, long uniqID, boolean isNest, boolean isOneAttr, ConfParameters confPar)
+{
+
+    frmRelts.clear();
+
+    boolean isDistinct =false;
+    //The probWhr represents the probability of having
+    //constants or NULLS to the WHERE comparisons
+    int rand = Utilities.getRandChoice( 100 );
+    if(rand <=  (int)(confPar.isDistinct * 100) )
     {
-        QRYREPRES res = new QRYREPRES();
+        isDistinct = true;
+    }
 
-        LinkedList<String> alias =  confPar.genAlias;
+   //LinkedList<String> alias =  confPar.genAlias;
 
-        String tmpStm="";
-        String finalQry="";
+    //We create new objects for each statement
+    FROM frmQry = new FROM(confPar.genAlias, confPar.relationsAttrs, confPar);
+    WHERE whrQry = new WHERE(confPar.relationsAttrs, confPar);
+    SELECT selQry = new SELECT(isDistinct,false, confPar.genAlias, 2,confPar.relationsAttrs, confPar);
 
-        boolean isDistinct =false;
-        int rand = Utilities.getRandChoice( 100 );
-        if(rand <=  (int)(confPar.isDistinct * 100) )
+    String substm="";
+
+    while( (subqry--) > 0 )
+    {
+        String subName = "Q" + subqry;
+
+        String frmstm = frmQry.getFrom(++uniqID);
+        String selstm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, 0.0, false, null, false, 0);
+        String whrstm = whrQry.getSqlWhere(frmQry.getSelectedTables(), false,  confPar, confPar.maxCondWhere, frmQry.getStringAttrs());
+
+        if( (subqry ) > 0 )
         {
-            isDistinct = true;
-        }
-
-        FROM frmQry = new FROM(alias, confPar.relationsAttrs, confPar);
-        WHERE whrQry = new WHERE(confPar.relationsAttrs, confPar);
-        SELECT selQry = new SELECT(isDistinct,false, alias, 2, confPar.relationsAttrs, confPar);
-
-        String stm = frmQry.getFrom( (++uniqID) );
-
-        //In case where this is a nested query then the frmRelts list
-        //contains the binds attributes. Otherwise, we just select attributes from the from
-        if(frmRelts != null && frmRelts.size() > 0)
-        {
-            frmRelts = copySelRelts(frmRelts, frmQry.getSelectedTables());
-            tmpStm = selQry.getSelect(frmRelts, isOneAttr, false, 0.1, false, null, false, allAttr);
-            finalQry = tmpStm + "\n" + stm;
-            finalQry += "\n" + whrQry.getSqlWhere(frmRelts, isNest, confPar, confPar.maxCondWhere, frmQry.getStringAttrs());
+            substm += "\n" + " ( " +  selstm + " " + frmstm + " " + whrstm + " ) AS " + subName + ", ";
         }
         else
         {
-            tmpStm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, confPar.repAlias, false, null, false, allAttr);
-            finalQry = tmpStm + "\n" + stm;
-            finalQry += "\n" + whrQry.getSqlWhere(frmQry.getSelectedTables(),isNest,  confPar, confPar.maxCondWhere, frmQry.getStringAttrs());
+            substm += "\n" + " ( " +  selstm + " " + frmstm + " " + whrstm + " ) AS " + subName ;
         }
 
-        res.qryStr = finalQry;
-        res.isOneAt = whrQry.getOneAttr();
-        res.selRelts = frmQry.getSelectedTables();
-        res.totalAttr = whrQry.getAllAttr();
+        for(String attr: selQry.getAliasAttr())
+        {
+            Attribute newAttr = new Attribute();
+            newAttr.attrName = subName + "." + attr;
 
-        return res;
+            frmRelts.add( newAttr );
+        }
     }
 
-    public String genCompQuery(int subqry, LinkedList<Attribute> frmRelts, long uniqID, boolean isNest, boolean isOneAttr, ConfParameters confPar)
+    String from = frmQry.getFrom(++uniqID);
+    for(Attribute attr: frmQry.getSelectedTables())
     {
-
-        frmRelts.clear();
-
-        boolean isDistinct =false;
-        //The probWhr represents the probability of having
-        //constants or NULLS to the WHERE comparisons
-        int rand = Utilities.getRandChoice( 100 );
-        if(rand <=  (int)(confPar.isDistinct * 100) )
-        {
-            isDistinct = true;
-        }
-
-       //LinkedList<String> alias =  confPar.genAlias;
-
-        //We create new objects for each statement
-        FROM frmQry = new FROM(confPar.genAlias, confPar.relationsAttrs, confPar);
-        WHERE whrQry = new WHERE(confPar.relationsAttrs, confPar);
-        SELECT selQry = new SELECT(isDistinct,false, confPar.genAlias, 2,confPar.relationsAttrs, confPar);
-
-        String substm="";
-
-        while( (subqry--) > 0 )
-        {
-            String subName = "Q" + subqry;
-
-            String frmstm = frmQry.getFrom(++uniqID);
-            String selstm = selQry.getSelect(frmQry.getSelectedTables(), isOneAttr, false, 0.0, false, null, false, 0);
-            String whrstm = whrQry.getSqlWhere(frmQry.getSelectedTables(), false,  confPar, confPar.maxCondWhere, frmQry.getStringAttrs());
-
-            if( (subqry ) > 0 )
-            {
-                substm += "\n" + " ( " +  selstm + " " + frmstm + " " + whrstm + " ) AS " + subName + ", ";
-            }
-            else
-            {
-                substm += "\n" + " ( " +  selstm + " " + frmstm + " " + whrstm + " ) AS " + subName ;
-            }
-
-            for(String attr: selQry.getAliasAttr())
-            {
-                Attribute newAttr = new Attribute();
-                newAttr.attrName = subName + "." + attr;
-
-                frmRelts.add( newAttr );
-            }
-        }
-
-        String from = frmQry.getFrom(++uniqID);
-        for(Attribute attr: frmQry.getSelectedTables())
-        {
-            frmRelts.add( attr );
-        }
-
-        String stm = from + " , " + substm;
-        String tmpStm = selQry.getSelect(frmRelts, isOneAttr, false, confPar.repAlias, false, null, false, 0);
-        String finalQry = tmpStm + "\n" + stm;
-        finalQry += "\n" + whrQry.getSqlWhere(frmRelts , isNest,  confPar, 2, frmQry.getStringAttrs());
-
-        return  finalQry;
-
+        frmRelts.add( attr );
     }
 
-    public String nestQuery( long uniqID, ConfParameters confPar)
+    String stm = from + " , " + substm;
+    String tmpStm = selQry.getSelect(frmRelts, isOneAttr, false, confPar.repAlias, false, null, false, 0);
+    String finalQry = tmpStm + "\n" + stm;
+    finalQry += "\n" + whrQry.getSqlWhere(frmRelts , isNest,  confPar, 2, frmQry.getStringAttrs());
+
+    return  finalQry;
+
+}
+
+/***********************************************************************************/
+/*                             NESTED QUERY                                        */
+/***********************************************************************************/
+public String nestQuery( long uniqID, ConfParameters confPar)
+{
+    //Store the depth of the nesting query
+    int nestLev = Utilities.getRandChoice(confPar.nestLev - 1 ) + 2;
+
+    String sqlRep="";
+
+    //This list will be used to store all the attributes from the current FROM clause and from outer
+    //queries as well
+    LinkedList<Attribute> levFrmBinds = new LinkedList<>();
+
+    //It creates the first outer query
+    QRYREPRES curQuery = genQuery( levFrmBinds, ++uniqID, true, false, confPar,0);
+
+    //It stores all the attributes that are selected in the first outer query
+    levFrmBinds = copySelRelts(levFrmBinds,curQuery.selRelts);
+
+    boolean isNest = true;
+    confPar.nesting = true;
+
+    //It creates the right format
+    if(nestLev >= 2)
     {
-        //Store the depth of the nesting query
-        int nestLev = Utilities.getRandChoice(confPar.nestLev - 1 ) + 2;
+        sqlRep += curQuery.qryStr +  "(";
+    }
 
-        String sqlRep="";
-
-        //This list will be used to store all the attributes from the current FROM clause and from outer
-        //queries as well
-        LinkedList<Attribute> levFrmBinds = new LinkedList<>();
-
-        //It creates the first outer query
-        QRYREPRES curQuery = genQuery( levFrmBinds, ++uniqID, true, false, confPar,0);
-
-        //It stores all the attributes that are selected in the first outer query
-        levFrmBinds = copySelRelts(levFrmBinds,curQuery.selRelts);
-
-        boolean isNest = true;
-        confPar.nesting = true;
+    //This loop will be used to create the appropriate nesting which can be specify as
+    //input parameter to the method nestQuery. In each nesting which store the binds attributes
+    //and as key we store the nesting level
+    for(int curLev=1; curLev < nestLev +1; curLev++)
+    {
+        if( curLev == nestLev )
+        {
+            isNest = false;
+        }
 
         //It creates the right format
-        if(nestLev >= 2)
-        {
-            sqlRep += curQuery.qryStr +  "(";
-        }
+        sqlRep += " (";
 
-        //This loop will be used to create the appropriate nesting which can be specify as
-        //input parameter to the method nestQuery. In each nesting which store the binds attributes
-        //and as key we store the nesting level
-        for(int curLev=1; curLev < nestLev +1; curLev++)
-        {
-            if( curLev == nestLev )
-            {
-                isNest = false;
-            }
+        //It creates the inner queries
+        curQuery =  genQuery( levFrmBinds, ++uniqID, isNest, curQuery.isOneAt, confPar, curQuery.totalAttr);
 
-            //It creates the right format
-            sqlRep += " (";
+        //It creates the right format
+        sqlRep +="\n\t" + curQuery.qryStr;
 
-            //It creates the inner queries
-            curQuery =  genQuery( levFrmBinds, ++uniqID, isNest, curQuery.isOneAt, confPar, curQuery.totalAttr);
-
-            //It creates the right format
-            sqlRep +="\n\t" + curQuery.qryStr;
-
-            //We retrieve all the attributes that are selected in the FROM clause
-            //from the outer sql. Thus, we store the binds attributes
-            levFrmBinds = copySelRelts(levFrmBinds,curQuery.selRelts);
-        }
-
-        for(int i=0; i< nestLev +1; i++)
-        {
-            sqlRep += ")";
-        }
-
-        confPar.nesting=false;
-
-        return sqlRep;
+        //We retrieve all the attributes that are selected in the FROM clause
+        //from the outer sql. Thus, we store the binds attributes
+        levFrmBinds = copySelRelts(levFrmBinds,curQuery.selRelts);
     }
 
-    public String operQuery(long uniqID, ConfParameters confPar)
+    for(int i=0; i< nestLev +1; i++)
     {
-        SETOPERATORS opert = new SETOPERATORS(confPar);
-
-        String stm="";
-        QRYREPRES res=null;
-
-        String outterQry;
-        SQLQUERY newSQL = new SQLQUERY();
-
-        res = newSQL.genQuery(null,uniqID, false, false, confPar, 0);
-        outterQry = res.qryStr;
-
-        stm +=outterQry + "\n " + opert.getOper(null) + "\n";
-
-        res = newSQL.genQuery(null,uniqID, false, false, confPar, 0);
-        outterQry = res.qryStr;
-        stm += outterQry;
-
-        return stm;
+        sqlRep += ")";
     }
 
-    public LinkedList<Attribute> copySelRelts(LinkedList<Attribute> curSelRels, LinkedList<Attribute> newRelts)
+    confPar.nesting=false;
+
+    return sqlRep;
+}
+
+public String operQuery(long uniqID, ConfParameters confPar)
+{
+    SETOPERATORS opert = new SETOPERATORS(confPar);
+
+    String stm="";
+    QRYREPRES res=null;
+
+    String outterQry;
+    SQLQUERY newSQL = new SQLQUERY();
+
+    res = newSQL.genQuery(null,uniqID, false, false, confPar, 0);
+    outterQry = res.qryStr;
+
+    stm +=outterQry + "\n " + opert.getOper(null) + "\n";
+
+    res = newSQL.genQuery(null,uniqID, false, false, confPar, 0);
+    outterQry = res.qryStr;
+    stm += outterQry;
+
+    return stm;
+}
+
+public LinkedList<Attribute> copySelRelts(LinkedList<Attribute> curSelRels, LinkedList<Attribute> newRelts)
+{
+    for(Attribute newAttr: newRelts)
     {
-        for(Attribute newAttr: newRelts)
-        {
-            curSelRels.add(newAttr);
-        }
-
-        return  curSelRels;
+        curSelRels.add(newAttr);
     }
+
+    return  curSelRels;
+}
 
 
 }

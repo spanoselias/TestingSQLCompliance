@@ -14,6 +14,9 @@ package Engine;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+/***********************************************************************************/
+/*                                     GROUP BY CLASS                              */
+/***********************************************************************************/
 public  class GROUPBY
 {
     private String stm;
@@ -36,57 +39,55 @@ public  class GROUPBY
         stm = "GROUP BY ";
     }
 
-    public String getGroupBy(LinkedList<Attribute> frmRelts)
+/***********************************************************************************/
+/*                         GENERATES GROUP BY CLAUSE                               */
+/***********************************************************************************/
+public String getGroupBy(LinkedList<Attribute> frmRelts)
+{
+
+    //It is used for string format purpose
+    boolean isOut = false;
+
+    int j=0;
+
+    for (Attribute relName : frmRelts)
     {
-
-        /*LinkedList<Attribute> newfrmRelts = new LinkedList<>();
-        newfrmRelts.addAll(frmRelts);
-
-        if(confPar.allStringAttrs.size() > 0)
+        if( this.confPar.maxAttrGrpBy == j)
         {
-            newfrmRelts.addAll(confPar.allStringAttrs);
-        }*/
-
-        //It is used for string format purpose
-        boolean isOut = false;
-
-        int j=0;
-
-        for (Attribute relName : frmRelts)
-        {
-            if( this.confPar.maxAttrGrpBy == j)
-            {
-                break;
-            }
-
-            //We store all the attributes that are chosen in the
-            //GROUP BY clause because we can only project these attributes in
-            //the SELECT clause
-            groubyAttr.add(relName);
-
-            //This check is just for formatting reasons
-            if (isOut == false)
-            {
-                stm += String.format("%s", relName.attrName);
-                isOut = true;
-            }
-
-            else
-            {
-                stm += String.format(", %s", relName.attrName);
-            }
-
-            j++;
+            break;
         }
 
-        return stm;
+        //We store all the attributes that are chosen in the
+        //GROUP BY clause because we can only project these attributes in
+        //the SELECT clause
+        groubyAttr.add(relName);
+
+        //This check is just for formatting reasons
+        if (isOut == false)
+        {
+            stm += String.format("%s", relName.attrName);
+            isOut = true;
+        }
+
+        else
+        {
+            stm += String.format(", %s", relName.attrName);
+        }
+
+        j++;
     }
 
-    //This methods is used to retrieve the attributes which are selected
-    //in the GROUPBY clause
-    public LinkedList<Attribute> getAttrInGroup()
-    {
-        return this.groubyAttr;
-    }
+    return stm;
+}
+
+/***********************************************************************************/
+/*                       RETRIEVES THE ATTRIBUTES OF GROUP BY                      */
+/***********************************************************************************/
+public LinkedList<Attribute> getAttrInGroup()
+{
+//This methods is used to retrieve the attributes which are selected
+//in the GROUPBY clause
+    return this.groubyAttr;
+}
 
 }

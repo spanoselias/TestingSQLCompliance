@@ -15,6 +15,10 @@ package Engine;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+
+/***********************************************************************************/
+/*                           ConfParameters class                                  */
+/***********************************************************************************/
 public class ConfParameters
 {
     //Indicates the max number of tables that can exist in a From clause

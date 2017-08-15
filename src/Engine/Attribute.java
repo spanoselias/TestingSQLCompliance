@@ -9,7 +9,9 @@
 package Engine;
 
 
-//This class is used to track both type and relation name
+/***********************************************************************************/
+/*                        Attribute type class                                     */
+/***********************************************************************************/
 public class Attribute
 {
    public String attrName = "";

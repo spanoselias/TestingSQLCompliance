@@ -1,8 +1,12 @@
 package ComparisonTool;
 
-/**
- * Created by Elias on 7/28/2017.
- */
+/***********************************************************************************/
+/*                                                                                 */
+/*Name: Elias Spanos                                                               */
+/*Date: 5/07/2017                                                                  */
+/*Filename: ConfComparison.java                                                    */
+/*                                                                                 */
+/***********************************************************************************/
 public class ConfComparison
 {
 

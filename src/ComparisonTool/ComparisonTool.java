@@ -25,547 +25,495 @@ public class ComparisonTool
         confSettings = readComprConfig();
     }
 
-    public ConfComparison readComprConfig()
+/***********************************************************************************/
+/*                           DBMSs Configuration properties                        */
+/***********************************************************************************/
+public ConfComparison readComprConfig()
+{
+    Properties prop = new Properties();
+    InputStream input = null;
+
+    ConfComparison conComp= new ConfComparison();
+
+    try
     {
-        Properties prop = new Properties();
-        InputStream input = null;
+        input = new FileInputStream("comparisonTool.properties");
 
-        ConfComparison conComp= new ConfComparison();
+        // load a properties file
+        prop.load(input);
 
-        try
-        {
-            input = new FileInputStream("comparisonTool.properties");
+        conComp.MySQLUser = String.valueOf( prop.getProperty( "MySQLUser" ) );
+        conComp.MySQLPass = String.valueOf( prop.getProperty( "MySQLPass" ) );
+        conComp.MySQLDB = String.valueOf( prop.getProperty( "MySQLDB" ) );
 
-            // load a properties file
-            prop.load(input);
+        conComp.DB2User = String.valueOf( prop.getProperty( "DB2User" ) );
+        conComp.DB2Pass = String.valueOf( prop.getProperty( "DB2Pass" ) );
+        conComp.DB2DB = String.valueOf( prop.getProperty( "DB2DB" ) );
 
-            conComp.MySQLUser = String.valueOf( prop.getProperty( "MySQLUser" ) );
-            conComp.MySQLPass = String.valueOf( prop.getProperty( "MySQLPass" ) );
-            conComp.MySQLDB = String.valueOf( prop.getProperty( "MySQLDB" ) );
+        conComp.MicrosoftSqlUser = String.valueOf( prop.getProperty( "MicrosoftSqlUser" ) );
+        conComp.MicrosoftSqlPass = String.valueOf( prop.getProperty( "MicrosoftSqlPass" ) );
+        conComp.MicrosoftSqlDB = String.valueOf( prop.getProperty( "MicrosoftSqlDB" ) );
 
-            conComp.DB2User = String.valueOf( prop.getProperty( "DB2User" ) );
-            conComp.DB2Pass = String.valueOf( prop.getProperty( "DB2Pass" ) );
-            conComp.DB2DB = String.valueOf( prop.getProperty( "DB2DB" ) );
+        conComp.PostgreUser = String.valueOf( prop.getProperty( "PostgreUser" ) );
+        conComp.PostgrePass = String.valueOf( prop.getProperty( "PostgrePass" ) );
+        conComp.PostgreDB = String.valueOf( prop.getProperty( "PostgreDB" ) );
 
-            conComp.MicrosoftSqlUser = String.valueOf( prop.getProperty( "MicrosoftSqlUser" ) );
-            conComp.MicrosoftSqlPass = String.valueOf( prop.getProperty( "MicrosoftSqlPass" ) );
-            conComp.MicrosoftSqlDB = String.valueOf( prop.getProperty( "MicrosoftSqlDB" ) );
+        conComp.OracleUser = String.valueOf( prop.getProperty( "OracleUser" ) );
+        conComp.OraclePass = String.valueOf( prop.getProperty( "OraclePass" ) );
+        conComp.OracleDB = String.valueOf( prop.getProperty( "OracleDB" ) );
 
-            conComp.PostgreUser = String.valueOf( prop.getProperty( "PostgreUser" ) );
-            conComp.PostgrePass = String.valueOf( prop.getProperty( "PostgrePass" ) );
-            conComp.PostgreDB = String.valueOf( prop.getProperty( "PostgreDB" ) );
-
-            conComp.OracleUser = String.valueOf( prop.getProperty( "OracleUser" ) );
-            conComp.OraclePass = String.valueOf( prop.getProperty( "OraclePass" ) );
-            conComp.OracleDB = String.valueOf( prop.getProperty( "OracleDB" ) );
-
-        }
-        catch (IOException ex)
-        {
-            ex.printStackTrace();
-        }
-        finally
-        {
-            if (input != null)
-            {
-                try
-                {
-                    input.close();
-                }
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-
-            return conComp;
-        }
     }
-
-    public ResInfo connectToMySql(String sqlQuery)
+    catch (IOException ex)
     {
-
-        ResInfo info = new ResInfo();
-        try
-            {
-                Class.forName("com.mysql.jdbc.Driver");
-            } catch (ClassNotFoundException e)
-            {
-                 e.printStackTrace();
-            }
-
-          //  System.out.println("MySQL JDBC Driver Registered!");
-            Connection conn = null;
+        ex.printStackTrace();
+    }
+    finally
+    {
+        if (input != null)
+        {
             try
             {
-                conn = DriverManager
-                        .getConnection("jdbc:mysql://localhost:3306/" + confSettings.MySQLDB, confSettings.MySQLUser, confSettings.MySQLPass);
-
+                input.close();
             }
-            catch (SQLException e)
+            catch (IOException e)
             {
-                System.out.println("Connection Failed! Check output console");
                 e.printStackTrace();
-
-            }
-            finally
-            {
-                LinkedList<String> mySqlList = execQuery(conn, sqlQuery, info);
-              //System.out.println("MySQlResSize: " + mySqlList.size());
-
-                return info;
             }
         }
 
-    public ResInfo connectToPostgres(String sqlQuery)
-    {
+        return conComp;
+    }
+}
 
-        ResInfo info = new ResInfo();
 
+/***********************************************************************************/
+/*                           MySQL connection properties                           */
+/***********************************************************************************/
+public ResInfo connectToMySql(String sqlQuery)
+{
+
+    ResInfo info = new ResInfo();
+    try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e)
+        {
+             e.printStackTrace();
+        }
+
+        Connection conn = null;
         try
         {
-            Class.forName("org.postgresql.Driver");
-        }
-        catch (ClassNotFoundException e)
-        {
-
-            System.out.println("Where is your PostgreSQL JDBC Driver? "
-                    + "Include in your library path!");
-            e.printStackTrace();
-            //return;
-        }
-
-        System.out.println("PostgreSQL JDBC Driver Registered!");
-
-        Connection connection = null;
-
-        try
-        {
-
-            connection = DriverManager.getConnection(
-                    "jdbc:postgresql://127.0.0.1:5432/" + confSettings.PostgreDB, confSettings.PostgreUser,
-                    confSettings.PostgrePass);
-
-
+            conn = DriverManager
+                    .getConnection("jdbc:mysql://localhost:3306/" + confSettings.MySQLDB, confSettings.MySQLUser, confSettings.MySQLPass);
 
         }
         catch (SQLException e)
         {
-
             System.out.println("Connection Failed! Check output console");
             e.printStackTrace();
 
         }
         finally
         {
-            LinkedList<String> mySqlList = execQuery(connection, sqlQuery, info);
-            //System.out.println("MySQlResSize: " + mySqlList.size());
+            LinkedList<String> mySqlList = execQuery(conn, sqlQuery, info);
+          //System.out.println("MySQlResSize: " + mySqlList.size());
 
             return info;
         }
-
-      /*  if (connection != null)
-        {
-            System.out.println("You made it, take control your database now!");
-        }
-        else
-        {
-            System.out.println("Failed to make connection!");
-        }*/
-
     }
 
-    public  void connectToIBMDb2()
+/***********************************************************************************/
+/*                           PostgreSQL connection properties                      */
+/***********************************************************************************/
+public ResInfo connectToPostgres(String sqlQuery)
+{
+
+    ResInfo info = new ResInfo();
+
+    try
+    {
+        Class.forName("org.postgresql.Driver");
+    }
+    catch (ClassNotFoundException e)
     {
 
-        String jdbcClassName = "com.ibm.db2.jcc.DB2Driver";
-
-        String url = "jdbc:db2://localhost:50000/testdb";
-        String user = "elias881";
-        String password = "testing1";
-
-        Connection conn = null;
-        try
-        {
-            //Load class into memory
-            Class.forName("com.ibm.db2.jcc.DB2Driver");
-            //Establish connection
-            conn = DriverManager.getConnection(url, user, password);
-            conn.setAutoCommit(false);
-
-        } catch (ClassNotFoundException e)
-        {
-            e.printStackTrace();
-        } catch (SQLException e)
-        {
-            e.printStackTrace();
-        } finally
-        {
-          /*  if (conn != null)
-            {
-                System.out.println("IDB DB2 Connected successfully.");
-                try
-                {
-                   // conn.close();
-                } catch (SQLException e)
-                {
-                    e.printStackTrace();
-                }
-            }*/
-        }
-
-        String schemaName = "ELIAS";
-        try
-        {
-
-            ResultSet rs;
-
-            // create the java statement
-            Statement st = conn.createStatement();
-
-
-            st.executeUpdate("set current sqlid = " + schemaName);
-
-            // execute the query, and get a java resultset
-           // rs = st.executeQuery("SELECT A FROM r1");
-
-           // rs = st.executeQuery(" SELECT  NAME FROM  SYSIBM.SYSTABLES WHERE creator = 'ELIAS'");
-            rs = st.executeQuery(" SELECT  A FROM  r1");
-
-          //  DatabaseMetaData md = conn.getMetaData();
-           // ResultSet rs = md.getTables(null, null, "R1", null);
-
-
-
-
-
-       /*     ResultSetMetaData rsmd = rs.getMetaData();
-            int columnCount = rsmd.getColumnCount();
-
-            System.out.println("**********************************************");
-
-            String newRow="";
-            while (rs.next())
-            {
-                newRow = "";
-
-                // The column count starts from 1
-                for (int i = 1; i <= columnCount; i++ )
-                {
-                    String col = rsmd.getColumnLabel(i);
-
-                    if(i != columnCount)
-                    {
-                        newRow += rs.getInt(col) + " , ";
-                        //  System.out.print(rs.getInt(col) + " , ");
-                    }
-                    else
-                    {
-                        newRow += rs.getInt(col) + " , ";
-                        //System.out.print(rs.getInt(col));
-                    }
-
-                }
-
-
-                //tableRes.forEach(System.out::println);
-                //   System.out.println(tableRes.size());
-            }*/
-
-            while (rs.next())
-            {               // Position the cursor
-
-                System.out.println(rs.getString("A"));
-                //  empNo = rs.getString(1);             // Retrieve only the first column value
-                //System.out.println("Employee number = " + empNo);
-                // Print the column value
-            }
-            rs.close();                       // Close the ResultSet
-            st.close();                     // Close the Statement
-
-        } catch (SQLException ex)
-        {
-            ex.printStackTrace();
-        } finally
-        {
-            try {
-                if (conn != null && !conn.isClosed()) {
-                 //   conn.close();
-                }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-        }
+        System.out.println("Where is your PostgreSQL JDBC Driver? "
+                + "Include in your library path!");
+        e.printStackTrace();
+        //return;
     }
 
-    public ResInfo connectToOracle(String sqlQuery )
+    System.out.println("PostgreSQL JDBC Driver Registered!");
+
+    Connection connection = null;
+
+    try
     {
-            ResInfo info = new ResInfo();
 
-            LinkedList<String> mySqlList=null;
+        connection = DriverManager.getConnection(
+                "jdbc:postgresql://127.0.0.1:5432/" + confSettings.PostgreDB, confSettings.PostgreUser,
+                confSettings.PostgrePass);
 
-            System.out.println("-------- Oracle JDBC Connection Testing ------");
+    }
+    catch (SQLException e)
+    {
 
-            try
-            {
+        System.out.println("Connection Failed! Check output console");
+        e.printStackTrace();
 
-                Class.forName("oracle.jdbc.driver.OracleDriver");
-
-            }
-            catch (ClassNotFoundException e)
-            {
-
-                info.res = false;
-                info.msg = e.toString();
-
-                e.printStackTrace();
-            //    return;
-
-            }
-
-            System.out.println("Oracle JDBC Driver Registered!");
-
-            Connection connection = null;
-
-            try
-            {
-
-               /* connection = DriverManager.getConnection(
-                        "jdbc:oracle:thin:@localhost:1521:" + confSettings.OracleDB +","+  confSettings.OracleUser  +","+ confSettings.OraclePass) ;*/
-
-                connection = DriverManager.getConnection(
-                        "jdbc:oracle:thin:@localhost:1521:orcl", "elias881", "testing1");
-
-
-            } catch (SQLException e)
-            {
-
-                info.res = false;
-                info.msg = e.toString();
-
-                System.out.println("Connection Failed! Check output console");
-                e.printStackTrace();
-               // return;
-            }
-
-            if (connection != null)
-            {
-                System.out.println("You made it, take control your database now!");
-            } else
-            {
-                System.out.println("Failed to make connection!");
-            }
-
-            //Oracle does not support 'AS' in the FROM STATEMENT
-           sqlQuery =  sqlQuery.replace("AS", " ");
-
-            mySqlList = execQuery(connection, sqlQuery, info);
-            info.mySqlList = mySqlList;
+    }
+    finally
+    {
+        LinkedList<String> mySqlList = execQuery(connection, sqlQuery, info);
+        //System.out.println("MySQlResSize: " + mySqlList.size());
 
         return info;
     }
+}
 
-    public ResInfo connectToMicrosoftSql(String sqlQuery)
+/***********************************************************************************/
+/*                          IBMDB2 connection properties                           */
+/***********************************************************************************/
+public ResInfo connectToIBMDb2(String sqlQry)
+{
+
+    ResInfo info = new ResInfo();
+
+    String jdbcClassName = "com.ibm.db2.jcc.DB2Driver";
+
+    String url = "jdbc:db2://localhost:50000/" + confSettings.DB2DB;
+    String user = confSettings.DB2User;
+    String password = confSettings.DB2Pass;
+
+    Connection conn = null;
+    try
     {
-        ResInfo info = new ResInfo();
+        //Load class into memory
+        Class.forName("com.ibm.db2.jcc.DB2Driver");
+        //Establish connection
+        conn = DriverManager.getConnection(url, user, password);
+        conn.setAutoCommit(false);
 
-        Connection conn = null;
-        LinkedList<String> mySqlList=null;
-        try
+    }
+    catch (ClassNotFoundException e)
+    {
+        e.printStackTrace();
+    }
+    catch (SQLException e)
+    {
+        e.printStackTrace();
+    }
+    finally
+    {
+
+    }
+
+    String schemaName = "ELIAS";
+
+    LinkedList<String> tableRes= new LinkedList<>();
+    info.res = true;
+
+    try
+    {
+        DatabaseMetaData md = conn.getMetaData();
+        ResultSet rs ;
+
+        // create the java statement
+        Statement st = conn.createStatement();
+
+        st.executeUpdate("set current sqlid = " + schemaName);
+
+        // execute the query, and get a java resultset
+        rs = st.executeQuery(sqlQry);
+
+        ResultSetMetaData rsmd = rs.getMetaData();
+        int columnCount = rsmd.getColumnCount();
+
+        //  System.out.println("**********************************************");
+
+        String newRow="";
+
+        while (rs.next())
         {
-            String dbURL = "jdbc:sqlserver://localhost; databaseName=teststr";
+            newRow = "";
 
-            String user = "elias881";
-            String pass = "testing1@";
-            conn = DriverManager.getConnection(dbURL, user, pass);
-            // conn = DriverManager.getConnection(dbURL);
-
-            mySqlList = execQuery(conn, sqlQuery, info);
-            //System.out.println("MS Server: " + mySqlList.size());
-
-        } catch (SQLException ex)
-        {
-            ex.printStackTrace();
-        } finally
-        {
-            try
+            // The column count starts
+            for (int i = 1; i <= columnCount; i++ )
             {
-                if (conn != null && !conn.isClosed())
+                String col = rsmd.getColumnLabel(i);
+
+                if(i == columnCount-1)
                 {
-                    conn.close();
+                    // newRow += String.valueOf(rs.getString(col)).trim().split(".")[0] + ",";
+                    newRow += String.valueOf(rs.getString(col)).trim() + ",";
                 }
-            } catch (SQLException ex)
-            {
-                ex.printStackTrace();
+                else
+                {
+                    //newRow += String.valueOf(rs.getString(col)).trim().split(".")[0] + ",";
+                    newRow += String.valueOf(rs.getString(col)).trim() + ",";
+                }
             }
+
+            tableRes.add(newRow);
         }
 
-        return info;
+        Collections.sort(tableRes);
     }
-
-    public static void genCsv( String row)
+    catch (SQLException ex)
     {
+        info.res = false;
+        info.msg  = ex.toString();
 
-        BufferedWriter bw = null;
-        FileWriter fw = null;
-        String path = "C:\\Users\\Elias\\Documents\\TestingSQLCompliance\\src\\";
-
-        String filename = path + "1.csv";
-
-            try
-            {
-                fw = new FileWriter(filename, true);
-                bw = new BufferedWriter(fw);
-                bw.write(row);
-                bw.write("\n");
-
-            } catch (IOException e)
-            {
-                e.printStackTrace();
-
-            }
-            finally
-            {
-                try
-                {
-
-                    if (bw != null)
-                        bw.close();
-
-                    if (fw != null)
-                        fw.close();
-
-                } catch (IOException ex)
-                {
-
-                    ex.printStackTrace();
-
-                }
-
-            }
-    }
-
-    public LinkedList<String> execQuery(Connection conn, String sqlQry, ResInfo info)
+        ex.printStackTrace();
+        return null;
+    } finally
     {
-        LinkedList<String> tableRes= new LinkedList<>();
-        info.res = true;
-
         try
         {
-            DatabaseMetaData md = conn.getMetaData();
-            ResultSet rs ;
-
-            // create the java statement
-            Statement st = conn.createStatement();
-
-            // execute the query, and get a java resultset
-            rs = st.executeQuery(sqlQry);
-
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int columnCount = rsmd.getColumnCount();
-
-          //  System.out.println("**********************************************");
-
-            String newRow="";
-
-            while (rs.next())
+            if (conn != null && !conn.isClosed())
             {
-                newRow = "";
-
-                // The column count starts
-                for (int i = 1; i <= columnCount; i++ )
-                {
-                    String col = rsmd.getColumnLabel(i);
-
-                    if(i == columnCount-1)
-                    {
-                       // newRow += String.valueOf(rs.getString(col)).trim().split(".")[0] + ",";
-                        newRow += String.valueOf(rs.getString(col)).trim() + ",";
-                    }
-                    else
-                    {
-                        //newRow += String.valueOf(rs.getString(col)).trim().split(".")[0] + ",";
-                        newRow += String.valueOf(rs.getString(col)).trim() + ",";
-                    }
-                }
-
-                tableRes.add(newRow);
+                // conn.close();
             }
-
-            Collections.sort(tableRes);
         }
         catch (SQLException ex)
         {
-            info.res = false;
-            info.msg  = ex.toString();
-
             ex.printStackTrace();
-            return null;
-        } finally
+        }
+
+        info.mySqlList = tableRes;
+
+        return info;
+    }
+
+}
+
+/***********************************************************************************/
+/*                          Oracle connection properties                           */
+/***********************************************************************************/
+public ResInfo connectToOracle(String sqlQuery )
+{
+        ResInfo info = new ResInfo();
+
+        LinkedList<String> mySqlList=null;
+
+        System.out.println("-------- Oracle JDBC Connection Testing ------");
+
+        try
         {
-            try
-            {
-                if (conn != null && !conn.isClosed())
-                {
-                   // conn.close();
-                }
-            }
-            catch (SQLException ex)
-            {
-                ex.printStackTrace();
-            }
 
-            info.mySqlList = tableRes;
+            Class.forName("oracle.jdbc.driver.OracleDriver");
 
-            return tableRes;
+        }
+        catch (ClassNotFoundException e)
+        {
+
+            info.res = false;
+            info.msg = e.toString();
+
+            e.printStackTrace();
+        //    return;
+
+        }
+
+        System.out.println("Oracle JDBC Driver Registered!");
+
+        Connection connection = null;
+
+        try
+        {
+
+           /* connection = DriverManager.getConnection(
+                    "jdbc:oracle:thin:@localhost:1521:" + confSettings.OracleDB +","+  confSettings.OracleUser  +","+ confSettings.OraclePass) ;*/
+
+            connection = DriverManager.getConnection(
+                    "jdbc:oracle:thin:@localhost:1521:orcl", "elias881", "testing1");
+
+
+        } catch (SQLException e)
+        {
+
+            info.res = false;
+            info.msg = e.toString();
+
+            System.out.println("Connection Failed! Check output console");
+            e.printStackTrace();
+           // return;
+        }
+
+        if (connection != null)
+        {
+            System.out.println("You made it, take control your database now!");
+        } else
+        {
+            System.out.println("Failed to make connection!");
+        }
+
+        //Oracle does not support 'AS' in the FROM STATEMENT
+       sqlQuery =  sqlQuery.replace("AS", " ");
+
+        mySqlList = execQuery(connection, sqlQuery, info);
+        info.mySqlList = mySqlList;
+
+    return info;
+}
+
+/***********************************************************************************/
+/*                  Microsoft SQL Server connection properties                     */
+/***********************************************************************************/
+public ResInfo connectToMicrosoftSql(String sqlQuery)
+{
+    ResInfo info = new ResInfo();
+
+    Connection conn = null;
+    LinkedList<String> mySqlList=null;
+    try
+    {
+        String dbURL = "jdbc:sqlserver://localhost; databaseName=teststr";
+
+        String user = "elias881";
+        String pass = "testing1@";
+        conn = DriverManager.getConnection(dbURL, user, pass);
+        // conn = DriverManager.getConnection(dbURL);
+
+        mySqlList = execQuery(conn, sqlQuery, info);
+        //System.out.println("MS Server: " + mySqlList.size());
+
+    } catch (SQLException ex)
+    {
+        ex.printStackTrace();
+    } finally
+    {
+        try
+        {
+            if (conn != null && !conn.isClosed())
+            {
+                conn.close();
+            }
+        } catch (SQLException ex)
+        {
+            ex.printStackTrace();
         }
     }
 
-    public boolean diff(LinkedList<String> MSServer, LinkedList<String> MySQL, LinkedList<String> OracleDB, LinkedList<String> PostGres )
+    return info;
+}
+
+/***********************************************************************************/
+/*                            Query Execution                                      */
+/***********************************************************************************/
+
+public LinkedList<String> execQuery(Connection conn, String sqlQry, ResInfo info)
+{
+    LinkedList<String> tableRes= new LinkedList<>();
+    info.res = true;
+
+    try
     {
+        DatabaseMetaData md = conn.getMetaData();
+        ResultSet rs ;
 
-        System.out.print("\n**************************\n");
-        System.out.print("DIff: " + MSServer.size());
-        System.out.print("\n**************************\n");
+        // create the java statement
+        Statement st = conn.createStatement();
 
-        if(MSServer.size() != MySQL.size() || MSServer.size() != PostGres.size() || MSServer.size() != OracleDB.size())
+        // execute the query, and get a java resultset
+        rs = st.executeQuery(sqlQry);
+
+        ResultSetMetaData rsmd = rs.getMetaData();
+        int columnCount = rsmd.getColumnCount();
+
+      //  System.out.println("**********************************************");
+
+        String newRow="";
+
+        while (rs.next())
+        {
+            newRow = "";
+
+            // The column count starts
+            for (int i = 1; i <= columnCount; i++ )
+            {
+                String col = rsmd.getColumnLabel(i);
+
+                if(i == columnCount-1)
+                {
+                   // newRow += String.valueOf(rs.getString(col)).trim().split(".")[0] + ",";
+                    newRow += String.valueOf(rs.getString(col)).trim() + ",";
+                }
+                else
+                {
+                    //newRow += String.valueOf(rs.getString(col)).trim().split(".")[0] + ",";
+                    newRow += String.valueOf(rs.getString(col)).trim() + ",";
+                }
+            }
+
+            tableRes.add(newRow);
+        }
+
+        Collections.sort(tableRes);
+    }
+    catch (SQLException ex)
+    {
+        info.res = false;
+        info.msg  = ex.toString();
+
+        ex.printStackTrace();
+        return null;
+    } finally
+    {
+        try
+        {
+            if (conn != null && !conn.isClosed())
+            {
+               // conn.close();
+            }
+        }
+        catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+
+        info.mySqlList = tableRes;
+
+        return tableRes;
+    }
+}
+
+/***********************************************************************************/
+/*                           Results Comparison                                     */
+/***********************************************************************************/
+public boolean diff(LinkedList<String> MSServer, LinkedList<String> MySQL, LinkedList<String> OracleDB, LinkedList<String> PostGres, LinkedList<String> IBMDB2 )
+{
+
+    if(MSServer.size() != MySQL.size() || MSServer.size() != PostGres.size() || MSServer.size() != OracleDB.size() || MSServer.size() != IBMDB2.size() )
+    {
+        return false;
+    }
+
+    for(int i=0; i < MSServer.size(); i++)
+    {
+        if( MSServer.get(i).compareTo(MySQL.get(i)) != 0)
+        {
+            return false;
+        }
+        if( MSServer.get(i).compareTo(PostGres.get(i))!= 0 )
+        {
+            return false;
+
+        }
+        if( MSServer.get(i).compareTo(OracleDB.get(i))!= 0 )
         {
             return false;
         }
 
-        for(int i=0; i < MSServer.size(); i++)
+        if( MSServer.get(i).compareTo(IBMDB2.get(i))!= 0 )
         {
-            if( MSServer.get(i).compareTo(MySQL.get(i)) != 0)
-            {
-                return false;
-            }
-            if( MSServer.get(i).compareTo(PostGres.get(i))!= 0 )
-            {
-                return false;
-
-            }
-            if( MSServer.get(i).compareTo(OracleDB.get(i))!= 0 )
-            {
-                return false;
-            }
+            return false;
         }
-
-        return true;
     }
 
-    public void runAllDBMS( String sqlquery)
-    {
-        System.out.println("*****************");
-        connectToMySql(sqlquery);
-        /*System.out.println("*****************");
-        connectToPostgres();
-        System.out.println("*****************");
-        connectToIBMDb2();
-        System.out.println("*****************");*/
-        connectToMicrosoftSql(sqlquery);
-        System.out.println("*****************");
-    }
-
-    }
+    return true;
+}
+}
 
 

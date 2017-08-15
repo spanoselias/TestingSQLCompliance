@@ -8,13 +8,15 @@
 
 package Engine;
 
-
 /***********************************************************************************/
 /*                                     LIBRARIES                                   */
 /***********************************************************************************/
 import java.util.HashMap;
 import java.util.LinkedList;
 
+/***********************************************************************************/
+/*                          AGGREGATION FUNCTIONS CLASS                            */
+/***********************************************************************************/
 public class FUNCTIONS
 {
         private LinkedList<String> aggrFunctions;
@@ -53,121 +55,128 @@ public class FUNCTIONS
             this.arithCompr.add("%");
         }
 
-        public String getAttrComparison( LinkedList<Attribute> selAttrsIn)
-        {
-            String stm="";
+/***********************************************************************************/
+/*                              GENERATES COMPARISONS                              */
+/***********************************************************************************/
+public String getAttrComparison( LinkedList<Attribute> selAttrsIn)
+{
+    String stm="";
 
-            this.selAttrs = selAttrsIn;
+    this.selAttrs = selAttrsIn;
 
-            Attribute attr = selAttrsIn.get(Utilities.getRandChoice(selAttrsIn.size()));
+    Attribute attr = selAttrsIn.get(Utilities.getRandChoice(selAttrsIn.size()));
 
-            int switchPick = Utilities.getRandChoice(3);
-            String curFun1 =  aggrFunctions.get(Utilities.getRandChoice(aggrFunctions.size()));
-            String curFun2 = "";
-            String oper = comprOper.get(Utilities.getRandChoice(comprOper.size()));
+    int switchPick = Utilities.getRandChoice(3);
+    String curFun1 =  aggrFunctions.get(Utilities.getRandChoice(aggrFunctions.size()));
+    String curFun2 = "";
+    String oper = comprOper.get(Utilities.getRandChoice(comprOper.size()));
 
-            switch(switchPick)
+    switch(switchPick)
+    {
+        //Function with constant comparison
+        case 0:
+            String con = String.valueOf(Utilities.getRandChoice(10000));
+            stm = curFun1 + "(" + attr.attrName + ")" + " " + oper + " " + con;
+        break;
+
+        //Function with function comparison
+        case 1:
+            int counter =0;
+            //We trying to avoid comparing the same functions
+            do
             {
-                //Function with constant comparison
-                case 0:
-                    String con = String.valueOf(Utilities.getRandChoice(10000));
-                    stm = curFun1 + "(" + attr.attrName + ")" + " " + oper + " " + con;
-                break;
+                counter ++;
+                curFun2 =aggrFunctions.get(Utilities.getRandChoice(aggrFunctions.size()));
+            }while(curFun2 == curFun1 && counter < 10000);
 
-                //Function with function comparison
-                case 1:
-                    int counter =0;
-                    //We trying to avoid comparing the same functions
-                    do
-                    {
-                        counter ++;
-                        curFun2 =aggrFunctions.get(Utilities.getRandChoice(aggrFunctions.size()));
-                    }while(curFun2 == curFun1 && counter < 10000);
-
-                    counter =0;
-                    Attribute attr2 ;
-                    //We trying to avoid comparing the same functions
-                    do
-                    {
-                        counter ++;
-                        attr2 = selAttrsIn.get(Utilities.getRandChoice(selAttrsIn.size()));
-                    }while(attr.attrName == attr2.attrName && counter < 10000);
-
-                    stm = curFun1 + "(" + attr.attrName + ")" + " " + oper + " " + curFun2 + "(" + attr2.attrName + ")";
-                break;
-
-                case 2:
-                    String constant = String.valueOf(Utilities.getRandChoice(10000));
-                    stm = attr.attrName  + " "  + oper + " " + constant;
-                break;
-            }
-
-            return stm;
-        }
-
-        //This method is used for performing aggregation functions in the SELECT Clause based on the
-        //attributes which are selected in the GROUP BY Clause. E.g MAX(r1.a) > 100, MAX(r1.a) > AVG(r2.b).
-        public String getSelectAggr( LinkedList<Attribute> selAttrIn, LinkedList<Attribute> grpAttrIn)
-        {
-
-            String arith = arithCompr.get( Utilities.getRandChoice(arithCompr.size()) );
-
-            String stm="";
-
-            //this.selAttrs = grpAttrIn;
-
-            Attribute attr1;
-            Attribute attr2;
-
-            Attribute rel;
-            String curFun1 = "";
-            String curFun2 = "";
-
-            int pick = Utilities.getRandChoice(6);
-            switch (pick)
+            counter =0;
+            Attribute attr2 ;
+            //We trying to avoid comparing the same functions
+            do
             {
-                case 0:
-                    //"E.g MAX(r1.b)"
-                    curFun1   =  aggrFunctions.get(Utilities.getRandChoice(aggrFunctions.size()));
-                    stm = curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ")" ;
-                break;
+                counter ++;
+                attr2 = selAttrsIn.get(Utilities.getRandChoice(selAttrsIn.size()));
+            }while(attr.attrName == attr2.attrName && counter < 10000);
 
-                case 1:
-                    //"E.g MAX(r1.b) < r2.b "
-                    curFun1   =  aggrFunctions.get(Utilities.getRandChoice(aggrFunctions.size()));
-                    rel = grpAttrIn.get(Utilities.getRandChoice(grpAttrIn.size()));
-                    stm = "(" + curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + arith + " " + rel.attrName + ")";
-                break;
+            stm = curFun1 + "(" + attr.attrName + ")" + " " + oper + " " + curFun2 + "(" + attr2.attrName + ")";
+        break;
 
-                case 2:
-                    //"E.g MAX(r1.b) < AVG(r2.b)"
-                    curFun1   =  aggrFunctions.get(Utilities.getRandChoice(aggrFunctions.size()));
-                    curFun2   =  aggrFunctions.get(Utilities.getRandChoice(aggrFunctions.size()));
-                    stm = "(" +  curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + arith + " " + curFun2 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + ")";
-                break;
+        case 2:
+            String constant = String.valueOf(Utilities.getRandChoice(10000));
+            stm = attr.attrName  + " "  + oper + " " + constant;
+        break;
+    }
 
-                case 3:
-                    //"E.g MAX(r1.b) < NULL"
-                    curFun1   =  aggrFunctions.get(Utilities.getRandChoice(aggrFunctions.size()));
-                    stm = "(" +  curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + arith + " " + "NULL" + ")";
-                break;
+    return stm;
+}
 
-                case 4:
-                    //E.g MAX(r1.b) < 25"
-                    curFun1   =  aggrFunctions.get(Utilities.getRandChoice(aggrFunctions.size()));
-                    stm = "(" +  curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + arith + " " + Utilities.getRandChoice(1000) + ")";
-                break;
+/***********************************************************************************/
+/*                GENERATING AGGREGATION FUNCTIONS FOR SELECT CLAUSE               */
+/***********************************************************************************/
+public String getSelectAggr( LinkedList<Attribute> selAttrIn, LinkedList<Attribute> grpAttrIn)
+{
 
-                case 5:
-                    //E.g 25 > MAX(r1.b)"
-                    curFun1   =  aggrFunctions.get(Utilities.getRandChoice(aggrFunctions.size()));
-                    stm =  "(" + Utilities.getRandChoice(1000) + arith +   curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") )"  ;
-                break;
-            }
+//This method is used for performing aggregation functions in the SELECT Clause based on the
+//attributes which are selected in the GROUP BY Clause. E.g MAX(r1.a) > 100, MAX(r1.a) > AVG(r2.b).
 
-            return stm;
+    String arith = arithCompr.get( Utilities.getRandChoice(arithCompr.size()) );
 
-        }
+    String stm="";
+
+    //this.selAttrs = grpAttrIn;
+
+    Attribute attr1;
+    Attribute attr2;
+
+    Attribute rel;
+    String curFun1 = "";
+    String curFun2 = "";
+
+    int pick = Utilities.getRandChoice(6);
+    switch (pick)
+    {
+        case 0:
+            //"E.g MAX(r1.b)"
+            curFun1   =  aggrFunctions.get(Utilities.getRandChoice(aggrFunctions.size()));
+            stm = curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ")" ;
+        break;
+
+        case 1:
+            //"E.g MAX(r1.b) < r2.b "
+            curFun1   =  aggrFunctions.get(Utilities.getRandChoice(aggrFunctions.size()));
+            rel = grpAttrIn.get(Utilities.getRandChoice(grpAttrIn.size()));
+            stm = "(" + curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + arith + " " + rel.attrName + ")";
+        break;
+
+        case 2:
+            //"E.g MAX(r1.b) < AVG(r2.b)"
+            curFun1   =  aggrFunctions.get(Utilities.getRandChoice(aggrFunctions.size()));
+            curFun2   =  aggrFunctions.get(Utilities.getRandChoice(aggrFunctions.size()));
+            stm = "(" +  curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + arith + " " + curFun2 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + ")";
+        break;
+
+        case 3:
+            //"E.g MAX(r1.b) < NULL"
+            curFun1   =  aggrFunctions.get(Utilities.getRandChoice(aggrFunctions.size()));
+            stm = "(" +  curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + arith + " " + "NULL" + ")";
+        break;
+
+        case 4:
+            //E.g MAX(r1.b) < 25"
+            curFun1   =  aggrFunctions.get(Utilities.getRandChoice(aggrFunctions.size()));
+            stm = "(" +  curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") " + arith + " " + Utilities.getRandChoice(1000) + ")";
+        break;
+
+        case 5:
+            //E.g 25 > MAX(r1.b)"
+            curFun1   =  aggrFunctions.get(Utilities.getRandChoice(aggrFunctions.size()));
+            stm =  "(" + Utilities.getRandChoice(1000) + arith +   curFun1 + "(" + Utilities.chooseRandAttrGrpBy(selAttrIn, grpAttrIn) + ") )"  ;
+        break;
+    }
+
+    return stm;
+
+}
 
 }
 

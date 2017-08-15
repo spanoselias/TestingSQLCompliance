@@ -1,6 +1,3 @@
-
-
-
 DROP TABLE IF EXISTS
 R1,
 R2,

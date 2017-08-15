@@ -14,7 +14,9 @@ package Engine;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-
+/***********************************************************************************/
+/*                                   HAVING CLASS                                  */
+/***********************************************************************************/
 public  class HAVING
 {
     private String stm;
@@ -31,24 +33,30 @@ public  class HAVING
 
     ConfParameters confPar;
 
-    public HAVING(ConfParameters confParIn)
-    {
-        havingAttr = new LinkedList<>();
+public HAVING(ConfParameters confParIn)
+{
+    havingAttr = new LinkedList<>();
 
-        this.confPar = confParIn;
-        stm = "HAVING ";
+    this.confPar = confParIn;
+    stm = "HAVING ";
 
-        genFunctions = new FUNCTIONS();
-    }
+    genFunctions = new FUNCTIONS();
+}
 
-    public String genHaving(LinkedList<Attribute> frmRelts)
-    {
-        stm += genFunctions.getAttrComparison(frmRelts);
+/***********************************************************************************/
+/*                        GENERATES HAVING CLAUSE                                  */
+/***********************************************************************************/
+public String genHaving(LinkedList<Attribute> frmRelts)
+{
+    stm += genFunctions.getAttrComparison(frmRelts);
 
-        return stm;
-    }
+    return stm;
+}
 
-    public LinkedList<String> getAttrInHaving()
+/***********************************************************************************/
+/*                        RETRIEVES ALL THE ATTRIBUTES IN HAVING CLAUSE            */
+/***********************************************************************************/
+public LinkedList<String> getAttrInHaving()
     {
         return this.havingAttr;
     }

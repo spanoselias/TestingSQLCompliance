@@ -7,13 +7,15 @@
 /***********************************************************************************/
 package Engine;
 
-
 /***********************************************************************************/
 /*                                     LIBRARIES                                   */
 /***********************************************************************************/
 import java.util.HashMap;
 import java.util.LinkedList;
 
+/***********************************************************************************/
+/*                                     WHERE CLASS                                 */
+/***********************************************************************************/
 public  class WHERE
 {
     private String stm;
@@ -35,130 +37,128 @@ public  class WHERE
 
     ConfParameters confPar;
 
-    /**
-     *The Engine.WHERE constructor takes two parameters. The first one (allReltsWithAttrs) has all the relations
-     *that our database schema has with the associated attributes for each relation. The second parameter
-     *(selectedReltsInFrom)  is a linkedlist and it stores all the relations which are randomly choose for
-     * the Engine.FROM CLAUSE.
-     *
-     *@param allReltsWithAttrs ,it stores all the relations with their accosiated attributes
-     */
-    public WHERE(HashMap<String, LinkedList<Attribute>> allReltsWithAttrs, ConfParameters confIn)
-    {
-        this.relationsAttrs =  allReltsWithAttrs;
-        stm = "WHERE ";
+/***********************************************************************************/
+/*                                 CLASS CONSTRUCTOR                               */
+/***********************************************************************************/
+public WHERE(HashMap<String, LinkedList<Attribute>> allReltsWithAttrs, ConfParameters confIn)
+{
+    this.relationsAttrs =  allReltsWithAttrs;
+    stm = "WHERE ";
 
-        nestGenCom = new NESTCOMPARISON();
-        genCom = new COMPARISON();
-        stringGenCom = new STRINGS(confIn);
+    nestGenCom = new NESTCOMPARISON();
+    genCom = new COMPARISON();
+    stringGenCom = new STRINGS(confIn);
+}
+
+/***********************************************************************************/
+/*                               GENERATES WHERE CLAUSE                            */
+/***********************************************************************************/
+public String getSqlWhere(LinkedList<Attribute> selectedReltsInFrom,boolean isNested , ConfParameters confPar, int whereCompNo, LinkedList<Attribute> stringAttrs)
+{
+    this.confPar = confPar;
+
+    //The variable isParenOpen indicates if we have an open parenthesis
+    // Means that we need to close it
+    int isParenOpen = 0;
+
+    stm = "WHERE ";
+
+    //In case where the comparisons in the WHERE clause is greater
+    //than the given in the configuration, then we set the number of conf
+    if(whereCompNo > confPar.maxCondWhere)
+    {
+        whereCompNo = confPar.maxCondWhere;
     }
 
-    public String getSqlWhere(LinkedList<Attribute> selectedReltsInFrom,boolean isNested , ConfParameters confPar, int whereCompNo, LinkedList<Attribute> stringAttrs)
+    for (int i = 0; i < (whereCompNo + 1); i++)
     {
-        this.confPar = confPar;
+        //We flip a coin to decide if we will open/close
+        //a parenthesis
+        int pick = Utilities.getRandChoice(2);
 
-        //The variable isParenOpen indicates if we have an open parenthesis
-        // Means that we need to close it
-        int isParenOpen = 0;
-
-        stm = "WHERE ";
-
-        //In case where the comparisons in the WHERE clause is greater
-        //than the given in the configuration, then we set the number of conf
-        if(whereCompNo > confPar.maxCondWhere)
+        if (i == 0)
         {
-            whereCompNo = confPar.maxCondWhere;
+             int pickNeg = Utilities.getRandChoice(2);
+
+             //we flip a coin to decide if there will be a negation or not
+             if(pickNeg == 1) {stm += "NOT" ;}
+
+              stm += "("; isParenOpen =1;
+
+              stm += Utilities.chooseBetStringAndInt(this.relationsAttrs, selectedReltsInFrom, confPar,stringGenCom,genCom, stringAttrs);
+
         }
-
-        for (int i = 0; i < (whereCompNo + 1); i++)
+        else
         {
-            //We flip a coin to decide if we will open/close
-            //a parenthesis
-            int pick = Utilities.getRandChoice(2);
-
-            if (i == 0)
+            //If there is already an open parenthesis then we need to close
+            //the previous one
+            if( pick ==1 && isParenOpen == 1)
             {
-                 int pickNeg = Utilities.getRandChoice(2);
+                String newGen="";
 
-                 //we flip a coin to decide if there will be a negation or not
-                 if(pickNeg == 1) {stm += "NOT" ;}
+                newGen += Utilities.chooseBetStringAndInt(this.relationsAttrs, selectedReltsInFrom, confPar,stringGenCom,genCom, stringAttrs);
 
-                  stm += "("; isParenOpen =1;
+                stm += ") " + conn[Utilities.getRandChoice(conn.length)] + " " +  newGen;
+                isParenOpen = 0;
+            }
 
-                  stm += Utilities.chooseBetStringAndInt(this.relationsAttrs, selectedReltsInFrom, confPar,stringGenCom,genCom, stringAttrs);
+            //If there is not open parenthesis then we can open a new one
+            else if ( pick ==1 && isParenOpen == 0 )
+            {
+                String newGen="";
 
+                newGen += Utilities.chooseBetStringAndInt(this.relationsAttrs, selectedReltsInFrom, confPar,stringGenCom,genCom, stringAttrs);
+
+                //We randomly choose if we will have negation outside
+                //of the parenthesis OR NOT
+                String par ="";
+                int pickNeg = Utilities.getRandChoice(10);
+                if(pickNeg == 1)
+                {
+                    par += " NOT" ;
+                }
+
+                par += " ( ";
+
+                stm += conn[Utilities.getRandChoice(conn.length)] + par + newGen;
+                isParenOpen = 1;
             }
             else
             {
-                //If there is already an open parenthesis then we need to close
-                //the previous one
-                if( pick ==1 && isParenOpen == 1)
-                {
-                    String newGen="";
+                String newGen="";
 
-                    newGen += Utilities.chooseBetStringAndInt(this.relationsAttrs, selectedReltsInFrom, confPar,stringGenCom,genCom, stringAttrs);
+                newGen += Utilities.chooseBetStringAndInt(this.relationsAttrs, selectedReltsInFrom, confPar,stringGenCom,genCom, stringAttrs);
 
-                    stm += ") " + conn[Utilities.getRandChoice(conn.length)] + " " +  newGen;
-                    isParenOpen = 0;
-                }
-
-                //If there is not open parenthesis then we can open a new one
-                else if ( pick ==1 && isParenOpen == 0 )
-                {
-                    String newGen="";
-
-                    newGen += Utilities.chooseBetStringAndInt(this.relationsAttrs, selectedReltsInFrom, confPar,stringGenCom,genCom, stringAttrs);
-
-                    //We randomly choose if we will have negation outside
-                    //of the parenthesis OR NOT
-                    String par ="";
-                    int pickNeg = Utilities.getRandChoice(10);
-                    if(pickNeg == 1)
-                    {
-                        par += " NOT" ;
-                    }
-
-                    par += " ( ";
-
-                    stm += conn[Utilities.getRandChoice(conn.length)] + par + newGen;
-                    isParenOpen = 1;
-                }
-                else
-                {
-                    String newGen="";
-
-                    newGen += Utilities.chooseBetStringAndInt(this.relationsAttrs, selectedReltsInFrom, confPar,stringGenCom,genCom, stringAttrs);
-
-                    stm += conn[Utilities.getRandChoice(conn.length)] + " " + newGen;
-                }
+                stm += conn[Utilities.getRandChoice(conn.length)] + " " + newGen;
             }
-
-            //If it's the last condition and there is an open parenthesis, then
-            //we need to close it
-            if(isParenOpen == 1 && (i + 1) == (whereCompNo + 1 ))
-            {
-                stm += " )";
-            }
-        }//For statement
-
-        //In case where we have nested queries and this is the outer query
-        if(isNested == true)
-        {
-            stm += " AND " + nestGenCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom);
         }
 
-        return stm;
-    }
+        //If it's the last condition and there is an open parenthesis, then
+        //we need to close it
+        if(isParenOpen == 1 && (i + 1) == (whereCompNo + 1 ))
+        {
+            stm += " )";
+        }
+    }//For statement
 
-    public boolean getOneAttr()
+    //In case where we have nested queries and this is the outer query
+    if(isNested == true)
     {
-        return nestGenCom.getIsOneAttr();
+        stm += " AND " + nestGenCom.getAttrComparison(this.relationsAttrs, selectedReltsInFrom);
     }
 
+    return stm;
+}
 
-    public int getAllAttr()
-    {
-        return nestGenCom.getTotalAttr();
-    }
+public boolean getOneAttr()
+{
+    return nestGenCom.getIsOneAttr();
+}
+
+
+public int getAllAttr()
+{
+    return nestGenCom.getTotalAttr();
+}
 
 }

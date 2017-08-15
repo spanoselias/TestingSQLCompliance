@@ -25,6 +25,9 @@ public class SETOPERATORS
 
     private LinkedList<String> setOper;
 
+/***********************************************************************************/
+/*                              SETOPERATORS CLASS                                 */
+/***********************************************************************************/
     public SETOPERATORS(ConfParameters confParIn)
     {
         this.setOper = new LinkedList<>();
@@ -36,6 +39,9 @@ public class SETOPERATORS
         this.setOper.add("EXCEPT ALL");
     }
 
+/***********************************************************************************/
+/*                              RETRIEVES SET OPERATOR                             */
+/***********************************************************************************/
     public String getOper(LinkedList<String> frmRelts)
     {
         stm = setOper.get(Utilities.getRandChoice(setOper.size()));

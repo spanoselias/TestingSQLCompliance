@@ -14,6 +14,9 @@ package Engine;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+/***********************************************************************************/
+/*                                    FROM CLASS                                   */
+/***********************************************************************************/
 public class FROM
 {
     private Relation rel [];
@@ -37,152 +40,161 @@ public class FROM
 
     ConfParameters confParSel;
 
-    public FROM(  LinkedList<String> aliasIn, HashMap<String, LinkedList<Attribute>> allRelAttrsIn, ConfParameters confPar )
+/***********************************************************************************/
+/*                               CLASS CONSTRUCTOR                                 */
+/***********************************************************************************/
+public FROM(  LinkedList<String> aliasIn, HashMap<String, LinkedList<Attribute>> allRelAttrsIn, ConfParameters confPar )
+{
+    this.alias = aliasIn;
+
+    this.allRelAttrs = allRelAttrsIn;
+
+    this.confParSel = confPar;
+
+    fromStm = "";
+
+    //We copy all the relations from the LinkedList to an array in order to
+    //shuffle the array and afterward to choose some random relations to create
+    //FROM Clause
+    rel = new Relation[this.allRelAttrs.size()];
+    int i=0;
+    for (String relation : this.allRelAttrs.keySet())
     {
-        this.alias = aliasIn;
+        rel[i] = new Relation();
 
-        this.allRelAttrs = allRelAttrsIn;
+        rel[i].setRelName(relation);
 
-        this.confParSel = confPar;
-
-        fromStm = "";
-
-        //We copy all the relations from the LinkedList to an array in order to
-        //shuffle the array and afterward to choose some random relations to create
-        //FROM Clause
-        rel = new Relation[this.allRelAttrs.size()];
-        int i=0;
-        for (String relation : this.allRelAttrs.keySet())
+        for (Attribute attr : this.allRelAttrs.get(relation))
         {
-            rel[i] = new Relation();
-
-            rel[i].setRelName(relation);
-
-            for (Attribute attr : this.allRelAttrs.get(relation))
-            {
-                rel[i].setAttrName(attr);
-            }
-
-            i++;
+            rel[i].setAttrName(attr);
         }
 
-        //This list will be used to track which relations have been selected from the generator. Thus, it will be useful
-        //to know the relations in the Engine.FROM statement in order to know what attributes to include in the Engine.SELECT_rmv statement
-        selectedReltsInFrom = new LinkedList<>();
-
-        selStringAttr = new LinkedList<>();
-
+        i++;
     }
 
-    public String getFrom(long uniqID)
+    //This list will be used to track which relations have been selected from the generator. Thus, it will be useful
+    //to know the relations in the Engine.FROM statement in order to know what attributes to include in the Engine.SELECT_rmv statement
+    selectedReltsInFrom = new LinkedList<>();
+
+    selStringAttr = new LinkedList<>();
+
+}
+
+/***********************************************************************************/
+/*                              GENERATING FROM CLAUSE                             */
+/***********************************************************************************/
+public String getFrom(long uniqID)
+{
+    //Initialize LinkedList
+    selectedReltsInFrom.clear();
+
+    //We store the max number of tables that we can have in
+    //the FROM clause.
+    int maxRels = confParSel.maxTableFrom;
+
+    //We handle the case where the max number of tables in the FROM clause which is given
+    //is greater than the total relations. Then, we just store the total relations
+    if(maxRels > rel.length )
     {
-        //Initialize LinkedList
-        selectedReltsInFrom.clear();
+        maxRels = rel.length;
+    }
 
-        //We store the max number of tables that we can have in
-        //the FROM clause.
-        int maxRels = confParSel.maxTableFrom;
+    //This random number indicates how many relation the Engine.FROM clause will have
+    int pickRand = Utilities.getRandChoice(maxRels) + 1;
 
-        //We handle the case where the max number of tables in the FROM clause which is given
-        //is greater than the total relations. Then, we just store the total relations
-        if(maxRels > rel.length )
+    //We shuffle the array of the tables to avoid choosing always the same order.
+    Utilities.shuffleArray(rel);
+
+    String stm = "";
+
+    String tmp = stm;
+    stm = "FROM" + tmp;
+
+    String newAlias="";
+
+    for (int i = 0; i < pickRand; i++)
+    {
+        //We want to avoid having more tables than the max tables
+        //which is given an a parameter in the configuration file
+        if(confParSel.maxTableFrom == i)
         {
-            maxRels = rel.length;
+            break;
         }
 
-        //This random number indicates how many relation the Engine.FROM clause will have
-        int pickRand = Utilities.getRandChoice(maxRels) + 1;
+       //We generate an alias for each table
+       newAlias = rel[i].getRelName().toLowerCase() + String.valueOf(uniqID);
 
-        //We shuffle the array of the tables to avoid choosing always the same order.
-        Utilities.shuffleArray(rel);
+       //to be checked
+       for(Attribute attr: this.allRelAttrs.get(rel[i].getRelName()))
+       {
+           //We access the attribute of each table using the alias which is given before.
+           //Also, we store the type of the attribute
+           Attribute newAttr = new Attribute();
+           newAttr.attrName = (newAlias) + "." + attr.attrName;
+           newAttr.attrType = attr.attrType;
 
-        String stm = "";
+           //to be check
+           confParSel.selectedAttrType.put(newAttr.attrName, newAttr.attrType);
 
-        String tmp = stm;
-        stm = "FROM" + tmp;
+           this.selectedReltsInFrom.add( newAttr);
+       }
 
-        String newAlias="";
+        //Initialize the LinkedList
+        this.selStringAttr.clear();
 
-        for (int i = 0; i < pickRand; i++)
+       // We check if the strAttrs hashMap has attributes type of strings. This attributes are retrieved from the
+       // databases and they will be used to generate SQL queries with Strings, String functions and operation
+       // 'LIKE', and other String comparisons.
+       if(confParSel.strAttrs.get(rel[i].getRelName()) != null)
         {
-            //We want to avoid having more tables than the max tables
-            //which is given an a parameter in the configuration file
-            if(confParSel.maxTableFrom == i)
+            //Based on the tables that are chosen in the FROM Clause, we store the attributes with
+            //the appropriate alias to know how to access them in the SELECT and WHERE Clause
+            for (Attribute attr : confParSel.strAttrs.get(rel[i].getRelName()))
             {
-                break;
+                Attribute newAttr = new Attribute();
+                newAttr.attrName = (newAlias) + "." + attr.attrName;
+                newAttr.attrType = attr.attrType;
+
+                this.selStringAttr.add(newAttr);
+
+                //to be check
+                confParSel.selectedAttrType.put(newAttr.attrName, newAttr.attrType);
             }
 
-           //We generate an alias for each table
-           newAlias = rel[i].getRelName().toLowerCase() + String.valueOf(uniqID);
-
-           //to be checked
-           for(Attribute attr: this.allRelAttrs.get(rel[i].getRelName()))
-           {
-               //We access the attribute of each table using the alias which is given before.
-               //Also, we store the type of the attribute
-               Attribute newAttr = new Attribute();
-               newAttr.attrName = (newAlias) + "." + attr.attrName;
-               newAttr.attrType = attr.attrType;
-
-               //to be check
-               confParSel.selectedAttrType.put(newAttr.attrName, newAttr.attrType);
-
-               this.selectedReltsInFrom.add( newAttr);
-           }
-
-            //Initialize the LinkedList
-            this.selStringAttr.clear();
-
-           // We check if the strAttrs hashMap has attributes type of strings. This attributes are retrieved from the
-           // databases and they will be used to generate SQL queries with Strings, String functions and operation
-           // 'LIKE', and other String comparisons.
-           if(confParSel.strAttrs.get(rel[i].getRelName()) != null)
-            {
-                //Based on the tables that are chosen in the FROM Clause, we store the attributes with
-                //the appropriate alias to know how to access them in the SELECT and WHERE Clause
-                for (Attribute attr : confParSel.strAttrs.get(rel[i].getRelName()))
-                {
-                    Attribute newAttr = new Attribute();
-                    newAttr.attrName = (newAlias) + "." + attr.attrName;
-                    newAttr.attrType = attr.attrType;
-
-                    this.selStringAttr.add(newAttr);
-
-                    //to be check
-                    confParSel.selectedAttrType.put(newAttr.attrName, newAttr.attrType);
-                }
-
-                confParSel.allStringAttrs = this.selStringAttr;
-            }
-
-            if (i == 0)
-                stm += String.format(" %s AS %s", rel[i].getRelName(), newAlias );
-            else
-                stm += String.format(", %s AS %s", rel[i].getRelName(), newAlias );
+            confParSel.allStringAttrs = this.selStringAttr;
         }
 
-        fromStm = stm;
-
-        return stm;
+        if (i == 0)
+            stm += String.format(" %s AS %s", rel[i].getRelName(), newAlias );
+        else
+            stm += String.format(", %s AS %s", rel[i].getRelName(), newAlias );
     }
 
-    //We retrieve the attributes that were chosen in the FROM clause
-    public LinkedList<Attribute> getSelectedTables()
-    {
-        return this.selectedReltsInFrom;
-    }
+    fromStm = stm;
 
-    public LinkedList<Attribute> getStringAttrs()
+    return stm;
+}
+/***********************************************************************************/
+/*                              RETRIEVING  FROM CLAUSE ATTRIBUTES                 */
+/***********************************************************************************/
+//We retrieve the attributes that were chosen in the FROM clause
+public LinkedList<Attribute> getSelectedTables()
+{
+    return this.selectedReltsInFrom;
+}
+
+/***********************************************************************************/
+/*                              RETRIEVING STRING TYPE ATTRIBUTES                 */
+/***********************************************************************************/
+public LinkedList<Attribute> getStringAttrs()
     {
         return this.selStringAttr;
     }
 
-    public String getFromSql()
-    {
-        return fromStm;
-    }
-
-    public HashMap<String, LinkedList<Attribute>> getRelAttrs() {
+/***********************************************************************************/
+/*                              RETRIEVES ALL ATTRIBUTES                           */
+/***********************************************************************************/
+public HashMap<String, LinkedList<Attribute>> getRelAttrs() {
         return this.allRelAttrs;
     }
 
