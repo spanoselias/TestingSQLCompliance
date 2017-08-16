@@ -4,11 +4,22 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/Schemas/sch1.sql" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/Schemas/sch2.sql" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/Schemas/sch3.sql" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/Strings/strschema.sql" />
+    <list default="true" id="d7ea8cda-fc15-4018-b572-21dadd82d23b" name="Default" comment="#Commenting the code">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Libraries/IBM_DB2/db2jcc4.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Libraries/MS_Server/sqljdbc4.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Libraries/MySQL/mysql-connector-java-5.1.41-bin.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Libraries/Oracle/ojdbc7-12.1.0.2.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Libraries/postgresql/postgresql-42.0.0.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/lib/db2jcc4.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/lib/mysql-connector-java-5.1.41-bin.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/lib/ojdbc7-12.1.0.2.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/lib/postgresql-42.1.1.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/lib/sqljdbc4.jar" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/IBM_DB2/db2jcc4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/MS_Server/sqljdbc4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/MySQL/mysql-connector-java-5.1.41-bin.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/Oracle/ojdbc7-12.1.0.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/postgresql/postgresql-42.0.0.jar" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -31,11 +42,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="SQLEngine.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SQLEngine.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SQLEngine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="447">
-              <caret line="845" column="70" lean-forward="false" selection-start-line="845" selection-start-column="70" selection-end-line="845" selection-end-column="70" />
+            <state relative-caret-position="195">
+              <caret line="772" column="0" lean-forward="false" selection-start-line="772" selection-start-column="0" selection-end-line="772" selection-end-column="0" />
               <folding>
                 <element signature="e#0#26382#0" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -73,11 +84,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.properties" pinned="false" current-in-tab="false">
+      <file leaf-file-name="config.properties" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/config.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="496">
-              <caret line="64" column="89" lean-forward="false" selection-start-line="64" selection-start-column="89" selection-end-line="64" selection-end-column="89" />
+            <state relative-caret-position="370">
+              <caret line="58" column="17" lean-forward="false" selection-start-line="58" selection-start-column="17" selection-end-line="58" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -249,8 +260,8 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/4a6ddb4a-c52b-4de7-aaf2-32ca223a9628/console.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/2164fc39-a0cc-448b-9428-ae8857183282/console.sql" />
         <option value="$PROJECT_DIR$/src/Engine/ConfParameters.java" />
-        <option value="$PROJECT_DIR$/src/config.properties" />
         <option value="$PROJECT_DIR$/src/SQLEngine.java" />
+        <option value="$PROJECT_DIR$/src/config.properties" />
       </list>
     </option>
   </component>
@@ -324,20 +335,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TestingSQLCompliance" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TestingSQLCompliance" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1024,14 +1021,7 @@
       <workItem from="1500483167027" duration="137833000" />
       <workItem from="1501889515278" duration="1912000" />
       <workItem from="1501891662306" duration="41647000" />
-      <workItem from="1502826937852" duration="2963000" />
-    </task>
-    <task id="LOCAL-00110" summary="#Fixing bugs in case where there is no string type in mysql DBMS">
-      <created>1500483959226</created>
-      <option name="number" value="00110" />
-      <option name="presentableId" value="LOCAL-00110" />
-      <option name="project" value="LOCAL" />
-      <updated>1500483959226</updated>
+      <workItem from="1502826937852" duration="5101000" />
     </task>
     <task id="LOCAL-00111" summary="#Fixing Bug in getSelectAggr() method. Include arithmetic comparison between aggr functions and constants">
       <created>1500549421593</created>
@@ -1369,11 +1359,18 @@
       <option name="project" value="LOCAL" />
       <updated>1502837149022</updated>
     </task>
-    <option name="localTasksCounter" value="159" />
+    <task id="LOCAL-00159" summary="#Commenting the code">
+      <created>1502837185809</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1502837185809</updated>
+    </task>
+    <option name="localTasksCounter" value="160" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="807041000" />
+    <option name="totallyTimeSpent" value="809179000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-10" y="0" width="1924" height="1050" extended-state="0" />
@@ -1512,6 +1509,12 @@
           <properties />
           <option name="timeStamp" value="444" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/SQLEngine.java</url>
+          <line>776</line>
+          <properties />
+          <option name="timeStamp" value="447" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/ComparisonTool/ComparisonTool.java</url>
           <line>177</line>
@@ -1524,7 +1527,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="446" />
+      <option name="time" value="448" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -1580,6 +1583,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="370">
           <caret line="31" column="2" lean-forward="true" selection-start-line="31" selection-start-column="2" selection-end-line="31" selection-end-column="2" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1587,6 +1591,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
           <caret line="34" column="32" lean-forward="false" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1594,6 +1599,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="63">
           <caret line="3" column="3" lean-forward="true" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="3" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1601,6 +1607,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
           <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1936,18 +1943,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/config.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="64" column="89" lean-forward="false" selection-start-line="64" selection-start-column="89" selection-end-line="64" selection-end-column="89" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SQLEngine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="845" column="70" lean-forward="false" selection-start-line="845" selection-start-column="70" selection-end-line="845" selection-end-column="70" />
+        <state relative-caret-position="195">
+          <caret line="772" column="0" lean-forward="false" selection-start-line="772" selection-start-column="0" selection-end-line="772" selection-end-column="0" />
           <folding>
             <element signature="e#0#26382#0" expanded="true" />
             <element signature="imports" expanded="true" />
@@ -1961,6 +1960,14 @@
             <marker date="1502837143692" expanded="true" signature="6884:6979" ph="SELECT TABLE... COLUMNS" />
             <marker date="1502837143692" expanded="true" signature="7059:7261" ph="SELECT TABLE... columns" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="58" column="17" lean-forward="false" selection-start-line="58" selection-start-column="17" selection-end-line="58" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
