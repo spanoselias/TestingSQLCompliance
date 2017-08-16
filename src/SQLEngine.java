@@ -210,13 +210,13 @@ finally
         LinkedList<Attribute> curAttr = new LinkedList<>();
         LinkedList<Attribute> strAttr = new LinkedList<>();
 
-        if(rs.next() == false)
+       if(!rs.next())
         {
             System.out.println("Error!!There is NO SCHEMA TO RETRIEVE!\nThe schema is retrieved from the configuration file");
             unable2Conn=true;
         }
 
-        while (rs.next())
+       do
         {
             Attribute newAttr = new Attribute();
             String relName = rs.getString("TABLE_NAME");
@@ -291,7 +291,7 @@ finally
                     curAttr.add(newAttr);
                 }
             }
-        }
+        } while (rs.next());//while
 
        //In case where there is only one relation
        if(curAttr.isEmpty() == false && prevName != "")

@@ -97,6 +97,7 @@ public String getFrom(long uniqID)
     if(maxRels > rel.length )
     {
         maxRels = rel.length;
+       // if(maxRels == 0) {maxRels =1;}
     }
 
     //This random number indicates how many relation the Engine.FROM clause will have
