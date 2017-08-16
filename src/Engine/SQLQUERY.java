@@ -38,6 +38,7 @@ public QRYREPRES operQuery( LinkedList<String> frmRelts, long uniqID, boolean is
     }
 
     confPar.arithmCompar=0.0;
+    confPar.isSelectAll = 0.0;
 
     QRYREPRES res = new QRYREPRES();
     SETOPERATORS oper = new SETOPERATORS(confPar);

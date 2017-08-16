@@ -798,7 +798,6 @@ public static void main(String[] args) throws IOException
     int counter=0;
 
 
-
     for(int i= 0; i < confPar.compTool; i++)
     {
 
