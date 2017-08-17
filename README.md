@@ -26,12 +26,28 @@ the need to change the whole code.
  Run: java -cp '.;postgresql-42.1.1.jar' SQLEngine
 ```
 
-### Example of passing some parameters as arguments 
+
+#### Note: The following parameters can be passed as arguments to the random query tool:
+```javascript
+-maxTablesFrom, -maxAttrSel, -maxCondWhere, -maxAttrGrpBy, -probWhrConst,
+-repAlias, -nestLevel, -arithCompSel, -distinct, -stringInSel,-stringInWhere, -rowcompar,
+-DBMS, -user, -pass, -dbName, -isNULL,-isSelectAll
+```
+
+### Example 1 of passing some parameters as arguments 
 
 ```javascript
  Compile: javac -cp '.:postgresql-42.1.1.jar' SQLEngine.java
  Run: java -cp '.:postgresql-42.1.1.jar' SQLEngine -pass testing1  -DBMS mysql -dbname  teststr -user root
 ```
+
+### Example 2
+```javascript
+ javac -cp ''.;postgresql-42.1.1.jar' SQLEngine.java -maxTablesFrom,! 5 -maxCondWhere 3 -maxAttrSel 4
+```
+
+
+
 
 ### Currently supported DBMSs:
 
