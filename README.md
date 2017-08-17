@@ -43,7 +43,7 @@ the need to change the whole code.
 
 ### Example 2
 ```javascript
- javac -cp ''.;postgresql-42.1.1.jar' SQLEngine.java -maxTablesFrom,! 5 -maxCondWhere 3 -maxAttrSel 4
+ javac -cp '.;postgresql-42.1.1.jar' SQLEngine.java -maxTablesFrom  5 -maxCondWhere 3 -maxAttrSel 4
 ```
 
 

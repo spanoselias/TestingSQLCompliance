@@ -82,8 +82,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="336">
-                <caret line="34" column="3" lean-forward="false" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
+              <first_editor relative-caret-position="525">
+                <caret line="46" column="3" lean-forward="true" selection-start-line="46" selection-start-column="3" selection-end-line="46" selection-end-column="3" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -1033,14 +1033,7 @@
       <workItem from="1500483167027" duration="137833000" />
       <workItem from="1501889515278" duration="1912000" />
       <workItem from="1501891662306" duration="41647000" />
-      <workItem from="1502826937852" duration="17655000" />
-    </task>
-    <task id="LOCAL-00116" summary="#Refactor code">
-      <created>1500665867360</created>
-      <option name="number" value="00116" />
-      <option name="presentableId" value="LOCAL-00116" />
-      <option name="project" value="LOCAL" />
-      <updated>1500665867360</updated>
+      <workItem from="1502826937852" duration="17713000" />
     </task>
     <task id="LOCAL-00117" summary="#Add require libraries for the Comparison Tool">
       <created>1500666089853</created>
@@ -1378,11 +1371,18 @@
       <option name="project" value="LOCAL" />
       <updated>1502962343269</updated>
     </task>
-    <option name="localTasksCounter" value="165" />
+    <task id="LOCAL-00165" summary="#Commenting the code">
+      <created>1502962472849</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1502962472849</updated>
+    </task>
+    <option name="localTasksCounter" value="166" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="821733000" />
+    <option name="totallyTimeSpent" value="821791000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-10" y="0" width="1924" height="1050" extended-state="0" />
@@ -2013,8 +2013,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="336">
-            <caret line="34" column="3" lean-forward="false" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
+          <first_editor relative-caret-position="525">
+            <caret line="46" column="3" lean-forward="true" selection-start-line="46" selection-start-column="3" selection-end-line="46" selection-end-column="3" />
             <folding />
           </first_editor>
           <second_editor />
