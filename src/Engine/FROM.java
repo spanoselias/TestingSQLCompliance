@@ -94,10 +94,9 @@ public String getFrom(long uniqID)
 
     //We handle the case where the max number of tables in the FROM clause which is given
     //is greater than the total relations. Then, we just store the total relations
-    if(maxRels > rel.length )
+    if(maxRels > rel.length || maxRels ==0 )
     {
         maxRels = rel.length;
-       // if(maxRels == 0) {maxRels =1;}
     }
 
     //This random number indicates how many relation the Engine.FROM clause will have

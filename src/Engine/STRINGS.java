@@ -72,6 +72,7 @@ public String genStrings(LinkedList<Attribute> stringAttrs)
 
     switch(pick)
     {
+
         case 0:
             str += attr + " " + stm +  "'" + "%" + subWord + "'";
         break;
@@ -92,7 +93,7 @@ public String genStrings(LinkedList<Attribute> stringAttrs)
 
         case 5:
             int randNo = Utilities.getRandChoice(1000);
-            str =  String.valueOf(randNo) + " = CAST( " + "'" + randNo + "'" + " AS INT )";
+            str =  String.valueOf(randNo) + "  = " +   "CAST( " + "'" + randNo + "'" + "  AS INT" + ")" ;
         break;
 
         case 6:

@@ -32,7 +32,7 @@ public QRYREPRES operQuery( LinkedList<String> frmRelts, long uniqID, boolean is
     //The probWhr represents the probability of having
     //constants or NULLS to the WHERE comparisons
     int rand = Utilities.getRandChoice( 100 );
-    if(rand <=  (int)(confPar.isDistinct * 100) )
+    if(rand <  (int)(confPar.isDistinct * 100) )
     {
         isDistinct = true;
     }
