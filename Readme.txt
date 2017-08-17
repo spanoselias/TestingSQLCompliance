@@ -1,4 +1,4 @@
-Readme file. Elias Spanos
+Readme file. Elias Spanos (s1669343)
 ------------------------------------
 
 The src should contain the following folders with the associated files:
